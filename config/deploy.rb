@@ -4,7 +4,7 @@
 lock "~> 3.17.0"
 
 set :application, "diverse"
-set :repo_url, "git@github.com:woodpecker-jp/diverse.git"
+set :repo_url, "git@github.com:MakotoAsakura/diverse.git"
 set :user, "ec2-user"
 
 # Default branch is :master
