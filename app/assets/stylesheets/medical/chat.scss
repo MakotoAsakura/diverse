@@ -1,0 +1,84 @@
+.chat-item {
+  margin-bottom: 32px;
+}
+
+.chat-text {
+  border: 2px solid #d9d9d9;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: .625rem;
+}
+
+.chat-input.disable {
+  background-color: #eee;
+}
+.chat-input {
+  position: fixed;
+  bottom: 75px;
+  width: 83%;
+  height: 58px;
+  right: 10px;
+}
+
+.chat-input.disable .chat-input-text {
+  border-color: #eee;
+  background-color: #eee;
+}
+.chat-input-text {
+  width: 1%;
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  border: 1px solid #d9d9d9;
+  background-color: #fff;
+  padding: 5px;
+}
+
+.chat-button-send {
+  width: 58px;
+  height: 58px;
+}
+
+.chat-input-text textarea {
+  height: 42px;
+  min-height: 40px;
+  padding: 0;
+  resize: none;
+  border: 0;
+  background-color: transparent;
+}
+
+.chat-input-text textarea:focus {
+  box-shadow: none;
+  background-color: transparent;
+}
+
+.chat-input.disable .chat-button-send button {
+  border-color: #eee;
+  background-color: #eee;
+  background-image: image-url('employee/icons/paper-plane-gray.svg');
+}
+
+.chat-button-send button {
+  padding: 0;
+  border: 1px solid #d9d9d9;
+  text-align: center;
+  width: 56px;
+  height: 58px;
+  margin-left: 5px;
+  background-size: 32px 34px;
+  background: image-url('employee/icons/paper-plane.svg') no-repeat 50% #8c8c8c;
+}
+
+@media (min-width: 768px) {
+  .chat-wrapper {
+    position: relative;
+    margin-right: 7.0707070707%;
+    padding: 20px 50px 50px 30px;
+  }
+
+  .chat-text {
+    font-size: 1rem;
+    border: 1px solid #d9d9d9;
+  }
+}

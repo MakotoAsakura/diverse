@@ -1,0 +1,86 @@
+<% @crud_buttons = proc do |f| %>
+  <%= f.submit t("medical_institution.buttons.update"), class: "btn button save btn-edit" %>
+  <%= link_to confirm_delete_admin_medical_institution_path do %>
+    <button type="button" class="btn save btn-destroy"><%= t("medical_institution.buttons.delete") %></button>
+  <% end %>
+<% end %>
+
+<div class="wrap">
+  <div class="title-header">
+    <%= f.label :registered_content, class: "box fw-bolder" %>
+  </div>
+</div>
+
+<div class="container">
+  <div class="form-group row align-items-center">
+    <div class="col-2 fw-bolder"><%= f.label :name, @model.t(:name) %></div>
+    <div class="col-6"><%= f.text_field :name, class: "form-control border px-1 py-2", placeholder: @model.t(:name) %></div>
+  </div>
+
+  <div class="form-group row mt-3 align-items-center">
+    <div class="col-2 fw-bolder"><%= f.label :name_kana, @model.t(:name_kana) %></div>
+    <div class="col-6"><%= f.text_field :name_kana, class: "form-control border px-1 py-2", placeholder: @model.t(:name_kana) %></div>
+  </div>
+
+  <div class="form-group row mt-3 align-items-center">
+    <div class="col-2 fw-bolder"><%= f.label :phone_number, @model.t(:phone_number) %></div>
+    <div class="col-6"><%= f.text_field :phone_number, class: "form-control numberonly border px-1 py-2", placeholder: @model.t(:phone_number), maxlength: 11 %></div>
+  </div>
+
+  <div class="form-group row mt-3 align-items-center">
+    <div class="col-2 fw-bolder"><%= f.label :url, @model.t(:url) %></div>
+    <div class="col-6"><%= f.text_field :url, class: "form-control border px-1 py-2", placeholder: @model.t(:url) %></div>
+  </div>
+
+  <div class="wrap-info">
+    <div class="form-group row mt-3 align-items-center zipcode">
+      <div class="col-2 fw-bolder"><%= f.label :zipcode, @model.t(:zipcode) %></div>
+      <div class="col-3"><%= f.text_field :zipcode_first, class: "form-control zipcode-first numberonly border px-1 py-2", maxlength: 3 %></div>
+      <div class="col-3"><%= f.text_field :zipcode_last, class: "form-control zipcode-last numberonly border px-1 py-2", maxlength: 4 %></div>
+    </div>
+
+    <div class="form-group row mt-3 align-items-center location">
+      <div class="col-2 fw-bolder"><%= f.label :location, @model.t(:location) %></div>
+      <div class="col-6"><%= f.text_area :location, class: "form-control border px-1 py-2" %></div>
+    </div>
+  </div>
+
+  <div class="form-group row mt-3 align-items-center">
+    <div class="col-2 fw-bolder"><%= f.label :full_name_manager %></div>
+    <div class="col-3"><%= f.text_field :first_name_manager, class: "form-control border px-1 py-2", placeholder: MedicalInstitution.t(:first_name_manager) %></div>
+    <div class="col-3"><%= f.text_field :last_name_manager, class: "form-control border px-1 py-2", placeholder: MedicalInstitution.t(:last_name_manager) %></div>
+  </div>
+
+  <div class="form-group row mt-3 align-items-center">
+    <div class="col-2 fw-bolder"><%= f.label :full_name_kana_manager %></div>
+    <div class="col-3"><%= f.text_field :first_name_kana_manager, class: "form-control border px-1 py-2", placeholder: MedicalInstitution.t(:first_name_kana_manager) %></div>
+    <div class="col-3"><%= f.text_field :last_name_kana_manager, class: "form-control border px-1 py-2", placeholder: MedicalInstitution.t(:last_name_kana_manager) %></div>
+  </div>
+
+  <div class="form-group row mt-3 align-items-center">
+    <%= f.fields_for :user, @item.user || User.new do |ff| %>
+      <div class="col-2 fw-bolder"><%= ff.label :email, User.t(:email) %></div>
+      <div class="col-6"><%= ff.text_field :email, name: "item[user_attributes][email]", class: "form-control border px-1 py-2" %></div>
+    <% end %>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="title-header">
+    <%= f.label :pharmaceutical_company, class: "box fw-bolder" %>
+  </div>
+</div>
+
+<%= f.fields_for :pharmaceutical_company, @item.pharmaceutical_company || @item.build_pharmaceutical_company do |ff| %>
+  <div class="container">
+    <div class="form-group row align-items-center">
+      <div class="col-2 fw-bolder"><%= ff.label :name, PharmaceuticalCompany.t(:name) %></div>
+      <div class="col-6"><%= ff.text_field :name, name: "item[pharmaceutical_company_attributes][name]", class: "form-control border px-1 py-2", placeholder: PharmaceuticalCompany.t(:name) %></div>
+    </div>
+
+    <div class="form-group mt-3 row align-items-center">
+      <div class="col-2 fw-bolder"><%= ff.label :staff_ms, PharmaceuticalCompany.t(:staff_ms) %></div>
+      <div class="col-6"><%= ff.text_field :staff_ms, name: "item[pharmaceutical_company_attributes][staff_ms]", class: "form-control border px-1 py-2", placeholder: PharmaceuticalCompany.t(:staff_ms) %></div>
+    </div>
+  </div>
+<% end %>

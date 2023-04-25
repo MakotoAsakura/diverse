@@ -1,0 +1,73 @@
+
+<button type="button" class="d-none" id="btn-open-modal-accept" data-bs-toggle="modal" data-bs-target="#modal-accept-attendance"></button>
+<div class="modal fade" id="modal-accept-attendance" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <%= form_with url: "", method: :patch, id: "form-accept-attendance" do |f| %>
+        <div class="modal-body">
+          <div class="infor-attendance">
+            <div class="title">
+              <%= t("medical.attendance.index.labels.day") %>
+            </div>
+            <div class="infor" id="attendance_day"></div>
+          </div>
+          <div class="infor-attendance">
+            <div class="title">
+              <%= t("medical.attendance.index.labels.checkin_checkout") %>
+            </div>
+            <div class="infor" id="attendance_work_time">
+              <span id="start_work_time"></span>
+              <span class="ms-2 me-2">~</span>
+              <span id="end_work_time"></span>
+            </div>
+          </div>
+          <div class="infor-attendance">
+            <div class="title">
+              <%= t("medical.attendance.index.labels.break_time_1") %>
+            </div>
+            <div class="infor" id="attendance_break_time_1">
+              <span id="start_break_time_1"></span>
+              <span class="ms-2 me-2">~</span>
+              <span id="end_break_time_1"></span>
+            </div>
+          </div>
+          <div class="infor-attendance">
+            <div class="title">
+              <%= t("medical.attendance.index.labels.break_time_2") %>
+            </div>
+            <div class="infor" id="attendance_break_time_2">
+              <span id="start_break_time_2"></span>
+              <span class="ms-2 me-2">~</span>
+              <span id="end_break_time_2"></span>
+            </div>
+          </div>
+          <div class="infor-attendance">
+            <div class="title">
+              <%= t("medical.attendance.index.labels.note") %>
+            </div>
+            <div class="infor" id="attendance_note">
+            </div>
+          </div>
+          <div class="infor-attendance reject_note">
+            <div class="title">
+              <%= t("medical.attendance.index.labels.reject_note") %>
+            </div>
+            <div class="infor">
+              <%= f.text_area :reject_note, name: "attendance[reject_note]", rows: 5 %>
+            </div>
+          </div>
+          <div class="mt-3 mb-3 text-center" id="text-confirm-attendance"></div>
+          <div class="d-flex justify-content-center">
+            <div class="button me-1">
+              <button class="btn btn-submit btn-submit-modal" type="submit"><%= t("medical.attendance.index.labels.accept") %></button>
+            </div>
+            <div class="button ms-1">
+              <button class="btn btn-submit btn-hide-modal" type="button" data-bs-dismiss="modal"><%= t("medical.attendance.index.labels.reject") %></button>
+            </div>
+          </div>
+        </div>
+        <%= f.hidden_field :status, value: "approved", name: "attendance[status]", id: "status_field" %>
+      <% end %>
+    </div>
+  </div>
+</div>

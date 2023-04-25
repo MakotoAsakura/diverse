@@ -1,0 +1,80 @@
+ja:
+  medical_institution:
+    title:
+      index: "契約求人機関一覧"
+      show: "求人機関詳細"
+      new: "新規登録"
+      create: "新規登録"
+      edit: "更新確認"
+      update: "更新確認"
+      confirm: "登録確認"
+      confirm_update: "更新確認"
+      confirm_delete: "削除確認"
+      complete:
+        confirm: "登録完了"
+        confirm_update: "更新完了"
+        confirm_delete: "削除完了"
+    views:
+      attributes:
+        department: "診療科目"
+      search: "検索条件"
+      list: "求人機関一覧"
+      complete:
+        titles:
+          new: "登録完了"
+          edit: "更新完了"
+        confirm:
+          notice: "登録が完了しました。"
+          message: "ご登録のメールアドレスへご確認のメールをお送りいたしました。"
+        confirm_update:
+          notice: "更新が完了しました。"
+          message: "ご登録のメールアドレスへご確認のメールをお送りいたしました。"
+        confirm_delete:
+          notice: "削除が完了しました。"
+          message: "ご登録のメールアドレスへご確認のメールをお送りいたしました。"
+    links:
+      show: "求人機関詳細"
+      invoice: "請求書"
+      job_seeker: "就業者一覧"
+    buttons:
+      create: "求人機関を登録する"
+      edit: "求人機関を更新する"
+      update: "契約求人機関を更新する"
+      delete: "契約求人機関を削除する"
+      confirm: "契約求人機関を更新する"
+      confirm_update: "求人機関を更新する"
+      confirm_delete: "求人機関を削除する"
+    note:
+      confirm: "上記内容で更新します。よろしいですか？"
+      confirm_delete: "求人機関を削除します。よろしいですか？ "
+    warning:
+      confirm_delete: "※求人機関を削除すると復元することができません。ご注意ください。"
+  pharmaceutical_company:
+    title:
+      show: "医薬品卸会社詳細"
+    links:
+      show: "詳細"
+    views:
+      search: "検索条件"
+      list: "医薬品卸会社一覧"
+      medical_institution: "求人機関"
+      label_details: "採用内容"
+  admin:
+    medical_institutions:
+      title:
+        index: "契約求人機関一覧"
+        show: "求人機関詳細"
+        new: "新規登録"
+        create: "新規登録"
+        edit: "求人機関詳細"
+        update: "更新確認"
+        confirm: "更新確認"
+        confirm_update: "更新確認"
+        confirm_delete: "削除確認"
+        complete:
+#          confirm: "更新完了"
+#          confirm_update: "更新完了"
+          confirm_delete: "削除完了"
+    pharmaceutical_companies:
+      title:
+        index: "医薬品卸会社一覧"

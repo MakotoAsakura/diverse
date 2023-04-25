@@ -1,0 +1,18 @@
+<% provide(:title, t("employee.job_applied.views.new.title")) %>
+<div class="container">
+  <%= render "employee/jobs/job", job: @candidate_job.job %>
+
+  <div class="row justify-content-center">
+    <div class="col">
+      <hr class="d-none d-md-block gaps-1x" />
+      <div class="form-group">
+        <div class="main-title text-center mt-5"><%= t("employee.job_applied.views.new.confirm_message") %></div>
+      </div>
+      <div class="text-center">
+        <%= link_to t("employee.job_applied.views.new.confirm_button"),
+                    jobs_applied_index_path(params: { job_id: @candidate_job.job.id }),
+                    method: :post, class: "btn btn-custom btn-primary" %>
+      </div>
+    </div>
+  </div>
+</div>

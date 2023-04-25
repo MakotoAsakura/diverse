@@ -1,0 +1,71 @@
+<div class="title-header">
+  <%= label_tag :filter, t("admin.medical_institution.candidate.views.medical_institution"), class: "box fw-bolder" %>
+</div>
+<div>
+  <%= @medical_institution.name %>
+</div>
+
+
+<% @filter_header = proc do %>
+  <%= label_tag :filter, t("admin.medical_institution.candidate.views.search"), class: "box fw-bolder" %>
+<% end %>
+
+<% @filter_menu = proc do %>
+  <% @s ||= OpenStruct.new params[:s] %>
+  <%= form_for :s, url: "", html: { class: "index-search", method: :get } do |f| %>
+
+    <div class="row d-flex justify-content-center">
+      <div class="col-8 col-md-8">
+        <div class="row d-flex flex-wrap align-items-center mb-1 justify-content-center">
+          <div class="col-2 title-label"><%= f.label :name, @model.t(:name) %></div>
+          <div class="col-sm-10 col-md-10"><%= f.text_field :name, class: "form-control h-auto border px-1 py-2 w-50" %></div>
+        </div>
+      </div>
+      <div class="col-8 col-md-8 mt-3">
+        <div class="row d-flex flex-wrap align-items-center mb-1 justify-content-center">
+          <div class="col-2 title-label"><%= t("admin.medical_institution.candidate.views.address") %></div>
+          <div class="col-sm-10 col-md-10"><%= f.text_field :address, class: "form-control h-auto border px-1 py-2 w-50" %></div>
+        </div>
+      </div>
+      <div class="col-8 col-md-8 mt-3">
+        <div class="row d-flex flex-wrap align-items-center mb-1 justify-content-center">
+          <div class="col-2 title-label"><%= User.t(:email) %></div>
+          <div class="col-sm-10 col-md-10"><%= f.text_field :email, class: "form-control h-auto border px-1 py-2 w-50" %></div>
+        </div>
+      </div>
+      <div class="send text-start pt-2 col-8 col-md-8">
+        <input type="submit" value="<%= t("base.buttons.search") %>" class="btn button save btn-submit button_search"/>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+<% @content_header = proc do %>
+  <%= label_tag :filter, t("admin.medical_institution.candidate.views.list"), class: "box mt-4 mb-4 fw-bolder" %>
+<% end %>
+
+<% @index_title = proc do %>
+  <th scope="col" class="title name"><%= CandidateJob.t(:contract_id) %></th>
+  <th scope="col" class="title name"><%= @model.t(:name) %></th>
+  <th scope="col" class="title name-kana"><%= @model.t(:name_kana) %></th>
+  <th scope="col" class="title address"><%= t("admin.medical_institution.candidate.views.address") %></th>
+  <th scope="col" class="title email"><%= User.t(:email) %></th>
+  <th scope="col" class="title action"></th>
+<% end %>
+
+<% @index_meta = proc do |item| %>
+  <tr>
+    <td class="contract_id"><%= item.contract_id %></td>
+    <td class="name"><%= item.full_name %></td>
+    <td class="name-kana"><%= item.full_name_kana %></td>
+    <td class="address"><%= item.full_address %></td>
+    <td class="email"><%= item.user.email %></td>
+    <td class="text-center action">
+      <%= link_to t("admin.medical_institution.candidate.links.detail"), admin_medical_institution_candidate_account_path(@medical_institution.id, item.user_id), class: "btn button btn-info mt-1" %>
+      <%= link_to t("admin.medical_institution.candidate.links.attendance"), admin_medical_institution_candidate_attendances_path(@medical_institution.id, item.user_id, job_id: item.job_id), class: "btn button btn-success mt-1" %>
+      <%= link_to t("admin.medical_institution.candidate.links.invoice"), admin_medical_institution_candidate_payslips_path(@medical_institution.id, item.user_id), class: "btn button btn-primary mt-1" %>
+    </td>
+  </tr>
+<% end %>
+
+<%= render template: "base/crud/index" %>

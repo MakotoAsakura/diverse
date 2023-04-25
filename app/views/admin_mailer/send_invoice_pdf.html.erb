@@ -1,0 +1,5 @@
+<div><%= @medical_institution.name %>様への支払い明細を送付しました。</div>
+<br>
+<div>請求書はこちら：<%= link_to admin_medical_institution_invoices_url(medical_institution_id: @medical_institution.id),
+                               admin_medical_institution_invoices_url(year: @year, month: @month, medical_institution_id: @medical_institution.id),
+                               target: "_blank" %></div>

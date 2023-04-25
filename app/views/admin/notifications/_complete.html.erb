@@ -1,0 +1,6 @@
+<% @complete_notice = proc do %>
+  <%= t("admin.notifications.complete.#{params[:_action].presence || "new"}.notice") %>
+<% end %>
+
+<% @complete_send_mail = proc do %>
+<% end %>

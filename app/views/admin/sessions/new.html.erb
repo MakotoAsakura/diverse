@@ -1,0 +1,29 @@
+<div class="d-flex justify-content-center flex-root">
+  <div class="login-form p-7 overflow-hidden align-middle rounded">
+    <div class="card-body p-4 p-sm-5">
+      <%= form_for(resource, as: resource_name, url: admin_user_session_path, data: { turbo: false }) do |f| %>
+        <div class="form-group">
+          <%= f.label :email, t("admin.sessions.new.label.email") %>
+          <%= f.email_field :email, autofocus: true, placeholder: t("admin.sessions.new.label.email"), class:"form-control h-auto border-solid-light-gray-1 px-1 py-2 mb-3" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :password, t("admin.sessions.new.label.password") %>
+          <%= f.password_field :password, autocomplete: 'off', placeholder: t("admin.sessions.new.label.password"), class: "form-control h-auto border-solid-light-gray-1 px-1 py-2 mb-3" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.hidden_field :role, value: "admin" %>
+        </div>
+
+        <div class="form-group text-center mt-3 mb-3">
+          <%= link_to t("admin.sessions.new.label.forgot_password"), new_admin_user_password_path %>
+        </div>
+
+        <div class="form-group text-center">
+          <%= f.submit t("admin.sessions.new.label.submit"), class: "btn button save btn-submit font-weight-bold opacity-90 pl-3 pb-1 px-4rem" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

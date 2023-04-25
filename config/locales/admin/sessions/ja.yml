@@ -1,0 +1,12 @@
+ja:
+  admin:
+    sessions:
+      new:
+        label:
+          email: メールアドレス
+          password: パスワード
+          forgot_password: パスワードをお忘れの方はこちら
+          submit: ログイン
+        placeholder:
+          email: メールアドレス
+          password: パスワード

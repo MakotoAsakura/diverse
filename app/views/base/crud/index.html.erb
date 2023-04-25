@@ -1,0 +1,53 @@
+<div class="index">
+  <div class="wrap">
+    <div class="title-header">
+      <% if @filter_header %>
+        <% @filter_header.call %>
+      <% end %>
+    </div>
+
+    <% if @filter_menu %>
+      <% @filter_menu.call %>
+    <% end %>
+  </div>
+
+  <div class="wrap">
+    <div class="title-header">
+      <% if @content_header %>
+        <% @content_header.call %>
+      <% end %>
+    </div>
+
+    <% if @content_menu %>
+      <div class="my-3">
+        <% @content_menu.call %>
+      </div>
+    <% end %>
+
+    <table class="table table-borderless">
+      <thead class="info">
+      <tr>
+        <% if @index_title %>
+          <% @index_title.call %>
+        <% end %>
+      </tr>
+      </thead>
+
+      <% if @items.length > 0 %>
+        <tbody class="meta">
+        <% @items.each do |item| %>
+          <% if @index_meta %>
+            <% @index_meta.call item %>
+          <% end %>
+        <% end %>
+        </tbody>
+      <% else %>
+        <td colspan="<%= @index_column.presence || 3 %>">
+          <%= t("base.no_data") %>
+        </td>
+      <% end %>
+    </table>
+
+    <%= paginate @items if @items.try(:current_page) %>
+  </div>
+</div>

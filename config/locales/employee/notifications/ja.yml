@@ -1,0 +1,15 @@
+ja:
+  employee:
+    notifications:
+      index:
+        title: "お知らせ検索"
+        pagination_info: "%{total_count}件、%{current_page}ページ目"
+        list: "お知らせ一覧"
+        back_to_home: "マイページに戻る"
+        empty: "お知らせはありませんでした。"
+        search_empty: "検索条件に該当するお知らせはありませんでした。"
+        time_invalid: "終了日には開始日以降の日付を指定して下さい。"
+      show:
+        title: "お知らせ詳細"
+        back_to_list: "お知らせ一覧に戻る"
+

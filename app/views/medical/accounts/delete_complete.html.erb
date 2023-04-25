@@ -1,0 +1,16 @@
+<% content_for :title, t("medical.account.delete_complete.title") %>
+<% content_for :title_class, "text-center text-lg-start" %>
+
+<div id="complete">
+  <div class="mt-5">
+    <div class="notice">
+      <strong><%= t("medical.account.delete_complete.completed") %></strong>
+    </div>
+    <div class="send-mail">
+      <strong><%= t("medical.account.delete_complete.send_mail") %>。</strong>
+    </div>
+    <%= link_to new_medical_user_session_path do %>
+      <button type="button" class="btn btn-custom btn-primary"><%= t("medical.account.delete_complete.back_button") %></button>
+  <% end %>
+  </div>
+</div>

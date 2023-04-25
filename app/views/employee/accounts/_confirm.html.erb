@@ -1,0 +1,108 @@
+<% content_for :title, t("employee.account.views.confirm.title") %>
+<% content_for :title_class, "text-center text-lg-start" %>
+
+<% @crud_buttons = proc do %>
+<% end %>
+
+<div class="boxed px-3 px-lg-0">
+  <form class="form-highlight">
+    <div class="form-group">
+      <label class="form-label"><%= t("employee.account.views.confirm.label.name") %></label>
+      <div class="form-group-control"><%= @item.candidate.full_name %></div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= t("employee.account.views.confirm.label.name_kana") %></label>
+      <div class="form-group-control"><%= @item.candidate.full_name_kana %></div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= t("employee.account.views.confirm.label.gender") %></label>
+      <div class="form-group-control"><%= gender_text(@item.candidate) %></div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= t("employee.account.views.confirm.label.national") %></label>
+      <div class="form-group-control"><%= national_text(@item.candidate) %></div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= t("employee.account.views.confirm.label.bod") %></label>
+      <div class="form-group-control">
+        <div class="row g-3 align-items-center">
+          <div class="col-auto"><%= @item.candidate.year_of_birth %>年</div>
+          <div class="col-auto"><%= @item.candidate.month_of_birth %>月</div>
+          <div class="col-auto"><%= @item.candidate.day_of_birth %>日</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= t("employee.account.views.confirm.label.zip_code") %></label>
+      <div class="form-group-control"><%= "#{@item.candidate.zipcode_first}-#{@item.candidate.zipcode_last}" %></div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= t("employee.account.views.confirm.label.prefecture") %></label>
+      <div class="form-group-control"><%= @item.candidate.prefecture %></div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= t("employee.account.views.confirm.label.city") %></label>
+      <div class="form-group-control"><%= @item.candidate.city %></div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= t("employee.account.views.confirm.label.address") %></label>
+      <div class="form-group-control"><%= @item.candidate.address %></div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= t("employee.account.views.confirm.label.phone_number") %></label>
+      <div class="form-group-control"><%= number_to_phone(@item.candidate.phone_number) %></div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= t("employee.account.views.confirm.label.email") %></label>
+      <div class="form-group-control">
+        <a class="text-decoration-underline" href="#"><%= @item.email %></a>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= t("employee.account.views.confirm.label.password") %></label>
+      <div class="form-group-control"><%= convert_password_to_asterisk(@item) %></div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= t("employee.account.views.confirm.label.password_confirmation") %></label>
+      <div class="form-group-control"><%= convert_password_to_asterisk(@item) %></div>
+    </div>
+    <hr class="d-none d-md-block gaps-2x" />
+    <div class="form-group mt-5">
+      <div class="mb-4 text-center text-md-start"><%= t("employee.account.views.confirm.label.confirm_update") %></div>
+      <div class="mb-4">
+        <%= f.submit t("employee.account.views.confirm.buttons.submit"), class: "btn btn-custom btn-primary" %>
+      </div>
+      <div class="mb-4">
+        <%= link_to edit_account_path(type: :back) do %>
+          <%= button_tag  t("employee.account.views.confirm.buttons.back"), class: "btn btn-custom btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="d-none">
+  <%= f.fields_for :candidate, @item.candidate || Candidate.new do |ff| %>
+    <%= ff.hidden_field :first_name, name: "item[candidate_attributes][first_name]" %>
+    <%= ff.hidden_field :last_name, name: "item[candidate_attributes][last_name]" %>
+    <%= ff.hidden_field :first_name_kana, name: "item[candidate_attributes][first_name_kana]" %>
+    <%= ff.hidden_field :last_name_kana, name: "item[candidate_attributes][last_name_kana]" %>
+    <%= ff.hidden_field :zipcode, name: "item[candidate_attributes][zipcode]" %>
+    <%= ff.hidden_field :gender, name: "item[candidate_attributes][gender]" %>
+    <%= ff.hidden_field :national, name: "item[candidate_attributes][national]" %>
+    <%= ff.hidden_field :year_of_birth, name: "item[candidate_attributes][year_of_birth]" %>
+    <%= ff.hidden_field :month_of_birth, name: "item[candidate_attributes][month_of_birth]" %>
+    <%= ff.hidden_field :day_of_birth, name: "item[candidate_attributes][day_of_birth]" %>
+    <%= ff.hidden_field :prefecture, name: "item[candidate_attributes][prefecture]" %>
+    <%= ff.hidden_field :city, name: "item[candidate_attributes][city]" %>
+    <%= ff.hidden_field :address, name: "item[candidate_attributes][address]" %>
+    <%= ff.hidden_field :phone_number, name: "item[candidate_attributes][phone_number]" %>
+    <%= ff.hidden_field :dob, name: "item[candidate_attributes][dob]" %>
+  <% end %>
+
+  <%= f.hidden_field :email %>
+  <%= f.hidden_field :email_confirmation %>
+  <%= f.hidden_field :password %>
+  <%= f.hidden_field :password_confirmation %>
+</div>
+

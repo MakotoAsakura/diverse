@@ -1,0 +1,26 @@
+<% content_for :title, t("admin.password.title.index") %>
+<div class="d-flex justify-content-center flex-root">
+  <div class="login-form p-7 overflow-hidden align-middle rounded">
+    <div class="card-body p-4 p-sm-4">
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }, data: { turbo: false }) do |f| %>
+        <div class="form-group text-center">
+          <strong><%= t('reset_password.new.text') %></strong><br>
+          <strong><%= t('reset_password.new.text2') %></strong>
+        </div>
+        <div class="form-group mt-4">
+          <div class="form-group-control">
+            <%= f.email_field :email, autocomplete: "email", class: "form-control input-custom" %>
+          </div>
+        </div>
+        <div class="form-button-group text-center mx-auto mt-4">
+          <div class="form-group">
+            <div class="d-grid gap-4 gap-md-4">
+              <%= f.submit t('reset_password.new.button'), class: "btn button save btn-submit font-weight-bold opacity-90 pl-3 pb-1 px-4rem" %>
+              <%= link_to t('reset_password.new.back_to_login'), new_admin_user_session_path, class: "btn button save btn-submit font-weight-bold opacity-90 pl-3 pb-1 px-4rem" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+.i {
+  &-helper {
+    margin-bottom: 5px;
+    &.danger {
+      color: #ff4b4b;
+    }
+  }
+}
+
+input, textarea {
+  &.danger {
+    border-color: #ff4b4b !important;
+  }
+}

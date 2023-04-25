@@ -1,0 +1,26 @@
+ja:
+  tax_withholding:
+    title:
+      index: "源泉徴収税額表"
+      edit: "源泉徴収税額更新"
+      formula: "源泉徴収税額　計算式"
+      new: "源泉徴収税額　計算式更新"
+    index:
+      new: "新規追加"
+      import: "インポート"
+      list: "源泉徴収税額表"
+      list_formula: "源泉徴収税額　計算式"
+      change: "「更新」ボタンを押した場合、編集可能なポップアップを表示"
+      change_button: "更新"
+      button: "トップページへ"
+      new_button: "新規追加"
+    edit:
+      confirm: "厳選徴収税額を更新しますか？"
+      submit: "はい"
+      close: "いいえ"
+    errors:
+      invalid: "データーが無効になりました。"
+      formula_invalid: "数式が無効です"
+      please_import_file: "正しいファイルを選択してください。"
+    import:
+      success: "インポートは正常終了しました。"

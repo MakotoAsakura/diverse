@@ -1,0 +1,21 @@
+<% content_for :title, t("admin.accounts.complete.titles.#{params[:_action].presence || "edit"}") %>
+
+<% @complete_notice = proc do %>
+  <%= t("admin.accounts.complete.notices.#{params[:_action].presence || "edit"}") %>
+<% end %>
+
+<% @complete_send_mail = proc do %>
+  <%= t("admin.accounts.complete.messages.#{params[:_action].presence || "edit"}") %>
+<% end %>
+
+<% @complete_button = proc do %>
+  <% if params[:_action] == "destroy" %>
+    <%= link_to new_admin_user_session_path, class: "button btn-submit" do %>
+      <button><%= t("base.buttons.go_to.admin/account") %></button>
+    <% end %>
+  <% else %>
+    <%= link_to edit_admin_account_path, class: "button btn-submit" do %>
+      <button><%= t("base.buttons.go_to.admin/account") %></button>
+    <% end %>
+  <% end %>
+<% end %>

@@ -1,0 +1,11 @@
+ja:
+  medical:
+    notifications:
+      index:
+        title: "お知らせ一覧"
+        search: "検索条件"
+        list: "お知らせ一覧"
+        time_invalid: "終了日には開始日以降の日付を指定して下さい。"
+      show:
+        title: "お知らせ詳細"
+        detail: "お知らせ"

@@ -1,0 +1,375 @@
+.fix-order-item {
+  margin-top: 1.5rem;
+  padding-right: 0 !important;
+  border-top: none;
+}
+
+.invoice {
+  .info-1 {
+    .info-admin {
+      width: 66.6666%;
+      display: inline-block;
+      border: 2px solid #000000;
+      padding: 15px;
+      border-radius: 10px;
+
+      .address {
+        margin: 5px 0;
+      }
+    }
+
+    .info-invoice {
+      display: inline-block;
+      width: 32.3333%;
+      float: right;
+
+      &__title {
+        width: 100%;
+        background: #4d4d4d;
+        color: #FFFFFF;
+        font-size: 22px;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 25px;
+      }
+
+      &__wrapper {
+        .code-title, .settlement-date-title {
+          width: 49%;
+          display: inline-block;
+          background: #4d4d4d;
+          color: #FFFFFF;
+          font-size: 16px;
+          font-weight: 500;
+          text-align: right;
+          padding-right: 10px;
+        }
+
+        .code-content, .settlement-date-content {
+          width: 49%;
+          display: inline-block;
+          font-size: 15px;
+          font-weight: 500;
+          text-align: center;
+        }
+
+        .delimiter {
+          height: 1px;
+          border: 1px solid #4d4d4d;
+          margin-left: 49%;
+        }
+      }
+    }
+  }
+
+  .info-2 {
+    margin: 25px 0;
+  }
+
+  .info-3 {
+    .total-payment-due-date {
+      width: 66.6666%;
+      display: inline-block;
+
+      .total, .payment-due-date {
+        width: 66.6666%;
+
+        &-title {
+          display: inline-block;
+          width: 33.3333%;
+          background: #4d4d4d;
+          color: #FFFFFF;
+          font-size: 13px;
+          font-weight: 500;
+          text-align: center;
+          padding: 10px 5px;
+        }
+
+        &-value {
+          display: inline-block;
+          width: 66.6666%;
+          background: #dbdbdb;
+          font-size: 13px;
+          padding: 10px 5px;
+        }
+
+        .total-value {
+          font-weight: bold;
+          text-align: right;
+        }
+
+        .payment-due-date-value {
+          text-align: center;
+        }
+      }
+
+      .total {
+        margin-bottom: 60px;
+      }
+    }
+
+    .info-medical {
+      width: 32.3333%;
+      display: inline-block;
+    }
+  }
+
+  .info-4 {
+    .table-details {
+      table {
+        width: 100%;
+      }
+
+      table > tbody > tr {
+        td {
+          border-right: 3px solid #FFFFFF;
+
+          div {
+            min-height: 18px;
+          }
+        }
+
+        td.content {
+          color: #000000;
+        }
+
+        td.header {
+          color: #FFFFFF;
+          background: #4d4d4d;
+          text-align: center;
+          font-size: 18px;
+          padding: 7px;
+        }
+
+        td.default {
+          font-size: 16px;
+          padding: 3px;
+        }
+
+        td.deep {
+          font-size: 16px;
+          padding: 3px;
+          background: #dbdbdb;
+        }
+      }
+
+      .user-name {
+        width: 43.4444%;
+      }
+
+      .break-down {
+        width: 22.3333%;
+      }
+
+      .amount-money {
+        width: 32.3333%;
+      }
+    }
+
+    .border-none {
+      border: none !important;
+    }
+  }
+
+  .info-5 {
+    .delimiter {
+      width: 100%;
+      height: 30px;
+      background: #4d4d4d;
+    }
+  }
+
+  .info-6 {
+    margin-top: 10px;
+
+    .bank-info {
+      display: inline-block;
+      width: 66.6666%;
+      vertical-align: top;
+
+      &__details {
+        width: 66.6666%;
+        border: 1.5px solid #4d4d4d;
+        text-align: center;
+        margin-top: 10px;
+      }
+    }
+
+
+    .total-info {
+      display: inline-block;
+      width: 32.3333%;
+      float: right;
+
+      .table-details {
+        table {
+          width: 100%;
+        }
+
+        &__item {
+          background: #4d4d4d;
+          color: #FFFFFF;
+          text-align: center;
+        }
+
+        &__value {
+          background: #dbdbdb;
+          color: #000000;
+          text-align: right;
+          padding-right: 2px;
+        }
+
+        &__item, &__value {
+          width: 50%;
+          display: inline-block;
+          font-size: 16px;
+          font-weight: 400;
+        }
+
+        tr {
+          border-bottom: 2px solid #FFFFFF !important;
+        }
+      }
+    }
+  }
+
+  .info-7 {
+    margin-top: 15px;
+
+    .delimiter {
+      width: 100%;
+      height: 1px;
+      border: 1px solid #4d4d4d;
+    }
+  }
+
+  .info-8 {
+    .description-tax {
+      font-size: 16px;
+      font-weight: 500;
+    }
+  }
+}
+
+.invoice-pdf {
+  .info-1 {
+    .info-admin {
+      width: 62.66% !important;
+    }
+
+    .info-invoice {
+      width: 30.3333% !important;
+    }
+
+    .info-invoice__title {
+      padding-top: 5px !important;
+    }
+
+    .code-title, .settlement-date-title {
+      width: 45.5% !important;
+      padding-top: 5px !important;
+    }
+
+    .delimiter {
+      height: 0.3px !important;
+      border: 0.3px solid #4d4d4d;
+      margin-left: 49%;
+    }
+  }
+
+  .info-3 {
+    .total-payment-due-date {
+      .total, .payment-due-date {
+        width: 66.6666%;
+
+        &-title {
+          width: 25.3333% !important;
+        }
+
+        &-value {
+          width: 69.6666%;
+        }
+      }
+    }
+  }
+
+  .info-4 {
+    .text-end {
+      text-align: right !important;
+    }
+
+    .border-none {
+      border: none !important;
+    }
+
+    table > tbody > tr {
+      td {
+        border: none !important;
+      }
+    }
+  }
+
+  .info-5 {
+    padding: 0 1px !important;
+  }
+
+  .info-6 {
+    .table-details {
+      &__item, &__value {
+        width: 49.25% !important;
+        display: inline-block !important;
+        font-size: 16px !important;
+        font-weight: 400 !important;
+        padding-top: 5px !important;
+        clear: right !important;
+      }
+    }
+
+    tr {
+      border-bottom: 2px solid #FFFFFF;
+    }
+
+    .bank-info {
+      width: 66.6666% !important;
+    }
+
+    .total-info {
+      display: inline-block !important;
+      width: 32.3333% !important;
+      clear: right !important;
+    }
+  }
+
+  .info-7 {
+    .delimiter {
+      width: 100%;
+      height: 0.5px !important;
+      border: 1px solid #4d4d4d !important;;
+    }
+  }
+
+  .info-8 {
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 800px) {
+  .invoice .info-1 .info-admin {
+    width: 60%;
+  }
+
+  .invoice .info-1 .info-invoice {
+    width: 39%;
+  }
+
+}
+
+@media (max-width: 700px) {
+  .invoice .info-1 .info-admin {
+    width: 50%;
+  }
+
+  .invoice .info-1 .info-invoice {
+    width: 49%;
+  }
+}

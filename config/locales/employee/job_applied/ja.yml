@@ -1,0 +1,42 @@
+ja:
+  employee:
+    job_applied:
+      views:
+        show:
+          title: "応募求人詳細"
+          label:
+            recruitment_results: "採用結果"
+            acceptance: "採用承諾"
+            contract: "契約条件"
+            description: "求人内容"
+          acceptance_notice:
+            "<strong>選考の結果、採用となりました。</strong><br/><strong>本採用について「承諾」または「辞退」を選択してください。</strong><br/><span class='text-danger'><strong>「承諾」の場合は下記の内容をご確認の上、選択してください。</strong></span>"
+          commit1: "応募先の求人機関とコミュニケーションが取れています。"
+          commit2: "給与を受け取る口座情報の登録が完了しています。"
+          commit2_description1: "※未登録の場合は"
+          commit2_description2: "口座情報管理"
+          commit2_description3: "からご登録をお願いします。"
+          commit3: "「契約条件」を確認し、本契約に承諾します。"
+          contract:
+            notice: "<strong>確定した契約条件です。<br/>ご認識に相違ないか、必ずご確認ください。</strong>"
+          description:
+            notice: "<strong>掲載していた求人情報です。</strong>"
+          job_fulled: "応募人数が定員に達しました。"
+        new:
+          title: "応募確認"
+          confirm_message: "この求人に応募しますか？"
+          confirm_button: "応募する"
+        create:
+          title: "応募完了"
+          desciption_html: |
+            <p>
+              <strong>応募が完了しました。</strong>
+            </p>
+            <div>ご登録のメールアドレスへ応募受付メールをお送りいたしました。
+            <br />また、応募完了した求人はマイページから確認できます。
+            </div>
+          back: "マイページへ"
+          chat: "トーク"
+      buttons:
+        commit: "承諾"
+        decline: "辞退"

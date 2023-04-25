@@ -1,0 +1,46 @@
+ja:
+  employee:
+    attendances:
+      index:
+        title: "勤怠管理"
+        medical_list: "勤怠管理（求人機関一覧）"
+        medical_institution_name: "求人機関名"
+      jobs:
+        title: "勤怠管理"
+        medical_institution_name: "求人機関名"
+        job_name: "求人タイトル"
+        contract_list: "勤怠管理（契約一覧）"
+        contract_description: "※契約IDは応募求人詳細に記載しています。"
+        contract_id: "契約ID"
+      attendances:
+        title: "勤怠管理"
+        medical_institution_name: "求人機関名"
+        job_name: "求人タイトル"
+        attendance_list: "出退勤一覧"
+        date: "日付"
+        contract_id: "契約ID"
+        pagination:
+          current: "今月"
+        actions:
+          submit: "勤怠申請"
+          cancel: "勤怠申請キャンセル"
+          edit: "入力/編集"
+          show: "詳細"
+      form: &attendance_detail
+        title: "勤怠管理"
+        detail: "出退勤詳細"
+        date: "日付"
+        hour: "時間"
+        submit: "入力完了する"
+        back: "勤怠管理（契約一覧）に戻る"
+      show:
+        <<: *attendance_detail
+        title: "勤怠管理"
+      submit:
+        success: "勤怠申請を送信しました。"
+      cancel:
+        success: "勤怠申請をキャンセルしました。"
+      update:
+        success: "勤怠申請を更新しました。"
+      create:
+        success: "勤怠申請を送信しました。"

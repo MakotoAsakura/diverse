@@ -1,0 +1,80 @@
+<% if @item.new_record? %>
+  <% content_for :title, "求人募集" %>
+<% else %>
+  <% content_for :title, "募集更新" %>
+<% end %>
+
+<%= form_for :item, url: { action: :confirm, id: @item.id }, html: { id: "item-form", multipart: true, autocomplete: :off, method: :post }, data: { turbo: false } do |f| %>
+  <%= error_messages_for :item %>
+
+  <div class="wrap">
+    <div class="wrap">
+      <div class="title-header">
+        <%= f.label :post_period, class: "box fw-bolder" %>
+      </div>
+
+      <div class="form-group mt-3">
+        <div class=""><%= f.label :open_at, @model.t(:open_at) %></div>
+        <div class="row">
+          <div class="col-auto row">
+            <div class="col-auto">
+              <% default_open_at = @item.open_at || Date.today %>
+              <%= f.text_field :open_at, value: default_open_at, class: "form-control border px-1 py-2 datepicker-default", style: "width: 165px;", placeholder: l(Time.current, format: :long_day_dash), maxDate: @item.start_at&.to_date %>
+            </div>
+            <div class="col-auto mt-1">
+              <div class="calendar-icon"><%= image_tag("svg/calendar_icon.svg") %></div>
+            </div>
+          </div>
+          <div class="col-auto mt-2">〜</div>
+          <div class="col-auto row">
+            <div class="col-auto">
+              <% default_close_at = @item.close_at || @item.end_at %>
+              <%= f.text_field :close_at, value: default_close_at&.to_date, class: "form-control border px-1 py-2 datepicker-default", style: "width: 165px;", placeholder: l(Time.current, format: :long_day_dash), maxDate: @item.end_at&.to_date %>
+            </div>
+            <div class="col-auto mt-1">
+              <div class="calendar-icon"><%= image_tag("svg/calendar_icon.svg") %></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-none">
+    <%= f.hidden_field :title %>
+    <%= f.hidden_field :position %>
+    <%= f.hidden_field :address %>
+    <%= f.hidden_field :min_annual_salary %>
+    <%= f.hidden_field :max_annual_salary %>
+    <%= f.hidden_field :salary_according_to %>
+    <%= f.hidden_field :start_at %>
+    <%= f.hidden_field :end_at %>
+    <%= f.hidden_field :quantity %>
+    <%= f.hidden_field :wday_start_at %>
+    <%= f.hidden_field :wday_end_at %>
+    <% @item.wdays.each do |wday| %>
+      <%= f.hidden_field "wdays", multiple: true, value: wday %>
+    <% end %>
+    <%= f.hidden_field :work_detail %>
+    <%= f.hidden_field :appealing %>
+    <%= f.hidden_field :require_skill %>
+    <%= f.hidden_field :contact %>
+    <%= f.hidden_field :including_transportation_allowance %>
+    <%= f.hidden_field :work_policy %>
+  </div>
+
+  <hr class="hr-left-80" />
+
+  <div class="send">
+    <div>
+      <%= link_to params[:id].present? ? edit_medical_job_path(type: :back, id: params[:id]) : new_medical_job_path(type: :back) do %>
+        <button type="button" class="btn button btn-back btn-submit"><%= t("base.buttons.cancel") %></button>
+      <% end %>
+    </div>
+    <div class="mt-3"><%= f.submit t("base.buttons.draft_save"), formaction: url_for({ action: :save_draft, id: @item.id }), class: "btn button btn-submit button-draft-save" %></div>
+    <div class="mt-3">
+      <%= f.submit t("medical.jobs.buttons.#{@item.new_record? ? "create" : "update"}"), class: "btn button btn-submit button-next", data: { disable_with: t("base.buttons.saving") } %>
+    </div>
+  </div>
+<% end %>
+

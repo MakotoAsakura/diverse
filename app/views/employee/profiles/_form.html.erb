@@ -1,0 +1,157 @@
+<%= form_for user, url: (defined?(ref) && ref.present? ? profile_path(params: { ref: ref }) : profile_path), data: {turbo: false}, html: { class: "form-highlight"} do |f| %>
+  <div class="accordion accordion-sp" id="accordionPanelsStayOpenExample">
+    <div class="boxed">
+      <div class="accordion-item">
+        <h2 class="accordion-header accordion-header-info accordion-header-full" id="panelsStayOpen-headingOne">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+            <div class="text-center"><%= t("candidate.registration.profile.labels.profile") %></div>
+          </button>
+        </h2>
+        <div class="accordion-collapse collapse show" id="panelsStayOpen-collapseOne" aria-labelledby="panelsStayOpen-headingOne">
+          <div class="accordion-body py-lg-0 px-0 border-0">
+            <div class="form-group">
+              <label class="form-label"><%= t("candidate.registration.profile.labels.certificate") %></label>
+              <div class="form-group-control form-group-checkbox">
+                <p><%= t("candidate.registration.profile.labels.please_select_certificate") %></p>
+                <div class="row g-1 g-md-3 align-items-center">
+                  <%= f.hidden_field "certificates[]", value: "" %>
+                  <% Candidate.certificates.each do |key, value| %>
+                    <div class="col-auto">
+                      <label class="form-check">
+                        <%= f.check_box :certificates, { multiple: true, class: "form-check-input", checked: f.object.certificates.include?(value), id: "cbx_certificate_#{value}" }, value, nil %>
+                        <span class="form-check-label"><%= t("candidate.registration.profile.certificates.#{key}") %></span>
+                      </label>
+                    </div>
+                  <% end %>
+                </div>
+                <p class="text-danger pt-2">※その他にチェックされた場合は下記に資格・免許をお書きください。</p>
+                <%= f.text_area :other_certificates, class: "form-control", id: "other_certificates", rows: 6, placeholder: "例）ケアマネージャー、社会福祉士", disabled: true %>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label"><%= t("candidate.registration.profile.labels.final_education") %></label>
+              <div class="form-group-control">
+                <p><%= t("candidate.registration.profile.labels.write_academic_background") %></p>
+                <div class="row">
+                  <div class="col-md-7">
+                    <div class="mb-3 mb-md-0">
+                      <%= f.text_field :specialization, class: "form-control", placeholder: "学校名・学部・学科" %>
+                    </div>
+                  </div>
+                  <div class="col-md-5">
+                    <div class="row g-3">
+                      <div class="col">
+                        <%= f.text_field :graduation_year, class: "form-control", placeholder: "卒業年" %>
+                      </div>
+                      <div class="col">
+                        <label class="col-form-label"><%= t("candidate.registration.profile.labels.year_graduate") %></label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label"><%= t("candidate.registration.profile.labels.job_career") %></label>
+              <% if f.object.errors.key?(:profiles) %>
+                <div class="i-helper danger"><%= f.object.errors[:profiles].first %></div>
+              <% end %>
+                <div class="form-group-control">
+                <div class="form-table form-table-input table-responsive">
+                  <table id="candidate_profiles" class="table table-bordered">
+                    <thead>
+                    <tr>
+                      <td class="text-center year-col">年</td>
+                      <td class="text-center month-col">月</td>
+                      <td class="text-center"><%= t("candidate.registration.profile.labels.information_cv_column") %></td>
+                    </tr>
+                    </thead>
+                    <%= f.fields_for :profiles do |profile_form| %>
+                      <%= render partial: 'employee/profiles/profile_fields', locals: { f: profile_form } %>
+                    <% end %>
+                  </table>
+                  <div class="text-end">
+                    <%= link_to_add_association '+', f, :profiles, 'data-association-insertion-node' => "#candidate_profiles",
+                                                'data-association-insertion-method' => "append", class: 'btn btn-grey rounded-0',
+                                                id: "insert-profile-btn", partial: 'employee/profiles/profile_fields' %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label"><%= t("candidate.registration.profile.labels.skill_to_note") %></label>
+              <div class="form-group-control">
+                <p><%= t("candidate.registration.profile.labels.other_skill") %></p>
+                <%= f.text_area :skill, class: "form-control", rows: "6" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-divider d-none d-md-block"></div>
+    <div class="boxed">
+      <div class="accordion-item">
+        <h2 class="accordion-header accordion-header-info accordion-header-full" id="panelsStayOpen-headingTwo">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+            <div class="text-center"><%= t("candidate.registration.profile.labels.file_upload") %></div>
+          </button>
+        </h2>
+        <div class="accordion-collapse collapse" id="panelsStayOpen-collapseTwo" aria-labelledby="panelsStayOpen-headingTwo">
+          <div class="accordion-body py-lg-0 px-0 border-0">
+            <div class="form-group">
+              <div class="form-group mb-4">
+                <label class="form-label">ファイルアップロード</label>
+                <div class="form-group-control">
+                  <div><%= t("candidate.registration.profile.labels.upload_file_text").html_safe %></div>
+                  <div class="text-danger"><%= t("candidate.registration.profile.labels.limit_file_upload") %></div>
+                </div>
+              </div>
+              <% (0..2).each do |i| %>
+                <%= f.fields_for :attachments, f.object.attachments[i] || f.object.attachments.build do |att_form| %>
+                  <div class="form-group">
+                    <div class="form-group-control">
+                      <%= att_form.text_field :description, class: "form-control", placeholder: "アップロードファイルの説明", id: "description_attachments_#{i}" %>
+                      <%= att_form.check_box "_destroy", id: "destroy_attachment_#{i}", class: "d-none" %>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="form-group-control form-group-action-btn">
+                      <div class="row g-2 align-items-center">
+                        <div class="col">
+                          <%= text_field_tag "file_name_#{i}", att_form.object.new_record? ? "" : (att_form.object.file.blob&.filename) , disabled: true, class: "form-control #{att_form.object.invalid? ? "danger" : ""}" %>
+                        </div>
+                        <div class="col-auto">
+                          <%= att_form.file_field :file, class: "d-none cv-file",  id: "select_file_#{i}" %>
+                          <%= button_tag t("candidate.registration.profile.button.upload_file"), class: "btn btn-custom btn-grey rounded-0 btn-upload-file", id: "btn_upload_file_#{i}", type: "button" %>
+                          <%= button_tag t("candidate.registration.profile.button.delete_file"), class: "btn btn-custom btn-grey rounded-0 btn-delete-file", id: "btn_remove_file_#{i}", type: "button" %>
+                        </div>
+                      </div>
+                      <% if att_form.object.invalid? %>
+                        <div class="i-helper danger"><%= att_form.object.errors.full_messages.first %></div>
+                      <% end %>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%= hidden_field_tag "screen", "edit_profile" %>
+  <div class="form-divider d-none d-md-block"></div>
+  <div class="boxed">
+    <div class="container-fluid ps-lg-0">
+      <div class="form-button-group text-center">
+        <div class="form-group">
+          <div class="d-grid gap-4 gap-md-5">
+            <%= f.submit t("candidate.registration.profile.button.#{action_name == "new" ? "next" : "submit_edit"}"), class: "btn btn-custom btn-primary" %>
+            <%= link_to "プロフォール画面に戻る", profile_path, class: "btn btn-custom btn-primary d-lg-none" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

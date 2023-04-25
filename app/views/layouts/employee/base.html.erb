@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="新規登録（入力） | Diverse">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= yield(:title).presence || 'Diverse' %> | Diverse</title>
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Sawarabi+Gothic:wght@400;500&display=swap" rel="stylesheet">
+  <%= stylesheet_link_tag "employee", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag "/vendors/fontawesome-free-6.1.1-web/css/all.min.css", "data-turbo-track": "reload" %>
+  <link rel="stylesheet" href="/vendors/iframe-box/css/framer.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <%= javascript_importmap_tags %>
+  <% if @__disable_turbo %>
+    <meta name="turbo-visit-control" content="reload">
+  <% end %>
+  <%= favicon_link_tag "favicon.ico" %>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MQM5TDYW2N"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-MQM5TDYW2N');
+  </script>
+</head>
+<body class="<%= yield(:body_class).presence || '' %> <%= user_signed_in? ? "has-top-page" : "" %> scrolling">
+<!--[if lt IE 10]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+  your browser</a> to improve your experience.</p><![endif]-->
+<div id="loading">
+  <div class="container text-center">
+    <i class="loading-icon"></i>
+  </div>
+  <div class="progress">
+    <div class="progress-bar bg-primary progressLoading" style="width: 0" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">progress
+      bar
+    </div>
+  </div>
+</div>
+<div id="wrapper">
+  <%= render "layouts/employee/header" %>
+  <div class="main" id="main">
+    <div class="main-wrapper">
+      <% unless !user_signed_in? ||
+        controller_name == "contacts" ||
+        controller_name == "jobs" ||
+        (controller_name == "jobs_applied" && %w[new create].include?(action_name)) ||
+        (controller_name == "profiles" && request.fullpath.include?("jobs_applied")) %>
+        <%= render "layouts/employee/navi" %>
+      <% end %>
+      <div class="main-content">
+        <% if yield(:button_directional).present? %>
+          <section class="button-directional d-lg-none d-sm-none <%= yield(:button_directional_class).presence %>">
+            <%= yield(:button_directional) %>
+          </section>
+        <% end %>
+        <section class="section">
+          <% if yield(:title).present? %>
+            <h3 class="page-title <%= yield(:title_class).presence || 'text-center' %>"><%= yield(:title) %></h3>
+          <% end %>
+          <%= yield %>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <%= render "layouts/employee/footer" %>
+</div>
+</body>

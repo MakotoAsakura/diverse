@@ -1,0 +1,73 @@
+<% @filter_header = proc do %>
+  <%= label_tag :filter, t("admin.medical_institution_applying.index.condition_search"), class: "box fw-bolder" %>
+<% end %>
+
+<% @filter_menu = proc do %>
+  <% @s ||= OpenStruct.new params[:s] %>
+  <% @s[:status] = ["all"] if @s[:status].blank? %>
+  <%= form_for :s, url: "", html: { class: "index-search", id: "form-search", method: :get } do |f| %>
+    <div class="row d-flex justify-content-center">
+      <div class="col-8 col-md-8">
+        <div class="row d-flex flex-wrap align-items-center mb-3 justify-content-center">
+          <div class="col-2 title-label"><%= t("admin.medical_institution_applying.index.label.name") %></div>
+          <div class="col-sm-10 col-md-10"><%= f.text_field :name, class: "form-control h-auto border px-1 py-2 w-50" %></div>
+        </div>
+      </div>
+      <div class="col-8 col-md-8">
+        <div class="row d-flex flex-wrap align-items-center mb-1 justify-content-center">
+          <div class="col-2 title-label"><%= t("admin.medical_institution_applying.index.label.location") %></div>
+          <div class="col-sm-10 col-md-10"><%= f.text_field :location, class: "form-control h-auto border px-1 py-2 w-50" %></div>
+        </div>
+      </div>
+      <div class="col-8 col-md-8">
+        <div class="row d-flex flex-wrap align-items-center mb-1 justify-content-center">
+          <div class="col-2 title-label"><%= t("admin.medical_institution_applying.index.label.status") %></div>
+          <div class="col-sm-10 col-md-10">
+            <ul class="checkList rowList p-0">
+              <% @model.statuses_options.each do |k, v| %>
+                <div class="col-auto me-4">
+                  <label for="<%= f.object_name %>_status_<%= k %>">
+                    <%= f.check_box :status, { multiple: true }, k, nil %>
+                    <span class=""><%= v %></span>
+                  </label>
+                </div>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="send text-start pt-2 col-8 col-md-8">
+        <input type="submit" value="<%= t("base.buttons.search") %>" class="btn button save btn-submit button_search"/>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+<% @content_header = proc do %>
+  <%= label_tag :filter, t("admin.medical_institution_applying.index.result_list"), class: "box mt-4 mb-4 fw-bolder" %>
+<% end %>
+
+<% @index_title = proc do %>
+  <th scope="col" class="title name"><%= t("admin.medical_institution_applying.index.table.name") %></th>
+  <th scope="col" class="title location"><%= t("admin.medical_institution_applying.index.table.location") %></th>
+  <th scope="col" class="title text-center"><%= t("admin.medical_institution_applying.index.table.register_time") %></th>
+  <th scope="col" class="title text-center"><%= t("admin.medical_institution_applying.index.table.status") %></th>
+  <th scope="col" class="title text-center"><%= t("admin.medical_institution_applying.index.table.approved_time") %></th>
+<% end %>
+
+<% @index_meta = proc do |item| %>
+  <tr class='clickable-row' onclick="window.location='<%= admin_medical_institution_applying_path(item) %>'">
+    <td>
+      <%= image_tag("svg/new_icon.svg", class: "table_icon_size") if item.viewed_date.blank? %>
+      <span><%= item.name %></span>
+    </td>
+    <td><%= item.location %></td>
+    <td class="text-center"><%= l(item.created_at, format: :long_day_dash) %></td>
+    <td class="center">
+      <div class="status_<%= item.status %>"><span><%= item.status_i18n %></span></div>
+    </td>
+    <td class="text-center"><%= item.approved_date.presence && l(item.approved_date, format: :long_day_dash) %></td>
+  </tr>
+<% end %>
+
+<%= render template: "base/crud/index" %>

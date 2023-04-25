@@ -1,0 +1,74 @@
+<% content_for :title, t("medical.account.show.title") %>
+<% content_for :title_class, "text-center text-lg-start" %>
+<% @crud_buttons = proc do %>
+<% end %>
+<div class="wrap mb-4">
+  <div class="title-header">
+    <label class="box fw-bolder"><%= I18n.t("medical.account.show.labels.registered_content") %></label>
+  </div>
+
+  <div class="boxed px-3 px-lg-0">
+    <form class="form-highlight">
+      <div class="form-group ps-2">
+        <label><%= t("medical.account.show.labels.medical_name") %></label>
+        <div class="ps-3"><%= current_medical.name %></div>
+      </div>
+      <div class="form-group mt-3 ps-2">
+        <label><%= t("medical.account.show.labels.medical_name_kana") %></label>
+        <div class="ps-3"><%= current_medical.name_kana %></div>
+      </div>
+      <div class="form-group mt-3 ps-2">
+        <label><%= t("medical.account.show.labels.phone_number") %></label>
+        <div class="ps-3"><%= current_medical.phone_number %></div>
+      </div>
+      <div class="form-group mt-3 ps-2">
+        <label><%= t("medical.account.show.labels.url") %></label>
+        <div class="ps-3"><%= current_medical.url %></div>
+      </div>
+      <div class="form-group mt-3 ps-2">
+        <label><%= t("medical.account.show.labels.zipcode") %></label>
+        <div class="ps-3"><%= display_zipcode(current_medical.zipcode) %></div>
+      </div>
+      <div class="form-group mt-3 ps-2">
+        <label><%= t("medical.account.show.labels.location") %></label>
+        <div class="ps-3"><%= current_medical.location %></div>
+      </div>
+      <div class="form-group mt-3 ps-2">
+        <label><%= t("medical.account.show.labels.manager") %></label>
+        <div class="ps-3"><%= current_medical.full_name_manager %></div>
+      </div>
+      <div class="form-group mt-3 ps-2">
+        <label><%= t("medical.account.show.labels.name_manager_kana") %></label>
+        <div class="ps-3"><%= current_medical.full_name_kana_manager %></div>
+      </div>
+      <div class="form-group mt-3 ps-2">
+        <label><%= t("medical.account.show.labels.email") %></label>
+        <div class="ps-3"><%= current_medical.user.email %></div>
+      </div>
+      <div class="wrap mb-3 mt-3 ps-2">
+        <div class="title-header">
+          <label class="box fw-bolder"><%= I18n.t("medical.account.show.labels.introduction_pharmaceutical") %></label>
+        </div>
+      </div>
+      <div class="form-group mt-3 ps-2">
+        <label><%= t("medical.account.show.labels.name_pharma") %></label>
+        <div class="ps-3"><%= current_medical.pharmaceutical_company.name %></div>
+      </div>
+      <div class="form-group mt-3 mb-4 ps-2">
+        <label><%= t("medical.account.show.labels.ms_staff") %></label>
+        <div class="ps-3"><%= current_medical.pharmaceutical_company.staff_ms %></div>
+      </div>
+      <hr class="d-none d-md-block gaps-2x" />
+      <div class="form-group mt-3 mb-4 ps-2">
+        <label><%= t("medical.account.delete.note") %></label>
+        <label class="text-danger"><%= t("medical.account.delete.warning") %></label>
+
+      </div>
+      <div class="card-ui-links mt-3 text-center text-lg-start text-danger">
+        <%= link_to medical_account_path, method: :delete, class: "btn button btn-submit button-draft-save" do %>
+          <%= t("medical.account.show.labels.delete_account") %>
+        <% end %>
+      </div>
+    </form>
+  </div>
+</div>

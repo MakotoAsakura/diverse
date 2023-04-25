@@ -1,0 +1,11 @@
+.notification-list {
+  .job-item {
+    position: relative;
+
+    img {
+      position: absolute;
+      right: 15px;
+      top: 15px;
+    }
+  }
+}

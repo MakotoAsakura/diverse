@@ -1,0 +1,133 @@
+<% if @item.new_record? %>
+  <% content_for :title, "登録確認" %>
+<% else %>
+  <% content_for :title, "更新確認" %>
+<% end %>
+
+<% @crud_buttons = proc do |f| %>
+  <%= link_to action: @item.new_record? ? :new : :edit, type: :back, id: @item.id do %>
+    <button type="button" class="btn btn-back save"><%= t("base.buttons.cancel") %></button>
+  <% end %>
+  <% if @item.new_record? %>
+    <%= f.submit "求人機関を登録する", class: "btn button btn-submit save" %>
+  <% else %>
+    <%= f.submit t("medical_institution.buttons.confirm"), class: "btn button btn-submit save" %>
+  <% end %>
+<% end %>
+
+<div class="wrap">
+  <div class="title-header">
+    <%= f.label @item.new_record? ? :registered_content : :update_content, class: "box fw-bolder" %>
+  </div>
+</div>
+
+<div class="container">
+  <div class="form-group row align-items-center mt-3">
+    <label class="col-2 fw-bolder"><%= @model.t(:name) %></label>
+    <div class="col-6 color-light-gray">
+      <%= @item.name %>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center mt-3">
+    <label class="col-2 fw-bolder"><%= @model.t(:name_kana) %></label>
+    <div class="col-6 color-light-gray">
+      <%= @item.name_kana %>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center mt-3">
+    <label class="col-2 fw-bolder"><%= @model.t(:phone_number) %></label>
+    <div class="col-6 color-light-gray">
+      <%= display_phone_number(@item.phone_number) %>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center mt-3">
+    <label class="col-2 fw-bolder"><%= @model.t(:url) %></label>
+    <div class="col-6 color-light-gray">
+      <%= @item.url %>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center mt-3">
+    <label class="col-2 fw-bolder"><%= @model.t(:location) %></label>
+    <div class="col-6 color-light-gray">
+      <%= display_zipcode(@item.zipcode) %><br>
+      <%= @item.location %>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center mt-3">
+    <label class="col-2 fw-bolder"><%= @model.t(:full_name_manager) %></label>
+    <div class="col-6 color-light-gray">
+      <%= @item.full_name_manager %>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center mt-3">
+    <label class="col-2 fw-bolder"><%= @model.t(:full_name_kana_manager) %></label>
+    <div class="col-6 color-light-gray">
+      <%= @item.full_name_kana_manager %>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center mt-3">
+    <label class="col-2 fw-bolder"><%= User.t(:email) %></label>
+    <div class="col-6 color-light-gray">
+      <%= @item.user.email %>
+    </div>
+  </div>
+</div>
+
+<div class="wrap mt-3">
+  <div class="title-header">
+    <%= f.label :pharmaceutical_company, class: "box fw-bolder" %>
+  </div>
+</div>
+
+<div class="container">
+  <div class="form-group row align-items-center mt-3">
+    <label class="col-2 fw-bolder"><%= PharmaceuticalCompany.t(:name) %></label>
+    <div class="col-6 color-light-gray">
+      <%= @item.pharmaceutical_company.name %>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center mt-3">
+    <label class="col-2 fw-bolder"><%= PharmaceuticalCompany.t(:staff_ms) %></label>
+    <div class="col-6 color-light-gray">
+      <%= @item.pharmaceutical_company.staff_ms %>
+    </div>
+  </div>
+
+  <div class="text-center mt-3">
+    <% if @item.new_record? %>
+      <%= "上記内容で登録します。よろしいですか？" %>
+    <% else %>
+      <%= t("medical_institution.note.confirm") %>
+    <% end %>
+  </div>
+</div>
+
+<div class="d-none">
+  <%= f.hidden_field :name %>
+  <%= f.hidden_field :name_kana %>
+  <%= f.hidden_field :phone_number %>
+  <%= f.hidden_field :url %>
+  <%= f.hidden_field :zipcode_first %>
+  <%= f.hidden_field :zipcode_last %>
+  <%= f.hidden_field :location %>
+  <%= f.hidden_field :first_name_manager %>
+  <%= f.hidden_field :first_name_kana_manager %>
+  <%= f.hidden_field :last_name_manager %>
+  <%= f.hidden_field :last_name_kana_manager %>
+  <%= f.fields_for :user, @item.user || User.new do |ff| %>
+    <%= ff.hidden_field :email, name: "item[user_attributes][email]" %>
+  <% end %>
+
+  <%= f.fields_for :pharmaceutical_company, @item.pharmaceutical_company || @item.build_pharmaceutical_company do |ff| %>
+    <%= ff.hidden_field :name, name: "item[pharmaceutical_company_attributes][name]" %>
+    <%= ff.hidden_field :staff_ms, name: "item[pharmaceutical_company_attributes][staff_ms]" %>
+  <% end %>
+</div>

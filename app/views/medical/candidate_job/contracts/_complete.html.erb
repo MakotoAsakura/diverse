@@ -1,0 +1,17 @@
+<% request_referrer = Rails.application.routes.recognize_path(request.referrer) %>
+<% action = params[:target] || request_referrer[:action] %>
+<% content_for :title, t("medical.jobs.title.complete.#{request_referrer[:action]}") %>
+
+<% @complete_notice = proc do %>
+  <%= t("medical.candidate_jobs.views.complete.#{action}.notice") %>
+<% end %>
+
+<% @complete_send_mail = proc do %>
+  <strong><%= t("medical.candidate_jobs.views.complete.#{action}.message") %></strong>
+<% end %>
+
+<% @complete_button = proc do %>
+  <%= link_to medical_candidate_jobs_path do %>
+    <%= button_tag t("medical.candidate_jobs.buttons.back"), class: "btn btn-custom btn-primary" %>
+  <% end %>
+<% end %>

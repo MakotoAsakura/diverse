@@ -1,0 +1,44 @@
+<div class="container-fluid d-lg-none">
+  <div class="form-button-group mb--8">
+    <div class="form-group">
+      <div class="d-grid gap-4">
+        <%= link_to timeline_payslips_path(active: "menu"), class: "btn btn-custom btn-primary" do %>
+          <button type="button" class="btn btn-custom btn-primary">マイページに戻る</button>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="d-none d-lg-block">
+  <h3 class="page-title text-center text-lg-start">支払明細</h3>
+</div>
+<div class="d-lg-none">
+  <h3 class="page-title text-center text-lg-start">支払明細一覧</h3>
+</div>
+<div class="boxed">
+  <div class="notice text-danger"><%= "給与は#{@system_setting.display_notice_payment_due}の支払いとなります。" %></div>
+  <form class="form-highlight">
+    <div class="form-group">
+      <label class="form-label d-none d-lg-inline-block">支払明細（期間）</label>
+      <div class="form-group-control">
+        <ul class="list-group list-group-unstyled text-center">
+          <li class="list-group-item active" aria-current="true">
+            <a class="text-decoration-none" href="#">期間</a>
+          </li>
+          <% @time_lines.each do |time_line| %>
+            <li class="list-group-item">
+              <% unless time_line.viewed %>
+                <span class="in-new bg-primary rounded-circle"><span>New!</span></span>
+              <% end %>
+              <%= link_to "#{time_line.year}年#{time_line.month}月分", payslips_path(year: time_line.year, month: time_line.month), class: "text-decoration-none" %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </form>
+  <%= paginate @time_lines,
+               theme: "bootstrap-5", nav_class: "pagination-wrapper mt-5 pt-md-3",
+               pagination_class: "pagination justify-content-center",
+               window: 1, left: 1, right: 1 %>
+</div>

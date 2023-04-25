@@ -1,0 +1,56 @@
+<% provide :title, t("admin.manages.title.confirm.#{@item.new_record? ? "new" : "edit"}") %>
+
+<% @crud_buttons = proc do |f| %>
+  <%= link_to action: @item.new_record? ? :new : :edit, type: :back, id: @item.id do %>
+    <button type="button" class="btn btn-back save"><%= t("base.buttons.cancel") %></button>
+  <% end %>
+  <%= f.submit t("admin.manages.confirm.button_submit.#{ @item.new_record? ? "new" : "edit" }"), class: "btn button btn-submit save" %>
+<% end %>
+
+<div class="container">
+  <div class="row justify-content-center aligns-items-center">
+    <div class="col-5 pl-5 pr-5 pt-5 pb-3">
+      <div class="mb-3">
+        <label class="fw-bolder"><%= t("admin.manages.confirm.label.name") %></label>
+        <div class="color-light-gray">
+          <%= @item.full_name %>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="fw-bolder"><%= t("admin.manages.confirm.label.email") %></label>
+        <div class="color-light-gray">
+          <%= @item.user_email %>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="fw-bolder"><%= t("admin.manages.confirm.label.password") %></label>
+        <div class="color-light-gray">
+          <%= "*"*@item.user_password.length %>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="fw-bolder"><%= t("admin.manages.confirm.label.password_confirmation") %></label>
+        <div class="color-light-gray">
+          <%= "*"*@item.user_password_confirmation.length %>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mb-3">
+      <%= t("admin.manages.confirm.note.#{ @item.new_record? ? "new" : "edit" }") %>
+    </div>
+  </div>
+</div>
+
+<div class="d-none">
+  <%= f.hidden_field :first_name, value: @item.first_name %>
+  <%= f.hidden_field :last_name, value: @item.last_name %>
+  <%= f.fields_for :user, @item.user || User.new do |ff| %>
+    <%= ff.hidden_field :email, name: "item[user_attributes][email]", value: @item.user_email %>
+    <%= ff.hidden_field :password, name: "item[user_attributes][password]", value: @item.user_password %>
+    <%= ff.hidden_field :password_confirmation, name: "item[user_attributes][password_confirmation]", value: @item.user_password_confirmation %>
+    <%= ff.hidden_field :role, name: "item[user_attributes][role]", value: "admin" %>
+  <% end %>
+</div>

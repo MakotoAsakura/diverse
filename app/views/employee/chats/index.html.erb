@@ -1,0 +1,37 @@
+<% content_for :title, t("chat.views.index.title") %>
+<% content_for :title_class, "text-center text-lg-start" %>
+<div class="container-fluid d-lg-none">
+  <div class="form-button-group mb--8">
+    <div class="form-group">
+      <div class="d-grid gap-4">
+        <button type="button" class="btn btn-custom btn-primary"><%= t("chat.views.index.label.back_to_my_page") %></button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="boxed">
+  <ul class="list-unstyled talk-list">
+    <% @rooms.each do |room| %>
+      <%= link_to chat_path(room.room_code), class: "text-decoration-none link-dark" do %>
+        <li>
+          <div class="talk-item mb-2">
+            <% unless room.seen?(current_user) %>
+              <span class="in-new bg-primary rounded-circle">
+                <span>New!</span>
+              </span>
+            <% end %>
+            <div class="name mb-2"><%= t("chat.views.index.label.medical_name") %>：<%= room.medical_user.name %>病院</div>
+            <div><%= t("chat.views.index.label.message") %>：
+              <br/><span class="display-3-line-block"><%= room.last_message.html_safe %></span>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+
+  <%= paginate @rooms,
+               theme: "bootstrap-5", nav_class: "pagination-wrapper mt-5 pt-md-3",
+               pagination_class: "pagination justify-content-center",
+               window: 1, left: 1, right: 1  %>
+</div>

@@ -1,0 +1,12 @@
+ol.parentheses {
+  counter-reset: list;
+}
+
+ol.parentheses > li {
+  list-style: none;
+  counter-increment: list;
+}
+
+ol.parentheses.parent-around > li::marker {
+  content: "(" counter(list) ")\a0";
+}

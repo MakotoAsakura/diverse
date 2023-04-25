@@ -1,0 +1,10 @@
+<div><%= @candidate_job.job.medical_institution.full_name_manager %>　様</div>
+<br>
+<div>ダイバースをご利用いただき、誠にありがとうございます。</div>
+<br>
+<div>[契約ID]の契約内容を更新しました。</div>
+<br>
+<div>以下の画面より、契約内容をご確認ください。</div>
+<div>契約内容はこちら：<%= link_to "契約管理", medical_candidate_job_contract_url(@candidate_job.id) %></div>
+<br>
+<%= render "shared/mailer/footer", url_contact: new_medical_contact_url %>

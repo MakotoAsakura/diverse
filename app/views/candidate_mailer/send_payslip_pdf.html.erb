@@ -1,0 +1,8 @@
+<div><%= @candidate.full_name %>　様</div>
+<br>
+<div>ダイバースをご利用いただき、誠にありがとうございます。</div>
+<br>
+<div>支払い明細を送付しました。</div>
+<div>支払い明細はこちら：<%= link_to payslips_url, payslips_url(year: @year, month: @month), target: "_blank" %></div>
+<br>
+<%= render 'shared/mailer/footer' %>

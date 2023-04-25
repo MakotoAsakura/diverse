@@ -1,0 +1,15 @@
+<%= form_for :item, url: { action: :show }, html: { method: :delete, multipart: true }, data: { turbo: false } do |f| %>
+  <%= error_messages_for :item %>
+
+  <div class="wrap">
+    <%= render template: "_delete", locals: { f: f } %>
+  </div>
+
+  <div class="send">
+    <% if @crud_buttons %>
+      <% @crud_buttons.call f %>
+    <% else %>
+      <%= f.submit t("base.buttons.delete"), class: "btn button delete", data: { disable_with: t("base.buttons.deleting") } %>
+    <% end %>
+  </div>
+<% end %>

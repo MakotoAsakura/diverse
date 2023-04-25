@@ -1,0 +1,21 @@
+ja:
+  employee:
+    navi:
+      notice_admin: "管理者からのお知らせ"
+      application_manager: "応募管理"
+      job_application_list: "応募求人一覧"
+      notice_of_working_conditions: "労働条件通知書"
+      noti_from_admin: "管理者からのお知らせ"
+      news: "お知らせ"
+      application_management: "応募管理"
+      list_job: "応募求人一覧"
+      labor_management: "労働管理"
+      noti_of_working_conditions: "労働条件通知書"
+      attendance_management: "勤怠管理"
+      withholding_slip: "源泉徴収票"
+      compensation_management: "報酬管理"
+      payment_details: "支払明細"
+      account_information_management: "口座情報管理"
+      account_management: "アカウント管理"
+      profile_management: "プロフィール管理"
+      talk: "トーク"

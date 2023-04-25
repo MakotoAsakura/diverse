@@ -1,0 +1,24 @@
+<% content_for :title, t("medical.jobs_applied.title.rejection") %>
+
+<%= form_for :item, url: { action: :reject, id: @item.id }, html: { id: "item-form", multipart: true, autocomplete: :off, method: :post }, data: { turbo: false } do |f| %>
+  <div class="wrap mt-3">
+    <div class="title-header">
+      <label class="box fw-bolder"><%= t("medical.candidate_jobs.views.show.label.emp_details") %></label>
+    </div>
+  </div>
+
+  <div class="mt-3">
+    <label><%= Candidate.t(:full_name) %></label>
+    <div class="mt-3 ms-3">
+      <%= @item.candidate.full_name %>
+    </div>
+  </div>
+
+  <hr>
+  <div class="reject-notice"><%= "応募者を不採用とします。よろしいですか？" %></div>
+  <div class="send">
+    <div class="mt-3">
+      <%= f.submit "審査を完了する", class: "btn button btn-submit button-next", data: { disable_with: t("base.buttons.saving") } %>
+    </div>
+  </div>
+<% end %>

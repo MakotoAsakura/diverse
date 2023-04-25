@@ -1,0 +1,67 @@
+#admin-page {
+  #navi {
+    height: calc(100% - 120px);
+
+    .wrap {
+      margin: 10px;
+    }
+
+    .icon {
+      width: 25px;
+      height: 25px;
+    }
+
+    .text {
+      vertical-align: middle;
+      font-style: normal;
+      font-weight: 700;
+      color: #000000;
+    }
+
+    .button {
+      text-align: center;
+    }
+
+    button {
+      border-radius: 12px;
+      width: 85%;
+      min-height: 30px;
+      height: fit-content;
+      margin: 8px 0;
+      font-style: normal;
+      font-size: 15px;
+      line-height: 18px;
+    }
+
+    button {
+      &:hover {
+        color: rgba(255, 255, 255, 0.76);
+        text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+      }
+    }
+
+    .buttons {
+      margin: 6px 0 15px 0;
+    }
+
+    .site-navi, .main-navi {
+      zoom: 1;
+      border-bottom: 1px solid #dcdcdc;
+    }
+
+    .main-navi h2 a {
+      display: block;
+      position: relative;
+      padding: 10px 10px 10px 50px;
+      color: #000;
+    }
+
+    .icon-footer {
+      margin: 10px 0;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+}

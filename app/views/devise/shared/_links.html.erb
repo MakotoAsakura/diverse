@@ -1,0 +1,11 @@
+<%- if controller_name != "sessions" %>
+  <%= link_to "会員ログイン", user_session_path %><br />
+<% end %>
+
+<%- if devise_mapping.registerable? && controller_name != "registrations" %>
+  <%= link_to "新規会員登録", new_user_registration_path %><br />
+<% end %>
+
+<%- if devise_mapping.recoverable? && controller_name != "passwords" && controller_name != "registrations" %>
+  <%= link_to "パスワードを忘れた方はこちら", new_user_password_path %><br />
+<% end %>

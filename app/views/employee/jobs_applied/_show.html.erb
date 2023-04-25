@@ -1,0 +1,222 @@
+<% content_for :title, t("employee.job_applied.views.show.title") %>
+<% content_for :title_class, "text-start d-none d-lg-block" %>
+<% @crud_buttons = proc do %>
+<% end %>
+
+<style>
+    .form-group {
+        margin-bottom: 50px;
+    }
+</style>
+
+<section class="section">
+  <h2 class="text-primary-2 text-center d-lg-none mb-4"><%= @item.title %></h2>
+  <% flash.each do |message_type, message| %>
+    <%= content_tag :div, message, class: "alert alert-#{message_type}" if message.is_a?(String) %>
+  <% end %>
+  <form class="form-highlight">
+    <h5 class="text-primary d-none d-lg-block mb-4"><%= @item.title %></h5>
+    <hr class="d-none d-md-block my-5"/>
+    <div class="form-group">
+      <label class="form-label d-none d-lg-block"><%= t("employee.job_applied.views.show.label.recruitment_results") %></label>
+      <label class="form-label title-section-job-apply d-lg-none"><%= t("employee.job_applied.views.show.label.recruitment_results") %></label>
+      <div class="boxed px-3 px-lg-0">
+        <div class="form-group-control d-none d-lg-block"><%= @candidate_job_applied&.status_i18n %> <%= "(#{t("employee.job_applied.views.show.job_fulled")})" if @item.full? %></div>
+        <div class="form-group-control fw-bolder d-lg-none text-center"><%= @candidate_job_applied&.status_i18n %> <%= "(#{t("employee.job_applied.views.show.job_fulled")})" if @item.full? %></div>
+        <% if @candidate_job_applied&.recruitment? %>
+          <div class="form-group-control fw-bolder mt-4 d-lg-none text-center"><%= "契約ID： #{@candidate_job_applied&.contract_id}" %></div>
+          <div class="form-group-control mt-2"><%= "契約ID： #{@candidate_job_applied&.contract_id}" %></div>
+
+      <% end %>
+      </div>
+    </div>
+
+    <hr class="d-none d-md-block my-5"/>
+    <% if @candidate_job_applied.waiting? && !@item.full? %>
+      <div class="form-group">
+        <label class="form-label title-section-job-apply"><%= t("employee.job_applied.views.show.label.acceptance") %></label>
+        <div class="boxed px-3 px-lg-0">
+          <div class="form-group-control">
+            <div class="mb-4 text-center text-md-start">
+              <%== t("employee.job_applied.views.show.acceptance_notice") %>
+            </div>
+            <div class="mb-4">
+              <label class="form-check">
+                <input class="form-check-input check-action-commit" type="checkbox" name="">
+                <span class="form-check-label"><%= t("employee.job_applied.views.show.commit1") %></span>
+              </label>
+            </div>
+            <div class="mb-4">
+              <label class="form-check">
+                <input class="form-check-input check-action-commit" type="checkbox" name="">
+                <span class="form-check-label"><%= t("employee.job_applied.views.show.commit2") %><br/>
+                <span class="text-danger"><%= t("employee.job_applied.views.show.commit2_description1") %></span>
+                <a href="<%= bank_path %>" class="text-decoration-underline text-primary-2"><%= t("employee.job_applied.views.show.commit2_description2") %></a>
+                <span class="text-danger"><%= t("employee.job_applied.views.show.commit2_description3") %></span>
+              </span>
+              </label>
+            </div>
+            <div class="mb-4">
+              <label class="form-check">
+                <input class="form-check-input check-action-commit" type="checkbox" name="">
+                <span class="form-check-label"><%= t("employee.job_applied.views.show.commit3") %></span>
+              </label>
+            </div>
+          </div>
+          <div class="my-4 my-md-5 text-center text-md-start">
+            <button type="button" class="btn btn-grey px-4 action-commit" data-bs-toggle="modal" data-bs-target="#recruitmentModal" disabled>
+              <%= t("employee.job_applied.buttons.commit") %>
+            </button>
+            <div class="modal fade" id="recruitmentModal" tabindex="-1" aria-labelledby="recruitmentModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content text-center" style="height: 439px; width: 632px;">
+                  <div class="modal-body">
+                    <div class="h-100 d-flex justify-content-center align-items-center">
+                      <div class="modal-submit-text">
+                        <span>応募先の求人機関へ承諾の通知をします。</span><br>
+                        <span>よろしいですか？</span><br>
+                        <div class="m-5"></div>
+                        <%= link_to url_for({ action: :recruitment, id: @item.id }), method: :post, class: "btn btn-primary" do %>
+                          <div class="h-100 d-flex justify-content-center align-items-center">はい</div>
+                        <% end %>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">いいえ</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button type="button" class="btn btn-primary px-4 ms-md-5" data-bs-toggle="modal" data-bs-target="#declineModal">
+              <%= t("employee.job_applied.buttons.decline") %>
+            </button>
+            <div class="modal fade" id="declineModal" tabindex="-1" aria-labelledby="declineModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content text-center" style="height: 439px; width: 632px;">
+                  <div class="modal-body">
+                    <div class="h-100 d-flex justify-content-center align-items-center">
+                      <div class="modal-submit-text">
+                        <span>本当に辞退しますか？</span><br>
+                        <span>辞退すると本採用は見送りとなります。</span><br>
+                        <div class="m-5"></div>
+                        <%= link_to url_for({ action: :decline, id: @item.id }), method: :post, class: "btn btn-primary" do %>
+                          <div class="h-100 d-flex justify-content-center align-items-center">はい</div>
+                        <% end %>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">いいえ</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr class="d-none d-md-block my-5"/>
+    <% end %>
+    <% if @candidate_job_applied.recruitment? || @candidate_job_applied.waiting? || @candidate_job_applied.decline? %>
+      <div class="form-group">
+        <label class="form-label d-none d-lg-block"><%= t("employee.job_applied.views.show.label.contract") %></label>
+        <label class="form-label title-section-job-apply d-lg-none"><%= t("employee.job_applied.views.show.label.contract") %></label>
+        <div class="boxed px-3 px-lg-0">
+          <div class="form-group-control">
+            <% if @candidate_job_applied.waiting? %>
+              <div class="text-danger mb-4">
+                <%== t("employee.job_applied.views.show.contract.notice") %>
+              </div>
+            <% end %>
+            <div class="form-group-inner">
+              <div class="form-group">
+                <label class="form-label">■<%= @model.t(:salary_detail) %></label>
+                <div class="form-group-control"><%= display_salary(@candidate_job_applied) %></div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">■<%= @model.t(:including_transportation_allowance) %></label>
+                <div class="form-group-control"><%= @item.including_transportation_allowance_i18n %></div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">■<%= @model.t(:contract_period) %></label>
+                <div class="form-group-control"><%= display_around_contract_start(@candidate_job_applied) %></div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">■その他　特記事項</label>
+                <div class="form-group-control text-pre-line"><%= @candidate_job_applied.remark %></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr class="d-none d-md-block my-5"/>
+    <% end %>
+    <div class="form-group">
+      <label class="form-label d-none d-lg-block"><%= t("employee.job_applied.views.show.label.description") %></label>
+      <label class="form-label title-section-job-apply d-lg-none"><%= t("employee.job_applied.views.show.label.description") %></label>
+      <div class="boxed px-3 px-lg-0">
+        <div class="form-group-control">
+          <div class="text-danger mb-4">
+            <%== t("employee.job_applied.views.show.description.notice") %>
+          </div>
+          <div class="form-group-inner">
+            <div class="form-group">
+              <label class="form-label">■<%= @model.t(:position) %></label>
+              <div class="form-group-control"><%= @item.position_i18n %></div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">■<%= MedicalInstitution.t(:name) %></label>
+              <div class="form-group-control"><%= @item.medical_institution.name %></div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">■<%= @model.t(:address) %></label>
+              <div class="form-group-control"><%= @item.address %></div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">■<%= @model.t(:salary) %></label>
+              <div class="form-group-control"><%= display_around_annual_salary_according(@item) %></div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">■<%= @model.t(:start_at) %></label>
+              <div class="form-group-control"><%= display_around_start(@item) %></div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">■<%= @model.t(:work_hours) %></label>
+              <div class="form-group-control"><%= display_around_hours_wday(@item) %></div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">■<%= @model.t(:day_of_week) %></label>
+              <div class="form-group-control"><%= @item.wdays.map { |wday| I18n.t('date.day_names')[wday.to_i] }.join("、") %></div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">■<%= @model.t(:work_detail) %></label>
+              <div class="form-group-control text-pre-line"><%= @item.work_detail %></div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">■<%= @model.t(:quantity) %></label>
+              <div class="form-group-control"><%= display_quantity(@item) %></div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">■<%= @model.t(:appealing) %></label>
+              <div class="form-group-control text-pre-line"><%= @item.appealing %></div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">■<%= @model.t(:require_skill) %></label>
+              <div class="form-group-control text-pre-line"><%= @item.require_skill %></div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">■<%= @model.t(:contact) %></label>
+              <div class="form-group-control text-pre-line"><%= @item.contact %></div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">■<%= @model.t(:including_transportation_allowance) %></label>
+              <div class="form-group-control"><%= @item.including_transportation_allowance_i18n %></div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">■<%= @model.t(:work_policy) %></label>
+              <div class="form-group-control text-pre-line"><%= @item.work_policy %></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  </div>
+</section>

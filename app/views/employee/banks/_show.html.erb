@@ -1,0 +1,34 @@
+<% content_for :title, t("employee.bank.views.show.title") %>
+<% content_for :title_class, "text-center text-lg-start" %>
+<% @crud_buttons = proc do %>
+<% end %>
+<div class="boxed px-3 px-lg-0">
+  <form class="form-highlight">
+    <div class="form-group">
+      <label class="form-label"><%= @model.t(:bank_name) %></label>
+      <div class="form-group-control"><%= @item&.bank_name || "-" %></div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= @model.t(:branch_name) %></label>
+      <div class="form-group-control"><%= @item&.branch_name || "-" %></div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= @model.t(:account_type) %></label>
+      <div class="form-group-control"><%= @item.new_record? ? "-" : @item&.account_type_i18n %></div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= @model.t(:account_number) %></label>
+      <div class="form-group-control"><%= @item&.account_number || "-" %></div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= @model.t(:account_holder_name) %></label>
+      <div class="form-group-control"><%= @item&.account_holder_name || "-" %></div>
+    </div>
+    <hr class="d-none d-md-block gaps-2x" />
+    <div class="form-group mt-5">
+      <%= link_to edit_bank_path do %>
+        <button type="button" class="btn btn-custom btn-primary"><%= t("employee.bank.views.show.buttons.edit_bank") %></button>
+    <% end %>
+    </div>
+  </form>
+</div>

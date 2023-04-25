@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row justify-content-center aligns-items-center mt-5">
+    <div class="text-center mb-3">
+      <%= t("admin.medical_institution_applying.complete_approval.notice_#{params[:approve]}") %>
+    </div>
+    <div class="text-center mb-3 f-size-13">
+      <%= t("admin.medical_institution_applying.complete_approval.note") %>
+    </div>
+    <div class="text-center send">
+      <%= link_to admin_medical_institution_applying_index_path do %>
+        <button type="button" class="btn save btn-submit"><%= t("admin.medical_institution_applying.complete_approval.redirect_to_index") %></button>
+      <% end %>
+    </div>
+  </div>
+</div>

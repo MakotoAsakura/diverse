@@ -1,0 +1,16 @@
+<div><%= @medical.full_name_manager %>　様</div>
+<br>
+<div>ダイバースをご利用いただき、誠にありがとうございます。</div>
+<br>
+<div>アカウントの新規登録を受け付けました。</div>
+<div>登録審査後、「選考結果のお知らせ」メールをお送りします。</div>
+<div>しばらくお待ち下さい。</div>
+<br>
+<div>--------------------------------------</div>
+<div>■ご登録内容</div>
+<div>--------------------------------------</div>
+<div>求人機関名：<%= @medical.name %></div>
+<div>担当者：<%= @medical.full_name_manager %></div>
+<div>メールアドレス：<%= @medical.user_email %></div>
+<br>
+<%= render "shared/mailer/footer", url_contact: new_medical_contact_url %>

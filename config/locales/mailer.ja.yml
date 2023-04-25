@@ -1,0 +1,95 @@
+ja:
+  admin_mailer:
+    create_manage:
+      subject: "[diverse]管理者を新規登録しました。"
+    update_manage:
+      subject: "[diverse]管理者を更新しました。"
+    destroy_manage:
+      subject: "[diverse]管理者を削除しました。"
+    create_medical:
+      subject: "[diverse]契約医療を新規登録しました。"
+    update_medical:
+      subject: "[diverse]契約医療を更新しました。"
+    destroy_medical:
+      subject: "[diverse]契約医療を削除しました。"
+    register_medical:
+      subject: "[diverse]求人機関の新規登録を受け付けました。"
+    complete_approval:
+      subject: "[diverse]求人機関　選考結果のお知らせ"
+    send_invoice_pdf:
+      subject: "[diverse]求人機関　請求書を送付しました。"
+    send_payslip_pdf:
+      subject: "[diverse]就業者　支払い明細を送付しました。"
+    send_withholding_slip_pdf:
+      subject: "[diverse]就業者　源泉徴収票を送付しました。"
+    inquiry_complete:
+      subject: "[diverse]お問い合わせを受け付けました。"
+    update_password:
+      subject: "[diverse]ログインパスワードを変更しました。"
+    after_resetting_password:
+      subject: "[diverse]ログインパスワードを変更しました。"
+  medical_institution_mailer:
+    account_update:
+      subject: "[diverse]アカウント情報を更新しました。"
+    create_medical:
+      subject: "[diverse]アカウントを新規登録しました。"
+    update_medical:
+      subject: "[diverse]アカウントを更新しました。"
+    destroy_medical:
+      subject: "[diverse]アカウントを削除しました。"
+    register_medical:
+      subject: "[diverse]アカウントの新規登録を受け付けました。"
+    apply_candidate:
+      subject: "[diverse]就業者　選考結果のお知らせ"
+    reject_candidate:
+      subject: "[diverse]就業者　選考結果のお知らせ"
+    create_apply_job:
+      subject: "[diverse]求人応募を受け付けました。"
+    apply_job:
+      subject: "[diverse]就業者　選考結果のお知らせ"
+    reject_job:
+      subject: "[diverse]就業者　選考結果のお知らせ"
+    complete_approval:
+      subject: "[diverse]求人機関　選考結果のお知らせ"
+    send_invoice_pdf:
+      subject: "[diverse]求人機関　請求書を送付しました。"
+    contact_updated:
+      subject: "[diverse]就業者　契約内容更新のお知らせ"
+    after_resetting_password:
+      subject: "[diverse]ログインパスワードを変更しました。"
+  candidate_mailer:
+    account_update:
+      subject: "[diverse]アカウント情報を更新しました。"
+    account_destroy:
+      subject: "[diverse]アカウント削除のお知らせ"
+    register_candidate:
+      subject: "[diverse]アカウントを新規登録しました。"
+    apply_candidate:
+      subject: "[diverse]就業者　選考結果のお知らせ"
+    reject_candidate:
+      subject: "[diverse]就業者　選考結果のお知らせ"
+    create_apply_job:
+      subject: "[diverse]求人応募を受け付けました。"
+    apply_job:
+      subject: "[diverse]就業者　選考結果のお知らせ"
+    reject_job:
+      subject: "[diverse]就業者　選考結果のお知らせ"
+    change_bank_info:
+      subject: "[diverse]銀行口座情報を更新しました。"
+    send_payslip_pdf:
+      subject: "[diverse]就業者　支払い明細を送付しました。"
+    send_withholding_slip_pdf:
+      subject: "[diverse]就業者　源泉徴収票を送付しました。"
+    inquiry_complete:
+      subject: "[diverse]お問い合わせありがとうございます。"
+    contact_updated:
+      subject: "[diverse]就業者　契約内容更新のお知らせ"
+    update_password:
+      subject: "[diverse]ログインパスワードを変更しました。"
+    after_resetting_password:
+      subject: "[diverse]ログインパスワードを変更しました。"
+  contact_mailer:
+    send_contact_to_admin:
+      subject: "[diverse]お問い合わせを受け付けました。"
+    send_contact_confirm:
+      subject: "[diverse]お問い合わせありがとうございます。"

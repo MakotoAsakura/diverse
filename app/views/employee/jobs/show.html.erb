@@ -1,0 +1,55 @@
+<% provide(:title, t(".title") ) %>
+<div class="container">
+  <%= render("employee/jobs/job", job: @job) %>
+
+  <div class="row justify-content-center">
+    <hr class="d-none d-md-block gaps-1x" />
+    <div class="form-group">
+      <div class="main-title text-primary-2 text-center mt-5">
+        <%= t(".open_period", from: l(@job.open_at, format: :long_day), to: l(@job.close_at, format: :long_day)) %>
+      </div>
+    </div>
+
+    <div class="col-md-10 col-xxl-7">
+      <% if @job.ended? %>
+        <div class="form-group">
+          <p class="text-center text-danger"><%= t(".job_expired") %></p>
+          <div class="text-center">
+            <%= link_to t(".back_to_list"), back_list_url, class: "btn btn-custom btn-primary" %>
+          </div>
+        </div>
+      <% elsif user_signed_in? %>
+        <% if current_user.user? %>
+          <% if current_user.jobs.exists?(@job.id) %>
+            <div class="form-group">
+              <div class="main-title text-danger text-center mt-5">
+                <%= t(".job_applied") %>
+              </div>
+            </div>
+          <% else %>
+            <div class="form-group mb-md-5">
+              <div class="d-grid gap-4 gap-md-5">
+                <%= link_to new_jobs_applied_path(params: { job_id: @job.id, step: "profile" }), class: "btn btn-custom btn-primary" do %>
+                  <%= t(".apply") %>
+                  <br /><%= t(".apply_description") %>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+          <div class="form-group">
+            <div class="d-grid gap-4 gap-md-5">
+              <%= link_to t(".back_to_list"), back_list_url, class: "btn btn-custom btn-primary" %>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <div class="form-group">
+          <p class="text-center text-danger"><%= t(".login_required") %></p>
+          <div class="text-center">
+            <%= link_to t(".login"), new_user_session_path, class: "btn btn-custom btn-primary" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

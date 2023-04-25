@@ -1,0 +1,62 @@
+@import "../payslip";
+@import "../invoice";
+
+#admin-page {
+  position: relative;
+  min-height: 100%;
+
+  #wrap {
+    zoom: 1;
+    margin-top: 100px;
+  }
+
+  #main {
+    padding-left: 0 !important;
+    margin-bottom: 55px;
+
+    .wrap {
+      height: 100%;
+      margin-right: calc(var(--bs-gutter-x) * .5);
+      font-size: 15px
+    }
+  }
+
+  .index {
+    zoom: 1;
+    position: static;
+  }
+
+  .list-head {
+    zoom: 1;
+    margin: 0 0 10px;
+    padding: 10px 18px;
+    border-bottom: 1px solid #f2f2f2;
+    font-weight: bold;
+  }
+
+  .list-items {
+    margin: 10px;
+    padding: 0;
+  }
+
+  .list-items .list-item {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    border-bottom: 1px solid #f2f2f2;
+  }
+
+  .list-items .list-item .info {
+    flex-grow: 10;
+  }
+
+  .btn-save {
+    background-color: #50cd89;
+    border-color: #50cd89;
+    color: #FFFFFF;
+  }
+
+  .save {
+    color: #FFFFFF;
+  }
+}

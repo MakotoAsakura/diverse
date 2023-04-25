@@ -1,0 +1,9 @@
+<% content_for :title, t('reset_password.finish.title') %>
+<div class="reset-password-success">
+  <div class="text-center">
+    <div class="mb-4">
+      <strong><%= t('reset_password.finish.text') %></strong>
+    </div>
+    <%= link_to t('reset_password.finish.button'), medical_user_session_path, class: "px-5 btn btn-custom btn-primary btn-submit" %>
+  </div>
+</div>

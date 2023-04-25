@@ -1,0 +1,14 @@
+<h3 class="page-title text-center">よくある質問（FAQ）</h3>
+
+<div class="container">
+  <div class="faq-page">
+    <div class="text-info text-center faq-detail-title">
+      <%= @item[:question] %>
+    </div>
+    <div class="faq-body">
+      <div class="mx-auto">
+        <%= markdown(@item[:answer]) %>
+      </div>
+    </div>
+  </div>
+</div>

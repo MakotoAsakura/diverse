@@ -1,0 +1,8 @@
+<div><%= @medical_institution.full_name_manager %>　様</div>
+<br>
+<div>ダイバースをご利用いただき、誠にありがとうございます。</div>
+<br>
+<div><%= @medical_institution.name %>　様への請求書を送付しました。</div>
+<div>請求書はこちら：<%= link_to medical_invoices_url, medical_invoices_url(year: @year, month: @month), target: "_blank" %></div>
+<br>
+<%= render "shared/mailer/footer", url_contact: new_medical_contact_url  %>

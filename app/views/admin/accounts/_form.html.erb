@@ -1,0 +1,38 @@
+<% @crud_buttons = proc do |f| %>
+  <%= f.submit t("admin.accounts.form.button_submit"), class: "btn button save btn-submit" %>
+  <%= link_to confirm_delete_admin_account_path do %>
+    <button type="button" class="btn save btn-destroy"><%= t("admin.accounts.form.button_delete") %></button>
+  <% end %>
+<% end %>
+
+<div class="container">
+  <div class="row justify-content-center aligns-items-center">
+    <div class="col-5 p-sm-5">
+      <%= f.fields_for :manage, @item.manage || @item.build_manage do |ff| %>
+        <div class="form-group row mb-3">
+          <label><%= t("admin.users.form.label.name") %></label>
+          <div class="col">
+            <%= ff.text_field :first_name, name: "item[manage_attributes][first_name]", autofocus: true, placeholder: t("admin.users.form.placeholder.first_name"), class:"form-control border-solid-light-gray-1 h-auto px-1 py-2" %>
+          </div>
+          <div class="col">
+            <%= ff.text_field :last_name, name: "item[manage_attributes][last_name]", autofocus: true, placeholder: t("admin.users.form.placeholder.last_name"), class:"form-control border-solid-light-gray-1 h-auto px-1 py-2" %>
+          </div>
+        </div>
+      <% end %>
+      <div class="form-group mb-3">
+        <%= f.label :email, t("admin.users.form.label.email") %>
+        <%= f.text_field :email, value: @item.email, autofocus: true, placeholder: t("admin.users.form.placeholder.email"), class:"form-control border-solid-light-gray-1 h-auto px-1 py-2" %>
+      </div>
+
+      <div class="form-group mb-3">
+        <%= f.label :password, t("admin.users.form.label.password") %>
+        <%= f.password_field :password, value: @item.password, class: "form-control border-solid-light-gray-1 h-auto px-1 py-2", autocomplete: false, placeholder: t("admin.users.form.placeholder.password") %>
+      </div>
+
+      <div class="form-group mb-3">
+        <%= f.label :password_confirmation, t("admin.users.form.label.password_confirmation") %><br />
+        <%= f.password_field :password_confirmation, value: @item.password_confirmation, class: "form-control border-solid-light-gray-1 h-auto px-1 py-2", autocomplete: false, placeholder: t("admin.users.form.placeholder.password_confirmation") %>
+      </div>
+    </div>
+  </div>
+</div>

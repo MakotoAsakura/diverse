@@ -1,0 +1,13 @@
+<% content_for :title, "請求書メール送信完了" %>
+
+<div class="container w-50">
+  <div class="row justify-content-center aligns-items-center mt-5">
+    <div class="mb-2 text-center"><strong><%= "請求書を送付しました。" %></strong></div>
+    <div class="mb-2 text-center"><%= "契約求人機関 ご担当者様のメールアドレスへ請求書をお送りいたしました。" %></div>
+    <div class="text-center send">
+      <%= link_to admin_medical_institution_invoices_path(year: @year, month: @month) do %>
+        <button type="button" class="btn save btn-submit"><%= "契約求人機関一覧へ" %></button>
+      <% end %>
+    </div>
+  </div>
+</div>

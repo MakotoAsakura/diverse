@@ -1,0 +1,35 @@
+ja:
+  admin:
+    users:
+      title:
+        new: "登録内容"
+        confirm: "新規登録"
+        complete:
+          confirm: "登録完了"
+        index: 管理者一覧
+      form:
+        button_submit: "アカウントを作成する"
+        button_delete: "アカウントを削除する"
+        label:
+          name: "名前"
+          email: "メールアドレス"
+          password: "ログインパスワード"
+          password_confirmation: "ログインパスワード（確認用）"
+        placeholder:
+          first_name: "姓"
+          last_name: "名"
+          email: "メールアドレス"
+          password: "パスワード"
+          password_confirmation: "パスワード"
+      confirm:
+        title: 登録内容
+        button_submit: "アカウントを作成する"
+        note: "上記内容で登録します。よろしいですか？"
+        label:
+          name: "名前"
+          email: "メールアドレス"
+          password: "ログインパスワード"
+          password_confirmation: "ログインパスワード（確認用）"
+      complete:
+        notice: 登録が完了しました。
+        message: ご登録のメールアドレスへご確認のメールをお送りいたしました。

@@ -1,0 +1,188 @@
+<% if @item.new_record? %>
+  <% content_for :title, t("system_settings.title.new") %>
+<% else %>
+  <% content_for :title, t("system_settings.title.edit") %>
+<% end %>
+
+<% @crud_buttons = proc do |f| %>
+  <%= f.submit t("system_settings.buttons.edit"), class: "btn button save btn-submit" %>
+<% end %>
+
+<div class="invoice">
+  <div class="wrap">
+    <div class="title-header">
+      <label class="box fw-bolder"><%= t("system_settings.label.invoice") %></label>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="form-group row align-items-center">
+      <div class="col-2 fw-bolder"><%= f.label :settlement_expiration_date, @model.t(:settlement_expiration_date) %></div>
+      <div class="col-2"><%= f.select :settlement_expiration_date, @model.date_options, {}, { class: "form-select border px-1 py-2" } %></div>
+    </div>
+
+    <div class="form-group row align-items-center mt-3">
+      <div class="col-2 fw-bolder"><%= f.label :settlement_date, @model.t(:settlement_date) %></div>
+      <div class="col-2"><%= f.select :settlement_date, @model.date_options, {}, { class: "form-select border px-1 py-2" } %></div>
+      <div class="col-2">
+        <%= f.text_field :settlement_hour, value: @item&.settlement_hour&.strftime("%H:%M"), class: "form-control border px-1 py-2 timepicker text-center", placeholder: @model.t(:settlement_date) %>
+      </div>
+    </div>
+
+    <div class="form-group row align-items-center mt-3">
+      <div class="col-2 fw-bolder"><%= f.label :payment_due_month, @model.t(:payment_due_month) %></div>
+      <div class="col-2"><%= f.select :payment_due_month, @model.payment_due_month_option, {}, { class: "form-select border px-1 py-2" } %></div>
+      <div class="col-2"><%= f.select :payment_due_date, @model.date_options, {}, { class: "form-select border px-1 py-2" } %></div>
+    </div>
+  </div>
+
+  <div class="invoice-info">
+    <label class="fw-bolder ms-4"><%= t("system_settings.label.invoice_info") %></label>
+
+    <div class="container">
+      <div class="form-group row align-items-center mt-3">
+        <div class="col-2 fw-bolder"><%= f.label :invoice_name, @model.t(:invoice_name) %></div>
+        <div class="col-6"><%= f.text_field :invoice_name, class: "form-control border px-1 py-2" %></div>
+      </div>
+
+      <div class="wrap-info">
+        <div class="form-group row mt-3 align-items-center zipcode">
+          <div class="col-2 fw-bolder"><%= f.label :zipcode, @model.t(:zipcode) %></div>
+          <div class="col-3"><%= f.text_field :zipcode_first, class: "form-control zipcode-first numberonly border px-1 py-2", maxlength: 3 %></div>
+          <div class="col-3"><%= f.text_field :zipcode_last, class: "form-control zipcode-last numberonly border px-1 py-2", maxlength: 4 %></div>
+        </div>
+
+        <div class="form-group row mt-3 align-items-center location">
+          <div class="col-2 fw-bolder"><%= f.label :address, @model.t(:address) %></div>
+          <div class="col-6"><%= f.text_area :address, class: "form-control border px-1 py-2", col: 3 %></div>
+        </div>
+      </div>
+
+      <div class="form-group row mt-3 align-items-center">
+        <div class="col-2 fw-bolder"><%= f.label :phone_number, @model.t(:phone_number) %></div>
+        <div class="col-6"><%= f.text_field :phone_number, class: "form-control numberonly border px-1 py-2", placeholder: @model.t(:phone_number), maxlength: 11 %></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bank-info mt-3">
+    <label class="fw-bolder ms-4"><%= t("system_settings.label.bank_info") %></label>
+
+    <div class="container">
+      <div class="form-group row align-items-center mt-3">
+        <div class="col-2 fw-bolder"><%= f.label :bank_name, @model.t(:bank_name) %></div>
+        <div class="col-6"><%= f.text_field :bank_name, class: "form-control border px-1 py-2" %></div>
+      </div>
+
+      <div class="form-group row align-items-center mt-3">
+        <div class="col-2 fw-bolder"><%= f.label :branch_name, @model.t(:branch_name) %></div>
+        <div class="col-6"><%= f.text_field :branch_name, class: "form-control border px-1 py-2" %></div>
+      </div>
+
+      <div class="form-group row align-items-center mt-3">
+        <div class="col-2 fw-bolder"><%= f.label :account_type, @model.t(:account_type) %></div>
+        <div class="col-6">
+          <div class="row align-items-center">
+            <% @model.account_types_i18n.each do |k, v| %>
+              <div class="col-auto">
+                <label for="<%= f.object_name %>_account_type_<%= k %>">
+                  <%= f.radio_button :account_type, k, class: "form-check-input" %>
+                  <span class="form-check-label"><%= v %></span>
+                </label>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row align-items-center mt-3">
+        <div class="col-2 fw-bolder"><%= f.label :account_number, @model.t(:account_number) %></div>
+        <div class="col-6"><%= f.text_field :account_number, class: "form-control border px-1 py-2" %></div>
+      </div>
+
+      <div class="form-group row align-items-center mt-3">
+        <div class="col-2 fw-bolder"><%= f.label :holder_name, @model.t(:holder_name) %></div>
+        <div class="col-6"><%= f.text_field :holder_name, class: "form-control border px-1 py-2" %></div>
+      </div>
+
+      <div class="form-group row align-items-center mt-3">
+        <div class="col-2 fw-bolder"><%= f.label :holder_name_kana, @model.t(:holder_name_kana) %></div>
+        <div class="col-6"><%= f.text_field :holder_name_kana, class: "form-control border px-1 py-2" %></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="payment-management mt-3">
+  <div class="wrap">
+    <div class="title-header">
+      <label class="box fw-bolder"><%= t("system_settings.label.payment_management") %></label>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="form-group row align-items-center">
+      <div class="col-2 fw-bolder"><%= f.label :system_fee, @model.t(:system_fee) %></div>
+      <div class="col-2"><%= f.select :system_fee, @model.percent_options, {}, { class: "form-select border px-1 py-2" } %></div>
+      <div class="col-auto text-danger">システム利用料は、就業者の給与額に対する適用料率のことです。</div>
+    </div>
+
+    <div class="form-group row align-items-center mt-3">
+      <div class="col-2 fw-bolder"><%= f.label :pharmaceutical_introduction_fee, @model.t(:pharmaceutical_introduction_fee) %></div>
+      <div class="col-2"><%= f.select :pharmaceutical_introduction_fee, @model.percent_options, {}, { class: "form-select border px-1 py-2" } %></div>
+      <div class="col-auto text-danger">紹介手数料は、就業者の給与額に対する適用料率のことです。</div>
+    </div>
+  </div>
+</div>
+
+<div class="alert-management mt-3">
+  <div class="wrap">
+    <div class="title-header">
+      <label class="box fw-bolder"><%= t("system_settings.label.alert_management") %></label>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="form-group row align-items-center">
+      <div class="col-2 fw-bolder"><%= f.label :job_acceptance_waiting_alert, @model.t(:job_acceptance_waiting_alert) %></div>
+      <div class="col-2"><%= f.select :job_acceptance_waiting_alert, @model.alert_date_options, {}, { class: "form-select border px-1 py-2" } %></div>
+      <div class="col-auto text-danger">
+        「採用承諾待ち」の採用通知に対して、求職者にアラートメールの配信を設定することができます。<br>
+         ０日を指定した場合、アラート通知はなしとなります。
+      </div>
+    </div>
+
+    <div class="form-group row align-items-center mt-3">
+      <div class="col-2 fw-bolder"><%= f.label :time_approval_waiting_alert, @model.t(:time_approval_waiting_alert) %></div>
+      <div class="col-2"><%= f.select :time_approval_waiting_alert, @model.alert_date_options, {}, { class: "form-select border px-1 py-2" } %></div>
+      <div class="col-auto text-danger">
+        「申請中」の勤怠申請に対して、求人機関にアラートメールの配信を設定することができます。<br>
+        ０日を指定した場合、アラート通知はなしとなります。
+      </div>
+    </div>
+
+    <div class="form-group row align-items-center mt-3">
+      <div class="col-2 fw-bolder"><%= f.label :registration_review_approval_waiting_alert, @model.t(:registration_review_approval_waiting_alert) %></div>
+      <div class="col-2"><%= f.select :registration_review_approval_waiting_alert, @model.alert_date_options, {}, { class: "form-select border px-1 py-2" } %></div>
+      <div class="col-auto text-danger">
+        「承認待ち」の登録審査に対して、管理者にアラートメールの配信を設定することができます。<br>
+        ０日を指定した場合、アラート通知はなしとなります。
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="contact-management mt-3">
+  <div class="wrap">
+    <div class="title-header">
+      <label class="box fw-bolder"><%= t("system_settings.label.contact_management") %></label>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="form-group row align-items-center">
+      <div class="col-2 fw-bolder"><%= f.label :email_contact, @model.t(:email_contact) %></div>
+      <div class="col-6"><%= f.email_field :email_contact, class: "form-control border px-1 py-2" %></div>
+    </div>
+  </div>
+</div>

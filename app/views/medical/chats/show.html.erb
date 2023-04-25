@@ -1,0 +1,34 @@
+<% content_for :title, t("medical.jobs_applied.index.chat") %>
+
+<div class="container-fluid d-lg-none">
+  <div class="form-button-group mb--8">
+    <div class="form-group">
+      <div class="d-grid gap-4">
+        <button type="button" class="btn btn-custom btn-primary">トーク一覧に戻る</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="px-3 px-lg-0">
+  <div class="chat-wrapper">
+    <div class="chat-content" id="chat-content">
+    </div>
+    <%= hidden_field_tag "sender", current_user.id %>
+    <%= hidden_field_tag "room_id", @room.room_code %>
+    <%= hidden_field_tag "sender_name", current_user.medical_institution.full_name_manager %>
+    <%= hidden_field_tag "receiver_name", @room.candidate_user.full_name %>
+    <%= hidden_field_tag "screen", "chat" %>
+    <%= hidden_field_tag "role", "medical" %>
+
+    <% unless @room.candidate_user.user.discarded? %>
+      <div class="chat-input d-flex align-items-center disable">
+        <div class="chat-input-text">
+          <textarea class="form-control" rows="3" id="content_chat"></textarea>
+        </div>
+        <div class="chat-button-send">
+          <button type="submit" id="sendMsgBtn"></button>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<% content_for :title, t('reset_password.new.title') %>
+<div class="reset-password-form">
+  <div class="change-pasword-form">
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }, data: { turbo: false }) do |f| %>
+      <div class="form-group mb-4">
+        <label class="form-label"><%= t('reset_password.new.text') %></label>
+        <div class="form-group-control">
+          <%= f.email_field :email, autocomplete: "email", class: "form-control input-custom" %>
+        </div>
+      </div>
+      <div class="text-center">
+        <%= f.submit t('reset_password.new.button'), class: "px-5 btn btn-custom btn-primary btn-submit" %>
+      </div>
+    <% end %>
+  </div>
+</div>

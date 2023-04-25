@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= yield(:title).presence || controller.title %> | Diverse</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <link href="https://fonts.googleapis.com/css2?family=Sawarabi+Gothic:wght@400;500&display=swap" rel="stylesheet">
+  <%= stylesheet_link_tag "admin", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+  <%= javascript_import_module_tag "admin" %>
+  <link rel="stylesheet" href="/vendors/iframe-box/css/framer.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <% if @__disable_turbo %>
+    <meta name="turbo-visit-control" content="reload">
+  <% end %>
+  <%= favicon_link_tag "favicon.ico" %>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MQM5TDYW2N"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-MQM5TDYW2N');
+  </script>
+</head>
+
+<body>
+<div id="admin-page">
+  <div id="head" class="overflow-hidden">
+    <%= render "layouts/admin/header" %>
+  </div>
+  <div id="wrap" class="overflow-hidden">
+    <div class="row equal">
+      <div id="navi" class="col-2 position-fixed overflow-auto">
+        <div class="wrap">
+          <% if ::File.exist?("#{Rails.root}/app/views/#{params[:controller]}/_navi.html.erb") %>
+            <%= render partial: "navi" %>
+          <% elsif controller.navi_view_file %>
+            <%= render partial: controller.navi_view_file %>
+          <% else %>
+            <%= render "layouts/admin/navi" %>
+          <% end %>
+        </div>
+      </div>
+      <article id="main" class="col-10 offset-2">
+        <div>
+          <% flash.each do |message_type, message| %>
+            <%= content_tag :div, message, class: "alert alert-#{message_type}" if message.is_a?(String) %>
+          <% end %>
+        </div>
+        <div class="wrap">
+          <%= yield %>
+        </div>
+      </article>
+    </div>
+  </div>
+  <div id="footer">
+    <%= render "layouts/admin/footer" %>
+  </div>
+</div>
+</body>
+</html>

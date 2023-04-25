@@ -1,0 +1,129 @@
+<div class="container">
+  <% if @jobs.nil? # search %>
+    <div class="mb-5 text-center">
+      <picture class="d-lg-none">
+        <source media="(min-width:768px)">
+        <%= image_tag("employee/visual.png", class: "img-full") %>
+      </picture>
+
+      <picture class="d-none d-lg-inline-block">
+        <source media="(min-width:768px)">
+        <%= image_tag("employee/visual.png", size: "1200x300") %>
+      </picture>
+    </div>
+  <% else %>
+    <% provide(:title, t(".title")) %>
+  <% end %>
+
+  <div class="text-center mb-4">
+    <p><%= t(".search.description") %></p>
+  </div>
+
+  <%= search_form_for @q, class: "top-search" do |f| %>
+    <%= content_tag :div, @invalid_message, class: "alert alert-info" if @invalid_message.present? %>
+
+    <div class="text-center">
+      <div class="form-group">
+        <div class="form-group-control">
+          <div class="row g-3 align-items-center justify-content-between">
+            <div class="col-auto col-12 col-md-5 pe-md-0">
+              <div class="input-group flex-nowrap">
+              <span class="input-group-text py-0">
+                <img class="img-fluid" src="<%= image_path("employee/icons/location.svg") %>" width="46" height="46" alt="location" />
+              </span>
+                <%= f.text_field :address_cont, class: "form-control form-control-lg", placeholder: t(".search.address"), "ria-label" => t(".search.address") %>
+              </div>
+            </div>
+            <div class="col-auto col-12 col-md-5 ps-md-0">
+              <%= f.select :position_eq,
+                           Job.positions_i18n.map { |k, v| [v, Job.positions[k]] },
+                           { include_blank: t(".search.position") },
+                           { class: "form-select form-control-lg" } %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-group-control">
+          <div class="row g-3 align-items-center">
+            <div class="col-auto col-5 pe-0">
+              <div class="input-group flex-nowrap">
+                <%= f.text_field :end_at_gt,
+                                 class: "form-control form-control-lg datepicker-default",
+                                 placeholder: t(".search.start_at"),
+                                 "aria-label" => t(".search.start_at") %>
+                <span class="input-group-text py-0">
+                <img class="img-fluid" src="<%= image_path("employee/icons/calendar.svg") %>" width="46" height="46" alt="calendar" />
+              </span>
+              </div>
+            </div>
+            <div class="col-auto col-2 px-0">
+              <label class="col-form-label">〜</label>
+            </div>
+            <div class="col-auto col-5 ps-0">
+              <div class="input-group flex-nowrap">
+                <%= f.text_field :start_at_lt,
+                                 class: "form-control form-control-lg datepicker-default",
+                                 placeholder: t(".search.end_at"),
+                                 "aria-label" => t(".search.end_at") %>
+                <span class="input-group-text py-0">
+                <img class="img-fluid" src="<%= image_path("employee/icons/calendar.svg") %>" width="46" height="46" alt="calendar" />
+              </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-group-control">
+          <%= f.text_field :title_cont, class: "form-control form-control-lg", placeholder: t(".job.title") %>
+        </div>
+      </div>
+    </div>
+    <div class="text-center">
+      <div class="mb-4">
+        <%= f.submit t(".search.submit"), class: "px-5 btn btn-primary btn-lg btn-custom" %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if @jobs %>
+    <% if @jobs.total_count.zero? %>
+      <hr class="d-none d-md-block gaps-2x" />
+
+      <div class="text-center"><%= t(".empty_message") %></div>
+    <% else %>
+      <hr class="d-none d-md-block gaps-2x" />
+
+      <h3 class="page-title text-center d-md-none"><%= t(".title") %></h3>
+      <div class="row justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+          <p class="text-end"><%= t(".pagination_info", total_count: number_with_delimiter(@jobs.total_count), current_page: @jobs.current_page) %></p>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <% @jobs.includes(:medical_institution).each do |job| %>
+          <div class="col-md-10 col-lg-8 col-xl-7">
+            <div class="job-item">
+              <h3 class="job-title text-primary-2"><%= link_to job.title, job_path(job) %></h3>
+              <div class="job-summary">
+                <ul class='list-unstyled job-list'>
+                  <li><%= t(".job.position") %>：<%= job.position_i18n %></li>
+                  <li><%= t(".job.address") %>：<%= job.address %></li>
+                  <li><%= t(".job.work_period") %>：<%= display_around_start(job) %></li>
+                  <li><%= t(".job.salary") %>：<%= display_around_annual_salary_according(job) %></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <%= paginate @jobs,
+                   theme: "bootstrap-5", nav_class: "pagination-wrapper mt-5 pt-md-3",
+                   pagination_class: "pagination justify-content-center",
+                   window: 1, left: 1, right: 1  %>
+    <% end %>
+  <% end %>
+</div>

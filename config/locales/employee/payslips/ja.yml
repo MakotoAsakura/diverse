@@ -1,0 +1,5 @@
+ja:
+  employee:
+    payslips:
+      index:
+        pagination_info: "%{current_page}/%{total_count}ページ目"

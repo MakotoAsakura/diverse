@@ -1,0 +1,41 @@
+ja:
+  employee:
+    withholding_slips:
+      index:
+        title: "源泉徴収票"
+        medical_list: "源泉徴収票（契約一覧）"
+        medical_institution_name: "求人機関名"
+      jobs:
+        title: "源泉徴収票"
+        medical_institution_name: "求人機関名"
+        contract_id: "契約ID"
+        job_name: "求人タイトル"
+        contract_list: "源泉徴収票(契約一覧)"
+        contract_description: "※契約IDは応募求人詳細に記載しています。"
+      job_detail:
+
+        title: "労働条件通知書"
+
+        medical_name: "求人機関名"
+
+        labor_contract_period: "労働契約期間"
+
+        download_labor_contract_notice: "労働契約通知書ダウンロード"
+
+        labor_contract_notification_upload: "労働契約通知書アップロード"
+
+        upload_the_signed_working_conditions_notification: "サイン済の労働条件通知書をアップロードしてください。"
+
+        reference_btn: "参照"
+
+        upload_btn: "ファイルをアップロードする"
+
+        uploaded_file: "アップロード済ファイル"
+
+        upload_status: "アップロード状況"
+
+        file_name: "ファイル名"
+
+        upload_file_success: "アップロードしました"
+
+        btn_list_contract: "期間指定画面に戻る"

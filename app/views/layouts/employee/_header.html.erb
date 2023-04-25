@@ -1,0 +1,90 @@
+<header id="header">
+  <nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <%= link_to root_path, class: "navbar-brand" do %>
+        <%= image_tag "employee/logo.svg", class: "fluid", alt: "logo" %>
+      <% end %>
+      <% if user_signed_in? %>
+        <div class="collapse navbar-collapse" id="main-nav">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <%= link_to t("base.label.job_path"), root_path, class: "nav-link" %>
+            </li>
+            <% if controller_name == "jobs" || controller_name == "contacts" || controller_name == "jobs_applied" && %w[new create].include?(action_name) %>
+              <li class="nav-item d-none d-lg-block">
+                <%= link_to notifications_path(params: {active: "menu"}), class: "nav-link" do %>
+                  <span class="has-notice">マイページ
+                    <sup class="notice-icon">
+                      <%= image_tag "svg/notice_danger.svg", class: "img-fluid", width: "30", height: "30", alt: "logo" %>
+                    </sup>
+                  </span>
+                <% end %>
+              </li>
+            <% end %>
+            <li class="nav-item d-lg-none">
+              <%= link_to notifications_path(params: {active: "menu"}), class: "nav-link" do %>
+                <span class="has-notice">マイページ
+                  <sup class="notice-icon">
+                    <%= image_tag "svg/notice_danger.svg", class: "img-fluid", width: "30", height: "30", alt: "logo" %>
+                  </sup>
+                </span>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to t("base.label.contact"), new_contact_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "よくある質問", faqs_path, class: "nav-link" %>
+            </li>
+          </ul>
+        </div>
+      <% else %>
+        <div class="collapse navbar-collapse" id="main-nav">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <%= link_to t("base.label.job_path"), root_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to t("base.label.login"), new_user_session_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to t("base.label.contact"), new_contact_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "よくある質問", faqs_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item divider">
+              <%= link_to "求人担当者様はこちら", new_medical_user_session_path, class: "nav-link" %>
+            </li>
+          </ul>
+        </div>
+      <% end %>
+      <div class="top-right">
+        <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="icon-bar has-notice">
+            <% if has_notice? %>
+              <sup class="notice-icon">
+                <%= image_tag "svg/notice_danger.svg", class: "img-fluid", width: "30", height: "30", alt: "logo" %>
+              </sup>
+            <% end %>
+          </i>
+          <span class="navbar-text"></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+  <% if user_signed_in? %>
+    <div class="top-page">
+      <div class="container-fluid">
+        <div class="top-page__inner">
+          <div class="top-page__left">
+            <strong><%= current_candidate.full_name %> 様</strong>
+          </div>
+          <div class="top-page__right">
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</header>

@@ -1,0 +1,107 @@
+<% content_for :title, "お知らせ一覧" %>
+<% content_for :title_class, "page-title text-center text-md-start" %>
+
+<div class="boxed">
+  <%= search_form_for @q, class: "form-highlight" do |f| %>
+    <div class="form-group">
+      <label class="form-label"><%= Notification.t("title") %></label>
+
+      <div class="form-group-control">
+        <div class="row">
+          <div class="col-md-6">
+            <%= f.text_field :title_cont, class: "form-control form-control-lg", placeholder: Notification.t("title") %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= Notification.t("publish_time") %></label>
+      <div class="form-group-control">
+        <div class="row g-3 align-items-center">
+          <div class="col-auto col-5 pe-0">
+            <div class="input-group flex-nowrap">
+              <%= f.text_field :start_time_gteq,
+                               class: "form-control form-control-lg datepicker-default",
+                               placeholder: Notification.t("start_time"),
+                               "aria-label" => Notification.t("start_time") %>
+              <span class="input-group-text py-0">
+                <img class="img-fluid" src="<%= image_path("employee/icons/calendar.svg") %>" width="46" height="46" alt="calendar" />
+              </span>
+            </div>
+          </div>
+          <div class="col-auto col-2 px-0 text-center">
+            <label class="col-form-label">〜</label>
+          </div>
+          <div class="col-auto col-5 ps-0">
+            <div class="input-group flex-nowrap">
+              <%= f.text_field :end_time_lteq,
+                               class: "form-control form-control-lg datepicker-default",
+                               placeholder: Notification.t("end_time"),
+                               "aria-label" => Notification.t("end_time") %>
+              <span class="input-group-text py-0">
+                <img class="img-fluid" src="<%= image_path("employee/icons/calendar.svg") %>" width="46" height="46" alt="calendar" />
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <% if @invalid_message.present? %>
+          <div class="row mt-1">
+            <div class="i-helper danger"><%= @invalid_message %></div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="mb-4">
+      <%= f.submit class: "px-5 btn btn-primary btn-lg btn-custom" %>
+    </div>
+  <% end %>
+</div>
+<div class="form-divider d-none d-lg-block"></div>
+<% if @items == [] || @items.total_count.zero? %>
+  <div class="boxed">
+    <div class="text-center"><%= params[:q].present? ? t(".search_empty") : t(".empty") %></div>
+  </div>
+<% else %>
+  <h3 class="page-title text-center d-md-none"><%= t(".list") %></h3>
+  <div class="boxed">
+    <div class="row mb-2">
+      <div class="col-md-6">
+        <div class="d-none d-md-block">
+          <strong class="text-info"><%= t(".list") %></strong>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="text-end"><%= t(".pagination_info", total_count: number_with_delimiter(@items.total_count), current_page: @items.current_page) %></div>
+      </div>
+    </div>
+    <div class="notification-list">
+      <% @items.each do |notification| %>
+        <div class="job-item">
+          <%= image_tag("svg/new_icon_red.svg") unless notification.read%>
+          <h3 class="job-title text-primary-2 text-center"><%= link_to notification.title, notification_path(notification) %></h3>
+          <div class="job-summary">
+            <ul class='list-unstyled job-list'>
+              <li><%= @model.t("publish_time") %>： <%= "#{l(notification.start_time, format: :long_day)}　〜　#{l(notification.end_time, format: :long_day)}" %></li>
+<!--              <li><%#= @model.t("creator") %>： <%#= notification.creator.manage.full_name %></li>-->
+              <li><%= @model.t("created_at") %>： <%= "#{l(notification.created_at, format: :long2)}" %></li>
+            </ul>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <%= paginate @items,
+                 theme: "bootstrap-5", nav_class: "pagination-wrapper mt-5 pt-md-3",
+                 pagination_class: "pagination justify-content-center",
+                 window: 1, left: 1, right: 1  %>
+    <div class="mt-5 d-lg-none">
+      <div class="form-button-group text-center mx-auto">
+        <div class="form-group">
+          <div class="d-grid gap-4 gap-md-5">
+            <%= link_to t(".back_to_home"), jobs_applied_index_path, class: "btn btn-custom btn-primary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

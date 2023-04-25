@@ -1,0 +1,95 @@
+<% content_for :title, t("medical.attendance.index.title") %>
+<% @filter_header = proc do %>
+<% end %>
+
+<div class="index">
+  <div class="wrap">
+    <div class="title-header">
+    </div>
+    <div class="form-group mt-3">
+      <label class="form-label"><%= t("medical.attendance.index.labels.name") %></label>
+      <div class="form-group-control">
+        <div class="row">
+          <div class="col-md-6 ps-4">
+            <%= @candidate_job.candidate.full_name %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="time-wrap d-flex flex-wrap align-items-center mt-3">
+      <div class="time-info">
+        <%= "#{@year}年#{@month}月" %>
+      </div>
+      <div class="time-picker ms-4">
+        <%= link_to medical_candidate_job_attendances_path(year: Time.new(@year, @month).prev_month.year, month: Time.new(@year, @month).prev_month.month) do %>
+          <span class="back"><%= image_tag "svg/arrow_left.svg" %></span>
+        <% end %>
+        <div class="current ms-3">
+          <%= link_to medical_candidate_job_attendances_path, class: "d-flex justify-content-center" do %>
+            <button type="button" class="btn btn-submit save current"><%= "今月" %></button>
+          <% end %>
+        </div>
+        <%= link_to medical_candidate_job_attendances_path(year: Time.new(@year, @month).next_month.year, month: Time.new(@year, @month).next_month.month) do %>
+          <span class="next ms-3"><%= image_tag "svg/arrow_right.svg" %></span>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap mt-4">
+    <table class="table table-borderless">
+      <thead class="info">
+      <tr>
+        <th scope="col" class="title accept-reject-dropdown"></th>
+        <th scope="col" class="title"><%= t("medical.attendance.index.labels.day") %></th>
+        <th scope="col" class="title"><%= t("medical.attendance.index.labels.time_checkin") %></th>
+        <th scope="col" class="title"><%= t("medical.attendance.index.labels.time_checkout") %></th>
+        <th scope="col" class="title"><%= t("medical.attendance.index.labels.break_hours") %></th>
+        <th scope="col" class="title"><%= t("medical.attendance.index.labels.transportation_fee") %></th>
+        <th scope="col" class="title"><%= t("medical.attendance.index.labels.status") %></th>
+        <th scope="col" class="title"><%= t("medical.attendance.index.labels.reject_note") %></th>
+      </tr>
+      </thead>
+
+      <% if @items.length > 0 %>
+        <tbody class="meta">
+        <% @month_select.all_month.step(1) do |month| %>
+          <% item = @items[month.to_s] %>
+          <tr>
+            <td>
+              <div class="d-flex justify-content-between align-items-center">
+                <button class="bg-white" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="icon bars-menu"><%= image_tag("svg/bars-solid.svg", size: "38x38") %></i>
+                </button>
+                <% if item.present? && item.waiting? && !item.candidate.user_discarded? %>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li>
+                      <%= link_to "承認", "#", class: "dropdown-item btn-accept-attendance", id: "btn-accept-attendance-#{item.id}" %>
+                    </li>
+                    <li class="my-2">
+                      <%= link_to "差し戻し", "#", class: "dropdown-item btn-reject-attendance", id: "btn-reject-attendance-#{item.id}" %>
+                    </li>
+                  </ul>
+                <% end %>
+              </div>
+            </td>
+            <td class="align-middle w-10"><%= "#{ l month, format: :long_4 }" %></td>
+            <td class="align-middle w-10"><%= item.present? ? item.checkin.strftime("%H:%M") : "-" %></td>
+            <td class="align-middle w-10"><%= item.present? ? item.checkout.strftime("%H:%M") : "-" %></td>
+            <td class="align-middle w-10"><%= item.present? ? item.break_hours : "-" %></td>
+            <td class="align-middle w-10"><%= item.present? ? (number_to_currency(item.transportation_fee.presence) || 0) : "-" %></td>
+            <td class="align-middle w-10"><%= item.present? ? item.status_i18n : "-" %></td>
+            <td class="align-middle"><%= item.present? ? item.reject_note : "-" %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      <% end %>
+    </table>
+
+    <%= paginate @items if @items.try(:current_page) %>
+  </div>
+</div>
+
+<%= render "medical/attendances/accept_attendance_modal" %>
+
+<%= render template: "base/crud/index" %>

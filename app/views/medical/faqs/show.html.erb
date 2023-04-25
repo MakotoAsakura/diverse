@@ -1,0 +1,19 @@
+<% content_for :title, "よくある質問（FAQ）" %>
+<% content_for :title_class, "page-title text-center" %>
+<% @crud_buttons = proc {} %>
+
+<% @crud_buttons = proc do %>
+<% end %>
+
+<div class="container">
+  <div class="faq-page">
+    <div class="text-info text-center faq-detail-title">
+      <%= @item[:question] %>
+    </div>
+    <div class="faq-body">
+      <div class="mx-auto">
+        <%= markdown(@item[:answer]) %>
+      </div>
+    </div>
+  </div>
+</div>

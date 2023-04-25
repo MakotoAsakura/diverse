@@ -1,0 +1,48 @@
+<% @filter_header = proc do %>
+  <%= label_tag :filter, t("admin.manages.views.search"), class: "box fw-bolder" %>
+<% end %>
+
+<% @filter_menu = proc do %>
+  <% @s ||= OpenStruct.new params[:s] %>
+  <%= form_for :s, url: "", html: { class: "index-search", method: :get } do |f| %>
+    <div class="row d-flex justify-content-center">
+      <div class="col-8 col-md-8">
+        <div class="row d-flex flex-wrap align-items-center mb-1 justify-content-center">
+          <div class="col-2 title-label"><%= f.label :name, @model.t(:full_name)%></div>
+          <div class="col-sm-10 col-md-10"><%= f.text_field :name, class: "form-control h-auto border px-1 py-2 w-50" %></div>
+        </div>
+      </div>
+      <div class="col-8 col-md-8 mt-3">
+        <div class="row d-flex flex-wrap align-items-center mb-1 justify-content-center">
+          <div class="col-2 title-label"><%= User.t(:email) %></div>
+          <div class="col-sm-10 col-md-10"><%= f.text_field :email, class: "form-control h-auto border px-1 py-2 w-50" %></div>
+        </div>
+      </div>
+      <div class="send text-start pt-2 col-8 col-md-8">
+        <input type="submit" value="<%= t("base.buttons.search") %>" class="btn button save btn-submit button_search"/>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+<% @content_header = proc do %>
+  <%= label_tag :filter, t("admin.manages.views.list"), class: "box mt-4 mb-4 fw-bolder" %>
+<% end %>
+
+<% @index_title = proc do %>
+  <th scope="col" class="title name"><%= @model.t(:full_name)%></th>
+  <th scope="col" class="title email"><%= User.t(:email) %></th>
+  <th scope="col" class="title action"></th>
+<% end %>
+
+<% @index_meta = proc do |item| %>
+  <tr>
+    <td><%= item.full_name %></td>
+    <td><%= item.user_email %></td>
+    <td class="text-center">
+      <%= link_to t("admin.manages.links.show"), { action: :edit, id: item }, class: "btn button btn-info mt-1" %>
+    </td>
+  </tr>
+<% end %>
+
+<%= render template: "base/crud/index" %>

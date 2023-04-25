@@ -1,0 +1,37 @@
+ja:
+  medical:
+    candidate_jobs:
+      title:
+        index: "就業者一覧"
+        show: "就業者詳細"
+        edit: "内容更新"
+        contract: "契約管理"
+      views:
+        search:
+          title: "検索条件"
+          label:
+            placeholder:
+              full_name: "氏名"
+            address: "住所"
+        list:
+          title: "就業者一覧"
+        show:
+          label:
+            emp_details: "採用内容"
+        complete:
+          confirm:
+            notice: "契約内容の更新が完了しました。"
+            message: "就業者宛、求人機関宛にご確認のメールへをお送りしました。"
+        remark_note: "労働条件通知書の記載項目以外で、就業者との間で取り交わす契約事項があれば記入してください。"
+      buttons:
+        bulk_payment_details_download: "支払い明細一括ダウンロード"
+        withholding_slips_download: "源泉徴収票一括ダウンロード"
+        edit: "契約内容を更新する"
+        back: "就業者一覧へ"
+        item:
+          detail: "詳細"
+          profile: "プロフィール"
+          contract: "契約管理"
+          attendance: "出退表示"
+          payslip: "支払い明細"
+          withholding_slip: "源泉徴収票"

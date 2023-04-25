@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row justify-content-center aligns-items-center mt-5">
+    <div class="text-center mb-3 fw-bolder">
+      <%= t("admin.medical_institution_applying.confirm_approve.question") %>
+    </div>
+    <%= form_tag confirm_rejection_admin_medical_institution_applying_path(@item), class: "mb-4", multipart: true, data: { turbo: false }, method: :get do %>
+      <div class="d-flex justify-content-center">
+        <%= text_area_tag "item[reason]", @item.reason, class: "form-control mb-4 mt-3", style: "width: 50%; height: 150px" %>
+      </div>
+      <div class="text-center send">
+        <%= link_to "#", class: "btn-reject" do %>
+          <button type="submit" class="btn save btn-destroy" <%= @item.reason.present? ? "" : "disabled" %>><%= t("admin.medical_institution_applying.confirm_approve.button_reject") %></button>
+        <% end %>
+        <button type="button" class="btn save btn-submit" data-bs-toggle="modal" data-bs-target="#modalConfirm"><%= t("admin.medical_institution_applying.confirm_approve.button_approve") %></button>
+      </div>
+    <% end %>
+
+    <div class="modal fade" id="modalConfirm" tabindex="-1" aria-labelledby="modalConfirmLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content text-center">
+          <div class="modal-body">
+            <p class="mb-4 fontWB"><%= "契約求人機関として承認します。よろしいですか？" %></p>
+            <div class="h-100 d-flex align-items-center justify-content-center">
+              <%= link_to complete_approval_admin_medical_institution_applying_path(@item, approve: true), class: "ms-2" do %>
+                <button type="button" class="btn save btn-submit"><%= "審査を完了する" %></button>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

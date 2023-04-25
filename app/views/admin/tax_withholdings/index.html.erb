@@ -1,0 +1,111 @@
+<% if params[:type] == "normal" %>
+  <% content_for :title, t("tax_withholding.title.index") %>
+<% else %>
+  <% content_for :title, t("tax_withholding.title.formula") %>
+<% end %>
+
+<div class="index">
+  <% if params[:type] == "normal" %>
+    <div class="wrap">
+      <div class="title-header mb-4">
+        <label class="box fw-bolder"><%= t("tax_withholding.index.import") %></label>
+      </div>
+      <%= form_tag import_admin_tax_withholdings_path, class: "mb-4", multipart: true, data: { turbo: false } do %>
+        <%= file_field_tag :file %>
+        <%= submit_tag t("tax_withholding.index.import"), class: "btn button-search" %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% if params[:type] == "formula" %>
+    <div class="wrap">
+      <div class="title-header mb-4">
+        <label class="box fw-bolder"><%= t("tax_withholding.index.new") %></label>
+      </div>
+      <button type="button" class="btn button btn-info font14 mb-4" data-bs-toggle="modal" data-bs-target="#newTaxWithholding">
+        <%= t("tax_withholding.index.new_button") %>
+      </button>
+      <div class="modal fade taxWithholding" id="newTaxWithholding" tabindex="-1" aria-labelledby="newTaxWithholdingLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content text-center">
+            <div class="modal-body">
+              <h5 class="mb-4 fontWB"><%= t("tax_withholding.title.new") %></h5>
+              <div class="h-100 d-flex align-items-center" id="tax_new">
+                <%= render "form", item: @model.formula.new %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="wrap">
+    <div class="title-header mb-4">
+      <% if params[:type] == "normal" %>
+        <label class="box fw-bolder"><%= t("tax_withholding.index.list") %></label>
+      <% else %>
+        <label class="box fw-bolder"><%= t("tax_withholding.index.list_formula") %></label>
+      <% end %>
+    </div>
+    <p><%= t("tax_withholding.index.change") %></p>
+
+    <% @index_title = proc do %>
+      <th scope="col" class="title text-center" style="width: 10%"></th>
+      <th scope="col" class="title text-center"><%= @model.t(:from) %></th>
+      <th scope="col" class="title text-center"><%= @model.t(:to) %></th>
+      <th scope="col" class="title text-center"><%= @model.t(:tax) %></th>
+    <% end %>
+
+    <% @index_meta = proc do |item| %>
+      <tr>
+        <td class="text-center">
+          <button type="button" class="btn button btn-info font14 tax-exit" data-bs-toggle="modal" data-bs-target="#editTaxWithholding<%= item.id %>">
+            <%= t("tax_withholding.index.change_button") %>
+          </button>
+          <div class="modal fade taxWithholding editTaxWithholding" id="editTaxWithholding<%= item.id %>" tabindex="-1" aria-labelledby="editTaxWithholdingLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content text-center">
+                <div class="modal-body">
+                  <h5 class="mb-4 fontWB"><%= t("tax_withholding.title.edit") %></h5>
+                  <div class="h-100 d-flex align-items-center" id="tax_edit<%= item.id %>">
+                    <%= render "form", item: item %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button type="button" class="btn button btn-info font14 tax-exit" data-bs-toggle="modal" data-bs-target="#deleteTaxWithholding<%= item.id %>">
+            <%= t("base.buttons.delete") %>
+          </button>
+          <div class="modal fade taxWithholding deleteTaxWithholding" id="deleteTaxWithholding<%= item.id %>" tabindex="-1" aria-labelledby="deleteTaxWithholdingLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content text-center">
+                <div class="modal-body">
+                  <h5 class="mb-4 fontWB"><%= "削除してもよろしいでしょうか。" %></h5>
+                  <div class="modal-submit-text mt-4">
+                    <div class="mt-4 d-flex justify-content-between">
+                      <%= link_to "はい", admin_tax_withholding_path(id: item.id, type: params[:type]), method: :delete, class: "btn btn-submit btn-modal" %>
+                      <button type="button" class="btn btn-primary btn-modal" data-bs-dismiss="modal"><%= "いいえ" %></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td class="text-center"><%= number_to_currency(item.from, unit: "", separator: ".", delimiter: ",") %></td>
+        <td class="text-center"><%= number_to_currency(item.to, unit: "", separator: ".", delimiter: ",") %></td>
+        <td class="text-center"><%= number_to_currency(item.tax, unit: "", separator: ".", delimiter: ",") %></td>
+      </tr>
+    <% end %>
+
+    <%= render template: "base/crud/index" %>
+
+    <div class="text-center mt-3">
+      <%= link_to admin_medical_institution_applying_index_path do %>
+        <button class="btn button-search"><%= t("tax_withholding.index.button") %></button>
+      <% end %>
+    </div>
+  </div>
+</div>

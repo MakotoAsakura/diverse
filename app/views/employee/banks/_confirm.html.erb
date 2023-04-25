@@ -1,0 +1,51 @@
+<% content_for :title, t("employee.bank.views.confirm.title") %>
+<% content_for :title_class, "text-center text-lg-start" %>
+
+<% @crud_buttons = proc do %>
+<% end %>
+
+<div class="boxed px-3 px-lg-0">
+  <form class="form-highlight">
+    <div class="form-group">
+      <label class="form-label"><%= @model.t(:bank_name) %></label>
+      <div class="form-group-control"><%= @item&.bank_name || "-" %></div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= @model.t(:branch_name) %></label>
+      <div class="form-group-control"><%= @item&.branch_name || "-" %></div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= @model.t(:account_type) %></label>
+      <div class="form-group-control"><%= @item&.account_type_i18n || "-" %></div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= @model.t(:account_number) %></label>
+      <div class="form-group-control"><%= @item&.account_number || "-" %></div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= @model.t(:account_holder_name) %></label>
+      <div class="form-group-control"><%= @item&.account_holder_name || "-" %></div>
+    </div>
+    <hr class="d-none d-md-block gaps-2x" />
+    <div class="form-group mt-5">
+      <div class="mb-4 text-center text-md-start"><%= t("employee.bank.views.confirm.label.confirm_update") %></div>
+      <div class="mb-4">
+        <%= f.submit t("employee.bank.views.confirm.buttons.submit"), class: "btn btn-custom btn-primary" %>
+      </div>
+      <div class="mb-4">
+        <%= link_to edit_bank_path(type: :back), class: "btn btn-custom btn-primary" do %>
+          <%= t("employee.bank.views.confirm.buttons.back") %>
+        <% end %>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="d-none">
+  <%= f.hidden_field :bank_name %>
+  <%= f.hidden_field :branch_name %>
+  <%= f.hidden_field :account_type %>
+  <%= f.hidden_field :account_number %>
+  <%= f.hidden_field :account_holder_name %>
+</div>
+

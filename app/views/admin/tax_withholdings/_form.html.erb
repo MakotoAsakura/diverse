@@ -1,0 +1,66 @@
+<%= form_for "item", name: "item", object: item,
+             url: { action: item.new_record? ? :create : :update, id: item.id },
+             method: item.new_record? ? :post : :put,
+             html: { multipart: true, autocomplete: :off, class: "w-100 meta" },
+             data: { remote: true, turbo: false } do |f| %>
+  <div class="i-helper danger text-start"><%= item.errors.messages_for(:base).join("<br/>").html_safe %></div>
+  <div class="row d-flex flex-wrap align-items-center mb-2">
+    <div class="col-6 col-md-4">
+      <%= text_field_tag "item[from]", item.from, class: "form-control h-auto border numberonly mask #{ item.errors.key?(:from) ? "danger" : nil }" %>
+      <%= hidden_field_tag "default_from", item.from %>
+    </div>
+    <div class="col-4 col-md-2 title-label"><%= f.label :from, @model.t(:from) %></div>
+  </div>
+  <div class="row">
+    <div class="col text-start">
+      <div class="i-helper danger"><%= item.errors.key?(:from) ? item.errors.full_messages_for(:from).join : nil %></div>
+    </div>
+  </div>
+  <div class="row d-flex flex-wrap align-items-center mb-2">
+    <div class="col-6 col-md-4">
+      <%= text_field_tag "item[to]", item.to, class: "form-control h-auto border numberonly mask #{ item.errors.key?(:to) ? "danger" : nil }" %>
+      <%= hidden_field_tag "default_to", item.to %>
+    </div>
+    <div class="col-4 col-md-2 title-label"><%= f.label :to, @model.t(:to) %></div>
+  </div>
+  <div class="row">
+    <div class="col text-start">
+      <div class="i-helper danger"><%= item.errors.key?(:to) ? item.errors.full_messages_for(:to).join : nil %></div>
+    </div>
+  </div>
+
+  <% if item.normal? %>
+    <div class="row d-flex flex-wrap align-items-center mb-2">
+      <div class="col-6 col-md-4">
+        <%= text_field_tag "item[tax]", item.tax, class: "form-control h-auto border numberonly mask #{ item.errors.key?(:tax) ? "danger" : nil }" %>
+      </div>
+      <div class="col-4 col-md-2 title-label"><%= f.label :tax, @model.t(:tax) %></div>
+    </div>
+    <div class="row">
+      <div class="col text-start">
+        <div class="i-helper danger"><%= item.errors.key?(:tax) ? item.errors.full_messages_for(:tax).join : nil %></div>
+      </div>
+    </div>
+  <% else %>
+    <div class="row d-flex flex-wrap align-items-center mb-2">
+      <div class="col-4 col-md-3 title-label"><%= f.label :formula_data, @model.t(:formula_data) %></div>
+      <div class="col-8 col-md-9">
+        <%= text_field_tag "item[formula_data]", item.tax, class: "form-control h-auto border #{ item.errors.key?(:formula_data) ? "danger" : nil }" %>
+        <%= hidden_field_tag "default_formula_data", item.tax %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col text-start">
+        <div class="i-helper danger"><%= item.errors.key?(:formula_data) ? item.errors.full_messages_for(:formula_data).join : nil %></div>
+      </div>
+    </div>
+  <% end %>
+  <div class="modal-submit-text mt-4">
+    <span><%= t("tax_withholding.edit.confirm") %></span><br>
+    <div class="mt-4 d-flex justify-content-between">
+      <button class="btn btn-submit btn-modal" type="submit"><%= t("tax_withholding.edit.submit") %></button>
+      <button type="button" class="btn btn-primary btn-modal" data-bs-dismiss="modal"><%= t("tax_withholding.edit.close") %></button>
+    </div>
+  </div>
+  <%= f.hidden_field :kind, value: item.kind %>
+<% end %>

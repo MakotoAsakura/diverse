@@ -1,0 +1,24 @@
+<% content_for :title, t("employee.account.views.delete_complete.title") %>
+
+<div class="full-height">
+  <div class="container">
+    <div class="text-center">
+      <div class="mb-5">
+        <div class="mb-4">
+          <strong><%= t("employee.account.views.delete_complete.label.account_updated") %></strong>
+        </div>
+        <div class="mb-4">
+          <strong><%= t("employee.account.views.delete_complete.label.send_mail") %>。</strong>
+        </div>
+      </div>
+    </div>
+    <div class="form-button-group text-center mx-auto">
+      <div class="form-group">
+        <div class="d-grid gap-4">
+          <%= link_to t("employee.account.views.delete_complete.buttons.top_page"), root_path, class: "btn btn-custom btn-primary" %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

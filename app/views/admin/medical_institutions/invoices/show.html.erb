@@ -1,0 +1,44 @@
+<% content_for :title, "請求書" %>
+<div class="alert alert-danger d-none error-message"><%= I18n.t("base.flash_message.not_found_data") %></div>
+
+<div class="time-wrap d-flex flex-wrap align-items-center mt-3">
+  <div class="time-info">
+    <%= "#{@year}年#{@month}月" %>
+  </div>
+
+  <div class="time-picker ms-4">
+    <%= link_to admin_medical_institution_invoices_path(year: Time.new(@year, @month).prev_month.year, month: Time.new(@year, @month).prev_month.month) do %>
+      <span class="back"><%= image_tag "svg/arrow_left.svg" %></span>
+    <% end %>
+    <div class="current ms-3">
+      <%= link_to admin_medical_institution_invoices_path, class: "d-flex justify-content-center" do %>
+        <button type="button" class="btn btn-submit save current"><%= "今月" %></button>
+      <% end %>
+    </div>
+    <%= link_to admin_medical_institution_invoices_path(year: Time.new(@year, @month).next_month.year, month: Time.new(@year, @month).next_month.month) do %>
+      <span class="next ms-3"><%= image_tag "svg/arrow_right.svg" %></span>
+    <% end %>
+  </div>
+
+  <div class="download">
+    <% if @item %>
+      <%= link_to download_pdf_admin_medical_institution_invoices_path(format: :pdf, year: @year, month: @month), class: "d-flex justify-content-center", target: "_blank" do %>
+        <button type="button" class="btn btn-submit save download"><%= "ダウンロード" %></button>
+      <% end %>
+    <% else %>
+      <button type="button" class="btn btn-submit save download action-show-error"><%= "ダウンロード" %></button>
+    <% end %>
+  </div>
+
+  <div class="send-mail">
+    <% if @item %>
+      <%= link_to confirm_send_mail_admin_medical_institution_invoices_path(year: @year, month: @month) do %>
+        <button type="button" class="btn btn-submit save send-mail"><%= "メール送信" %></button>
+      <% end %>
+    <% else %>
+      <button type="button" class="btn btn-submit save send-mail action-show-error"><%= "メール送信" %></button>
+    <% end %>
+  </div>
+</div>
+
+<%= render template: "shared/invoice/_invoice", locals: { current_medical: @medical_institution } %>

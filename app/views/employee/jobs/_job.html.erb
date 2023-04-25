@@ -1,0 +1,64 @@
+<h5 class="text-primary text-center d-lg-block mb-4"><%= job.title %></h5>
+<hr class="d-none d-md-block my-5" />
+<div class="row justify-content-center">
+  <div class="col-md-10 col-xxl-7">
+    <div class="form-highlight">
+      <div class="form-group">
+        <label class="form-label"><%= Job.t("position") %></label>
+        <div class="form-group-control"><%= job.position_i18n %></div>
+      </div>
+      <div class="form-group">
+        <label class="form-label"><%= t(".medical_institution_name") %></label>
+        <div class="form-group-control"><%= job.medical_institution.name %></div>
+      </div>
+      <div class="form-group">
+        <label class="form-label"><%= Job.t("address") %></label>
+        <div class="form-group-control"><%= job.address %></div>
+      </div>
+      <div class="form-group">
+        <label class="form-label"><%= Job.t("salary") %></label>
+        <div class="form-group-control"><%= display_around_annual_salary_according(job) %></div>
+      </div>
+      <div class="form-group">
+        <label class="form-label"><%= t(".work_period") %></label>
+        <div class="form-group-control"><%= display_around_start(job) %></div>
+      </div>
+      <div class="form-group">
+        <label class="form-label"><%= Job.t("work_hours") %></label>
+        <div class="form-group-control"><%= display_around_hours_wday(job) %></div>
+      </div>
+      <div class="form-group">
+        <label class="form-label"><%= Job.t("day_of_week") %></label>
+        <div class="form-group-control"><%= job.wdays.map { |wday| I18n.t('date.day_names')[wday.to_i] }.join("、") %></div>
+      </div>
+      <div class="form-group">
+        <label class="form-label"><%= Job.t("work_detail") %></label>
+        <div class="form-group-control text-pre-line"><%= job.work_detail %></div>
+      </div>
+      <div class="form-group">
+        <label class="form-label"><%= Job.t("quantity") %></label>
+        <div class="form-group-control"><%= job.quantity %><%= t("helpers.label.people") %></div>
+      </div>
+      <div class="form-group">
+        <label class="form-label"><%= Job.t("appealing") %></label>
+        <div class="form-group-control text-pre-line"><%= job.appealing %></div>
+      </div>
+      <div class="form-group">
+        <label class="form-label"><%= Job.t("require_skill") %></label>
+        <div class="form-group-control text-pre-line"><%= job.require_skill %></div>
+      </div>
+      <div class="form-group">
+        <label class="form-label"><%= Job.t("contact") %></label>
+        <div class="form-group-control text-pre-line"><%= job.contact %></div>
+      </div>
+      <div class="form-group">
+        <label class="form-label"><%= Job.t("including_transportation_allowance") %></label>
+        <div class="form-group-control"><%= job.including_transportation_allowance_i18n %></div>
+      </div>
+      <div class="form-group">
+        <label class="form-label"><%= t(".work_policy") %></label>
+        <div class="form-group-control text-pre-line"><%= job.work_policy %></div>
+      </div>
+    </div>
+  </div>
+</div>

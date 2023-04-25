@@ -1,0 +1,44 @@
+<% content_for :title, t("employee.contacts.form.title") %>
+<% content_for :title_class, "page-title text-center" %>
+<% @crud_buttons = proc {} %>
+
+<div class="container contact-form">
+  <div class="change-pasword-form">
+    <div class="form-highlight">
+      <div class="form-group">
+        <label class="form-label text-contact mt-5"><%= @model.t("name") %></label>
+        <div class="form-group-control">
+          <%= f.text_field :name, class: "form-control input-custom" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label text-contact"><%= @model.t("email") %></label>
+        <div class="form-group-control">
+          <%= f.text_field :email, class: "form-control input-custom" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label text-contact"><%= @model.t("title") %></label>
+        <div class="form-group-control">
+          <%= f.text_field :title, class: "form-control input-custom" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label text-contact"><%= @model.t("content") %></label>
+        <div class="form-group-control">
+          <%= f.text_area :content, rows: 10, class: "form-control w-50" %>
+        </div>
+      </div>
+    </div>
+    <div class="form-bottom">
+      <div class="form-button-group text-center mx-auto">
+        <div class="form-group">
+          <div class="d-grid gap-4 gap-md-5">
+            <%= f.submit t("employee.contacts.form.submit"), class: "btn button btn-submit btn-submit-contact" %>
+            <%= link_to t("employee.contacts.form.top_screen"), root_path, class: "btn btn-primary btn-custom d-lg-none" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

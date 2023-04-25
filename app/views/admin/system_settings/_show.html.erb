@@ -1,0 +1,156 @@
+<% content_for :title, t("system_settings.title.show") %>
+
+<% @crud_buttons = proc do %>
+  <%= link_to edit_admin_system_setting_path, class: "d-flex justify-content-center mt-1", data: { turbo: false } do %>
+    <button type="button" class="btn save btn-submit"><%= t("base.buttons.edit") %></button>
+  <% end %>
+<% end %>
+
+<div class="invoice">
+  <div class="wrap">
+    <div class="title-header">
+      <label class="box fw-bolder"><%= t("system_settings.label.invoice") %></label>
+    </div>
+  </div>
+
+  <label class="fw-bolder"><%= @model.t(:settlement_expiration_date) %></label>
+  <div class="ms-3 my-2">
+    <span><%= @item.display_settlement_expiration_date %></span>
+  </div>
+
+  <label class="fw-bolder"><%= @model.t(:settlement_date) %></label>
+  <div class="ms-3 my-2">
+    <span><%= @item.display_settlement_date %></span>
+    <span class="ms-3"><%= @item.settlement_hour&.strftime("%H:%M") %></span>
+  </div>
+
+  <label class="fw-bolder"><%= @model.t(:payment_due_month) %></label>
+  <div class="ms-3 my-2">
+    <span><%= @item.payment_due_month_i18n %></span>
+    <span class="ms-3"><%= @item.display_payment_due_date %></span>
+  </div>
+
+  <div class="invoice-info my-3">
+    <label class="fw-bolder"><%= t("system_settings.label.invoice_info") %></label>
+
+    <div class="ms-3 my-3">
+      <label class="fw-bolder"><%= @model.t(:invoice_name) %></label>
+      <div class="ms-2 my-2">
+        <span><%= @item.invoice_name %></span>
+      </div>
+
+      <label class="fw-bolder"><%= @model.t(:zipcode) %></label>
+      <div class="ms-2 my-2">
+        <span><%= display_zipcode(@item.zipcode) %></span>
+      </div>
+
+      <label class="fw-bolder"><%= @model.t(:address) %></label>
+      <div class="ms-2 my-2 text-pre-line">
+        <span><%= @item.address %></span>
+      </div>
+
+      <label class="fw-bolder"><%= @model.t(:phone_number) %></label>
+      <div class="ms-2 my-2">
+        <span><%= display_phone_number(@item.phone_number) %></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="bank-info mt-3">
+    <label class="fw-bolder"><%= t("system_settings.label.bank_info") %></label>
+
+    <div class="ms-3 mt-3">
+      <label class="fw-bolder"><%= @model.t(:bank_name) %></label>
+      <div class="ms-2 my-2">
+        <span><%= @item.bank_name %></span>
+      </div>
+
+      <label class="fw-bolder"><%= @model.t(:branch_name) %></label>
+      <div class="ms-2 my-2">
+        <span><%= @item.branch_name %></span>
+      </div>
+
+      <label class="fw-bolder"><%= @model.t(:account_type) %></label>
+      <div class="ms-2 my-2">
+        <span><%= @item.account_type_i18n %></span>
+      </div>
+
+      <label class="fw-bolder"><%= @model.t(:account_number) %></label>
+      <div class="ms-2 my-2">
+        <span><%= @item.account_number %></span>
+      </div>
+
+      <label class="fw-bolder"><%= @model.t(:holder_name) %></label>
+      <div class="ms-2 my-2">
+        <span><%= @item.holder_name %></span>
+      </div>
+
+      <label class="fw-bolder"><%= @model.t(:holder_name_kana) %></label>
+      <div class="ms-2 my-2">
+        <span><%= @item.holder_name_kana %></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="payment-management">
+  <div class="wrap">
+    <div class="title-header">
+      <label class="box fw-bolder"><%= t("system_settings.label.payment_management") %></label>
+    </div>
+  </div>
+
+  <label class="fw-bolder"><%= @model.t(:system_fee) %></label>
+  <div class="ms-3 my-2">
+    <p>ステム利用料は、就業者の給与額に対する適用料率のことです。</p>
+    <span><%= @item.display_system_fee %></span>
+  </div>
+
+  <label class="fw-bolder"><%= @model.t(:pharmaceutical_introduction_fee) %></label>
+  <div class="ms-3 my-2">
+    <p>紹介手数料は、就業者の給与額に対する適用料率のことです。</p>
+    <span><%= @item.display_pharmaceutical_introduction_fee %></span>
+  </div>
+</div>
+
+<div class="alert-management">
+  <div class="wrap">
+    <div class="title-header">
+      <label class="box fw-bolder"><%= t("system_settings.label.alert_management") %></label>
+    </div>
+  </div>
+
+  <label class="fw-bolder"><%= @model.t(:job_acceptance_waiting_alert) %></label>
+  <div class="ms-3 my-2">
+    <p>「採用承諾待ち」の採用通知に対して、求職者にアラートメールの配信を設定することができます。</p>
+    <span><%= @item.display_job_acceptance_waiting_alert %></span>
+    <span class="ms-3">以上放置された場合</span>
+  </div>
+
+  <label class="fw-bolder"><%= @model.t(:time_approval_waiting_alert) %></label>
+  <div class="ms-3 my-2">
+    <p>「申請中」の勤怠申請に対して、求人機関にアラートメールの配信を設定することができます。</p>
+    <span><%= @item.display_time_approval_waiting_alert %></span>
+    <span class="ms-3">以上放置された場合</span>
+  </div>
+
+  <label class="fw-bolder"><%= @model.t(:registration_review_approval_waiting_alert) %></label>
+  <div class="ms-3 my-2">
+    <p>「承認待ち」の登録審査に対して、管理者にアラートメールの配信を設定することができます。</p>
+    <span><%= @item.display_registration_review_approval_waiting_alert %></span>
+    <span class="ms-3">以上放置された場合</span>
+  </div>
+</div>
+
+<div class="contact-management">
+  <div class="wrap">
+    <div class="title-header">
+      <label class="box fw-bolder"><%= t("system_settings.label.contact_management") %></label>
+    </div>
+  </div>
+
+  <label class="fw-bolder"><%= @model.t(:email_contact) %></label>
+  <div class="ms-3 my-2">
+    <span><%= @item.email_contact %></span>
+  </div>
+</div>

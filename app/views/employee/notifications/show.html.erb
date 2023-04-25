@@ -1,0 +1,37 @@
+<% content_for :title, t(".title") %>
+<% content_for :title_class, "page-title text-center text-lg-start" %>
+
+<div class="boxed">
+  <div class="heading">
+    <h3 class="text-primary heading-title text-center text-md-start"><%= @item.title %></h3>
+  </div>
+  <form class="form-highlight">
+    <div class="form-group">
+      <label class="form-label"><%= @item.t("content") %></label>
+      <div class="form-group-control">
+        <%= @item.content %>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= @item.t("attachments") %></label>
+      <% @item.attachments.each do |attachment| %>
+        <div class="form-group-control">
+          <%= link_to attachment.filename, rails_blob_path(attachment.file, disposition: 'attachment'), class: "text-decoration-underline", target: "_blank" %>
+        </div>
+      <% end %>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= @item.t("publish_time") %></label>
+      <div class="form-group-control"><%= "#{l(@item.start_time, format: :long_day)}　〜　#{l(@item.end_time, format: :long_day)}" %></div>
+    </div>
+  </form>
+  <div class="mt-5 d-lg-none">
+    <div class="form-button-group text-center mx-auto">
+      <div class="form-group">
+        <div class="d-grid gap-4 gap-md-5">
+          <%= link_to t(".back_to_list"), back_list_url, class: "btn btn-custom btn-primary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

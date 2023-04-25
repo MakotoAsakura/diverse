@@ -1,0 +1,9 @@
+<% request_referrer = Rails.application.routes.recognize_path(request.referrer) %>
+
+<% @complete_notice = proc do %>
+  <%= t("medical_institution.views.complete.#{request_referrer[:action]}.notice") %>
+<% end %>
+
+<% @complete_send_mail = proc do %>
+  <%= t("medical_institution.views.complete.#{request_referrer[:action]}.message") %>
+<% end %>

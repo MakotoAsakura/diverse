@@ -1,0 +1,138 @@
+<% if item %>
+  <div class="boxed mt-3">
+    <div class="order-item">
+      <div class="order-item-title"><%= "#{item.year}年#{item.month}月分 　支払明細書" %></div>
+      <div class="order-item-sub-title mb-1">
+                                    <span class="me-3 d-inline-block">
+                                        <small><%= "氏名 " %></small>
+                                    </span>
+        <span class="text-decoration-underline"><%= item.candidate.full_name %></span>
+      </div>
+      <div class="row">
+        <div class="col-7"></div>
+        <div class="col-5">
+          <div class="address-detail">
+            <div class="fw-bolder" style="font-size: 22px;"><%= item.medical_institution.name %></div>
+            <div>
+              <%= display_zipcode_with_prefix(item.medical_institution.zipcode) %>
+              <%= item.medical_institution.location %>
+            </div>
+            <div><%= "TEL: #{display_phone_number(item.medical_institution.phone_number)}" %></div>
+          </div>
+        </div>
+      </div>
+      <div class="order-summary">
+        <div class="order-amount">
+          <div class="row">
+            <div class="col-7">
+              <div class="order-amount__container mb-4">
+                <div class="order-amount__label">
+                  <div class="order-amount__inner-label">差引支給額</div>
+                </div>
+                <div class="order-amount__text-price"><%= item.display_total %></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <%# if item.day? %>
+          <div class="order-summary-item mb-1">
+            <div class="row g-2">
+              <div class="col-7">
+                <div class="order-amount__label text-center">勤務日数</div>
+              </div>
+              <div class="col-5">
+                <div class="order-amount__text-price-small text-end"><span><%= item.display_total_day %></span></div>
+              </div>
+            </div>
+          </div>
+        <%# end %>
+        <% if item.hour? %>
+          <div class="order-summary-item mb-1">
+            <div class="row g-2">
+              <div class="col-7">
+                <div class="order-amount__label text-center">勤務時間</div>
+              </div>
+              <div class="col-5">
+                <div class="order-amount__text-price-small text-end"><span><%= item.display_total_hour %></span></div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        <div class="order-summary-item mb-1">
+          <div class="row g-2">
+            <div class="col-7">
+              <% if item.day? %>
+                <div class="order-amount__label text-center">日給</div>
+              <% else %>
+                <div class="order-amount__label text-center">時給</div>
+              <% end %>
+            </div>
+            <div class="col-5">
+              <div class="order-amount__text-price-small text-end"><span><%= item.display_unit_price %></span></div>
+            </div>
+          </div>
+        </div>
+        <div class="order-summary-item mb-1">
+          <div class="row g-2">
+            <div class="col-7">
+              <div class="order-amount__label text-center">基本給</div>
+            </div>
+            <div class="col-5">
+              <div class="order-amount__text-price-small text-end"><span><%= item.display_total_without_transportation_fee %></span></div>
+            </div>
+          </div>
+        </div>
+        <div class="order-summary-item mb-1">
+          <div class="row g-2">
+            <div class="col-7">
+              <div class="order-amount__label text-center">非課税通勤費</div>
+            </div>
+            <div class="col-5">
+              <div class="order-amount__text-price-small text-end">
+                <span><%= item.display_total_transportation_fee %></span></div>
+            </div>
+          </div>
+        </div>
+        <div class="delimiter" style="border: 0.125rem solid #3c3c3c; margin: 5px 0"></div>
+        <div class="order-summary-item mb-1">
+          <div class="row g-2">
+            <div class="col-7">
+              <div class="order-amount__label text-center">支給合計</div>
+            </div>
+            <div class="col-5">
+              <div class="order-amount__text-price-small text-end">
+                <span><%= item.display_total_without_personal_income_tax %></span></div>
+            </div>
+          </div>
+        </div>
+        <div class="order-total">
+          <div class="order-summary-item mb-1">
+            <div class="row g-2">
+              <div class="col-7">
+                <div class="order-amount__label text-center">所得税</div>
+              </div>
+              <div class="col-5">
+                <div class="order-amount__text-price-small text-end">
+                  <span><%= item.display_personal_income_tax %></span></div>
+              </div>
+            </div>
+          </div>
+          <div class="delimiter" style="border: 0.125rem solid #3c3c3c; margin: 5px 0"></div>
+          <div class="order-summary-item mb-1">
+            <div class="row g-2">
+              <div class="col-7">
+                <div class="order-amount__label text-center">控除総計</div>
+              </div>
+              <div class="col-5">
+                <div class="order-amount__text-price-small text-end">
+                  <span><%= item.display_personal_income_tax %></span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <p style="margin-top: 20px;"><%= t("base.no_data") %></p>
+<% end %>

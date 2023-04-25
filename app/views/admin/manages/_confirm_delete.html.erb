@@ -1,0 +1,49 @@
+<% @crud_buttons = proc do %>
+  <%= button_to admin_manage_path, method: :delete, class: "btn btn-destroy save" do %>
+    <%= t("admin.manages.confirm_delete.button") %>
+  <% end %>
+  <%= link_to edit_admin_manage_path, class: "d-flex justify-content-center mt-1" do %>
+    <button type="button" class="btn save btn-back"><%= t("base.buttons.cancel") %></button>
+  <% end %>
+<% end %>
+
+<div class="container">
+  <div class="row justify-content-center aligns-items-center">
+    <div class="col-5 pl-5 pr-5 pt-5 pb-3">
+      <div class="mb-3">
+        <label class="fw-bolder"><%= t("admin.users.confirm.label.name") %></label>
+        <div class="color-light-gray">
+          <%= @item.full_name %>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="fw-bolder"><%= t("admin.users.confirm.label.email") %></label>
+        <div class="color-light-gray">
+          <%= @item.user_email %>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="fw-bolder"><%= t("admin.users.confirm.label.password") %></label>
+        <div class="color-light-gray">
+          <%= t("admin.manages.confirm.password_sample") %>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="fw-bolder"><%= t("admin.users.confirm.label.password_confirmation") %></label>
+        <div class="color-light-gray">
+          <%= t("admin.manages.confirm.password_sample") %>
+        </div>
+      </div>
+    </div>
+    <div class="text-center">
+      <%= t("admin.manages.confirm_delete.note") %>
+    </div>
+
+    <div class="text-center mb-3 f-size-13 text-danger">
+      <%= t("admin.manages.confirm_delete.warning") %>
+    </div>
+  </div>
+</div>

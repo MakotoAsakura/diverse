@@ -1,0 +1,49 @@
+<% content_for :title, "勤怠管理（契約一覧）" %>
+<% content_for :title_class, "text-center text-lg-start" %>
+<% content_for :button_directional do %>
+  <div class="container">
+    <div class="form-bottom">
+      <div class="form-button-group">
+        <div class="form-group">
+          <div class="d-grid gap-4">
+            <%= link_to "勤怠管理（求人機関一覧）に戻る", attendances_path, class: "btn btn-custom btn-primary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<div class="boxed">
+  <form class="form-highlight">
+    <div class="form-group">
+      <label class="form-label"><%= t(".medical_institution_name") %></label>
+      <div class="form-group-control"><%= @medical_institution.name %></div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= t(".contract_list") %></label>
+      <div class="form-group-control">
+        <div class="text-danger mb-1"><%= t(".contract_description") %></div>
+        <ul class="list-group list-group-unstyled text-center">
+          <li class="list-group-item active" aria-current="true">
+            <a href="#"><%= t(".contract_id") %></a>
+          </li>
+          <% @candidate_jobs.each do |candidate_job| %>
+            <li class="list-group-item" aria-current="true">
+              <%= link_to attendances_path(params: { job_id: candidate_job.job_id }) do %>
+                <%= candidate_job.contract_id %>
+                <% if candidate_job.notification_count.to_i > 0 %>
+                  <span class="badge bg-danger rounded-circle me-1"><%= candidate_job.notification_count %></span>
+                <% end %>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </form>
+  <%= paginate @candidate_jobs,
+               theme: "bootstrap-5", nav_class: "pagination-wrapper mt-5 pt-md-3",
+               pagination_class: "pagination justify-content-center",
+               window: 1, left: 1, right: 1  %>
+</div>

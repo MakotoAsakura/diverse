@@ -1,0 +1,13 @@
+.chat-input.disable .chat-button-send button {
+  background-image: image-url('employee/icons/paper-plane-gray.svg') !important;
+}
+
+.chat-button-send button {
+  background: image-url('employee/icons/paper-plane.svg') no-repeat 50% !important;
+}
+
+.no-footer {
+  .footer {
+    display: none;
+  }
+}

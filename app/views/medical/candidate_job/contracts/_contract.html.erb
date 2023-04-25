@@ -1,0 +1,57 @@
+<div class="wrap">
+  <div class="title-header">
+    <label class="box fw-bolder"><%= t("helpers.label.candidate_job.#{request.url.include?("admin") ? "admin_contract_detail" : "contract_detail"}") %></label>
+  </div>
+</div>
+
+<div class="mt-3">
+  <label><%= t("admin.medical_institution.attendances.attendances.contract_id") %></label>
+  <div class="mt-3 ms-3">
+    <%= @item.contract_id %>
+  </div>
+</div>
+
+<div class="mt-3">
+  <label><%= Candidate.t(:full_name) %></label>
+  <div class="mt-3 ms-3">
+    <%= @item.candidate.full_name %>
+  </div>
+</div>
+
+<div class="mt-3">
+  <label><%= @model.t(:contract_start_at) %></label>
+  <div class="mt-3 ms-3">
+    <%= display_around_contract_start(@item) %>
+  </div>
+</div>
+
+
+<div class="mt-3">
+  <label><%= @model.t(:salary_detail) %></label>
+  <div class="mt-3 ms-3">
+    <%= display_salary(@item) %>
+  </div>
+</div>
+
+<div class="mt-3">
+  <label><%= @model.t(:including_transportation_allowance) %></label>
+  <div class="mt-3 ms-3">
+    <%= @item.including_transportation_allowance_i18n %>
+  </div>
+</div>
+
+<div class="mt-3">
+  <label><%= @model.t(:remark) %></label>
+  <div class="mt-3 ms-3 text-pre-line">
+    <%= @item.remark %>
+  </div>
+</div>
+
+<div class="mt-3">
+  <label><%= @model.t(:attachments) %></label>
+  <div class="mt-3 ms-3">
+    <%= attachments_tags @item.attachments %>
+  </div>
+</div>
+
+<hr class="hr-left-80" />

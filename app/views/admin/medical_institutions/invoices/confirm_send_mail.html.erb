@@ -1,0 +1,19 @@
+<% content_for :title, "請求書メール送信確認" %>
+
+<div class="container w-50">
+  <div class="row justify-content-center aligns-items-center mt-5">
+    <div class="mb-2 text-center"><%= "契約求人機関 #{@item.medical_institution.user.email} 宛に請求書を送付します。よろしいですか？ " %></div>
+    <div class="text-center send">
+      <% if @item %>
+        <%= link_to send_mail_admin_medical_institution_invoices_path(format: :pdf, year: @year, month: @month) do %>
+          <button type="button" class="btn btn-submit save send-mail"><%= "請求書を送付する" %></button>
+        <% end %>
+      <% else %>
+        <button type="button" class="btn btn-submit save send-mail action-show-error"><%= "請求書を送付する" %></button>
+      <% end %>
+      <%= link_to admin_medical_institution_invoices_path(year: @year, month: @month) do %>
+        <button type="button" class="btn save btn-submit"><%= "キャンセル" %></button>
+      <% end %>
+    </div>
+  </div>
+</div>

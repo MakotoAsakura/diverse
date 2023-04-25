@@ -1,0 +1,18 @@
+<div class="show">
+  <div class="wrap">
+    <%= render template: "_show" %>
+  </div>
+
+  <div class="send">
+    <% if @crud_buttons %>
+      <% @crud_buttons.call %>
+    <% else %>
+      <%= link_to action: :index do %>
+        <button class="button save btn-back"><%= t("base.buttons.cancel") %></button>
+      <% end %>
+      <%= link_to action: :edit, id: @item do %>
+        <button class="button save btn-edit"><%= t("base.buttons.edit") %></button>
+      <% end %>
+    <% end %>
+  </div>
+</div>

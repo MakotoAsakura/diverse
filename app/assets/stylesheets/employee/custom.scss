@@ -1,0 +1,150 @@
+@import "../payslip";
+
+.text-pre-line {
+  white-space: pre-line;
+  word-wrap: break-word !important;
+  word-break: break-word !important;
+}
+
+.boxed-center {
+  display: flex;
+  justify-content: center;
+}
+
+.boxed-container {
+  max-width: 1000px;
+}
+
+.td-danger {
+  border: 2px solid #ff4b4b !important;
+}
+
+.border-rad-5 {
+  border-radius: 5px !important;
+}
+
+.list-group.list-group-unstyled .list-group-item a:hover {
+  background-color: unset !important;
+  color: inherit !important;
+}
+
+.list-group.list-group-unstyled .badge {
+  width: 20px;
+  height: 20px;
+  font-size: 15px;
+  padding: 2px;
+}
+
+.loading-icon {
+  background-image: image-url('svg/loading.svg') !important;
+}
+
+.accordion-header-info .accordion-button:after {
+  background-image: image-url('svg/arrow-white.svg') !important;
+  background-position: 50% 50%
+}
+
+.job-applied-profile {
+  .boxed {
+    margin-left: auto;
+    margin-right: auto;
+
+    .form-button-group {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}
+
+.accordion-header-info .accordion-button:after {
+  background-image: image-url('svg/arrow-white.svg') !important;
+  background-position: 50% 50%
+}
+
+textarea::placeholder {
+  text-align: left !important;
+}
+
+textarea::-webkit-input-placeholder {
+  text-align: left !important;
+}
+
+textarea:-moz-placeholder {
+  text-align: left !important;
+}
+
+textarea::-moz-placeholder {
+  text-align: left !important;
+}
+
+textarea:-ms-input-placeholder {
+  text-align: left !important;
+}
+
+table#candidate_profiles {
+  td {
+    padding: unset;
+  }
+
+  input {
+    text-align: center;
+  }
+
+  input, textarea {
+  }
+}
+
+textarea.auto-height {
+  resize: vertical;
+  max-height: 600px; /* set as you need it */
+  height: auto; /* can be set here of in JS */
+  overflow-y: auto;
+  word-wrap: break-word
+}
+
+.delete-profile-btn img {
+  width: 25px;
+  transition: all .3s ease;
+}
+
+.attendance-list-table table {
+  tr.disable {
+    background-color: #ced4da;
+    cursor: not-allowed;
+
+    button {
+      cursor: not-allowed;
+    }
+  }
+}
+
+.profile-desciption {
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 60px;
+  color: #f73334;
+}
+
+.profile-hr {
+  color: #ced4da;
+  width: 80%;
+  margin-bottom: 60px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section {
+  padding-bottom: 50px;
+}
+
+.title-section-job-apply {
+  text-align: center;
+  font-size: 1rem;
+  background-color: #1195ff;
+  padding: 5px 1rem;
+  color: #fff !important;
+  margin-bottom: 50px !important;
+  line-height: 1.25;
+  width: 100%;
+}

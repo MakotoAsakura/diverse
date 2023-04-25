@@ -1,0 +1,139 @@
+<div class="sidebar-left collapse <%= params["active"] == "menu" ? "show" : "" %>" id="sidebar-left">
+  <div class="sidebar">
+    <div class="sidebar-widget"></div>
+    <div class="sidebar-widget">
+      <div class="widget-header d-flex align-items-center mb-3">
+        <span class="widget-icon me-2">
+          <%= image_tag "employee/icons/bell.svg", alt: "..." %>
+        </span>
+        <h4 class="widget-title"><%= t("employee.navi.notice_admin") %></h4>
+      </div>
+      <div class="widget-content">
+        <ul class="list-unstyled sidebar-list">
+          <li class="">
+            <%= link_to notifications_path, class: "btn btn-primary btn-badge rounded-12" do %>
+              <% if unread_notification? %>
+                <span class="badge bg-danger rounded-circle me-1">!</span>
+              <% end %>
+              <span class="btn-badge-text"><%= t("employee.navi.news") %></span>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+      <div class="widget-header d-flex align-items-center mb-3">
+        <span class="widget-icon me-2">
+          <%= image_tag "employee/icons/document.svg", alt: "..." %>
+        </span>
+        <h4 class="widget-title"><%= t("employee.navi.application_manager") %></h4>
+      </div>
+      <div class="widget-content">
+        <ul class="list-unstyled sidebar-list">
+          <li class="">
+            <%= link_to jobs_applied_index_path, class: "btn btn-primary btn-badge rounded-12" do %>
+              <% if employee_unread? %>
+                <span class="badge bg-danger rounded-circle me-1">!</span>
+              <% end %>
+              <span class="btn-badge-text"><%= t("employee.navi.job_application_list") %></span>
+            <% end %>
+          </li>
+          <li class="">
+            <%= link_to chats_path, class: "btn btn-primary btn-badge rounded-12" do %>
+              <% if @total_messages_unseen > 0 %>
+                <span class="badge bg-danger rounded-circle me-1"><%= @total_messages_unseen %></span>
+              <% end %>
+              <span class="btn-badge-text"><%= t("employee.navi.talk") %></span>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+      <div class="widget-header d-flex align-items-center mb-3">
+        <span class="widget-icon me-2">
+          <%= image_tag "employee/icons/building.svg", alt: "..." %>
+        </span>
+        <h4 class="widget-title"><%= t("employee.navi.labor_management") %></h4>
+      </div>
+      <div class="widget-content">
+        <ul class="list-unstyled sidebar-list">
+          <li class="">
+            <%= link_to working_medicals_path, class: "btn btn-primary btn-badge rounded-12" do %>
+              <span class="btn-badge-text"><%= t("employee.navi.notice_of_working_conditions") %></span>
+            <% end %>
+          </li>
+          <li class="">
+            <%= link_to attendances_path, class: "btn btn-primary btn-badge rounded-12" do %>
+              <% attendance_notification_count =
+                   current_candidate.attendances.
+                     where(status: :rejected,
+                           checkin: Time.current.change(date: system_setting.settlement_expiration_date_value).prev_month.beginning_of_day..)
+                     .count %>
+              <% if attendance_notification_count > 0 %>
+                <span class="badge bg-danger rounded-circle me-1"><%= attendance_notification_count %></span>
+              <% end %>
+              <span class="btn-badge-text"><%= t("employee.navi.attendance_management") %></span>
+            <% end %>
+          </li>
+          <li class="">
+            <%= link_to withholding_slips_path, class: "btn btn-primary btn-badge rounded-12" do %>
+              <span class="btn-badge-text"><%= t("employee.navi.withholding_slip") %></span>
+            <% end %>
+        </ul>
+      </div>
+      <div class="widget-header d-flex align-items-center mb-3">
+        <span class="widget-icon me-2">
+          <%= image_tag "employee/icons/yjp.svg", alt: "..." %>
+        </span>
+        <h4 class="widget-title"><%= t("employee.navi.compensation_management") %></h4>
+      </div>
+      <div class="widget-content">
+        <ul class="list-unstyled sidebar-list">
+          <li class="">
+            <%= link_to timeline_payslips_path, class: "btn btn-primary btn-badge rounded-12" do %>
+              <span class="btn-badge-text"><%= t("employee.navi.payment_details") %></span>
+            <% end %>
+          </li>
+          <li class="">
+            <%= link_to bank_path, class: "btn btn-primary btn-badge rounded-12" do %>
+              <% unless current_user.candidate&.bank&.id %>
+                <span class="badge bg-danger rounded-circle me-1">!</span>
+              <% end %>
+              <span class="btn-badge-text"><%= t("employee.navi.account_information_management") %></span>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+      <div class="widget-header d-flex align-items-center mb-3">
+        <span class="widget-icon me-2">
+          <%= image_tag "employee/icons/gear.svg", alt: "..." %>
+        </span>
+        <h4 class="widget-title"><%= t("employee.navi.account_management") %></h4>
+      </div>
+      <div class="widget-content">
+        <ul class="list-unstyled sidebar-list">
+          <li class="">
+            <%= link_to account_path, class: "btn btn-primary btn-badge rounded-12" do %>
+              <span class="btn-badge-text"><%= t("employee.navi.account_management") %></span>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+      <div class="widget-header d-flex align-items-center mb-3">
+        <span class="widget-icon me-2">
+          <%= image_tag "employee/icons/user.svg", alt: "..." %>
+        </span>
+        <h4 class="widget-title"><%= t("employee.navi.profile_management") %></h4>
+      </div>
+      <div class="widget-content">
+        <ul class="list-unstyled sidebar-list">
+          <li class="">
+            <%= link_to profile_path, class: "btn btn-primary btn-badge rounded-12" do %>
+              <% if current_candidate.profiles.blank? %>
+                <span class="badge bg-danger rounded-circle me-1">!</span>
+              <% end %>
+              <span class="btn-badge-text"><%= t("base.label.show_profile") %></span>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

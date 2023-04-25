@@ -1,0 +1,11 @@
+ja:
+  medical:
+    candidate_job:
+      profiles:
+        title:
+          show: "プロフィール"
+        views:
+          index:
+            label:
+              status: "審査ステータス"
+              applicant: "応募者"

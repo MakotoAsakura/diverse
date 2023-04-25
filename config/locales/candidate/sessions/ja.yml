@@ -1,0 +1,14 @@
+ja:
+  candidate:
+    sessions:
+      new:
+        label:
+          email: メールアドレス
+          password: パスワード
+          forgot_password: パスワードをお忘れの方
+          submit: ログイン
+        placeholder:
+          email: ""
+          password: ""
+        buttons:
+          register: アカウントをお持ちでない方はこちらへ<br>（新規登録）

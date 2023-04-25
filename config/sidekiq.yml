@@ -1,0 +1,5 @@
+:schedule:
+  CalculatePayslipJob:
+    cron: '0 0 * * *'
+  JobEndJob:
+    cron: '59 23 * * *'

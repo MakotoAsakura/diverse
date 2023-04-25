@@ -1,0 +1,10 @@
+ja:
+  activerecord:
+    errors:
+      models:
+        candidate:
+          attributes:
+            zipcode_first:
+              zipcode_valid: ハイフンなしで３桁の半角数字を入力してください。
+            zipcode_last:
+              zipcode_valid: ハイフンなしで４桁の半角数字を入力してください。

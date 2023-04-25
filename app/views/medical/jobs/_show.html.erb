@@ -1,0 +1,141 @@
+<% content_for :title, t("medical.jobs.title.show") %>
+
+<% @crud_buttons = proc do |f| %>
+  <% unless @item.ended? %>
+    <% if (@item.candidate_jobs.pluck(:status) & ["review", "waiting", "recruitment"]).present? %>
+      <p>応募者がいるため、求人募集の更新はできません。</p>
+      <div>
+        <button class="btn button btn-disable button-edit"><%= t("medical.jobs.buttons.edit") %></button>
+      </div>
+    <% else %>
+      <div>
+        <%= link_to edit_medical_job_path do %>
+          <button class="btn button btn-submit button-edit"><%= t("medical.jobs.buttons.edit") %></button>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="mt-3">
+      <%= link_to confirm_delete_medical_job_path(@item), data: { turbo: false } do %>
+        <button class="btn button btn-submit button-edit"><%= t("medical.jobs.buttons.end_job") %></button>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="wrap">
+  <div class="title-header">
+    <label class="fw-bolder box"><%= @model.t(:state) %></label>
+  </div>
+</div>
+
+<div class="form-group mt-3">
+  <div class="show-state">
+    <span class="text-state"><%= @item.status_i18n %></span>
+  </div>
+</div>
+
+<div class="wrap mt-3">
+  <div class="title-header">
+    <label class="fw-bolder box"><%= I18n.t("helpers.label.job.post_period") %></label>
+  </div>
+</div>
+
+<div class="form-group mt-3">
+  <div class="ms-2 mt-2"><%= display_around_post_period(@item) %></div>
+</div>
+
+<div class="wrap mt-3">
+  <div class="title-header">
+    <label class="fw-bolder box"><%= I18n.t("helpers.label.job.basic_information") %></label>
+  </div>
+</div>
+
+<div class="form-group mt-3">
+  <label><%= @model.t(:title) %></label>
+  <div class="ms-2 mt-2"><%= @item.title.presence || "-" %></div>
+</div>
+
+<div class="form-group-control mt-3">
+  <label><%= @model.t(:position) %></label>
+  <div class="ms-2 mt-2"><%= @item.position_i18n.presence || "-" %></div>
+</div>
+
+<div class="form-group mt-3">
+  <label><%= @model.t(:address) %></label>
+  <div class="ms-2 mt-2"><%= @item.address.presence || "-" %></div>
+</div>
+
+<div class="form-group mt-3">
+  <label><%= @model.t(:medical_institution_name) %></label>
+  <div class="ms-2 mt-2"><%= current_medical.name %></div>
+</div>
+
+<div class="wrap mt-3">
+  <div class="title-header">
+    <label class="box fw-bolder"><%= I18n.t("helpers.label.job.details_information") %></label>
+  </div>
+</div>
+
+<div class="form-group mt-3">
+  <label><%= @model.t(:salary) %></label>
+  <div class="ms-2 mt-2"><%= display_around_annual_salary_according(@item) %></div>
+</div>
+
+<div class="form-group mt-3">
+  <label><%= @model.t(:start_at) %></label>
+  <div class="ms-2 mt-2"><%= display_around_start(@item) %></div>
+</div>
+
+<div class="form-group mt-3">
+  <label><%= @model.t(:quantity) %></label>
+  <div class="ms-2 mt-2"><%= display_quantity(@item) %></div>
+</div>
+
+<div class="form-group mt-3">
+  <label><%= @model.t(:wday_start_at) %></label>
+  <div class="ms-2 mt-2"><%= display_around_hours_wday(@item) %></div>
+</div>
+
+<div class="form-group mt-3">
+  <div class="form-group-control mt-3">
+    <ul class="rowList p-0 ms-2 mt-2">
+      <% @model.wdays_options.map do |k, i| %>
+        <div class="col-auto me-4">
+          <span class="form-check-label"><%= "#{@item.wdays.map(&:to_i).include?(i) ? "✔" : ""}#{k}" %></span>
+        </div>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<div class="form-group mt-3">
+  <label><%= @model.t(:work_detail) %></label>
+  <div class="ms-2 mt-2 text-pre-line"><%= @item.work_detail.presence || "-" %></div>
+</div>
+
+<div class="form-group mt-3">
+  <label><%= @model.t(:appealing) %></label>
+  <div class="ms-2 mt-2 text-pre-line"><%= @item.appealing.presence || "-" %></div>
+</div>
+
+<div class="form-group mt-3">
+  <label><%= @model.t(:require_skill) %></label>
+  <div class="ms-2 mt-2 text-pre-line"><%= @item.require_skill.presence || "-" %></div>
+</div>
+
+<div class="form-group mt-3">
+  <label><%= @model.t(:contact) %></label>
+  <div class="ms-2 mt-2 text-pre-line"><%= @item.contact.presence || "-" %></div>
+</div>
+
+<div class="form-group-control mt-3">
+  <label><%= @model.t(:including_transportation_allowance) %></label>
+  <div class="ms-2 mt-2"><%= @item.including_transportation_allowance_i18n.presence || "-" %></div>
+</div>
+
+<div class="form-group mt-3">
+  <label><%= @model.t(:work_policy) %></label>
+  <div class="ms-2 mt-2 text-pre-line"><%= @item.work_policy.presence || "-" %></div>
+</div>
+
+<hr class="hr-left-80" />

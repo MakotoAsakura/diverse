@@ -1,0 +1,619 @@
+<% content_for :title, t("medical.candidate_jobs.buttons.item.withholding_slip") %>
+
+<div class="boxed mt-0">
+  <div class="d-flex justify-content-between py-3">
+    <div class="time-wrap d-flex flex-wrap align-items-center mt-3 mb-3">
+      <div class="time-info">
+        <%= "#{@year}年" %>
+      </div>
+      <div class="time-picker ms-4">
+        <%= link_to withholding_slip_admin_candidate_job_path(year: Time.new(@year).prev_year.year, id: @candidate_job.id) do %>
+          <span class="back"><%= image_tag "svg/arrow_left.svg" %></span>
+        <% end %>
+        <div class="current ms-3">
+          <%= link_to withholding_slip_admin_candidate_job_path(year: Time.current.year, id: @candidate_job.id), class: "d-flex justify-content-center" do %>
+            <button type="button" class="btn btn-submit save current">今年</button>
+          <% end %>
+        </div>
+        <%= link_to withholding_slip_admin_candidate_job_path(year: Time.new(@year).next_year.year, id: @candidate_job.id) do %>
+          <span class="next ms-3"><%= image_tag "svg/arrow_right.svg" %></span>
+        <% end %>
+      </div>
+    </div>
+    <div class="mt-3">
+      <%= link_to "ダウンロード",
+          withholding_slip_download_pdf_admin_candidate_job_path(format: :pdf, id: @candidate_job.id, params: { year: @year }),
+          class: "btn btn-submit save current text-white"
+      %>
+      <%= link_to "メール送信",
+          withholding_slip_confirm_send_mail_admin_candidate_job_path(year: @year),
+          class: "btn btn-submit save current text-white"
+      %>
+    </div>
+  </div>
+
+  <!--start: template-->
+  <table cellpadding="0" cellspacing="0" width="100%" style="background-color: #ffffff; color: #333333; line-height: 1.25; border-collapse: collapse; border: none;">
+    <tbody>
+    <tr>
+      <td>
+        <!--start: table-->
+        <table align="center" cellpadding="0" cellspacing="0" width="800" style="background-color: #ffffff; color: #333333; line-height: 1.25; border-collapse: collapse; border: none;">
+          <tbody>
+          <tr>
+            <td style="width: 100%; font-size: 10px; color: #333333; padding: 60px 20px 60px 60px; border: #8C8C8C solid 1px">
+              <!--start: div position: relative;-->
+              <div style="position: relative;">
+                <div style="font-size: 20px; padding-left: 40px;">
+                  <span style="padding-left: 60px;">令和</span>
+                  <span><%= @reign_year %></span>
+                  <span>年分</span>
+                  <strong style="padding-left: 40px;">給与所得の源泉徴収票</strong>
+                </div>
+                <!--start: table content-->
+                <table cellpadding="0" cellspacing="0" width="100%" style="border: #000000 solid 1px;" border="1" class="withholding-slip-table">
+                  <tbody>
+                  <tr>
+                    <td style="font-size: 10px; color: #333333; width: 17px; border: none;"></td>
+                    <td style="font-size: 10px; color: #333333; width: 17px; border: none;"></td>
+                    <td style="font-size: 10px; color: #333333; width: 17px; border: none;"></td>
+                    <td style="font-size: 10px; color: #333333; width: 17px; border: none;"></td>
+                    <td style="font-size: 10px; color: #333333; width: 17px; border: none;"></td>
+                    <td style="font-size: 10px; color: #333333; width: 17px; border: none;"></td>
+                    <td style="font-size: 10px; color: #333333; width: 17px; border: none;"></td>
+                    <td style="font-size: 10px; color: #333333; width: 17px; border: none;"></td>
+                    <td style="font-size: 10px; color: #333333; width: 17px; border: none;"></td>
+                    <td style="font-size: 10px; color: #333333; width: 17px; border: none;"></td>
+                    <td style="font-size: 10px; color: #333333; width: 17px; border: none;"></td>
+                    <td style="font-size: 10px; color: #333333; width: 17px; border: none;"></td>
+                    <td style="font-size: 10px; color: #333333; width: 17px; border: none;"></td>
+                    <td style="font-size: 10px; color: #333333; width: 17px; border: none;"></td>
+                    <td style="font-size: 10px; color: #333333; width: 17px; border: none;"></td>
+                    <td style="font-size: 10px; color: #333333; width: 17px; border: none;"></td>
+                    <td style="font-size: 10px; color: #333333; width: 17px; border: none;"></td>
+                    <td style="font-size: 10px; color: #333333; width: 17px; border: none;"></td>
+                    <td style="font-size: 10px; color: #333333; width: 17px; border: none;"></td>
+                    <td style="font-size: 10px; color: #333333; width: 17px; border: none;"></td>
+                    <td style="font-size: 10px; color: #333333; width: 17px; border: none;"></td>
+                    <td style="font-size: 10px; color: #333333; width: 17px; border: none;"></td>
+                    <td style="font-size: 10px; color: #333333; width: 17px; border: none;"></td>
+                    <td style="font-size: 10px; color: #333333; width: 17px; border: none;"></td>
+                    <td style="font-size: 10px; color: #333333; width: 17px; border: none;"></td>
+                    <td style="font-size: 10px; color: #333333; width: 17px; border: none;"></td>
+                    <td style="font-size: 10px; color: #333333; width: 17px; border: none;"></td>
+                    <td style="font-size: 10px; color: #333333; width: 17px; border: none;"></td>
+                    <td style="font-size: 10px; color: #333333; width: 17px; border: none;"></td>
+                    <td style="font-size: 10px; color: #333333; width: 17px; border: none;"></td>
+                    <td style="font-size: 10px; color: #333333; width: 17px; border: none;"></td>
+                    <td style="font-size: 10px; color: #333333; width: 17px; border: none;"></td>
+                    <td style="font-size: 10px; color: #333333; width: 17px; border: none;"></td>
+                    <td style="font-size: 10px; color: #333333; width: 17px; border: none;"></td>
+                    <td style="font-size: 10px; color: #333333; width: 17px; border: none;"></td>
+                    <td style="font-size: 10px; color: #333333; width: 17px; border: none;"></td>
+                    <td style="font-size: 10px; color: #333333; width: 17px; border: none;"></td>
+                    <td style="font-size: 10px; color: #333333; width: 17px; border: none;"></td>
+                    <td style="font-size: 10px; color: #333333; width: 17px; border: none;"></td>
+                    <td style="font-size: 10px; color: #333333; width: 17px; border: none;"></td>
+                    <td style="font-size: 10px; color: #333333; width: 17px; border: none;"></td>
+                    <td style="font-size: 10px; color: #333333; width: 17px; border: none;"></td>
+                    <td style="font-size: 10px; color: #333333; width: 17px; border: none;"></td>
+                  </tr>
+                  <tr>
+                    <td colspan="3" rowspan="5" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; line-height: 2;">支払
+                      <br>を受け
+                      <br>る者
+                    </td>
+                    <td colspan="2" rowspan="5" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;"> 住
+                      <br>所
+                      <br>又
+                      <br>は
+                      <br>居
+                      <br>所
+                    </td>
+                    <td colspan="22" rowspan="5" style="font-size: 10px; color: #333333; padding: 2px 1px; ">
+                      <p><%= display_zipcode(@candidate.zipcode) %></p>
+                      <p><%= @candidate.full_address %></p>
+                    </td>
+                    <td colspan="20" style="font-size: 10px; color: #333333; padding: 2px 1px; ">(受給者番号)</td>
+                  </tr>
+                  <tr>
+                    <td colspan="20" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; padding: 0; position: relative; height: 15px">
+                      <div style="position: absolute; top: 0; left: 0; width:100%; height:100%; background: linear-gradient(to top left,rgba(0,0,0,0) 0%, rgba(0,0,0,0) calc(50% - 0.8px), rgba(0,0,0,1) 50%, rgba(0,0,0,0) calc(50% + 0.8px), rgba(0,0,0,0) 100%)">
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="20" style="font-size: 10px; color: #333333; padding: 2px 1px; height: 24px; vertical-align: top;">(役職名)</td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" rowspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;">
+                      氏
+                      <br>名
+                    </td>
+                    <td colspan="18" style="font-size: 10px; color: #333333; padding: 2px 1px; ">(フリガナ)<%= @candidate.full_name_kana %></td>
+                  </tr>
+                  <tr>
+                    <td colspan="18" style="font-size: 10px; color: #333333; padding: 2px 1px; height: 20px;">
+                      <%= @candidate.full_name %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="10" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;">
+                      <div class="d-flex justify-content-between">
+                        <div class="ps-4">種</div>
+                        <div class="pe-4">別</div>
+                      </div>
+                    </td>
+                    <td colspan="8" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;">
+                      <div class="d-flex justify-content-between">
+                        <div class="ps-4">支</div>
+                        <div>払</div>
+                        <div>金</div>
+                        <div class="pe-4">額</div>
+                      </div>
+                    </td>
+                    <td colspan="11" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;">給与所得控除後の金額</td>
+                    <td colspan="7" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;">所得控除の額の合計額</td>
+                    <td colspan="11" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;">
+                      源泉徴収税額
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="10" style="font-size: 10px; color: #333333; padding: 2px 1px; height: 24px; vertical-align: top; text-align: center">給料 • 賞与 </td>
+                    <td colspan="8" style="font-size: 10px; color: #333333; padding: 2px 1px; vertical-align: top; text-align: right; border-left: none;">
+                      <div class="d-flex justify-content-between">
+                        <div class="ps-1">内</div>
+                        <div class="pe-1"><%= number_to_currency(@total_income_full_year) %></div>
+                      </div>
+                    </td>
+                    <td colspan="11" style="font-size: 10px; color: #333333; padding: 2px 1px; vertical-align: top; text-align: right;">
+                      <div class="d-flex justify-content-between">
+                        <div class="ps-1">内</div>
+                        <div class="pe-1">円</div>
+                      </div>
+                    </td>
+                    <td colspan="7" style="font-size: 10px; color: #333333; padding: 2px 1px; vertical-align: top; text-align: right;">
+                      <div class="d-flex justify-content-between">
+                        <div class="ps-1">内</div>
+                        <div class="pe-1">円</div>
+                      </div>
+                    </td>
+                    <td colspan="11" style="font-size: 10px; color: #333333; padding: 2px 1px; vertical-align: top; text-align: right; border-left: none;">
+                      <div class="d-flex justify-content-between">
+                        <div class="ps-1">内</div>
+                        <div class="pe-1"><%= number_to_currency(@total_income_tax_full_year) %></div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="8" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; height: 30px; border-bottom: 0 !important;">(源泉)控除対象配偶者の<br>有無等  </td>
+                    <td colspan="9" rowspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;">
+                      配偶者(特別)控除の額
+                    </td>
+                    <td colspan="14" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;">
+                      控除対象扶養親族の数(配偶者を除く。)
+                    </td>
+                    <td colspan="3" rowspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;">
+                      16歳未満扶養親族の数
+                    </td>
+                    <td colspan="6" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;">
+                      障害者の数<br> (本人を除く。)
+                    </td>
+                    <td colspan="7" rowspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;">
+                      非居住者である親族の数
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="6" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; border-top: 0 !important;"></td>
+                    <td colspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; border-top: #000 solid 2px;">老人</td>
+                    <td colspan="4" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;">特定</td>
+                    <td colspan="6" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;">老人</td>
+                    <td colspan="4" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;">その他</td>
+                    <td colspan="4" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;">条件</td>
+                    <td colspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;">条件</td>
+                  </tr>
+                  <tr>
+                    <td colspan="3" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;">有</td>
+                    <td colspan="3" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;">徒有</td>
+                    <td colspan="2" rowspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;"> </td>
+                    <td colspan="9" rowspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; vertical-align: top; border-right: none;">
+                      <div class="d-flex justify-content-between">
+                        <div class="ps-1"></div>
+                        <div class="pe-1">円</div>
+                      </div>
+                    </td>
+                    <td colspan="2" rowspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; vertical-align: top; text-align: right;">人</td>
+                    <td colspan="2" rowspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; vertical-align: top; text-align: right;">徒  人</td>
+                    <td colspan="2" rowspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; vertical-align: top; text-align: right; border-right: #000000 dashed 1px !important;">内</td>
+                    <td colspan="2" rowspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; vertical-align: top; text-align: right; border-left: #000000 dashed 1px !important;">人</td>
+                    <td colspan="2" rowspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; vertical-align: top; text-align: right;">徒人</td>
+                    <td colspan="2" rowspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; vertical-align: top; text-align: right;">人</td>
+                    <td colspan="2" rowspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; vertical-align: top; text-align: right;">徒人</td>
+                    <td colspan="3" rowspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; vertical-align: top; text-align: right;">人</td>
+                    <td colspan="2" rowspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; vertical-align: top; text-align: right; border-right: #000000 dashed 1px !important">内</td>
+                    <td colspan="2" rowspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; vertical-align: top; text-align: right; border-left: #000000 dashed 1px !important;">人</td>
+                    <td colspan="2" rowspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; vertical-align: top; text-align: right;">人</td>
+                    <td colspan="7" rowspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; vertical-align: top; text-align: right;">人</td>
+                  </tr>
+                  <tr>
+                    <td colspan="3" style="font-size: 10px; color: #333333; padding: 2px 1px; height: 24px; text-align: center;"> </td>
+                    <td colspan="3" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;"> </td>
+                  </tr>
+                  <tr>
+                    <td colspan="13" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;">社会保険料等の金額</td>
+                    <td colspan="10" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;">生命保険料の控除額</td>
+                    <td colspan="9" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;">地震保険料の控除額</td>
+                    <td colspan="15" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;">住宅購入金等特別控除の額</td>
+                  </tr>
+                  <tr>
+                    <td colspan="13" rowspan="2"  style="font-size: 10px; color: #333333; padding: 2px 1px; vertical-align: top; text-align: right; border-left: none;">
+                      <div class="d-flex justify-content-between">
+                        <div class="ps-1">内</div>
+                        <div class="pe-1">円</div>
+                      </div>
+                    </td>
+                    <td colspan="10" rowspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; vertical-align: top; text-align: right;">円</td>
+                    <td colspan="9" rowspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; vertical-align: top; text-align: right;">円</td>
+                    <td colspan="15" rowspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; vertical-align: top; text-align: right;">円</td>
+                  </tr>
+                  <tr></tr>
+                  <tr>
+                    <td colspan="47" style="font-size: 10px; color: #333333; padding: 2px 1px; height: 50px; vertical-align: top;">(摘要)</td>
+                  </tr>
+                  <!--start: 3row-->
+                  <tr>
+                    <td colspan="5" style="font-size: 8px; color: #333333; padding: 2px 1px; text-align: center; height: 30px;">生命保険料の<br>金額の内訳</td>
+                    <td colspan="6" style="font-size: 8px; color: #333333; padding: 2px 1px; text-align: center;">新生命保険料<br>の金額</td>
+                    <td colspan="4" style="font-size: 8px; color: #333333; padding: 2px 1px; vertical-align: top; text-align: right;">円</td>
+                    <td colspan="3" style="font-size: 8px; color: #333333; padding: 2px 1px; text-align: center;">旧生命保険料<br>の金額</td>
+                    <td colspan="4" style="font-size: 8px; color: #333333; padding: 2px 1px; vertical-align: top; text-align: right;">円</td>
+                    <td colspan="3" style="font-size: 8px; color: #333333; padding: 2px 1px; text-align: center;">介護医療保険料の金額</td>
+                    <td colspan="4" style="font-size: 8px; color: #333333; padding: 2px 1px; vertical-align: top; text-align: right;">円</td>
+                    <td colspan="3" style="font-size: 8px; color: #333333; padding: 2px 1px; text-align: center;">新個人年金保険料の金額 </td>
+                    <td colspan="4" style="font-size: 8px; color: #333333; padding: 2px 1px; vertical-align: top; text-align: right;">円</td>
+                    <td colspan="3" style="font-size: 8px; color: #333333; padding: 2px 1px; text-align: center;">旧個人年金保険料の金額</td>
+                    <td colspan="8" style="font-size: 8px; color: #333333; padding: 2px 1px; vertical-align: top; text-align: right;">円</td>
+                  </tr>
+                  <tr>
+                    <td colspan="5" rowspan="2" style="font-size: 8px; color: #333333; padding: 2px 1px; text-align: center;">住宅借入額等特別控除の額の内訳 </td>
+                    <td colspan="6" style="font-size: 8px; color: #333333; padding: 2px 1px; text-align: center; height: 30px;">
+                      住宅借入金等特別控除適用数
+                    </td>
+                    <td colspan="4" style="font-size: 8px; color: #333333; padding: 2px 1px; vertical-align: top; text-align: right;"> </td>
+                    <td colspan="3" style="font-size: 8px; color: #333333; padding: 2px 1px; text-align: center;">居住開始年月<br>日(1回目)</td>
+                    <td colspan="3" style="font-size: 8px; color: #333333; padding: 2px 1px; vertical-align: top; text-align: right;; border-right: #000000 dashed 1px !important">年</td>
+                    <td colspan="2" style="font-size: 8px; color: #333333; padding: 2px 1px; vertical-align: top; text-align: right; border-left: #000000 dashed 1px !important; border-right: #000000 dashed 1px !important">月</td>
+                    <td colspan="2" style="font-size: 8px; color: #333333; padding: 2px 1px; vertical-align: top; text-align: right; border-left: #000000 dashed 1px !important">日</td>
+                    <td colspan="4" style="font-size: 8px; color: #333333; padding: 2px 1px; text-align: center;">住宅借入金等<br>特別控除区分<br>(1回目)</td>
+                    <td colspan="4" style="font-size: 8px; color: #333333; padding: 2px 1px; vertical-align: top; text-align: right;"> </td>
+                    <td colspan="4" style="font-size: 8px; color: #333333; padding: 2px 1px; text-align: center;">住宅借入金等<br>年末残高<br>(1回目)</td>
+                    <td colspan="11" style="font-size: 8px; color: #333333; padding: 2px 1px; vertical-align: top; text-align: right;">円</td>
+                  </tr>
+                  <tr>
+                    <td colspan="6" style="font-size: 8px; color: #333333; padding: 2px 1px; text-align: center; height: 30px;">住宅借入金等特別控除可能頼</td>
+                    <td colspan="4" style="font-size: 8px; color: #333333; padding: 2px 1px; vertical-align: top; text-align: right;">円</td>
+                    <td colspan="3" style="font-size: 8px; color: #333333; padding: 2px 1px; text-align: center;">居住開始年月<br>日(2回目)</td>
+                    <td colspan="3" style="font-size: 8px; color: #333333; padding: 2px 1px; vertical-align: top; text-align: right; border-right: #000000 dashed 1px !important">年</td>
+                    <td colspan="2" style="font-size: 8px; color: #333333; padding: 2px 1px; vertical-align: top; text-align: right; border-left: #000000 dashed 1px !important; border-right: #000000 dashed 1px !important">月</td>
+                    <td colspan="2" style="font-size: 8px; color: #333333; padding: 2px 1px; vertical-align: top; text-align: right; border-left: #000000 dashed 1px !important">日</td>
+                    <td colspan="4" style="font-size: 8px; color: #333333; padding: 2px 1px; text-align: center;">住宅借入金等<br>特別控除区分<br>(2回目)</td>
+                    <td colspan="4" style="font-size: 8px; color: #333333; padding: 2px 1px; vertical-align: top; text-align: right;"> </td>
+                    <td colspan="4" style="font-size: 8px; color: #333333; padding: 2px 1px; text-align: center;">住宅借入金等<br>年末残高<br>(2回目)</td>
+                    <td colspan="11" style="font-size: 8px; color: #333333; padding: 2px 1px; vertical-align: top; text-align: right;">円</td>
+                  </tr>
+                  <!--end: 3row-->
+                  <!--start: 4row-->
+                  <tr>
+                    <td colspan="2" rowspan="4" style="font-size: 8px; color: #333333; padding: 2px 1px; text-align: center;">(源泉•特別)控除対象配偶者</td>
+                    <td colspan="4" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; border-bottom: #000000 dashed 1px !important">(フリガナ)</td>
+                    <td colspan="9" style="font-size: 8px; color: #333333; padding: 2px 1px; border-bottom: #000000 dashed 1px !important"> </td>
+                    <td rowspan="3" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;">区分</td>
+                    <td colspan="2" rowspan="3" style="font-size: 8px; color: #333333; padding: 2px 1px; "> </td>
+                    <td colspan="4" rowspan="4" style="font-size: 8px; color: #333333; padding: 2px 1px; text-align: center;">配偶者の合計所得</td>
+                    <td colspan="4" rowspan="4" style="font-size: 8px; color: #333333; padding: 2px 1px; vertical-align: top; text-align: right;">書</td>
+                    <td colspan="4" rowspan="4" style="font-size: 8px; color: #333333; padding: 2px 1px; text-align: center;">国民年金保険料等の金額 </td>
+                    <td colspan="3" rowspan="4" style="font-size: 8px; color: #333333; padding: 2px 1px; vertical-align: top; text-align: right;">書</td>
+                    <td colspan="3" rowspan="4" style="font-size: 8px; color: #333333; padding: 2px 1px; text-align: center; border-right: none;">旧長期障害保険料の金額 </td>
+                    <td colspan="9" rowspan="4" style="font-size: 8px; color: #333333; padding: 2px 1px; vertical-align: top; text-align: right; border-left: none;">書</td>
+                  </tr>
+                  <tr>
+                    <td colspan="4" rowspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; border-top: #000000 dashed 1px !important">氏名</td>
+                    <td colspan="9" rowspan="2" style="font-size: 8px; color: #333333; padding: 2px 1px; border-top: #000000 dashed 1px !important"> </td>
+                  </tr>
+                  <tr>
+                  </tr>
+                  <tr>
+                    <td colspan="16" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; padding: 0; position: relative;height: 15px">
+                      <div style="position: absolute; top: 0; left: 0; width:100%; height:100%;">
+                        <%= image_tag "employee/icons/table-line-2.svg", width: "100%", height: "100%", style: "vertical-align: top;", alt: "" %>
+                      </div>
+                    </td>
+                  </tr>
+                  <!--end: 4row-->
+                  <!--start: 12row-->
+                  <tr>
+                    <td colspan="1" rowspan="12" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;">控
+                      <br>除
+                      <br>対
+                      <br>象
+                      <br>扶
+                      <br>養
+                      <br>親
+                      <br>族
+                    </td>
+                    <td rowspan="3" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;">1</td>
+                    <td colspan="4" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; border-bottom: #000000 dashed 1px !important">(フリガナ)</td>
+                    <td colspan="9" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; border-bottom: #000000 dashed 1px !important"> </td>
+                    <td rowspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;">区分</td>
+                    <td colspan="2" rowspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; "> </td>
+                    <td rowspan="12" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;">1
+                      <br>6
+                      <br>歳
+                      <br>未
+                      <br>満
+                      <br>の
+                      <br>扶
+                      <br>養
+                      <br>親
+                      <br>族
+                    </td>
+                    <td rowspan="3" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;">1</td>
+                    <td colspan="4" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; border-bottom: #000000 dashed 1px !important">(フリガナ)</td>
+                    <td colspan="9" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; border-bottom: #000000 dashed 1px !important"> </td>
+                    <td rowspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;">区分</td>
+                    <td colspan="2" rowspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; "> </td>
+                    <td colspan="9" rowspan="12" style="font-size: 10px; color: #333333; padding: 2px 1px; vertical-align: top; padding: 0; position: relative;">
+                      <div style="position: absolute; top: 0; left: 0; width:100%; height:100%;">
+                        <%= image_tag "employee/icons/table-line.svg", width: "100%", height: "100%", style: "vertical-align: top;", alt: "" %>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="4" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; border-top: #000000 dashed 1px !important">氏名</td>
+                    <td colspan="9" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; border-top: #000000 dashed 1px !important"> </td>
+                    <td colspan="4" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; border-top: #000000 dashed 1px !important">氏名</td>
+                    <td colspan="9" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; border-top: #000000 dashed 1px !important"> </td>
+                  </tr>
+                  <tr>
+                    <td colspan="16" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; padding: 0; position: relative; height: 15px">
+                      <div style="position: absolute; top: 0; left: 0; width:100%; height:100%;">
+                        <%= image_tag "employee/icons/table-line-2.svg", width: "100%", height: "100%", style: "vertical-align: top;", alt: "" %>
+                      </div>
+                    </td>
+
+                    <td colspan="16" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; padding: 0; position: relative;">
+                      <div style="position: absolute; top: 0; left: 0; width:100%; height:100%;">
+                        <%= image_tag "employee/icons/table-line-2.svg", width: "100%", height: "100%", style: "vertical-align: top;", alt: "" %>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td rowspan="3" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;">2</td>
+                    <td colspan="4" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; border-bottom: #000000 dashed 1px !important">(フリガナ)</td>
+                    <td colspan="9" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; border-bottom: #000000 dashed 1px !important"> </td>
+                    <td rowspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;">区分</td>
+                    <td colspan="2" rowspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; "> </td>
+                    <td rowspan="3" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;">2</td>
+                    <td colspan="4" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; border-bottom: #000000 dashed 1px !important">(フリガナ)</td>
+                    <td colspan="9" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; border-bottom: #000000 dashed 1px !important"> </td>
+                    <td rowspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;">区分</td>
+                    <td colspan="2" rowspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; "> </td>
+                  </tr>
+                  <tr>
+                    <td colspan="4" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; border-top: #000000 dashed 1px !important">氏名</td>
+                    <td colspan="9" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; border-top: #000000 dashed 1px !important"> </td>
+                    <td colspan="4" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; border-top: #000000 dashed 1px !important">氏名</td>
+                    <td colspan="9" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; border-top: #000000 dashed 1px !important"> </td>
+                  </tr>
+                  <tr>
+                    <td colspan="16" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; padding: 0; position: relative; height: 15px">
+                      <div style="position: absolute; top: 0; left: 0; width:100%; height:100%;">
+                        <%= image_tag "employee/icons/table-line-2.svg", width: "100%", height: "100%", style: "vertical-align: top;", alt: "" %>
+                      </div>
+                    </td>
+                    <td colspan="16" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; padding: 0; position: relative;">
+                      <div style="position: absolute; top: 0; left: 0; width:100%; height:100%;">
+                        <%= image_tag "employee/icons/table-line-2.svg", width: "100%", height: "100%", style: "vertical-align: top;", alt: "" %>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td rowspan="3" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;">3</td>
+                    <td colspan="4" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; border-bottom: #000000 dashed 1px !important">(フリガナ)</td>
+                    <td colspan="9" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; border-bottom: #000000 dashed 1px !important"> </td>
+                    <td rowspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;">区分</td>
+                    <td colspan="2" rowspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; "> </td>
+                    <td rowspan="3" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;">3</td>
+                    <td colspan="4" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; border-bottom: #000000 dashed 1px !important">(フリガナ)</td>
+                    <td colspan="9" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; border-bottom: #000000 dashed 1px !important"> </td>
+                    <td rowspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;">区分</td>
+                    <td colspan="2" rowspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; "> </td>
+                  </tr>
+                  <tr>
+                    <td colspan="4" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; border-top: #000000 dashed 1px !important">氏名</td>
+                    <td colspan="9" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; border-top: #000000 dashed 1px !important"> </td>
+                    <td colspan="4" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; border-top: #000000 dashed 1px !important">氏名</td>
+                    <td colspan="9" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; border-top: #000000 dashed 1px !important"> </td>
+                  </tr>
+                  <tr>
+                    <td colspan="16" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; padding: 0; position: relative; height: 15px">
+                      <div style="position: absolute; top: 0; left: 0; width:100%; height:100%;">
+                        <%= image_tag "employee/icons/table-line-2.svg", width: "100%", height: "100%", style: "vertical-align: top;", alt: "" %>
+                      </div>
+                    </td>
+                    <td colspan="16" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; padding: 0; position: relative;">
+                      <div style="position: absolute; top: 0; left: 0; width:100%; height:100%;">
+                        <%= image_tag "employee/icons/table-line-2.svg", width: "100%", height: "100%", style: "vertical-align: top;", alt: "" %>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td rowspan="3" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;">4</td>
+                    <td colspan="4" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; border-bottom: #000000 dashed 1px !important">(フリガナ)</td>
+                    <td colspan="9" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; border-bottom: #000000 dashed 1px !important"> </td>
+                    <td rowspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;">氏名</td>
+                    <td colspan="2" rowspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; "> </td>
+                    <td rowspan="3" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;">4</td>
+                    <td colspan="4" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; border-bottom: #000000 dashed 1px !important">(フリガナ)</td>
+                    <td colspan="9" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; border-bottom: #000000 dashed 1px !important"> </td>
+                    <td rowspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;">氏名</td>
+                    <td colspan="2" rowspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; "> </td>
+                  </tr>
+                  <tr>
+                    <td colspan="4" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; border-top: #000000 dashed 1px !important">氏名</td>
+                    <td colspan="9" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; border-top: #000000 dashed 1px !important"> </td>
+                    <td colspan="4" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; border-top: #000000 dashed 1px !important">氏名</td>
+                    <td colspan="9" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; border-top: #000000 dashed 1px !important"> </td>
+                  </tr>
+                  <tr>
+                    <td colspan="16" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; padding: 0; position: relative; height: 15px">
+                      <div style="position: absolute; top: 0; left: 0; width:100%; height:100%;">
+                        <%= image_tag "employee/icons/table-line-2.svg", width: "100%", height: "100%", style: "vertical-align: top;", alt: "" %>
+                      </div>
+                    </td>
+                    <td colspan="16" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; padding: 0; position: relative;">
+                      <div style="position: absolute; top: 0; left: 0; width:100%; height:100%;">
+                        <%= image_tag "employee/icons/table-line-2.svg", width: "100%", height: "100%", style: "vertical-align: top;", alt: "" %>
+                      </div>
+                    </td>
+                  </tr>
+                  <!--end: 12row-->
+                  <!--start: 4row-->
+                  <tr>
+                    <td rowspan="3" colspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; border-right: none;">
+                      未成年者
+                    </td>
+                    <td rowspan="3" colspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; border-right: none;">外国人</td>
+                    <td rowspan="3" colspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; border-left: none;">
+                      死
+                      <br>亡
+                      <br>退
+                      <br>職
+                    </td>
+                    <td colspan="2" rowspan="3" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;">災
+                      <br>害
+                      <br>者
+                    </td>
+                    <td colspan="2" rowspan="3" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;">
+                      乙
+                      <br>
+                      <br>
+                      <br>欄
+                    </td>
+                    <td colspan="4" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;">本人が障害者</td>
+                    <td colspan="4" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;">寡
+                      <br>
+                      <br>
+                      <br>婦
+                    </td>
+                    <td rowspan="3" colspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; border-right: none;">寡<br>夫</td>
+                    <td rowspan="3" colspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; border-left: none;">勤
+                      <br>労
+                      <br>学
+                      <br>生
+                    </td>
+                    <td colspan="10" rowspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;">中途就•退職</td>
+                    <td colspan="16" rowspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center;">受給者生年月日</td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" rowspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; height: 24px; text-align: center;">特
+                      <br>別
+                    </td>
+                    <td colspan="2" rowspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center; border-right: none;">そ<br>の<br>他</td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" style="font-size: 10px; color: #333333; padding: 1px 1px; height: 24px; text-align: center;">一<br>般</td>
+                    <td colspan="2" style="font-size: 10px; color: #333333; padding: 1px 1px; text-align: center;">特<br>別</td>
+                    <td colspan="2" style="font-size: 10px; color: #333333; padding: 1px 1px; text-align: center;">就職</td>
+                    <td colspan="2" style="font-size: 10px; color: #333333; padding: 1px 1px; text-align: center;">退職</td>
+                    <td colspan="2" style="font-size: 10px; color: #333333; padding: 1px 1px; text-align: center;">年</td>
+                    <td colspan="2" style="font-size: 10px; color: #333333; padding: 1px 1px; text-align: center;">日</td>
+                    <td colspan="2" style="font-size: 10px; color: #333333; padding: 1px 1px; text-align: center;">月</td>
+                    <td colspan="2" style="font-size: 10px; color: #333333; padding: 1px 1px; text-align: center;">明</td>
+                    <td colspan="2" style="font-size: 10px; color: #333333; padding: 1px 1px; text-align: center;">大</td>
+                    <td colspan="2" style="font-size: 10px; color: #333333; padding: 1px 1px; text-align: center;">昭</td>
+                    <td colspan="2" style="font-size: 10px; color: #333333; padding: 1px 1px; text-align: center;">平</td>
+                    <td colspan="2" style="font-size: 10px; color: #333333; padding: 1px 1px; text-align: center;">年</td>
+                    <td colspan="2" style="font-size: 10px; color: #333333; padding: 1px 1px; text-align: center;">日</td>
+                    <td colspan="2" style="font-size: 10px; color: #333333; padding: 1px 1px; text-align: center;">月</td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; height: 24px;"></td>
+                    <td colspan="2" style="font-size: 20px; color: #333333; padding: 2px 1px; height: 24px; text-align: center;"><%= "○" unless @candidate.japan? %></td>
+                    <td colspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; height: 24px;"></td>
+                    <td colspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; height: 24px;"></td>
+                    <td colspan="2" style="font-size: 20px; color: #333333; padding: 2px 1px; height: 24px; text-align: center;">○</td>
+                    <td colspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; height: 24px;"></td>
+                    <td colspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; height: 24px;"></td>
+                    <td colspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; height: 24px;"></td>
+                    <td colspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; height: 24px;"></td>
+                    <td colspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; height: 24px;"></td>
+                    <td colspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; height: 24px;"></td>
+                    <td colspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; height: 24px;"></td>
+                    <td colspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; height: 24px;"></td>
+                    <td colspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; height: 24px;"></td>
+                    <td colspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; height: 24px;"></td>
+                    <td colspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; height: 24px;"></td>
+                    <td colspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; text-align: center">
+                      <%= @candidate.age_information_type.first == "令和" ? "X" : "" %>
+                    </td>
+                    <td colspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; ">
+                      <%= @candidate.age_information_type.first == "大正" ? "X" : "" %>
+                    </td>
+                    <td colspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; ">
+                     <%= @candidate.age_information_type.first == "昭和" ? "X" : "" %>
+                    </td>
+                    <td colspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; ">
+                      <%= @candidate.age_information_type.first == "平成" ? "X" : "" %>
+                    </td>
+                    <td colspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; "><%= @candidate.age_information_type.last %></td>
+                    <td colspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; "><%= @candidate.dob.month %></td>
+                    <td colspan="2" style="font-size: 10px; color: #333333; padding: 2px 1px; "><%= @candidate.dob.day %></td>
+                  </tr>
+                  <tr>
+                    <td rowspan="3" colspan="2" style="font-size: 8px; color: #333333; padding: 2px 1px; text-align: center;">支
+                      <br>払
+                      <br>書
+                    </td>
+                    <td colspan="47" style="font-size: 8px; color: #333333; padding: 2px 1px; height: 24px; text-align: center;position: relative">
+                      <div style="position: absolute; top: 0; left: 0; width:100%; height:100%;">
+                        <%= image_tag "employee/icons/table-line-2.svg", width: "100%", height: "100%", style: "vertical-align: top;", alt: "" %>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="6" style="font-size: 8px; color: #333333; padding: 2px 1px; height: 24px; text-align: center;">住所又は居所
+                    </td>
+                    <td colspan="41" style="font-size: 10px; color: #333333; padding: 2px 1px;  text-align: center;">
+                      <%= display_zipcode(@zipcode) %> - <%= @address %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="6" style="font-size: 8px; color: #333333; padding: 2px 1px; height: 24px; text-align: center;">氏名又は名称 </td>
+                    <td colspan="41" style="font-size: 8px; color: #333333; padding: 2px 1px;  text-align: center;  border-right: none;">
+                      <%= @name %>
+                    </td>
+                  </tr>
+                  <!--end: 3row  -->
+                  </tbody>
+                </table>
+                <!--end: table content-->
+                <div style="font-size: 16px; width: 20px; position: absolute; left: -30px; bottom: 50px;">
+                  <span style="display: inline-block; transform: rotate(90deg) translateY(-6px);">(</span>
+                  <br>労働条件通知書
+                  <br>
+                  <span style="display: inline-block; transform: rotate(90deg) translateY(-6px);">)</span>
+                </div>
+              </div>
+              <!--end: div position: relative;-->
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <!--end: table-->
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <!--end: template-->
+</div>

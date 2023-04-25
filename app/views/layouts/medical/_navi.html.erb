@@ -1,0 +1,115 @@
+<nav class="nav-item">
+  <% if @medical_login %>
+    <div class="wrap">
+      <i class="icon"><%= image_tag("svg/job_offer_icon.svg") %></i>
+      <span class="text"><%= t("base.buttons.navi.job_offer") %></span>
+    </div>
+    <%= link_to new_medical_job_path do %>
+      <div class="button">
+        <button class="btn btn-navi btn-navi-link"><%= t("base.buttons.navi.list_job") %></button>
+      </div>
+    <% end %>
+  <% end %>
+
+  <% if medical_user_signed_in? %>
+    <div class="wrap">
+      <i class="icon"><%= image_tag("svg/job_offer_icon.svg") %></i>
+      <span class="text"><%= t("base.buttons.navi.job_offer") %></span>
+    </div>
+    <%= link_to new_medical_job_path do %>
+      <div class="button">
+        <button class="btn btn-navi btn-navi-link"><%= t("base.buttons.navi.list_job") %></button>
+      </div>
+    <% end %>
+    <%= link_to medical_jobs_path do %>
+      <div class="button">
+        <button class="btn btn-navi btn-navi-link"><%= t("base.buttons.navi.list") %></button>
+      </div>
+    <% end %>
+  <% end %>
+</nav>
+
+<% if medical_user_signed_in? %>
+  <nav class="nav-item">
+    <div class="wrap">
+      <i class="icon"><%= image_tag("svg/cadidate_apply_icon.svg") %></i>
+      <span class="text"><%= t("base.buttons.navi.applicant") %></span>
+    </div>
+    <%= link_to medical_jobs_applied_index_path do %>
+      <div class="button">
+        <button class="btn btn-navi btn-navi-link">
+          <% viewed_items = CandidateJob.joins(job: :medical_institution).where(medical_institution: { id: current_medical.id }).where.not("jobs.status": :draft).pluck(:viewed_date) %>
+          <% if @total_messages_unseen > 0 || viewed_items.any?(nil) %>
+            <span class="badge bg-danger rounded-circle me-1">!</span>
+          <% end %>
+          <%= t("base.buttons.navi.list") %>
+        </button>
+      </div>
+    <% end %>
+  </nav>
+  <nav class="nav-item">
+    <div class="wrap">
+      <i class="icon"><%= image_tag("svg/cadidate_seeking_icon.svg") %></i>
+      <span class="text"><%= t("base.buttons.navi.job_seeker") %></span>
+    </div>
+    <%= link_to medical_candidate_jobs_path do %>
+      <div class="button">
+        <button class="btn btn-navi btn-navi-link">
+          <% if current_medical.attendances_waiting.present? %>
+            <span class="badge bg-danger rounded-circle me-1">!</span>
+          <% end %>
+          <%= t("base.buttons.navi.list") %>
+        </button>
+      </div>
+    <% end %>
+  </nav>
+  <nav class="nav-item">
+    <div class="wrap">
+      <i class="icon"><%= image_tag("svg/notice_icon.svg") %></i>
+      <span class="text"><%= t("base.buttons.navi.news") %></span>
+    </div>
+    <%= link_to medical_notifications_path do %>
+      <div class="button">
+        <button class="btn btn-navi btn-navi-link">
+          <% if unread_notification? %>
+            <span class="badge bg-danger rounded-circle me-1">!</span>
+          <% end %>
+          <%= t("base.buttons.navi.list") %>
+        </button>
+      </div>
+    <% end %>
+  </nav>
+  <nav class="nav-item">
+    <div class="wrap">
+      <i class="icon"><%= image_tag("svg/request_icon.svg") %></i>
+      <span class="text"><%= t("base.buttons.navi.invoice") %></span>
+    </div>
+    <%= link_to medical_invoices_path do %>
+      <div class="button">
+        <button class="btn btn-navi btn-navi-link"><%= t("base.buttons.navi.list") %></button>
+      </div>
+    <% end %>
+  </nav>
+  <nav class="nav-item">
+    <div class="wrap">
+      <i class="icon"><%= image_tag("svg/setting_icon.svg") %></i>
+      <span class="text"><%= t("base.buttons.navi.account_management") %></span>
+    </div>
+    <%= link_to medical_account_path do %>
+      <div class="button">
+        <button class="btn btn-navi btn-navi-link"><%= t("base.buttons.navi.account_management") %></button>
+      </div>
+    <% end %>
+  </nav>
+  <nav class="nav-item mb-3">
+    <div class="wrap">
+      <i class="icon"><%= image_tag("svg/logout_icon.svg") %></i>
+      <span class="text"><%= t("base.buttons.navi.logout") %></span>
+    </div>
+    <div class="button">
+      <%= button_to destroy_medical_user_session_path, method: :delete, class: "btn btn-danger" do %>
+        <%= t("base.buttons.navi.logout") %>
+      <% end %>
+    </div>
+  </nav>
+<% end %>

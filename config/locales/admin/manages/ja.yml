@@ -1,0 +1,62 @@
+ja:
+  admin:
+    manages:
+      title:
+        new: "新規登録"
+        edit: "アカウント更新"
+        confirm:
+          new: "新規登録"
+          edit: "アカウント更新"
+        confirm_delete: アカウント削除
+        complete:
+          new: "登録完了"
+          edit: 更新完了
+          confirm_delete: 削除完了
+          complete: 更新完了
+          destroy: "削除完了"
+        index: 管理者一覧
+      views:
+        search: "検索条件"
+        list: "管理者一覧"
+      links:
+        show: "詳細"
+      form:
+        button_submit: "アカウントを作成する"
+        button_edit: "アカウントを更新する"
+        button_delete: "アカウントを削除する"
+        label:
+          name: "名前"
+          email: "メールアドレス"
+          password: "ログインパスワード"
+          password_confirmation: "ログインパスワード（確認用）"
+        placeholder:
+          first_name: "姓"
+          last_name: "名"
+          email: "メールアドレス"
+          password: "パスワード"
+          password_confirmation: "パスワード"
+      confirm:
+        title: 登録内容
+        button_submit:
+          new: "アカウントを作成する"
+          edit: "アカウントを更新する"
+        note:
+          new: "上記内容で登録します。よろしいですか？"
+          edit: "上記内容で更新します。よろしいですか？"
+        password_sample: "-"
+        label:
+          name: "名前"
+          email: "メールアドレス"
+          password: "ログインパスワード"
+          password_confirmation: "ログインパスワード（確認用）"
+      complete:
+        notice:
+          new: "登録が完了しました。"
+          edit: "更新が完了しました。"
+          destroy: "削除が完了しました。"
+          saved: "保存"
+        message: ご登録のメールアドレスへご確認のメールをお送りいたしました。
+      confirm_delete:
+        button: "アカウントを削除する"
+        note: "アカウントを削除します。よろしいですか？"
+        warning: "※アカウントを削除すると復元することができません。ご注意ください。"

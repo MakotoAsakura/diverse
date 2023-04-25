@@ -1,0 +1,15 @@
+<% content_for :title, t("employee.account.views.complete.profile_title") %>
+<% content_for :title_class, "text-center text-lg-start" %>
+<% @complete_button = proc do %>
+  <%= link_to profile_path do %>
+    <%= button_tag t("employee.account.views.edit_complete.button.show_profile"), class: "btn btn-custom btn-primary" %>
+  <% end %>
+<% end %>
+
+<% @complete_notice = proc do %>
+  <div class="mb-4">
+    <strong><%= t("employee.account.views.edit_complete.label.account_updated") %></strong>
+  </div>
+<% end %>
+<% @complete_send_mail = proc do %>
+<% end %>

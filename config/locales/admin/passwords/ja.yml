@@ -1,0 +1,8 @@
+ja:
+  admin:
+    password:
+      title:
+        index: パスワード再設定
+        send_mail_success: パスワード再設定
+        edit: パスワード再設定
+        finish: パスワード再設定完了

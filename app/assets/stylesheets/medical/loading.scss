@@ -1,0 +1,94 @@
+#loading{
+  -webkit-box-align:center;
+  -ms-flex-align:center;
+  align-items:center;
+  background:hsla(0,0%,100%,.85);
+  display:-webkit-box;
+  display:-ms-flexbox;
+  display:flex;
+  -ms-flex-wrap:wrap;
+  flex-wrap:wrap;height:100%;
+  -ms-flex-pack:distribute;
+  justify-content:space-around;
+  left:0;
+  opacity:0;
+  position:fixed;
+  text-align:center;
+  top:0;
+  -webkit-transition:all .3s linear 0s;
+  transition:all .3s linear 0s;
+  width:100%;
+  z-index:-9999
+}
+#loading.brand-loading{
+  color:#fff
+}
+#loading.brand-loading .progress{
+  background-color:rgba(0,71,157,.2)
+}
+#loading.loading{
+  opacity:1;z-index:10000
+}
+#loading>.progress{
+  border-radius:0;
+  height:3px;
+  margin-top:0;
+  position:absolute;
+  top:0;
+  width:100%;
+  background-color:rgba(0,71,157,.2)
+}
+#loading>.progress .progress-bar{
+  border-radius:0;
+  color:transparent;
+  font-size:0
+}
+#loading .loading-text{
+  margin-top:20px
+}
+#loading .loading-text .progress{
+  height:12px;
+  margin-top:30px;
+  position:relative
+}
+#loading .progress .progress-bar.bg-white{
+  position:relative
+}
+#loading .progress .progress-bar.bg-white:after{
+  background-color:hsla(0,0%,100%,.3);
+  border-radius:6px;
+  content:"";
+  height:100%;
+  position:absolute;
+  right:-20px;
+  top:0;
+  width:30px
+}
+.loading-dots:before{
+  content:"";
+  display:inline-block;
+  min-width:30px;
+  text-align:left;
+  -webkit-animation:runingdots 2s infinite;
+  animation:runingdots 2s infinite
+}
+@-webkit-keyframes runingdots{
+  0%{content:""}20%{content:"."}40%{content:".."}60%{content:"..."}80%{content:"...."}to{content:""}
+}
+@keyframes runingdots{0%{content:""}20%{content:"."}40%{content:".."}60%{content:"..."}80%{content:"...."}to{content:""}}
+.loading-icon{
+  width:50px;
+  height:50px;
+  display:inline-block;
+  -webkit-animation:loadingicon 2s linear infinite;
+  animation:loadingicon 2s linear infinite;
+  background-image: image-url('svg/loading.svg') !important;
+
+}
+@-webkit-keyframes loadingicon{
+  0%{-webkit-transform:rotate(0);transform:rotate(0)}to{-webkit-transform:rotate(1turn);transform:rotate(1turn)}
+
+}
+@keyframes loadingicon{
+   0%{-webkit-transform:rotate(0);transform:rotate(0)}to{-webkit-transform:rotate(1turn);transform:rotate(1turn)}
+}

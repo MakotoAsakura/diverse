@@ -1,0 +1,5 @@
+<div><%= @candidate.full_name %>様への支払い明細を送付しました。</div>
+<br>
+<div>支払い明細はこちら：<%= link_to admin_candidate_job_payslip_url(candidate_job_id: @candidate_job.id),
+                               admin_candidate_job_payslip_url(year: @year, month: @month, candidate_job_id: @candidate_job.id),
+                               target: "_blank" %></div>

@@ -1,0 +1,61 @@
+.faq-index {
+  width: 800px;
+
+  .card-p {
+    padding: 2rem 2rem 3rem;
+  }
+}
+
+.faq-detail-title {
+  margin-top: 4rem;
+  font-size: 1.75rem;
+  font-weight: bold;
+}
+
+.faq-body {
+  margin-top: 20px;
+  h2 {
+    font-size: 1.25rem;
+  }
+
+  table, td, th {
+    border: 1px solid;
+    padding: 8px;
+  }
+  
+  table {
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+  }
+}
+
+.faq-page {
+  .faqs {
+    padding-top: 0px;
+  }
+}
+
+@media (max-width: 768px) {
+  .faq-index {
+    width: 75%;
+  }
+
+  .faq-detail-title {
+    margin-top: 3rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .faq-index {
+    width: 90%;
+  }
+}
+
+@media (min-width: 768px) {
+  .faq-page {
+    .faq-container {
+      margin-top: 40px;
+      padding-top: 40px;
+    }
+  }
+}

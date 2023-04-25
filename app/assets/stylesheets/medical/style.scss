@@ -1,0 +1,266 @@
+.errorExplanation {
+  padding: 10px;
+  border: 2px solid #d00;
+  background: #ffffa4;
+  border-radius: 3px;
+
+  ul {
+    li {
+      position: relative;
+      padding-left: 18px;
+      list-style-type: none;
+
+      &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 6px;
+        left: 2px;
+        width: 10px;
+        height: 10px;
+        background: #d00;
+        border-radius: 5px;
+      }
+    }
+  }
+}
+
+.send {
+  text-align: center;
+  margin-top: 1rem;
+
+  button, .button {
+    min-width: 200px;
+    width: auto;
+    height: 36px;
+    border-radius: 12px;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    font-size: 16px;
+    line-height: 19px;
+  }
+
+  button, .button_search {
+    min-width: 150px;
+    width: auto;
+    height: 36px;
+    border-radius: 12px;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    font-size: 15px;
+    line-height: 19px;
+  }
+
+  .btn-back {
+    background-color: #00479D;
+    border-color: #00479D;
+  }
+
+  .btn-edit {
+    background-color: #ff931e;
+    border-color: #ff931e;
+  }
+
+  .btn-destroy {
+    background-color: #dc3545;
+    border-color: #dc3545;
+  }
+
+  input, button {
+    &:hover {
+      color: rgba(255, 255, 255, 0.76);
+      text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    }
+  }
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.title-header {
+  .box {
+    position: relative;
+    margin: 10px 0 10px 30px;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 18px;
+  }
+
+  .box:before {
+    position: absolute;
+    left: -30px;
+    content: "";
+    height: 17px;
+    width: 17px;
+    margin-bottom: 15px;
+    border: 1px solid #000000;
+    background-color: #000000;
+  }
+}
+
+.index-search {
+  label {
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 19px;
+    color: #000000;
+    margin: 5px 0;
+  }
+
+  .title-label {
+    font-weight: 600;
+  }
+
+  input {
+    line-height: 20px
+  }
+}
+
+.index {
+  .meta {
+    button, .button {
+      text-align: center;
+      border-radius: 12px;
+      color: #ffffff;
+      text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 15px;
+      border: none;
+    }
+  }
+
+  .btn-success {
+    background-color: #28c76f;
+  }
+
+  .info {
+    border-bottom: 1px dashed #ccc;
+
+    .title {
+      font-weight: 700;
+      font-size: 15px;
+      line-height: 23px;
+    }
+
+    .action {
+      width: 25%;
+    }
+  }
+
+  tr {
+    border-bottom: 1px dashed #ccc;
+  }
+}
+
+.pagination {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  color: #FFFFFF;
+
+  a {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    color: #FFFFFF;
+  }
+
+  a:link, a:visited, a:hover, a:active {
+    text-decoration: none;
+    color: #FFFFFF;
+  }
+
+  .page {
+    padding: 10px;
+    gap: 10px;
+    width: 36px;
+    height: 39px;
+    background: #28c76f;
+    margin: 0 10px;
+  }
+
+  .next, .prev {
+    padding: 10px;
+    gap: 10px;
+    width: 57px;
+    height: 39px;
+    background: #28c76f;
+    margin: 0 10px;
+  }
+
+  .current {
+    background: #31d2f2;
+  }
+}
+
+.color-light-gray {
+  color: #7e7a7a;
+}
+
+.f-size-13 {
+  font-size: 13px;
+}
+
+#complete {
+  button {
+    &:hover {
+      color: rgba(255, 255, 255, 0.76);
+      text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    }
+  }
+}
+
+.rowList {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+ul.rowList {
+  list-style-type: none;
+}
+
+.rowList li {
+  margin-right: 32px;
+  margin-top: 8px;
+}
+
+.w-50px {
+  width: 50px;
+}
+
+img.table_icon_size {
+  height: 27px;
+  width: 27px;
+}
+
+tr.clickable-row {
+  cursor: default;
+
+  &:hover {
+    background: #f0f8ff;
+  }
+}
+
+table {
+  th.center {
+    text-align: center;
+  }
+
+  td.center {
+    text-align: center;
+    vertical-align: middle;
+  }
+}
+
+.hr-left-80 {
+  color: #6e767e;
+  width: 80%;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.framer {
+  display: none;
+}

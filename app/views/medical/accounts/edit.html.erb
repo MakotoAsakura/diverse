@@ -1,0 +1,142 @@
+<% content_for :title, t("employee.account.views.edit.title") %>
+<% content_for :title_class, "text-center text-lg-start" %>
+<% @crud_buttons = proc do %>
+<% end %>
+<div class="wrap mb-4">
+  <div class="title-header">
+    <label class="box fw-bolder"><%= I18n.t("medical.account.show.labels.update_detail") %></label>
+  </div>
+  <%= form_for @user, url: confirm_medical_account_path, method: :post, data: { turbo: false } do |f| %>
+    <div class="boxed px-3 px-lg-0">
+      <form class="form-highlight">
+        <%= f.fields_for :medical_institution, @user.medical_institution do |ff| %>
+          <div class="form-group mb-3">
+            <label class="form-label"><%= t("medical.account.show.labels.medical_name") %></label>
+            <div class="form-group-control">
+              <div class="row">
+                <div class="col-6">
+                  <%= ff.text_field :name, class: "form-control", placeholder: "求人機関名" %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group mb-3">
+            <label class="form-label"><%= t("medical.account.show.labels.medical_name_kana") %></label>
+            <div class="form-group-control">
+              <div class="row">
+                <div class="col-6">
+                  <%= ff.text_field :name_kana, class: "form-control", placeholder: "フリガナ" %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group mb-3">
+            <label class="form-label"><%= t("medical.account.show.labels.phone_number") %></label>
+            <div class="form-group-control">
+              <div class="row">
+                <div class="col-6">
+                  <%= ff.text_field :phone_number, class: "form-control numberonly-phone-number-medical", placeholder: "電話番号" %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group mb-3">
+            <label class="form-label"><%= t("medical.account.show.labels.url") %></label>
+            <div class="form-group-control">
+              <div class="row">
+                <div class="col-8">
+                  <%= ff.text_field :url, class: "form-control", placeholder: "ホームページアドレス（URL）" %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group mb-3">
+            <label class="form-label"><%= t("medical.account.show.labels.zipcode") %></label>
+            <div class="form-group-control">
+              <div class="row g-2 g-md-3 align-items-center">
+                <div class="col-2"><%= ff.text_field :zipcode_first, class: "form-control zipcode-first numberonly border px-1 py-2", maxlength: 3 %></div>
+                <div class="col-2"><%= ff.text_field :zipcode_last, class: "form-control zipcode-last numberonly border px-1 py-2", maxlength: 4 %></div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group mb-3">
+            <label class="form-label"><%= t("medical.account.show.labels.location") %></label>
+            <div class="form-group-control">
+              <%= ff.text_area :location, class: "form-control", rows: 4 %>
+            </div>
+          </div>
+
+          <div class="form-group mb-3">
+            <label class="form-label"><%= t("medical.account.show.labels.manager") %></label>
+            <div class="form-group-control">
+              <div class="row g-2 g-md-3 align-items-center">
+                <div class="col-3"><%= ff.text_field :first_name_manager, class: "form-control border px-1 py-2" %></div>
+                <div class="col-3"><%= ff.text_field :last_name_manager, class: "form-control border px-1 py-2" %></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group mb-3">
+            <label class="form-label"><%= t("medical.account.show.labels.name_manager_kana") %></label>
+            <div class="form-group-control">
+              <div class="row g-2 g-md-3 align-items-center">
+                <div class="col-3"><%= ff.text_field :first_name_kana_manager, class: "form-control border px-1 py-2" %></div>
+                <div class="col-3"><%= ff.text_field :last_name_kana_manager, class: "form-control border px-1 py-2" %></div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group mb-3">
+            <label class="form-label"><%= t("medical.account.show.labels.email") %></label>
+            <div class="form-group-control">
+              <div class="row g-2 g-md-3 align-items-center">
+                <div class="col-6"><%= f.text_field :email, class: "form-control border px-1 py-2" %></div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group mb-3">
+            <label class="form-label"><%= t("medical.account.show.labels.password") %></label>
+            <div class="form-group-control">
+              <div class="row g-2 g-md-3 align-items-center">
+                <div class="col-6"><%= f.password_field :password, class: "form-control border px-1 py-2" %></div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label"><%= t("medical.account.show.labels.password_confirmation") %></label>
+            <div class="form-group-control">
+              <div class="row g-2 g-md-3 align-items-center">
+                <div class="col-6"><%= f.password_field :password_confirmation, class: "form-control border px-1 py-2" %></div>
+              </div>
+            </div>
+          </div>
+          <%= ff.fields_for :pharmaceutical_company, ff.object.pharmaceutical_company do |fff| %>
+            <div class="wrap mb-4 mt-4">
+              <div class="title-header">
+                <label class="box fw-bolder"><%= I18n.t("medical.account.show.labels.introduction_pharmaceutical") %></label>
+              </div>
+            </div>
+            <div class="form-group mb-3">
+              <label class="form-label"><%= t("medical.account.show.labels.name_pharma") %></label>
+              <div class="form-group-control">
+                <div class="row g-2 g-md-3 align-items-center">
+                  <div class="col-6"><%= fff.text_field :name, class: "form-control border px-1 py-2" %></div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label"><%= t("medical.account.show.labels.ms_staff") %></label>
+              <div class="form-group-control">
+                <div class="row g-2 g-md-3 align-items-center">
+                  <div class="col-6"><%= fff.text_field :staff_ms, class: "form-control border px-1 py-2" %></div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          <div class="form-group mt-5">
+            <%= f.submit t("medical.account.show.labels.update_account_btn"), class: "btn button btn-submit button-draft-save" %>
+          </div>
+        <% end %>
+      </form>
+    </div>
+  <% end %>
+</div>

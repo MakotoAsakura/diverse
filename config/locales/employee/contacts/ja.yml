@@ -1,0 +1,16 @@
+ja:
+  employee:
+    contacts:
+      form:
+        title: "お問合せ"
+        submit: "確認画面へ"
+        top_screen: "TOP画面に戻る"
+      confirm:
+        title: "お問合せ内容確認"
+        submit: "お問合せ内容を送信する"
+        back: "入力画面に戻る"
+      complete:
+        title: "お問合せ完了"
+        notice: "お問合せ内容を送信しました。"
+        message: "管理者からのご連絡をお待ちください。"
+        top_screen: "応募者一覧へ"

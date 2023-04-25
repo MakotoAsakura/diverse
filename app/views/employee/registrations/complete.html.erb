@@ -1,0 +1,14 @@
+<% content_for :title, t("candidate.registration.complete.title") %>
+<div class="text-center">
+  <div class="mb-4">
+    <strong><%= t("candidate.registration.complete.labels.register_complete") %></strong>
+  </div>
+  <div class="mb-4">
+    <strong><%= t("candidate.registration.complete.labels.send_mail") %></strong>
+  </div>
+</div>
+<div class="text-center">
+  <%= link_to new_user_session_path do %>
+    <%= button_tag t("candidate.registration.complete.labels.redirect_to_login"), class: "btn btn-custom btn-primary" %>
+  <% end %>
+</div>

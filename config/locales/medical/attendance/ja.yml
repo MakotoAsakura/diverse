@@ -1,0 +1,20 @@
+ja:
+  medical:
+    attendance:
+      index:
+        title: "出退表示"
+        labels:
+          day: "日付"
+          time_checkin: "出勤"
+          time_checkout: "退勤"
+          break_hours: "休憩（合計）"
+          transportation_fee: "交通費"
+          status: "申請状況"
+          reject_note: "コメント"
+          checkin_checkout: "出勤・退勤"
+          break_time_1: "休憩１"
+          break_time_2: "休憩２"
+          note: "備考"
+          accept: "はい"
+          reject: "いいえ"
+          name: "氏名"

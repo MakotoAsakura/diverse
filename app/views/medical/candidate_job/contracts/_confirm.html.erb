@@ -1,0 +1,89 @@
+<% if @item.new_record? %>
+  <% content_for :title, t("medical.candidate_jobs.title.new") %>
+<% else %>
+  <% content_for :title, t("medical.candidate_jobs.title.edit") %>
+<% end %>
+
+<% @crud_buttons = proc do |f| %>
+  <% unless @item.candidate.user.discarded? %>
+    <%= link_to action: @item.new_record? ? :new : :edit, type: :back, id: @item.id do %>
+      <button type="button" class="btn btn-back save mb-3"><%= t("base.buttons.cancel") %></button>
+    <% end %><br>
+    <%= f.submit t("medical.candidate_jobs.buttons.edit"), class: "btn button save btn-submit" %>
+  <% end %>
+<% end %>
+
+<div class="wrap">
+  <div class="title-header">
+    <%= f.label :contract_detail, class: "box fw-bolder" %>
+  </div>
+</div>
+
+<div class="mt-3">
+  <label><%= CandidateJob.t(:contract_id) %></label>
+  <div class="mt-3 ms-3">
+    <%= @item.contract_id %>
+  </div>
+</div>
+
+<div class="mt-3">
+  <label><%= Candidate.t(:full_name) %></label>
+  <div class="mt-3 ms-3">
+    <%= @item.candidate.full_name %>
+  </div>
+</div>
+
+<div class="mt-3">
+  <label><%= t("medical.contract.edit.labels.labor_contract_period") %></label>
+  <div class="mt-3 ms-3">
+    <div class="form-group-control"><%= l @item.contract_start_at, format: :long_day %>
+      〜 <%= l @item.contract_end_at, format: :long_day %></div>
+  </div>
+</div>
+
+<div class="mt-3">
+  <label><%= @model.t(:salary_detail) %></label>
+  <div class="mt-3 ms-3">
+    <%= display_salary(@item) %>
+    <%= @item.salary_details_according_to_i18n %>
+  </div>
+</div>
+
+<div class="mt-3">
+  <label><%= @model.t(:including_transportation_allowance) %></label>
+  <div class="mt-3 ms-3">
+    <%= @item.including_transportation_allowance_i18n %>
+  </div>
+</div>
+
+<div class="mt-3">
+  <label><%= @model.t(:remark) %></label>
+  <div class="mt-3 ms-3 text-pre-line">
+    <%= simple_format @item.remark %>
+  </div>
+</div>
+
+<div class="mt-3">
+  <label><%= @model.t(:attachments) %></label>
+  <div class="ms-3 mt-3">
+    <ul class="list-unstyled">
+      <% @file_ids.each do |file_id| %>
+        <% attachment = Attachment.find_by(id: file_id) %>
+        <% next unless attachment %>
+        <li><%= attachment_lightbox_tag(attachment) %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<div class="d-none">
+  <%= f.hidden_field :salary_detail %>
+  <%= f.hidden_field :salary_details_according_to %>
+  <%= f.hidden_field :including_transportation_allowance %>
+  <%= f.hidden_field :remark %>
+  <% @file_ids.each do |file_id| %>
+    <input type="text" name="file_ids[]" value="<%= file_id %>" style="visibility: hidden; position: absolute;"/>
+  <% end %>
+</div>
+
+<hr class="hr-left-80" />

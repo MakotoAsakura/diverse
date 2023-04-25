@@ -1,0 +1,18 @@
+<% content_for :title, "送信完了" %>
+<% content_for :title_class, "text-center text-lg-start" %>
+<% @complete_button = proc do %>
+  <%= link_to medical_jobs_applied_index_path do %>
+    <%= button_tag t("employee.contacts.complete.top_screen"), class: "btn btn-custom btn-primary" %>
+  <% end %>
+<% end %>
+
+<% @complete_notice = proc do %>
+  <div class="mb-4">
+    <strong><%= t("employee.contacts.complete.notice") %></strong>
+  </div>
+<% end %>
+<% @complete_send_mail = proc do %>
+  <div class="mb-4">
+    <strong><%= t("employee.contacts.complete.message") %></strong>
+  </div>
+<% end %>

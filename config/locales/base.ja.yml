@@ -1,0 +1,123 @@
+ja:
+  base:
+    buttons:
+      save: 保存
+      saving: 保存中
+      new: 新規作成
+      draft_save: 編集を一時保存する
+      closed_save: 非公開保存
+      publish: 公開
+      publish_save: 公開保存
+      withdraw: 取り下げ保存
+      ignore_alert: 警告を無視する
+      cancel: 戻る
+      edit: 編集
+      delete: 削除
+      deleting: 削除中
+      search: 検索
+      replace: 置換
+      replace_all: 全置換
+      reset: リセット
+      clear: クリア
+      send: 送信
+      sending: 送信中
+      run: 実行
+      running: 実行中
+      stop: 停止
+      toggle: 折りたたみ表示
+      move: 移動
+      moving: 移動中
+      import: インポート
+      restore_message: 復元
+      importing: インポート中
+      restoring_message: 復元中
+      convert: 変換
+      unlock_and_edit_forcibly: 強制的にロックを解除し編集する
+      random_gen: ランダム生成
+      copy: コピー
+      paste: 貼り付け
+      attach: 添付
+      confirm: 確認
+      setting: 設定
+      request: 公開申請
+      split: 分割
+      integrate: 統合
+      upload: アップロード
+      uploading: アップロード中
+      download: ダウンロード
+      add: 追加
+      print: 印刷
+      select_all: 全て選択
+      deselect_all: 全て解除
+      change: 変更
+      initialize: 初期化
+      restore: 元に戻す
+      close: 閉じる
+      csv: CSV
+      ignore_alerts_and_save: 警告を無視して保存する
+      zoom_out: 縮小
+      zoom_in: 拡大
+      calculate: 計算
+      reload: 再読込
+      replace_file: 差し替え
+      file_histories: ファイル履歴
+      translate: 翻訳
+      replace_save: 差し替え保存
+      copy_url: URLをコピー
+      make_them_public: 公開にする
+      make_them_close: 非公開にする
+      file_name_order: 名前順
+      file_upload_order: アップロード順
+      make_them_closed: 非公開にする
+      go_to_admin_my_page: マイページ画面へ
+      next: 次へ
+      to_login: ログイン画面へ
+      navi:
+        register: 新規登録
+        logout: ログアウト
+        create_admin: 別のアカウントを登録する
+        edit_account: 詳細
+        list: 一覧
+        list_job: 新規求人募集
+        medical_title: 応募求人機関
+        contract_medical_title: 契約求人機関
+        job_seeker: 就業者
+        pharmaceutical_wholesale_company: 医薬品卸会社
+        news: お知らせ
+        system_setting: システム設定
+        detail_setting: 詳細
+        tax_withholding: 源泉徴収税額表
+        tax_withholding_amount: 源泉徴収税額　計算式
+        account_management: アカウント管理
+        list_admin: 管理者一覧
+        job_offer: 求人
+        applicant: 応募者
+        invoice: 請求書
+      go_to:
+        admin/medical_institutions: 契約求人機関一覧画面へ
+        medical/medical_institutions: 管理者一覧
+        admin/users: 管理者一覧へ
+        admin/manages: 管理者一覧へ
+        medical/jobs: 求人一覧へ
+        admin/notifications: お知らせ一覧へ
+        admin/account: ログイン画面へ
+    label:
+      login: ログイン
+      admin_login: 管理者ログイン
+      job_path: 求人検索
+      year: 年
+      month: 月
+      day: 日
+      show_profile: プロフィール管理
+      contact: お問合せ
+    no_data: データなし
+    text:
+      draft: "下書き"
+    flash_message:
+      send_mail: "メールを送信しました。"
+      input_date: "日付を選択してください。"
+      not_found_data: "データが見つかりません。"
+  views:
+    pagination:
+      previous: "前へ"
+      next: "次へ"

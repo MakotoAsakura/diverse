@@ -1,0 +1,14 @@
+<div><%= @candidate.full_name %>　様</div>
+<br>
+<div>ダイバースをご利用いただき、誠にありがとうございます。</div>
+<div>アカウントの新規登録が完了しました。</div>
+<br>
+<div>--------------------------------------</div>
+<div>■ご登録内容</div>
+<div>--------------------------------------</div>
+<div>お名前：<%= @candidate.full_name %></div>
+<div>メールアドレス：<%= @candidate.user_email %></div>
+<br>
+<div>ログインはこちら：<%= link_to "ログイン画面", new_user_session_url %></div>
+<br>
+<%= render 'shared/mailer/footer' %>

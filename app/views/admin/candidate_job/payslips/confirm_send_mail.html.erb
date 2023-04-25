@@ -1,0 +1,18 @@
+<% content_for :title, "支払い明細メール送信" %>
+
+<div class="container">
+  <div class="row justify-content-center aligns-items-center mt-5">
+    <div class="text-center mb-3 fw-bolder">
+      <%= "#{@candidate&.user&.email.presence || ""} 宛に支払い明細を送付します。よろしいですか？" %>
+    </div>
+    <div class="text-center send">
+      <%= link_to send_mail_admin_candidate_job_payslip_path(format: :pdf, year: @year, month: @month) do %>
+        <button type="button" class="btn save btn-submit"><%= "支払い明細を送付する" %></button>
+      <% end %>
+
+      <%= link_to admin_candidate_job_payslip_path do %>
+        <button type="button" class="btn save btn-submit"><%= "キャンセル" %></button>
+      <% end %>
+    </div>
+  </div>
+</div>

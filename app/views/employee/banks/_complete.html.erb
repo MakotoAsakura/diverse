@@ -1,0 +1,15 @@
+<% content_for :title, t("employee.bank.views.complete.title") %>
+<% content_for :title_class, "text-center text-lg-start" %>
+<% @complete_button = proc do %>
+  <%= link_to bank_path do %>
+    <%= button_tag t("employee.bank.views.complete.buttons.back"), class: "btn btn-custom btn-primary" %>
+  <% end %>
+<% end %>
+
+<% @complete_notice = proc do %>
+  <div class="mb-4">
+    <strong><%= t("employee.bank.views.complete.label.bank_updated") %></strong>
+  </div>
+<% end %>
+<% @complete_send_mail = proc do %>
+<% end %>

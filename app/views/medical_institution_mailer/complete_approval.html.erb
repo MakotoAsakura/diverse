@@ -1,0 +1,15 @@
+<div><%= @medical.full_name_manager %>　様</div>
+<br>
+<div>ダイバースをご利用いただき、誠にありがとうございます。</div>
+<br>
+<% if @medical.approved? %>
+<div>選考の結果、<%= @medical.full_name_manager %>　様を契約求人機関として承認いたしました。</div>
+<div>以下の画面より、ダイバースをご利用ください。</div>
+<div>ログイン画面はこちら：<%= link_to "ログイン画面", new_medical_user_session_url %></div></div>
+<% else %>
+<div>応募内容について慎重に審議いたしましたところ、誠に残念ではございますが、今回は承認を見送らせていただくこととなりました。</div>
+<div>ご期待に応えられず恐縮ですが、ご了承くださいますようお願いいたします。</div>
+<div>否認理由：<%= @medical.reason %></div>
+<% end %>
+<br>
+<%= render "shared/mailer/footer", url_contact: new_medical_contact_url %>

@@ -1,0 +1,151 @@
+<% if @item.new_record? %>
+  <% content_for :title, "登録確認" %>
+<% else %>
+  <% content_for :title, "更新確認" %>
+<% end %>
+
+<% @crud_buttons = proc do |f| %>
+  <% if @item.new_record? %>
+    <%= f.submit t("medical.jobs.buttons.create"), class: "btn button btn-submit button-next" %>
+  <% else %>
+    <%= f.submit t("medical.jobs.buttons.edit"), class: "btn button btn-submit button-next" %>
+  <% end %>
+<% end %>
+
+<div class="wrap">
+  <div class="title-header">
+    <%= f.label :post_period, class: "box fw-bolder" %>
+  </div>
+</div>
+
+<div class="form-group mt-3">
+  <div class="ms-2"><%= display_around_post_period(@item) %></div>
+</div>
+
+<div class="wrap">
+  <div class="title-header">
+    <%= f.label :basic_information, class: "box fw-bolder" %>
+  </div>
+</div>
+
+<div class="form-group mt-3">
+  <div><%= f.label :title, @model.t(:title) %></div>
+  <div class="ms-2"><%= @item.title.presence || "-" %></div>
+</div>
+
+<div class="form-group-control mt-3">
+  <div><%= f.label :position, @model.t(:position) %></div>
+  <div class="ms-2"><%= @item.position_i18n.presence || "-" %></div>
+</div>
+
+<div class="form-group mt-3">
+  <div><%= f.label :address, @model.t(:address) %></div>
+  <div class="ms-2"><%= @item.address.presence || "-" %></div>
+</div>
+
+<div class="form-group mt-3">
+  <div><%= f.label :medical_institution_name, @model.t(:medical_institution_name) %></div>
+  <div class="ms-2"><%= current_medical.name %></div>
+</div>
+
+<div class="wrap">
+  <div class="title-header">
+    <%= f.label :details_information, class: "box fw-bolder" %>
+  </div>
+</div>
+
+<div class="form-group mt-3">
+  <div><%= f.label :salary, @model.t(:salary) %></div>
+  <div class="ms-2"><%= display_around_annual_salary_according(@item) %></div>
+</div>
+
+<div class="form-group mt-3">
+  <%= f.label :quantity, @model.t(:quantity) %>
+  <div class="ms-2"><%= display_quantity(@item) %></div>
+</div>
+
+<div class="form-group mt-3">
+  <div><%= f.label :start_at, @model.t(:start_at) %></div>
+  <div class="ms-2"><%= display_around_start(@item) %></div>
+</div>
+
+<div class="form-group mt-3">
+  <div><%= f.label :wday_start_at, @model.t(:wday_start_at) %></div>
+  <div class="ms-2"><%= display_around_hours_wday(@item) %></div>
+</div>
+
+<div class="form-group mt-3">
+  <div class="form-group-control mt-3">
+    <ul class="rowList p-0 ms-2">
+      <% @model.wdays_options.map do |k, i| %>
+        <div class="col-auto me-4">
+          <span class="form-check-label"><%= "#{@item.wdays.map(&:to_i).include?(i) ? "✔" : ""}#{k}" %></span>
+        </div>
+      <% end %>
+    </ul>
+  </div>
+</div>
+<div class="form-group mt-3">
+  <div><%= f.label :work_detail, @model.t(:work_detail) %></div>
+  <div class="ms-2 text-pre-line"><%= @item.work_detail ? simple_format(@item.work_detail) : "-" %></div>
+</div>
+
+<div class="form-group mt-3">
+  <div><%= f.label :appealing, @model.t(:appealing) %></div>
+  <div class="ms-2 text-pre-line"><%= @item.appealing ? simple_format(@item.appealing) : "-" %></div>
+</div>
+
+<div class="form-group mt-3">
+  <div><%= f.label :require_skill, @model.t(:require_skill) %></div>
+  <div class="ms-2 text-pre-line"><%= @item.require_skill ? simple_format(@item.require_skill) : "-" %></div>
+</div>
+
+<div class="form-group mt-3">
+  <div><%= f.label :contact, @model.t(:contact) %></div>
+  <div class="ms-2 text-pre-line"><%= @item.contact ? simple_format(@item.contact) : "-" %></div>
+</div>
+
+<div class="form-group-control mt-3">
+  <div><%= f.label :including_transportation_allowance, @model.t(:including_transportation_allowance) %></div>
+  <div class="ms-2"><%= @item.including_transportation_allowance_i18n.presence || "-" %></div>
+</div>
+
+<div class="form-group mt-3">
+  <div><%= f.label :work_policy, @model.t(:work_policy) %></div>
+  <div class="ms-2 text-pre-line"><%= @item.work_policy ? simple_format(@item.work_policy) : "-" %></div>
+</div>
+
+<hr>
+
+<div class="mt-3">
+  <% if @item.new_record? %>
+    <%= "上記内容で募集します。よろしいですか？" %>
+  <% else %>
+    <%= "上記内容で更新します。よろしいですか？" %>
+  <% end %>
+</div>
+
+<div class="d-none">
+  <%= f.hidden_field :title %>
+  <%= f.hidden_field :position %>
+  <%= f.hidden_field :address %>
+  <%= f.hidden_field :min_annual_salary %>
+  <%= f.hidden_field :max_annual_salary %>
+  <%= f.hidden_field :salary_according_to %>
+  <%= f.hidden_field :open_at %>
+  <%= f.hidden_field :close_at %>
+  <%= f.hidden_field :start_at %>
+  <%= f.hidden_field :end_at %>
+  <%= f.hidden_field :quantity %>
+  <%= f.hidden_field :wday_start_at %>
+  <%= f.hidden_field :wday_end_at %>
+  <% @item.wdays.each do |wday| %>
+    <%= f.hidden_field "wdays", multiple: true, value: wday %>
+  <% end %>
+  <%= f.hidden_field :work_detail %>
+  <%= f.hidden_field :appealing %>
+  <%= f.hidden_field :require_skill %>
+  <%= f.hidden_field :contact %>
+  <%= f.hidden_field :including_transportation_allowance %>
+  <%= f.hidden_field :work_policy %>
+</div>

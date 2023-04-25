@@ -1,0 +1,92 @@
+<% content_for :title, t("medical.notifications.index.title") %>
+
+<% @filter_header = proc do %>
+  <%= label_tag :filter, t("medical.notifications.index.search"), class: "box fw-bolder" %>
+<% end %>
+
+<% @filter_menu = proc do %>
+  <div class="boxed">
+    <%= search_form_for(@q, url: medical_notifications_path) do |f| %>
+      <div class="form-group">
+        <div class="title-label"><%= Notification.t("title") %></div>
+        <div class="form-group">
+          <div class="form-group-control mt-3">
+            <%= f.text_field :title_cont, class: "form-control border px-1 py-2 w-50", placeholder: Notification.t("title") %>
+          </div>
+        </div>
+
+        <div class="title-label mt-3"><%= Notification.t("publish_time") %></div>
+      </div>
+
+      <div class="form-group">
+        <div class="form-group-control mt-3">
+          <div class="row g-3 align-items-center">
+            <div class="col-auto col-5 pe-0">
+              <div class="input-group flex-nowrap">
+                <%= f.text_field :start_time_gteq,
+                                 class: "form-control datepicker-default #{@invalid_message.present? && 'danger'}",
+                                 placeholder: Notification.t("start_time"),
+                                 "aria-label" => Notification.t("start_time") %>
+                <span class="input-group-text py-0">
+                  <img class="img-fluid" src="<%= image_path("employee/icons/calendar.svg") %>" width="46" height="46" alt="calendar" />
+                </span>
+              </div>
+            </div>
+            <div class="col-auto col-2 px-0 text-center">
+              <label class="col-form-label">〜</label>
+            </div>
+            <div class="col-auto col-5 ps-0">
+              <div class="input-group flex-nowrap">
+                <%= f.text_field :end_time_lteq,
+                                 class: "form-control datepicker-default #{@invalid_message.present? && 'danger'}",
+                                 placeholder: Notification.t("end_time"),
+                                 "aria-label" => Notification.t("end_time") %>
+                <span class="input-group-text py-0">
+                  <img class="img-fluid" src="<%= image_path("employee/icons/calendar.svg") %>" width="46" height="46" alt="calendar" />
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <% if @invalid_message.present? %>
+        <div class="row">
+          <div class="i-helper danger"><%= @invalid_message %></div>
+        </div>
+      <% end %>
+
+      <div class="send text-start pt-2">
+        <input type="submit" value="<%= t("base.buttons.search") %>" class="btn button-search"/>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<% @content_header = proc do %>
+  <%= label_tag :filter, t("medical.notifications.index.list"), class: "box mt-4 mb-4 fw-bolder" %>
+<% end %>
+
+<% @index_title = proc do %>
+  <th scope="col" class="text-center title" style="width: 50px"></th>
+  <th scope="col" class="text-center title"><%= @model.t("title") %></th>
+  <th scope="col" class="text-center title"><%= @model.t("start_time") %></th>
+  <th scope="col" class="text-center title"><%= @model.t("end_time") %></th>
+  <th scope="col" class="text-center title"><%= @model.t("creator") %></th>
+  <th scope="col" class="text-center title"><%= @model.t("created_at") %></th>
+<% end %>
+
+<% @index_column = 6 %>
+
+<% @index_meta = proc do |item| %>
+  <tr>
+    <td><%= image_tag("svg/new_icon.svg") unless item.read%></td>
+    <td><%= link_to item.title.truncate(100), medical_notification_path(item) %></td>
+    <td><%= l(item.start_time, format: :short_day) %></td>
+    <td><%= l(item.end_time, format: :short_day) %></td>
+    <td class="text-center"><%= item.creator.manage.full_name %></td>
+    <td><%= l(item.created_at, format: :short_day) %></td>
+  </tr>
+<% end %>
+
+<%= render template: "base/crud/index" %>

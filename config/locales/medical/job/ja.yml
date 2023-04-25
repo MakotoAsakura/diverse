@@ -1,0 +1,81 @@
+ja:
+  medical:
+    jobs:
+      title:
+        index: "求人一覧"
+        new: "求人募集"
+        next_step: "求人募集"
+        confirm: "更新確認"
+        show: "募集詳細"
+        edit: "更新確認"
+        confirm_delete: "終了確認"
+        text-danger: 求人募集にはログインが必要です。
+        complete:
+          new: "一時保存完了"
+          confirm: "登録完了"
+          edit: "募集更新"
+          show: "募集詳細"
+          end_job: "募集終了"
+          confirm_delete: "募集削除"
+          next_step: "一時保存完了"
+        views:
+          complete:
+            new:
+              title: "登録完了"
+              notice: ""
+              message: "求人募集の登録が完了しました。"
+            edit: 
+              title: "更新完了"
+              notice: ""
+              message: "求人募集の更新が完了しました。"
+            save_draft:
+              title: "一時保存完了"
+              notice: "求人募集の一時保存が完了しました。"
+              message: "公開ステータス：編集中で保存しました。<br>編集を再開する場合、求人一覧より選択してください。"
+      search:
+        title: "検索条件"
+        label:
+          state: "公開ステータス"
+        state:
+          before_recruitment: "編集中"
+          recruiting: "募集中"
+          recruitment_closed: "募集終了"
+        list: "求人一覧"
+      index:
+        label:
+          status: "検索条件"
+      note:
+        confirm: "上記内容で募集します。よろしいですか？"
+      buttons:
+        create: "求人募集を掲載する"
+        back_job_list: "求人一覧へ"
+        edit: "求人募集を更新する"
+        end_job: "求人募集の掲載を終了する"
+        update: "求人募集を更新する"
+        delete: "求人募集を削除する"
+        no_delete_end_job: "削除はせず、求人募集の掲載を終了する"
+      views:
+        complete:
+          confirm:
+            notice: ""
+            message: "求人募集の登録が完了しました。"
+          confirm_update:
+            notice: "更新が完了しました。"
+            message: "ご登録のメールアドレスへご確認のメールをお送りいたしました。"
+          confirm_delete:
+            notice: "削除が完了しました。"
+            message: "ご登録のメールアドレスへご確認のメールをお送りいたしました。"
+          new:
+            notice: "求人募集の一時保存が完了しました。"
+            message: "公開ステータス：編集中で保存しました。<br>編集を再開する場合、求人一覧より選択してください。"
+          save_draft:
+            notice: "求人募集の一時保存が完了しました。"
+            message: "公開ステータス：編集中で保存しました。<br>編集を再開する場合、求人一覧より選択してください。"
+          end_job:
+            notice: "求人募集の掲載が終了しました。"
+            message: ""
+        confirm_delete:
+          note_end_job: "求人募集の掲載を終了します。よろしいですか？"
+          notice: "応募者がいないため、求人募集を削除することができます。"
+          notice1: "求人募集を削除しますか？"
+          notice2: "※求人募集を削除すると復元することができません。ご注意ください。"

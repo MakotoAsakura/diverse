@@ -1,0 +1,16 @@
+<% content_for :title, "Cronjob Testing" %>
+<% flash.each do |message_type, message| %>
+  <%= content_tag :div, message, class: "alert alert-#{message_type}" if message.is_a?(String) %>
+<% end %>
+<div class="mt-3">
+  <div class="mt-3">
+    <%= link_to generate_data_medical_cronjob_testing_index_path do %>
+      <button type="button" class="btn btn-submit save"><%= "Run job calculate payslip and invoice now" %></button>
+    <% end %>
+  </div>
+  <div class="mt-3">
+    <%= link_to reset_data_medical_cronjob_testing_index_path do %>
+      <button type="button" class="btn btn-submit save"><%= "Reset data" %></button>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,71 @@
+<% content_for :title, t("employee.bank.views.form.title") %>
+<% content_for :title_class, "text-center text-lg-start" %>
+<% @crud_buttons = proc do %>
+<% end %>
+<div class="boxed px-3 px-lg-0">
+  <form class="form-highlight">
+    <div class="form-group">
+      <label class="form-label"><%= @model.t(:bank_name) %></label>
+      <div class="form-group-control">
+        <div class="row">
+          <div class="col-md-6">
+            <%= f.text_field :bank_name, class: "form-control", placeholder: "○○銀行", id: "item_prefecture" %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= @model.t(:branch_name) %></label>
+      <div class="form-group-control">
+        <div class="row">
+          <div class="col-md-6">
+            <%= f.text_field :branch_name, class: "form-control", placeholder: "○○支店", id: "item_prefecture" %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= @model.t(:account_type) %></label>
+      <div class="form-group-control">
+        <div class="row g-3 align-items-center">
+          <div class="col-auto">
+            <label class="form-check">
+              <%= f.radio_button :account_type, "usually", class: "form-check-input", checked: @item.account_type == "usually" %>
+              <span class="form-check-label"><%= "普通" %></span>
+            </label>
+          </div>
+          <div class="col-auto">
+            <label class="form-check">
+              <%= f.radio_button :account_type, "current", class: "form-check-input", checked: @item.account_type == "current" %>
+              <span class="form-check-label"><%= "当座" %></span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= @model.t(:account_number) %></label>
+      <div class="form-group-control">
+        <div class="row">
+          <div class="col-md-6">
+            <%= f.text_field :account_number, class: "form-control numberonly", placeholder: "1234567890", id: "item_prefecture" %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= @model.t(:account_holder_name) %></label>
+      <div class="form-group-control">
+        <div class="row">
+          <div class="col-md-6">
+            <%= f.text_field :account_holder_name, class: "form-control", id: "item_prefecture" %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="d-none d-md-block gaps-2x" />
+    <div class="form-group mt-5">
+      <%= f.submit t("employee.bank.views.form.buttons.submit"), class: "btn btn-custom btn-primary" %>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,31 @@
+<div class="container-fluid d-lg-none">
+  <div class="form-button-group mb--8">
+    <div class="form-group">
+      <div class="d-grid gap-4">
+        <%= link_to timeline_payslips_path, class: "btn btn-custom btn-primary" do %>
+          <button type="button" class="btn btn-custom btn-primary">支払明細一覧に戻る</button>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<h3 class="page-title text-center text-lg-start">支払明細</h3>
+<% if @items.present? %>
+  <div class="boxed">
+    <div class="text-end mb-4">
+      <%= link_to download_pdf_payslips_path(format: :pdf, year: @year, month: @month, page: params[:page]), target: :blank do %>
+        <button type="button" class="btn btn-custom btn-primary px-4 px-md-5 w-auto">ダウンロード</button>
+      <% end %>
+    </div>
+    <div class="text-end mb-2"><%= t("employee.payslips.index.pagination_info", total_count: number_with_delimiter(@items.total_count), current_page: @items.current_page) %></div>
+    <div class="payment-detail-img">
+      <% @items.each do |item| %>
+        <%= render "shared/payslip/payslip", item: item %>
+      <% end %>
+    </div>
+    <%= paginate @items,
+                 theme: "bootstrap-5", nav_class: "pagination-wrapper mt-5 pt-md-3",
+                 pagination_class: "pagination justify-content-center",
+                 window: 1, left: 1, right: 1 %>
+  </div>
+<% end %>

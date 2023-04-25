@@ -1,0 +1,18 @@
+<% content_for :title, t("employee.account.views.complete.title") %>
+<% content_for :title_class, "text-center text-lg-start" %>
+<% @complete_button = proc do %>
+  <%= link_to account_path do %>
+    <%= button_tag t("employee.account.views.complete.buttons.back"), class: "btn btn-custom btn-primary" %>
+  <% end %>
+<% end %>
+
+<% @complete_notice = proc do %>
+  <div class="mb-4">
+    <strong><%= t("employee.account.views.complete.label.account_updated") %></strong>
+  </div>
+<% end %>
+<% @complete_send_mail = proc do %>
+  <div class="mb-4">
+    <strong><%= t("employee.account.views.complete.label.send_mail") %><</strong>
+  </div>
+<% end %>

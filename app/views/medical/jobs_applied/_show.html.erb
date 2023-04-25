@@ -1,0 +1,17 @@
+<% content_for :title, t("medical.candidate_job.profiles.title.show") %>
+<% @crud_buttons = proc do %>
+  <% if @item.review? %>
+    <div><%= button_to t("medical.jobs_applied.buttons.recruitment"), url_for({ action: :edit, id: @item.id }),
+                       method: :get, disabled: true,
+                       class: "btn button btn-submit button-edit" %></div>
+  <% end %>
+<% end %>
+
+<%= render "medical/candidate_job/profiles/profile" %>
+
+<% if @item.review? %>
+  <label for="check_box_confirm" class="d-flex align-items-center">
+    <%= check_box_tag :check_box_confirm, nil, nil, class: "form-check-input" %>
+    <span class="form-check-label"><%= "トークまたはその他の通信手段を用いて、就業者とはコンタクト済です。" %></span>
+  </label>
+<% end %>

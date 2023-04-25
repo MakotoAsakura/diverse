@@ -1,0 +1,37 @@
+<% content_for :title, t("medical.notifications.show.title") %>
+
+<% @content_header = proc do %>
+  <%= label_tag :filter, t("medical.notifications.show.detail"), class: "box mt-4 mb-4 fw-bolder" %>
+<% end %>
+
+<% @crud_buttons = proc do %>
+<% end %>
+
+
+<div class="form-group-control mt-3">
+  <label><strong><%= @model.t(:title) %></strong></label>
+  <div class="ms-2 mt-2"><%= @item.title %></div>
+</div>
+
+<div class="form-group-control mt-3">
+  <label><strong><%= @model.t(:content) %></strong></label>
+  <div class="ms-2 mt-2">
+    <%= @item.content %>
+  </div>
+</div>
+
+<div class="form-group-control mt-3">
+  <label><strong><%= @model.t(:attachments) %></strong></label>
+  <div class="ms-2 mt-2">
+    <% @item.attachments.each do |attachment| %>
+      <div class="mt-3 filename"><%= link_to attachment.filename, rails_blob_path(attachment.file, disposition: 'attachment'), class: "text-decoration-underline", target: "_blank" %></div>
+    <% end %>
+  </div>
+</div>
+
+<div class="form-group-control mt-3">
+  <label><strong><%= @model.t(:publish_time) %></strong></label>
+  <div class="ms-2 mt-2">
+    <%= "#{l(@item.start_time, format: :long_day)} 　〜　#{l(@item.end_time, format: :long_day)} 　"  %>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<% content_for :title, t("employee.account.views.confirm_delete.title") %>
+<% content_for :title_class, "text-center text-lg-start" %>
+<% @crud_buttons = proc do %>
+<% end %>
+<%= form_for @item, as: :item ,url: account_path, method: :delete do |f| %>
+  <div class="boxed px-3 px-lg-0">
+    <div class="account-delete-confirmation">
+      <div class="content-warning text-center text-md-start">
+        <p class="main-title text-danger"><%= t("employee.account.views.confirm_delete.label.warning").html_safe %></p>
+        <label class="form-check d-inline-block">
+          <input class="form-check-input" type="checkbox" name="confirmed" id="policy_cbx">
+          <span class="form-check-label"><%= t("employee.account.views.confirm_delete.label.confirm_check_box") %></span>
+        </label>
+      </div>
+      <hr class="gaps-2x" />
+      <form>
+        <p><%= t("employee.account.views.confirm_delete.label.reason_delete_account").html_safe %></p>
+        <div class="form-group">
+          <div class="form-group-control">
+            <%= f.text_area :reason_delete, class: "form-control", rows: 10 %>
+          </div>
+          <hr class="d-none d-md-block my-5" />
+          <%= hidden_field_tag "screen", "confirm_delete_account" %>
+
+          <div class="form-group mt-5">
+            <div class="mb-4">
+              <%= link_to account_path do %>
+                <%= button_tag t("employee.account.views.confirm_delete.buttons.detail_account"), class: "btn btn-custom btn-primary" %>
+              <% end %>
+            </div>
+            <div class="mb-4">
+              <%= f.submit t("employee.account.views.confirm_delete.buttons.confirm_delete"), class: "btn btn-custom btn-primary btn-submit" %>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+<% end %>

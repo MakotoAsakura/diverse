@@ -1,0 +1,8 @@
+<div><%= @candidate.full_name %>　様</div>
+<br>
+<div>ダイバースをご利用いただき、誠にありがとうございます。</div>
+<div>銀行口座情報の更新が完了しました。</div>
+<br>
+<div>銀行口座情報の確認はこちら：<%= link_to "銀行口座表示画面", bank_url %></div>
+<br>
+<%= render 'shared/mailer/footer' %>

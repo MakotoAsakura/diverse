@@ -1,0 +1,9 @@
+<% provide :title, t("admin.manages.title.complete.#{params["_action"] || "new"}") %>
+
+<% @complete_notice = proc do %>
+  <%= t("admin.manages.complete.notice.#{params["_action"] || "new"}") %>
+<% end %>
+
+<% @complete_send_mail = proc do %>
+  <%= t("admin.manages.complete.message") %>
+<% end %>

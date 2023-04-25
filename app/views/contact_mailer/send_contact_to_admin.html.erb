@@ -1,0 +1,12 @@
+<p>以下のお問い合わせがありました。</p>
+<p>ご確認のうえ、返信をお願いします。</p>
+<p></p>
+<p>--------------------------------------</p>
+<p>■お問合せ内容</p>
+<p>--------------------------------------</p>
+<p>お名前： <%= @contact.name %></p>
+<p>メールアドレス： <%= @contact.email %></p>
+<p>件名： <%= @contact.title %></p>
+<p>お問合せ内容：</p>
+<p style="white-space: pre-line"><%= @contact.content %></p>
+<%= render 'shared/mailer/footer' %>

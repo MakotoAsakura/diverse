@@ -1,0 +1,77 @@
+ja:
+  enums:
+    medical_institution:
+      status:
+        pending: "承認待ち"
+        approved: "承認"
+        rejected: "否認"
+        all: "全て"
+    job:
+      status:
+        draft: "編集中"
+        published: "募集中"
+        ended: "募集終了"
+        unpublished: "unpublished"
+      including_transportation_allowance:
+        included: "実費清算とします"
+        excluded: "給与に含みます"
+      salary_according_to:
+        day: "日給"
+        hour: "時給"
+      position:
+        all: "全て"
+        doctor: "医師"
+        dentist: "歯科医師"
+        pharmacist: "薬剤師"
+        nurse: "看護師"
+        dental_hygienist: "歯科衛生士"
+        physiotherapist: "理学療法士"
+        occupational_therapist: "作業療法士"
+        registered_dietitian: "管理栄養士"
+        caregiver: "介護士"
+        medical_office: "医療事務"
+        childminder: "保育士"
+        others: "その他"
+    candidate_job:
+      status:
+        review: "審査中"
+        waiting: "採用承諾待ち"
+        recruitment: "採用"
+        decline: "採用辞退"
+        rejected: "不採用"
+      salary_details_according_to:
+        d_day: "日給"
+        d_hour: "時給"
+      including_transportation_allowance:
+        included: "実費清算とします"
+        excluded: "給与に含みます"
+    candidate:
+      gender:
+        male: "男"
+        female: "女性"
+      national:
+        japan: "日本国籍"
+        non_japan: "外国籍"
+    bank:
+      account_type:
+        usually: "普通"
+        current: "当座"
+    attendance:
+      status:
+        review: "未申請"
+        waiting: "申請中"
+        approved: "承認済"
+        rejected: "差し戻し"
+    system_setting:
+      payment_due_month:
+        current_month: "当月"
+        next_month: "翌月"
+        two_month_later: "翌々月"
+      account_type:
+        usually: "普通"
+        current: "当座"
+    notification:
+      status:
+        opening: "公開中"
+        expired: "公開済み"
+        waiting: "公開前"

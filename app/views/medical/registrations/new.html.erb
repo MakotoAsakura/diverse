@@ -1,0 +1,117 @@
+<% content_for :title, t("medical.registration.views.new.title") %>
+
+<%= form_for(resource, as: :user, url: medical_sign_up_confirm_path, data: { turbo: false }) do |f| %>
+  <div class="wrap">
+    <div class="title-header">
+      <%= f.label t("medical.registration.views.new.title_user"), class: "box fw-bolder" %>
+    </div>
+  </div>
+  <%= f.fields_for :medical_institution, resource.medical_institution || resource.build_medical_institution do |ff| %>
+      <div class="form-group align-items-center mt-4">
+        <div class="col-2"><%= ff.label :name, t("medical.registration.views.new.label.name") %></div>
+        <div class="col-3"><%= ff.text_field :name, class: "form-control border px-1 py-2", placeholder: t("medical.registration.views.new.label.name") %></div>
+      </div>
+
+      <div class="form-group mt-3 align-items-center">
+        <div class="col-2"><%= ff.label :name_kana, t("medical.registration.views.new.label.name_kana") %></div>
+        <div class="col-3"><%= ff.text_field :name_kana, class: "form-control border px-1 py-2", placeholder: t("medical.registration.views.new.label.name_kana") %></div>
+      </div>
+
+      <div class="form-group mt-3 align-items-center">
+        <div class="col-2"><%= ff.label :phone_number, t("medical.registration.views.new.label.phone_number") %></div>
+        <div class="col-3"><%= ff.text_field :phone_number, class: "form-control numberonly-phone-number-medical border px-1 py-2", placeholder: t("medical.registration.views.new.label.phone_number") %></div>
+      </div>
+
+      <div class="form-group mt-3 align-items-center">
+        <div class="col-2"><%= ff.label :url, t("medical.registration.views.new.label.url") %></div>
+        <div class="col-5"><%= ff.text_field :url, class: "form-control border px-1 py-2", placeholder: t("medical.registration.views.new.label.url") %></div>
+      </div>
+
+      <div class="wrap-info">
+        <div class="form-group mt-3 align-items-center zipcode">
+          <div class="col-2"><%= f.label :zipcode, t("medical.registration.views.new.label.zip_code") %></div>
+          <div class="row">
+            <div class="col-auto col-md-1">
+              <%= ff.text_field :zipcode_first, class: "form-control zipcode-first numberonly", maxlength: 3 %>
+            </div>
+            <div class="col-auto px-0 px-md-2">
+              <label class="col-form-label">ー</label>
+            </div>
+            <div class="col-auto col-md-1">
+              <%= ff.text_field :zipcode_last, class: "form-control zipcode-last numberonly", maxlength: 4 %>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="form-group mt-3 align-items-center location">
+          <div class="col-2"><%= ff.label :location, t("medical.registration.views.new.label.location") %></div>
+          <div class="col-6"><%= ff.text_area :location, class: "form-control border px-1 py-2",s: 5 %></div>
+        </div>
+      </div>
+
+      <div class="form-group mt-3 align-items-center">
+        <div class="col-2"><%= f.label t("medical.registration.views.new.label.full_name_manager") %></div>
+        <div class="row">
+          <div class="col-2"><%= ff.text_field :first_name_manager, class: "form-control border px-1 py-2", placeholder: MedicalInstitution.t(:first_name_manager) %></div>
+          <div class="col-2"><%= ff.text_field :last_name_manager, class: "form-control border px-1 py-2", placeholder: MedicalInstitution.t(:last_name_manager) %></div>
+        </div>
+      </div>
+
+      <div class="form-group mt-3 align-items-center">
+        <div class="col-2"><%= f.label t("medical.registration.views.new.label.full_name_kana_manager") %></div>
+        <div class="row">
+          <div class="col-2"><%= ff.text_field :first_name_kana_manager, class: "form-control border px-1 py-2", placeholder: MedicalInstitution.t(:first_name_kana_manager) %></div>
+          <div class="col-2"><%= ff.text_field :last_name_kana_manager, class: "form-control border px-1 py-2", placeholder: MedicalInstitution.t(:last_name_kana_manager) %></div>
+        </div>
+      </div>
+
+      <div class="form-group mt-3 align-items-center">
+        <div class="col-2"><%= f.label :email, User.t(:email) %></div>
+        <div class="col-4"><%= f.text_field :email, class: "form-control border px-1 py-2" %></div>
+      </div>
+
+      <div class="form-group mt-3 align-items-center">
+        <div class="col-2"><%= f.label :password, User.t(:password) %></div>
+        <div class="col-4"><%= f.password_field :password, class: "form-control border px-1 py-2" %></div>
+      </div>
+
+      <div class="form-group mt-3 align-items-center">
+        <div class="col-2"><%= f.label :password_confirmation, User.t(:password_confirmation) %></div>
+        <div class="col-4"><%= f.password_field :password_confirmation, class: "form-control border px-1 py-2" %></div>
+      </div>
+    <%= ff.fields_for :pharmaceutical_company, ff.object.pharmaceutical_company || ff.object.build_pharmaceutical_company do |fff| %>
+
+      <div class="wrap mt-4 mb-4">
+        <div class="title-header">
+          <%= f.label t("medical.registration.views.new.title_pharmacy"), class: "box fw-bolder" %>
+        </div>
+      </div>
+      <div class="form-group align-items-center">
+        <div class="col-2"><%= fff.label :name, PharmaceuticalCompany.t(:name) %></div>
+        <div class="col-4"><%= fff.text_field :name, class: "form-control border px-1 py-2", placeholder: PharmaceuticalCompany.t(:name) %></div>
+      </div>
+
+      <div class="form-group mt-3 align-items-center">
+        <div class="col-2"><%= fff.label :staff_ms, t("medical.registration.views.new.label.staff_ms") %></div>
+        <div class="col-4"><%= fff.text_field :staff_ms, class: "form-control border px-1 py-2", placeholder: t("medical.registration.views.new.label.staff_ms") %></div>
+      </div>
+
+      <hr />
+      <%= hidden_field_tag "screen", "new_medical" %>
+      <div class="row mt-4">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="form-check d-inline-flex">
+              <input class="form-check-input" type="checkbox" name="" id="policy_cbx">
+              <span class="form-check-label ms-2"><%= t("candidate.candidates.new.medical_policy_text_html") %></span>
+            </label>
+          </div>
+          <div class="d-grid gap-3 col-3">
+            <%= f.submit t("medical.registration.views.new.buttons.submit"), class: "px-5 btn btn-submit", disabled: true %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>

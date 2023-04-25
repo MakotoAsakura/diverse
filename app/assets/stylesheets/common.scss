@@ -1,0 +1,55 @@
+:root {
+  --bs-font-sans-serif:"Sawarabi Gothic",sans-serif !important;
+}
+
+.display-3-line-block {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* number of lines to show */
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.withholding-slip-table {
+  tbody, td, tfoot, th, thead {
+    border: 1px solid !important;
+    border-color: inherit;
+  }
+}
+
+.text-pre-line {
+  white-space: pre-line;
+  word-wrap: break-word !important;
+  word-break: break-word !important;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #c6c6c6 !important;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #c6c6c6 !important;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: #c6c6c6 !important;
+}
+
+.fr-container {
+  overflow-y: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.text-decoration-unset {
+  text-decoration: unset;
+}
+
+input[type=password] {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";;
+}

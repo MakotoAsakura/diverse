@@ -1,0 +1,76 @@
+<% if @item.new_record? %>
+<% else %>
+  <% content_for :title, t("medical.jobs_applied.title.edit") %>
+<% end %>
+
+<% @crud_buttons = proc do |f| %>
+  <%= f.submit t("medical.jobs_applied.buttons.use"), class: "btn button save btn-submit" %>
+  <div class="mt-3"><%= link_to t("medical.jobs_applied.buttons.reject"), rejection_medical_jobs_applied_path(@item), class: "btn button btn-submit" %></div>
+<% end %>
+
+<div class="wrap">
+  <div class="title-header">
+    <%= f.label :contract_detail, class: "box fw-bolder" %>
+  </div>
+</div>
+
+<div class="mt-3">
+  <label><%= Candidate.t(:full_name) %></label>
+  <div class="mt-3 ms-3">
+    <%= @item.candidate.full_name %>
+  </div>
+</div>
+
+<div class="form-group mt-3">
+  <div><%= f.label :salary_detail, @model.t(:salary_detail) %></div>
+  <div class="row">
+    <div class="col-auto" style="width: 100px;">
+      <%= f.text_field :salary_detail, class: "form-control border px-1 py-2", value: @item.salary_detail %>
+    </div>
+    <div class="col-auto">
+      <%= f.select :salary_details_according_to, @model.salary_details_according_tos_i18n.map { |k, v| [v, k] }, {}, { class: "form-select px-1 py-2", style: "width: 85px;" } %>
+    </div>
+  </div>
+</div>
+
+<div class="form-group-control mt-3">
+  <div><%= f.label :including_transportation_allowance, @model.t(:including_transportation_allowance) %></div>
+  <div class="mt-3 ms-3">
+    <%= @item.including_transportation_allowance_i18n %>
+  </div>
+</div>
+
+<div class="form-group mt-3">
+  <div class=""><%= f.label :contract_start_at, @model.t(:contract_start_at) %></div>
+  <div class="row">
+    <div class="col-auto row">
+      <div class="col-auto" style="width: 165px;">
+        <%= f.text_field :contract_start_at, class: "form-control border px-1 py-2 datepicker-default", placeholder: l(Time.current, format: :long_day_dash) %>
+      </div>
+      <div class="col-auto mt-1">
+        <div class="calendar-icon"><%= image_tag("svg/calendar_icon.svg") %></div>
+      </div>
+    </div>
+    <div class="col-auto mt-2">〜</div>
+    <div class="col-auto row">
+      <div class="col-auto" style="width: 165px;">
+        <%= f.text_field :contract_end_at, class: "form-control border px-1 py-2 datepicker-default", placeholder: l(Time.current, format: :long_day_dash) %>
+      </div>
+      <div class="col-auto mt-1">
+        <div class="calendar-icon"><%= image_tag("svg/calendar_icon.svg") %></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="form-group mt-3">
+  <label><%= @model.t(:remark) %></label>
+  <div class="mt-2 ms-3"><%= t("medical.candidate_jobs.views.remark_note") %></div>
+  <div class="mt-3">
+    <%= f.text_area :remark, class: "form-control border px-1 py-2", value: @item.remark, rows: 3 %>
+  </div>
+</div>
+<hr>
+<p class="reject-notice my-4"><%= "応募者を採用しますか？" %></p>
+
+

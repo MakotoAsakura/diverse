@@ -1,0 +1,60 @@
+<% if @item.new_record? %>
+<% else %>
+  <% content_for :title, t("medical.jobs_applied.title.confirm.edit") %>
+<% end %>
+
+<% @crud_buttons = proc do |f| %>
+  <%= link_to action: @item.new_record? ? :new : :edit, type: :back, id: @item.id do %>
+    <button type="button" class="btn button btn-back btn-submit"><%= t("base.buttons.cancel") %></button>
+  <% end %>
+  <div class="mt-3"><%= f.submit t("medical.jobs_applied.buttons.complete"), class: "btn button save btn-submit" %></div>
+<% end %>
+
+<div class="wrap">
+  <div class="title-header">
+    <%= f.label :contract_detail, class: "box fw-bolder" %>
+  </div>
+</div>
+<div class="mt-3">
+  <label><%= Candidate.t(:full_name) %></label>
+  <div class="mt-3 ms-3">
+    <%= @item.candidate.full_name %>
+  </div>
+</div>
+
+<div class="mt-3">
+  <label><%= @model.t(:salary_detail) %></label>
+  <div class="mt-3 ms-3">
+    <%= display_salary(@item) %>
+  </div>
+</div>
+
+<div class="mt-3">
+  <label><%= @model.t(:including_transportation_allowance) %></label>
+  <div class="mt-3 ms-3">
+    <%= @item.including_transportation_allowance_i18n %>
+  </div>
+</div>
+
+<div class="mt-3">
+  <label><%= @model.t(:contract_start_at) %></label>
+  <div class="mt-3 ms-3">
+    <%= display_around_contract_start(@item) %>
+  </div>
+</div>
+
+<div class="mt-3">
+  <label><%= @model.t(:remark) %></label>
+  <div class="mt-3 ms-3 text-pre-line">
+    <%= simple_format @item.remark %>
+  </div>
+</div>
+
+<div class="d-none">
+  <%= f.hidden_field :salary_detail %>
+  <%= f.hidden_field :salary_details_according_to %>
+  <%= f.hidden_field :including_transportation_allowance %>
+  <%= f.hidden_field :remark %>
+  <%= f.hidden_field :contract_start_at %>
+  <%= f.hidden_field :contract_end_at %>
+</div>

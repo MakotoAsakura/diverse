@@ -1,0 +1,8 @@
+<div><%= @candidate.full_name %>　様</div>
+<br>
+<div>ダイバースをご利用いただき、誠にありがとうございます。</div>
+<br>
+<div>源泉徴収票を送付しました。</div>
+<div>源泉徴収票はこちら：<%= link_to withholding_slips_url, withholding_slips_url(year: @year), target: "_blank" %></div>
+<br>
+<%= render 'shared/mailer/footer' %>

@@ -1,0 +1,38 @@
+ja:
+  employee:
+    jobs:
+      index:
+        title: "求人一覧"
+        search:
+          description: "勤務地、職種、労働期間、キーワードで検索"
+          title: "キーワード"
+          address: "勤務地"
+          position: "職種"
+          start_at: "労働開始日"
+          end_at: "労働終了日"
+          submit: "検索"
+        job:
+          title: "キーワード"
+          position: "募集職種"
+          address: "勤務地"
+          work_period: "勤務期間"
+          work_period_value: "%{start_at}　〜　%{end_at}"
+          salary: "給与"
+          salary_value: "%{from}円　〜　%{to}円（時給）"
+        empty_message: "検索条件に該当する求人情報はありませんでした。"
+        pagination_info: "%{total_count}件、%{current_page}ページ目"
+        time_invalid: "終了日には開始日以降の日付を指定して下さい。"
+      show:
+        title: "求人詳細"
+        apply: "この求人に応募する"
+        apply_description: "(プロフィール確認へ)"
+        back_to_list: "求人一覧に戻る"
+        login_required: "応募にはログインが必要です。"
+        login: "ログイン画面へ"
+        open_period: "掲載期間：%{from}　〜　%{to}"
+        job_expired: "応募が定員に達しましたので、募集を締め切りました。"
+        job_applied: "この求人に応募しました。"
+      job:
+        medical_institution_name: "求人機関名"
+        work_period: "勤務期間"
+        work_policy: "待遇・福利厚生・その他"

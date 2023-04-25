@@ -1,0 +1,13 @@
+ja:
+  chat:
+    views:
+      show:
+        title: "トーク"
+        buttons:
+          back_to_index: "トーク一覧に戻る"
+      index:
+        title: "トーク一覧"
+        label:
+          medical_name: "求人機関名"
+          message: "メッセージ"
+          back_to_my_page: "マイページに戻る"

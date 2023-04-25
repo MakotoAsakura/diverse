@@ -1,0 +1,26 @@
+#admin-page {
+  #head {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+
+    .wrap {
+      align-items: end;
+      flex-wrap: wrap;
+      background: #ffffff;
+    }
+
+    .title {
+      background: #28c76f;
+      padding: 5px 0 5px 10px;
+
+      .text {
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 28px;
+        color: #FFFFFF;
+      }
+    }
+  }
+}

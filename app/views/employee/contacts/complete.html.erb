@@ -1,0 +1,23 @@
+<% content_for :title, t("employee.contacts.complete.title") %>
+<% content_for :title_class, "page-title text-center" %>
+<% @crud_buttons = proc {} %>
+
+<div class="container">
+  <div class="text-center">
+    <div class="mb-5">
+      <div class="mb-4">
+        <strong><%= t("employee.contacts.complete.notice") %></strong>
+      </div>
+      <div class="mb-4">
+        <small><%= t("employee.contacts.complete.message") %></small>
+      </div>
+    </div>
+  </div>
+  <div class="form-button-group text-center mx-auto">
+    <div class="form-group">
+      <div class="d-grid gap-4">
+        <%= link_to t("employee.contacts.complete.top_screen"), root_path, class: "btn btn-custom btn-primary" %>
+      </div>
+    </div>
+  </div>
+</div>

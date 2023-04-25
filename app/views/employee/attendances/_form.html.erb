@@ -1,0 +1,254 @@
+<% provide :title, t(".title") %>
+<% content_for :title_class, "text-start text-lg-start" %>
+<div class="boxed">
+  <%= form_for @attendance,
+               url: @attendance.new_record? ? attendances_path(params: { job_id: @attendance.job_id }) : attendance_path(params: @attendance.job_id),
+               html: { class: "form-highlight" }, data: { turbo: false } do |f| %>
+    <%= hidden_field_tag :job_id, params[:job_id] %>
+    <%= hidden_field_tag :date, params[:date] %>
+
+    <div class="form-group">
+      <label class="form-label"><%= t(".detail") %></label>
+      <div class="form-group-control">
+        <div class="form-table-primary form-table table-responsive">
+          <table class="table table-bordered">
+            <tbody>
+            <tr>
+              <th class="text-center" scope="row" width="30%"><%= t(".date") %></th>
+              <td width="70%">
+                <div class="text-center"><%= l(@date, format: :default) %></div>
+              </td>
+            </tr>
+            <tr>
+              <th class="text-center" scope="row"><%= Attendance.t("checkin") %></th>
+              <td>
+                <div class="row g-1">
+                  <div class="col-4 col-xs-12">
+                    <div class="input-group flex-nowrap <%= "danger" if f.object.errors.key?(:checkin_date) %>">
+                      <%= text_field_tag "attendance_checkin_date",
+                                         f.object.checkin_date_before_type_cast || f.object.checkin_date&.strftime("%Y/%m/%d") || l(@date, format: :default),
+                                         name: "attendance[checkin_date]",
+                                         minDate: l(@date, format: :default),
+                                         maxDate: l(@date, format: :default),
+                                         class: "form-control text-center datepicker-default",
+                                         autocomplete: "off"
+                      %>
+                      <span class="input-group-text py-0">
+                        <img class="img-fluid" src="<%= image_path("employee/icons/calendar-small.svg") %>" width="20" height="20" alt="..." />
+                      </span>
+                    </div>
+                    <div class="i-helper danger"><%= f.object.errors.messages_for(:checkin_date).join("<br/>").html_safe %></div>
+                  </div>
+                  <div class="col-8 col-xs-12">
+                    <%= f.text_field :checkin_time,
+                                     value: f.object.checkin_time_before_type_cast || (f.object.checkin_time && l(f.object.checkin_time, format: :hour_minute)) || nil,
+                                     class: "form-control text-center attendance-timepicker",
+                                     placeholder: "時間（00:00）",
+                                     autocomplete: "off" %>
+                  </div>
+                  <div class="col-12">
+                    <div class="i-helper danger"><%= f.object.errors.messages_for(:checkin).join("<br/>").html_safe %></div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th class="text-center" scope="row"><%= Attendance.t("checkout") %></th>
+              <td>
+                <div class="row g-1">
+                  <div class="col-4 col-xs-12">
+                    <div class="input-group flex-nowrap <%= "danger" if f.object.errors.key?(:checkout_date) %>">
+                      <%= text_field_tag "attendance_checkout_date",
+                                         f.object.checkout_date_before_type_cast || f.object.checkout_date&.strftime("%Y/%m/%d"),
+                                         name: "attendance[checkout_date]",
+                                         minDate: l(@date, format: :default),
+                                         class: "form-control text-center datepicker-default",
+                                         autocomplete: "off"
+                      %>
+                      <span class="input-group-text py-0">
+                        <img class="img-fluid" src="<%= image_path("employee/icons/calendar-small.svg") %>" width="20" height="20" alt="..." />
+                      </span>
+                    </div>
+                    <div class="i-helper danger"><%= f.object.errors.messages_for(:checkout_date).join("<br/>").html_safe %></div>
+                  </div>
+                  <div class="col-8 col-xs-12">
+                    <%= f.text_field :checkout_time,
+                                     value: f.object.checkout_time_before_type_cast || (f.object.checkout_time && l(f.object.checkout_time, format: :hour_minute)) || nil,
+                                     class: "form-control text-center attendance-timepicker",
+                                     placeholder: "時間（00:00）",
+                                     autocomplete: "off" %>
+                  </div>
+                  <div class="col-12">
+                    <div class="i-helper danger"><%= f.object.errors.messages_for(:checkout).join("<br/>").html_safe %></div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th class="text-center" scope="row"><%= Attendance.t("shift_1_checkin") %></th>
+              <td>
+                <div class="row g-1">
+                  <div class="col-4 col-xs-12">
+                    <div class="input-group flex-nowrap <%= "danger" if f.object.errors.key?(:shift_1_checkin_date) %>">
+                      <%= f.text_field :shift_1_checkin_date,
+                                       value: f.object.shift_1_checkin_date&.strftime("%Y/%m/%d"),
+                                       minDate: l(@date, format: :default),
+                                       class: "form-control text-center datepicker-default",
+                                       autocomplete: "off" %>
+                      <span class="input-group-text py-0">
+                        <img class="img-fluid" src="<%= image_path("employee/icons/calendar-small.svg") %>" width="20" height="20" alt="..." />
+                      </span>
+                    </div>
+                    <div class="i-helper danger"><%= f.object.errors.messages_for(:shift_1_checkin_date).join("<br/>").html_safe %></div>
+                  </div>
+                  <div class="col-8 col-xs-12">
+                    <%= f.text_field :shift_1_checkin_time,
+                                     value: f.object.shift_1_checkin_time_before_type_cast || (f.object.shift_1_checkin_time && l(f.object.shift_1_checkin_time, format: :hour_minute)) || nil,
+                                     class: "form-control text-center attendance-timepicker",
+                                     placeholder: "時間（00:00）",
+                                     autocomplete: "off" %>
+                  </div>
+                  <div class="col-12">
+                    <div class="i-helper danger"><%= f.object.errors.messages_for(:shift_1_checkin).join("<br/>").html_safe %></div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th class="text-center" scope="row"><%= Attendance.t("shift_1_checkout") %></th>
+              <td>
+                <div class="row g-1">
+                  <div class="col-4 col-xs-12">
+                    <div class="input-group flex-nowrap <%= "danger" if f.object.errors.key?(:shift_1_checkout_date) %>">
+                      <%= f.text_field :shift_1_checkout_date,
+                                       value: f.object.shift_1_checkout_date&.strftime("%Y/%m/%d"),
+                                       minDate: l(@date, format: :default),
+                                       class: "form-control text-center datepicker-default",
+                                       autocomplete: "off" %>
+                      <span class="input-group-text py-0">
+                        <img class="img-fluid" src="<%= image_path("employee/icons/calendar-small.svg") %>" width="20" height="20" alt="..." />
+                      </span>
+                    </div>
+                    <div class="i-helper danger"><%= f.object.errors.messages_for(:shift_1_checkout_date).join("<br/>").html_safe %></div>
+                  </div>
+                  <div class="col-8 col-xs-12">
+                    <%= f.text_field :shift_1_checkout_time,
+                                     value: f.object.shift_1_checkout_time_before_type_cast || (f.object.shift_1_checkout_time && l(f.object.shift_1_checkout_time, format: :hour_minute)) || nil,
+                                     class: "form-control text-center attendance-timepicker",
+                                     placeholder: "時間（00:00）",
+                                     autocomplete: "off" %>
+                  </div>
+                  <div class="col-12">
+                    <div class="i-helper danger"><%= f.object.errors.messages_for(:shift_1_checkout).join("<br/>").html_safe %></div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th class="text-center" scope="row"><%= Attendance.t("shift_2_checkin") %></th>
+              <td>
+                <div class="row g-1">
+                  <div class="col-4 col-xs-12">
+                    <div class="input-group flex-nowrap <%= "danger" if f.object.errors.key?(:shift_2_checkin_date) %>">
+                      <%= f.text_field :shift_2_checkin_date,
+                                       value: f.object.shift_2_checkin_date&.strftime("%Y/%m/%d"),
+                                       minDate: l(@date, format: :default),
+                                       class: "form-control text-center datepicker-default",
+                                       autocomplete: "off" %>
+                      <span class="input-group-text py-0">
+                        <img class="img-fluid" src="<%= image_path("employee/icons/calendar-small.svg") %>" width="20" height="20" alt="..." />
+                      </span>
+                    </div>
+                    <div class="i-helper danger"><%= f.object.errors.messages_for(:shift_2_checkin_date).join("<br/>").html_safe %></div>
+                  </div>
+                  <div class="col-8 col-xs-12">
+                    <%= f.text_field :shift_2_checkin_time,
+                                     value: f.object.shift_2_checkin_time_before_type_cast || (f.object.shift_2_checkin_time && l(f.object.shift_2_checkin_time, format: :hour_minute)) || nil,
+                                     class: "form-control text-center attendance-timepicker",
+                                     placeholder: "時間（00:00）",
+                                     autocomplete: "off" %>
+                  </div>
+                  <div class="col-12">
+                    <div class="i-helper danger"><%= f.object.errors.messages_for(:shift_2_checkin).join("<br/>").html_safe %></div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th class="text-center" scope="row"><%= Attendance.t("shift_2_checkout") %></th>
+              <td>
+                <div class="row g-1">
+                  <div class="col-4 col-xs-12">
+                    <div class="input-group flex-nowrap <%= "danger" if f.object.errors.key?(:shift_2_checkout_date) %>">
+                      <%= f.text_field :shift_2_checkout_date,
+                                        value: f.object.shift_2_checkout_date&.strftime("%Y/%m/%d"),
+                                        minDate: l(@date, format: :default),
+                                        class: "form-control text-center datepicker-default",
+                                       autocomplete: "off" %>
+                      <span class="input-group-text py-0">
+                        <img class="img-fluid" src="<%= image_path("employee/icons/calendar-small.svg") %>" width="20" height="20" alt="..." />
+                      </span>
+                    </div>
+                    <div class="i-helper danger"><%= f.object.errors.messages_for(:shift_2_checkout_date).join("<br/>").html_safe %></div>
+                  </div>
+                  <div class="col-8 col-xs-12">
+                    <%= f.text_field :shift_2_checkout_time,
+                                     value: f.object.shift_2_checkout_time_before_type_cast || (f.object.shift_2_checkout_time && l(f.object.shift_2_checkout_time, format: :hour_minute)) || nil,
+                                     class: "form-control text-center attendance-timepicker",
+                                     placeholder: "時間（00:00）",
+                                     autocomplete: "off" %>
+                  </div>
+                  <div class="col-12">
+                    <div class="i-helper danger"><%= f.object.errors.messages_for(:shift_2_checkout).join("<br/>").html_safe %></div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th class="text-center" scope="row"><%= Attendance.t("note") %></th>
+              <td>
+                <%= f.text_area :note, class: "form-control", rows: 5 %>
+              </td>
+            </tr>
+            <tr>
+              <th class="text-center" scope="row"><%= Attendance.t("transportation_fee") %></th>
+              <td>
+                <div class="row g-2 align-items-center">
+                  <div class="col-8">
+                    <%= f.number_field :transportation_fee, min: 0, class: "form-control" %>
+                  </div>
+                  <div class="col-4">
+                    <div>円</div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th class="text-center" scope="row"><%= Attendance.t("work_hours") %></th>
+              <td>
+                <div class="text-center"><span id="attendance_work_hours"><%= f.object.work_hours.nil? ? 0 : number_with_delimiter(f.object.work_hours) %></span>　<%= t(".hour") %></div>
+              </td>
+            </tr>
+            <tr>
+              <th class="text-center" scope="row"><%= Attendance.t("break_hours") %></th>
+              <td>
+                <div class="text-center"><span id="attendance_break_hours"><%= f.object.break_hours.nil? ? 0 : number_with_delimiter(f.object.break_hours) %></span>　<%= t(".hour") %></div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="form-bottom">
+      <div class="form-button-group">
+        <div class="form-group">
+          <div class="d-grid gap-4 gap-md-5">
+            <%= f.button t(".submit"), class: "btn btn-custom btn-primary" %>
+            <%= link_to t(".back"), attendances_path(params: { job_id: @attendance.job_id || @job.id }), class: "btn btn-custom btn-primary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

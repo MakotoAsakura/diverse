@@ -1,0 +1,42 @@
+ja:
+  candidate:
+    candidates:
+      new:
+        submit: 次へ（登録確認画面）
+        label:
+          name: お名前
+          name_kana: フリガナ
+          gender: 性別
+          national: 国籍
+          male: 男性
+          female: 女性
+          japan: "日本国籍"
+          non_japan: "外国籍"
+          bod: 生年月日
+          year: 年
+          month: 月
+          day: 日
+          zip_code: 郵便番号
+          prefecture: 都道府県
+          city: 市区町村・番地
+          address: ビル・マンション名
+          phone_number: 電話番号
+          email: ログインパスワード
+          email_confirmation: ログインパスワード（確認）
+          password: メールアドレス
+          password_confirmation: メールアドレス（確認）
+          forgot_password: パスワードをお忘れの方
+          submit: ログイン
+        button:
+          zip_code_search: 郵便番号検索
+          back_to_login: ログイン画面に戻る
+          submit:
+        placeholder:
+          email: ""
+          password: ""
+        policy_text_html: <a href="/terms" target="_blank">ご利用規約</a>に同意する
+        medical_policy_text_html: <a href="/medical/terms" target="_blank">ご利用規約</a>に同意する
+      confirm:
+        button:
+          submit: 次へ（プロフィール登録）
+          back: 入力画面に戻る

@@ -1,0 +1,10 @@
+<div><%= @candidate_job.job.medical_institution.full_name_manager %>　様</div>
+<br>
+<div>ダイバースをご利用いただき、誠にありがとうございます。</div>
+<br>
+<div><%= @candidate_job.candidate.full_name %>　様を不採用としました。</div>
+<br>
+<div>以下の画面より、プロフィールをご確認ください。</div>
+<div>プロフィールはこちら：<%= link_to "就業者詳細", medical_jobs_applied_url(@candidate_job.id) %></div>
+<br>
+<%= render "shared/mailer/footer", url_contact: new_medical_contact_url %>

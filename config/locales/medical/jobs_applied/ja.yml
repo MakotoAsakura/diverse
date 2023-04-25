@@ -1,0 +1,37 @@
+ja:
+  medical:
+    jobs_applied:
+      index:
+        search: "検索条件"
+        search_job: "求人タイトル"
+        search_job_all: "全て"
+        search_status: "公開ステータス"
+        title: "応募者一覧"
+        job_title: "求人タイトル"
+        full_name: "氏名"
+        email: "メールアドレス"
+        status: "審査ステータス"
+        profile: "プロフィール"
+        chat: "トーク"
+      title:
+        rejection: "審査確認"
+        confirm:
+          edit: "審査確認"
+        edit: "登録審査"
+        complete:
+          confirm: "審査完了"
+          rejection: "審査完了"
+      views:
+        complete:
+          confirm:
+            notice: "審査が完了しました。"
+            message: "応募者宛に審査結果のメールへをお送りしました。"
+          rejected:
+            notice: "審査が完了しました。"
+            message: "応募者宛に審査結果のメールへをお送りしました。"
+      buttons:
+        back: "応募者一覧へ"
+        reject: "採用しない"
+        recruitment: "登録審査を行う"
+        complete: "審査を完了する"
+        use: "採用する"

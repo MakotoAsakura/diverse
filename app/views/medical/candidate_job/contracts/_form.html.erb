@@ -1,0 +1,105 @@
+<% if @item.new_record? %>
+  <% content_for :title, t("medical.candidate_jobs.title.new") %>
+<% else %>
+  <% content_for :title, t("medical.candidate_jobs.title.edit") %>
+<% end %>
+
+<% @crud_buttons = proc do |f| %>
+  <% unless @item.candidate&.user_discarded? %>
+    <%= f.submit t("medical.candidate_jobs.buttons.edit"), class: "btn button save btn-submit" %>
+  <% end %>
+<% end %>
+
+<div class="wrap">
+  <div class="title-header">
+    <%= f.label :contract_detail, class: "box fw-bolder" %>
+  </div>
+</div>
+<% if @item.persisted? %>
+  <div class="mt-3">
+    <label><%= CandidateJob.t(:contract_id) %></label>
+    <div class="mt-3 ms-3">
+      <%= @item.contract_id %>
+    </div>
+  </div>
+
+  <div class="mt-3">
+    <label><%= Candidate.t(:full_name) %></label>
+    <div class="mt-3 ms-3">
+      <%= @item.candidate.full_name %>
+    </div>
+  </div>
+
+  <div class="mt-3">
+    <label><%= t("medical.contract.edit.labels.labor_contract_period") %></label>
+    <div class="mt-3 ms-3">
+      <div class="form-group-control"><%= l @item.contract_start_at, format: :long_day %>
+        〜 <%= l @item.contract_end_at, format: :long_day %></div>
+    </div>
+  </div>
+<% end %>
+
+<div class="form-group mt-3">
+  <div><%= f.label :salary_detail, @model.t(:salary_detail) %></div>
+  <div class="row">
+    <div class="col-auto">
+      <%= f.text_field :salary_detail, class: "form-control border px-1 py-2", style: "width: 90px;", value: @item.salary_detail %>
+    </div>
+    <div class="col-auto">
+      <%= f.select :salary_details_according_to, @model.salary_details_according_tos_i18n.map { |k, v| [v, k] }, {}, { class: "form-select px-1 py-2", style: "width: 85px;" } %>
+    </div>
+  </div>
+</div>
+
+<div class="form-group-control mt-3">
+  <div><%= f.label :including_transportation_allowance, @model.t(:including_transportation_allowance) %></div>
+  <ul class="rowList p-0 w-50">
+    <% @model.including_transportation_allowances_i18n.each do |k, v| %>
+      <div class="col-auto me-4 mt-1">
+        <label for="<%= f.object_name %>_including_transportation_allowance_<%= k %>">
+          <%= f.radio_button :including_transportation_allowance, k, class: "form-check-input" %>
+          <span class="form-check-label"><%= v %></span>
+        </label>
+      </div>
+    <% end %>
+  </ul>
+</div>
+
+<div class="form-group mt-3">
+  <label><%= @model.t(:remark) %></label>
+  <div class="mt-2 ms-3"><%= t("medical.candidate_jobs.views.remark_note") %></div>
+  <div class="mt-3">
+    <%= f.text_area :remark, class: "form-control border px-1 py-2", value: @item.remark, rows: 3 %>
+  </div>
+</div>
+
+<div class="form-group mt-3">
+  <label><%= @model.t(:attachments) %></label>
+  <div id="files-area">
+    <div class="mt-3">
+      <label for="attachment">
+        <a class="btn button save btn-submit text-light" style="width: 232px;" role="button" aria-disabled="false">ファイルを選択</a>
+      </label>
+      <input class="d-none" type="file" name="file[]" id="attachment" multiple/>
+    </div>
+    <div id="filesList">
+      <div id="files-names">
+        <% if @file_ids.present? %>
+          <% @file_ids.each do |file_id| %>
+            <div class="file-input-block ms-3">
+              <input class="d-none" type="text" name="file_ids[]" id="attachment-ids" value="<%= file_id %>"/>
+              <% attachment = Attachment.find_by(id: file_id) %>
+              <% next unless attachment %>
+              <div class="file-block row">
+                <div class="filename col-3"><%= attachment.filename %></div>
+                <span class="file-delete-ids col-auto"><button class="btn button save btn-submit w-100">削除</button></span>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="hr-left-80" />

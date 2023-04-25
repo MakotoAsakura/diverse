@@ -1,0 +1,24 @@
+<div class="boxed">
+  <div class="notice text-danger"><%= "給与は#{@system_setting.display_notice_payment_due}の支払いとなります。" %></div>
+  <form class="form-highlight">
+    <div class="form-group">
+      <label class="form-label d-none d-lg-inline-block"><%= t("admin.medical_institution.payslips.timeline.details") %></label>
+      <div class="form-group-control">
+        <ul class="list-group list-group-unstyled text-center">
+          <li class="list-group-item active" aria-current="true">
+            <a class="text-decoration-none" href="#"><%= t("admin.medical_institution.payslips.timeline.period") %></a>
+          </li>
+          <% @time_lines.each do |time_line| %>
+            <li class="list-group-item">
+              <%= link_to "#{time_line.year}年#{time_line.month}月分", admin_medical_institution_candidate_payslips_path(year: time_line.year, month: time_line.month), class: "text-decoration-none" %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </form>
+  <%= paginate @time_lines,
+               theme: "bootstrap-5", nav_class: "pagination-wrapper mt-5 pt-md-3",
+               pagination_class: "pagination justify-content-center",
+               window: 1, left: 1, right: 1 %>
+</div>

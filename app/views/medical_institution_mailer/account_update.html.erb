@@ -1,0 +1,8 @@
+<div><%= @medical.full_name_manager %>　様</div>
+<br>
+<div>ダイバースをご利用いただき、誠にありがとうございます。</div>
+<div>アカウント情報の更新が完了しました。</div>
+<br>
+<div>アカウント情報の確認はこちら：<%= link_to "アカウント管理画面", medical_account_url %></div>
+<br>
+<%= render "shared/mailer/footer", url_contact: new_medical_contact_url %>

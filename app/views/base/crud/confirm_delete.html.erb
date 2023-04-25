@@ -1,0 +1,12 @@
+<div>
+  <%= render template: "_confirm_delete" %>
+</div>
+
+<div class="send">
+  <% if @crud_buttons %>
+    <% @crud_buttons.call %>
+  <% else %>
+    <button type="button" class="btn btn-back button save" onclick="location.href='<%= url_for(action: :edit) %>'; return false;"><%= t("base.buttons.cancel") %></button>
+    <button type="button" class="btn button btn-destroy save" onclick="location.href='<%= url_for(action: :destroy) %>'; return false;"><%= t("base.buttons.save") %></button>
+  <% end %>
+</div>

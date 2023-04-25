@@ -1,0 +1,8 @@
+<% content_for :title, t("medical.candidate_jobs.title.contract") %>
+<% @crud_buttons = proc do |f| %>
+  <% unless @item.candidate.user.discarded? %>
+    <div><%= link_to t("medical.candidate_jobs.buttons.edit"), edit_medical_candidate_job_contract_path, class: "btn button btn-submit button-edit" %></div>
+  <% end %>
+<% end %>
+
+<%= render "contract" %>

@@ -1,0 +1,185 @@
+<% content_for :title, t("system_settings.title.confirm") %>
+
+<% @crud_buttons = proc do |f| %>
+  <%= link_to action: :edit, type: :back do %>
+    <button type="button" class="btn btn-back save"><%= t("base.buttons.cancel") %></button>
+  <% end %>
+  <%= f.submit t("system_settings.buttons.confirm"), class: "btn button btn-submit save" %>
+<% end %>
+
+<div class="invoice">
+  <div class="wrap">
+    <div class="title-header">
+      <label class="box fw-bolder"><%= t("system_settings.label.invoice") %></label>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="form-group row align-items-center">
+      <label class="col-2 fw-bolder"><%= @model.t(:settlement_expiration_date) %></label>
+      <div class="col-1"><%= @item.display_settlement_expiration_date %></div>
+    </div>
+
+    <div class="form-group row align-items-center mt-3">
+      <label class="col-2 fw-bolder"><%= @model.t(:settlement_date) %></label>
+      <div class="col-1"><%= @item.display_settlement_date %></div>
+      <div class="col-2"><%= @item.settlement_hour&.strftime("%H:%M") %></div>
+    </div>
+
+    <div class="form-group row align-items-center mt-3">
+      <label class="col-2 fw-bolder"><%= @model.t(:payment_due_month) %></label>
+      <div class="col-1"><%= @item.payment_due_month_i18n %></div>
+      <div class="col-2"><%= @item.display_payment_due_date %></div>
+    </div>
+  </div>
+
+  <div class="invoice-info my-3">
+    <label class="fw-bolder ms-4"><%= t("system_settings.label.invoice_info") %></label>
+
+    <div class="container">
+      <div class="form-group row align-items-center">
+        <label class="col-2 fw-bolder"><%= @model.t(:invoice_name) %></label>
+        <div class="col-6"><%= @item.invoice_name %></div>
+      </div>
+
+      <div class="form-group row align-items-center mt-3">
+        <label class="col-2 fw-bolder"><%= @model.t(:settlement_date) %></label>
+        <div class="col-6"><%= display_zipcode(@item.zipcode) %></div>
+      </div>
+
+      <div class="form-group row align-items-center mt-3">
+        <label class="col-2 fw-bolder"><%= @model.t(:address) %></label>
+        <div class="col-6 text-pre-line"><%= @item.address %></div>
+      </div>
+
+      <div class="form-group row align-items-center mt-3">
+        <label class="col-2 fw-bolder"><%= @model.t(:phone_number) %></label>
+        <div class="col-6"><%= display_phone_number(@item.phone_number) %></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="bank-info my-3">
+  <label class="fw-bolder ms-4"><%= t("system_settings.label.bank_info") %></label>
+
+  <div class="container">
+    <div class="form-group row align-items-center">
+      <label class="col-2 fw-bolder"><%= @model.t(:bank_name) %></label>
+      <div class="col-6"><%= @item.bank_name %></div>
+    </div>
+
+    <div class="form-group row align-items-center mt-3">
+      <label class="col-2 fw-bolder"><%= @model.t(:branch_name) %></label>
+      <div class="col-6"><%= @item.branch_name %></div>
+    </div>
+
+    <div class="form-group row align-items-center mt-3">
+      <label class="col-2 fw-bolder"><%= @model.t(:account_type) %></label>
+      <div class="col-6"><%= @item.account_type_i18n %></div>
+    </div>
+
+    <div class="form-group row align-items-center mt-3">
+      <label class="col-2 fw-bolder"><%= @model.t(:account_number) %></label>
+      <div class="col-6"><%= @item.account_number %></div>
+    </div>
+
+    <div class="form-group row align-items-center mt-3">
+      <label class="col-2 fw-bolder"><%= @model.t(:holder_name) %></label>
+      <div class="col-6"><%= @item.holder_name %></div>
+    </div>
+
+    <div class="form-group row align-items-center mt-3">
+      <label class="col-2 fw-bolder"><%= @model.t(:holder_name_kana) %></label>
+      <div class="col-6"><%= @item.holder_name_kana %></div>
+    </div>
+  </div>
+</div>
+
+<div class="payment-management my-3">
+  <div class="wrap">
+    <div class="title-header">
+      <label class="box fw-bolder"><%= t("system_settings.label.payment_management") %></label>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="form-group row align-items-center">
+      <label class="col-2 fw-bolder"><%= @model.t(:system_fee) %></label>
+      <div class="col-1"><%= @item.display_system_fee %></div>
+    </div>
+
+    <div class="form-group row align-items-center mt-3">
+      <label class="col-2 fw-bolder"><%= @model.t(:pharmaceutical_introduction_fee) %></label>
+      <div class="col-1"><%= @item.display_pharmaceutical_introduction_fee %></div>
+    </div>
+  </div>
+</div>
+
+<div class="alert-management my-3">
+  <div class="wrap">
+    <div class="title-header">
+      <label class="box fw-bolder"><%= t("system_settings.label.alert_management") %></label>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="form-group row align-items-center">
+      <label class="col-2 fw-bolder"><%= @model.t(:job_acceptance_waiting_alert) %></label>
+      <div class="col-1"><%= @item.display_job_acceptance_waiting_alert %></div>
+      <div class="col-auto">以上放置された場合</div>
+    </div>
+
+    <div class="form-group row align-items-center mt-3">
+      <label class="col-2 fw-bolder"><%= @model.t(:time_approval_waiting_alert) %></label>
+      <div class="col-1"><%= @item.display_time_approval_waiting_alert %></div>
+      <div class="col-auto">以上放置された場合</div>
+    </div>
+
+    <div class="form-group row align-items-center">
+      <label class="col-2 fw-bolder"><%= @model.t(:registration_review_approval_waiting_alert) %></label>
+      <div class="col-1"><%= @item.display_registration_review_approval_waiting_alert %></div>
+      <div class="col-auto">以上放置された場合</div>
+    </div>
+  </div>
+</div>
+
+<div class="contact-management my-3">
+  <div class="wrap">
+    <div class="title-header">
+      <label class="box fw-bolder"><%= t("system_settings.label.contact_management") %></label>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="form-group row align-items-center mt-3">
+      <label class="col-2 fw-bolder"><%= @model.t(:email_contact) %></label>
+      <div class="col-6"><%= @item.email_contact %></div>
+    </div>
+  </div>
+</div>
+
+<div class="d-none">
+  <%= f.hidden_field :settlement_expiration_date %>
+  <%= f.hidden_field :settlement_date %>
+  <%= f.hidden_field :settlement_hour %>
+  <%= f.hidden_field :payment_due_month %>
+  <%= f.hidden_field :payment_due_date %>
+  <%= f.hidden_field :invoice_name %>
+  <%= f.hidden_field :address %>
+  <%= f.hidden_field :zipcode_first %>
+  <%= f.hidden_field :zipcode_last %>
+  <%= f.hidden_field :phone_number %>
+  <%= f.hidden_field :bank_name %>
+  <%= f.hidden_field :branch_name %>
+  <%= f.hidden_field :account_type %>
+  <%= f.hidden_field :account_number %>
+  <%= f.hidden_field :holder_name %>
+  <%= f.hidden_field :holder_name_kana %>
+  <%= f.hidden_field :system_fee %>
+  <%= f.hidden_field :pharmaceutical_introduction_fee %>
+  <%= f.hidden_field :job_acceptance_waiting_alert %>
+  <%= f.hidden_field :time_approval_waiting_alert %>
+  <%= f.hidden_field :registration_review_approval_waiting_alert %>
+  <%= f.hidden_field :email_contact %>
+</div>

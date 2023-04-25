@@ -1,0 +1,73 @@
+ja:
+  candidate:
+    registration:
+      new:
+        title: 基本情報入力
+      confirm:
+        title: 基本情報確認
+        label:
+          name: お名前
+          name_kana: フリガナ
+          gender: 性別
+          national: 国籍
+          dob: 生年月日
+          zip_code: 郵便番号
+          prefecture: 都道府県
+          city: 市区町村・番地
+          address: ビル・マンション名
+          phone_number: 電話番号
+          email: メールアドレス
+          password: ログインパスワード
+          forgot_password: パスワードをお忘れの方
+          submit: ログイン
+        placeholder:
+          email: ""
+          password: ""
+      profile:
+        title: プロフィール編集
+        create: プロフィール登録
+        description: プロフィールの登録はマイページからも可能です。
+        certificates:
+          doctor: 医師
+          dental: 歯科医師
+          pharmacist: 薬剤師
+          nurse: 看護師
+          dental_hygienist: 歯科衛生士
+          physical_therapist: 理学療法士
+          occupational_therapist: 作業療法士
+          care_worker: 介護士
+          medical_office: 医療事務
+          registered_dietitian: 管理栄養士
+          childminder: "保育士"
+          others: その他
+        labels:
+          certificate: 免許・資格
+          please_select_certificate: 取得している免許・資格を全て選択してください。
+          fill_other_certificates: ※その他にチェックされた場合は下記に免許・資格をお書きください。
+          profile: プロフィール
+          final_education: 最終学歴
+          write_academic_background: 最終学歴と卒業年をお書きください。
+          year_graduate: 年卒
+          job_career: 職務経歴
+          information_cv_column: 勤務先・職務内容・実績・その他
+          skill_to_note: 特記すべきスキル
+          other_skill: その他特記すべきスキルなどあればお書きください。
+          file_upload: ファイルアップロード
+          upload_file_text: 免許・資格に関する証明書を全てアップロードしてください。
+            <br />また、職務経歴書や特記すべきスキルを証明する書類がある方はアップロードしてください
+          limit_file_upload: ※ファイルは最大3つまでアップロード可能です。
+        button:
+          upload_file: 参照
+          delete_file: 削除
+          submit: 登録完了する
+          next: 次へ（応募確認）
+          submit_edit: 編集を完了する
+          back_to_confirm: 基本情報確認画面に戻る
+          back_to_detail: プロフィール表示に戻る
+      complete:
+        title: アカウント登録完了
+        labels:
+          register_complete: アカウントの登録が完了しました。
+          send_mail: ご登録のメールアドレスへご確認のメールをお送りいたしました。
+          redirect_to_login: ログイン画面へ
+          

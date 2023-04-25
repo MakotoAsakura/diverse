@@ -1,0 +1,198 @@
+<% if @item %>
+  <% current_medical = ((current_medical || @medical_institution) rescue @medical_institution) %>
+  <div class="invoice invoice-pdf">
+    <div class="info-1">
+      <div class="info-admin">
+        <div class="zipcode"><%= display_zipcode_with_prefix(current_medical.zipcode) %></div>
+        <!--            <div class="zipcode"><%#= display_zipcode_with_prefix(@system_setting.zipcode) %></div>-->
+        <div class="address"><%= "#{current_medical.location}" %></div>
+        <!--            <div class="address"><%#= @system_setting.address %></div>-->
+        <div class="invoice_name"><%= "#{current_medical.name}御中" %></div>
+        <!--             <div class="invoice_name"><%#= @system_setting.invoice_name %></div>-->
+      </div>
+      <div class="info-invoice">
+        <div class="info-invoice__title"><%= "請　　求　　書" %></div>
+        <div class="info-invoice__wrapper">
+          <div class="invoice__wrapper-code">
+            <div class="code-title"><%= "請求No" %></div>
+            <div class="code-content" style="font-size: 13px;"><%= @item.code %></div>
+          </div>
+          <div class="delimiter"></div>
+          <div class="settlement-date">
+            <div class="settlement-date-title"><%= "請求日" %></div>
+            <div class="settlement-date-content"><%= @item.display_settlement_date %></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="info-2">
+      <div class="text-description"><%= "下記のとおり御請求申し上げます。" %></div>
+    </div>
+    <div class="info-3">
+      <div class="total-payment-due-date">
+        <div class="total">
+          <span class="total-title"><%= "合計金額" %></span><span class="total-value"><%= @item.display_total(@payslips, @item.system_fee.percent_of(100) / 100) %></span>
+        </div>
+        <div class="payment-due-date">
+          <span class="payment-due-date-title"><%= "お支払い期限" %></span><span class="payment-due-date-value"><%= @item.display_payment_due_date %></span>
+        </div>
+      </div>
+      <div class="info-medical">
+        <p class="info-medical-name">
+          <%= @system_setting.invoice_name %>
+          <%#= current_medical.name %>
+        </p>
+        <p class="info-medical-zipcode">
+          <%= display_zipcode_with_prefix(@system_setting.zipcode) %>
+          <%#= display_zipcode_with_prefix(current_medical.zipcode) %>
+        </p>
+        <p class="info-medical-address">
+          <%= @system_setting.address %>
+          <%#= current_medical.location %>
+        </p>
+        <p class="info-medical-phone-number">
+          <%= "TEL: #{display_phone_number(@system_setting.phone_number)}" %>
+          <%#= "TEL: #{display_phone_number(current_medical.phone_number)}" %>
+        </p>
+      </div>
+    </div>
+    <div class="info-4">
+      <div class="table-details">
+        <table>
+          <tr>
+            <td class="header user-name">給与等立替払い分</td>
+            <td class="header break-down">内訳</td>
+            <td class="header amount-money border-none">金額</td>
+          </tr>
+          <% @payslips.each_with_index do |payslip, index| %>
+            <% order = index % 1 == 0 ? %w[default deep] : %w[deep default] %>
+            <tr>
+              <td class="<%= order.first %>">
+                <div><%= payslip.candidate.full_name %></div>
+              </td>
+              <td class="<%= order.first %>">
+                <div><%= "給与" %></div>
+                <div><%= "交通費" %></div>
+                <div><%= "計" %></div>
+              </td>
+              <td class="<%= order.first %> text-end border-none">
+                <div><%= payslip.display_total_without_transportation_fee %></div>
+                <div><%= payslip.display_total_transportation_fee %></div>
+                <div><%= payslip.display_total_without_personal_income_tax %></div>
+              </td>
+            </tr>
+            <tr>
+              <td class="<%= order.last %>">
+                <div></div>
+              </td>
+              <td class="<%= order.last %>">
+                <div><%= "源泉所得税差引き分" %></div>
+                <div><%= "小計" %></div>
+              </td>
+              <td class="<%= order.last %> text-end border-none">
+                <div><%= payslip.display_personal_income_tax %></div>
+                <div><%= payslip.display_total_without_prefix %></div>
+              </td>
+            </tr>
+            <tr>
+              <td class="<%= order.first %>">
+                <div></div>
+              </td>
+              <td class="<%= order.first %>">
+                <div><%= "システム使用料" %></div>
+                <div><%= "消費税合計" %></div>
+                <div><%= "小計" %></div>
+              </td>
+              <td class="<%= order.first %> text-end border-none">
+                <div><%= payslip.display_total_system_fee(@item.system_fee.percent_of(100) / 100) %></div>
+                <div><%= payslip.display_total_tax_fee(@item.system_fee.percent_of(100) / 100) %></div>
+                <div><%= payslip.display_total_tax_system_fee(@item.system_fee.percent_of(100) / 100) %></div>
+              </td>
+            </tr>
+            <tr>
+              <td class="<%= order.last %>">
+                <div></div>
+              </td>
+              <td class="<%= order.last %>">
+                <div><%= "合計" %></div>
+              </td>
+              <td class="<%= order.last %> text-end border-none">
+                <div><%= payslip.display_total_income(@item.system_fee.percent_of(100) / 100) %></div>
+              </td>
+            </tr>
+          <% end %>
+          <% if @payslips.count < 4 %>
+            <% (0..(4 - @payslips.count - 1)).each do |index| %>
+              <% order = (index + @payslips.count.to_i).even? ? %w[default deep] : %w[deep default] %>
+              <tr>
+                <td class="<%= order.first %>">
+                  <div></div>
+                </td>
+                <td class="<%= order.first %>"></td>
+                <td class="<%= order.first %> border-none"></td>
+              </tr>
+              <tr>
+                <td class="<%= order.last %>">
+                  <div></div>
+                </td>
+                <td class="<%= order.last %>"></td>
+                <td class="<%= order.last %> border-none"></td>
+              </tr>
+              <tr>
+                <td class="<%= order.first %>">
+                  <div></div>
+                </td>
+                <td class="<%= order.first %>"></td>
+                <td class="<%= order.first %> border-none"></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </table>
+      </div>
+    </div>
+    <div class="info-5">
+      <div class="delimiter"></div>
+    </div>
+    <div class="info-6">
+      <div class="bank-info">
+        <div class="bank-info__details">
+          <p style="margin-top: 15px"><%= "【振込先】#{@system_setting.bank_name}銀行#{@system_setting.branch_name}支店" %></p>
+          <p><%= "口座番号／(#{@system_setting.account_type_i18n.first})#{@system_setting.account_number}" %></p>
+        </div>
+      </div>
+<!--      <div class="total-info">-->
+<!--        <div class="table-details">-->
+<!--          <table>-->
+<!--            <tr>-->
+<!--              <td class="table-details__item"><%#= "小　　計" %></td>-->
+<!--              <td class="table-details__value"><%#= @item.display_subtotal_without_prefix %></td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--              <td class="table-details__item"><%#= "税率" %></td>-->
+<!--              <td class="table-details__value"><%#= @item.display_tax_without_prefix %></td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--              <td class="table-details__item"><%#= "消費税" %></td>-->
+<!--              <td class="table-details__value"><%#= @item.display_tax_money_without_prefix %></td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--              <td class="table-details__item"><%#= "合計" %></td>-->
+<!--              <td class="table-details__value fw-bolder"><%#= @item.display_total_without_prefix %></td>-->
+<!--            </tr>-->
+<!--          </table>-->
+<!--        </div>-->
+<!--      </div>-->
+    </div>
+    <div class="info-7">
+      <div class="delimiter"></div>
+    </div>
+    <div class="info-8">
+      <div class="description-tax">
+        <div><%= "備考／" %></div>
+        <div><%= "システム利用料は、立替給与の#{convert_number_decimal(@system_setting.system_fee.percent_of(100))}％となります。" %></div>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <p style="margin-top: 20px;"><%= t("base.no_data") %></p>
+<% end %>

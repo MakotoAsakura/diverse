@@ -1,0 +1,193 @@
+<% if @item %>
+  <div class="payslip payslip-pdf">
+    <div class="payslip__title-detail">
+      <span><%= "#{@item.year}年#{@item.month}月分 　支払明細書" %></span>
+    </div>
+    <div class="payslip__full-name">
+      <div class="">
+        <%= "氏名 " %>
+        <span class="ms-3 text-decoration-underline text-break"><%= @item.candidate.full_name %></span>
+      </div>
+    </div>
+    <div class="payslip__zipcode">
+      <table>
+        <tr>
+          <td style="width: 460px;"></td>
+          <td>
+            <div class="wrapper">
+              <div class="current-medical-name"><%= @item.medical_institution.name %></div>
+              <div class="">
+                <span><%= display_zipcode_with_prefix(@item.medical_institution.zipcode) %></span>
+                <span class="ms-3 text-break"><%= @item.medical_institution.location %></span>
+              </div>
+              <div class="">
+                <%= "TEL: #{display_phone_number(@item.medical_institution.phone_number)}" %>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="payslip__total">
+      <table>
+        <tr>
+          <td>
+            <span class="payslip__total-title">差引支給額</span>
+          </td>
+          <td>
+            <span class="payslip__total-income">
+              <span><%= @item.display_total %></span>
+            </span>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="payslip__info">
+      <table>
+        <% if @item.day? %>
+          <tr>
+            <td>
+              <div class="payslip__total-working-day-title">
+                <div style="margin: 3px 0 3px 0">
+                  <span>勤務日数</span>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="payslip__total-working-day-detail">
+                <div style="margin-top: 3px">
+                  <%= @item.display_total_day %>
+                </div>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+        <% if @item.hour? %>
+          <tr>
+            <td>
+              <div class="payslip__total-hour-title">
+                <div style="margin: 3px 0 3px 0">
+                  <span>勤務時間</span>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="payslip__total-hour-detail">
+                <div style="margin-top: 3px">
+                  <%= @item.display_total_hour %>
+                </div>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+        <tr>
+          <td>
+            <div class="payslip__unit-price-title">
+              <div style="margin: 3px 0 3px 0">
+                <% if @item.day? %>
+                  <span>日給</span>
+                <% else %>
+                  <span>時給</span>
+                <% end %>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="payslip__unit-price-detail">
+              <div style="margin-top: 3px">
+                <%= @item.display_unit_price %>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="payslip__unit-price-title">
+              <div style="margin: 3px 0 3px 0">
+                <span>基本給</span>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="payslip__unit-price-detail">
+              <div style="margin-top: 3px">
+                <%= @item.display_total_without_transportation_fee %>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="payslip__transportation-fee-title">
+              <div style="margin: 3px 0 3px 0">
+                <span>非課税通勤費</span>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="payslip__transportation-fee-detail">
+              <div style="margin-top: 3px">
+                <%= @item.display_total_transportation_fee %>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="payslip__transportation-fee-title">
+              <div style="margin: 3px 0 3px 0">
+                <span>支給合計</span>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="payslip__transportation-fee-detail">
+              <div style="margin-top: 3px">
+                <%= @item.display_total_without_personal_income_tax %>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="delimiter payslip__info">
+      <table>
+        <tr>
+          <td>
+            <div class="payslip__total-working-day-title">
+              <div style="margin: 3px 0 3px 0">
+                <span>所得税</span>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="payslip__total-working-day-detail">
+              <div style="margin-top: 3px">
+                <%= @item.display_personal_income_tax %>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="payslip__total-working-day-title">
+              <div style="margin: 3px 0 3px 0">
+                <span>控除総計</span>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="payslip__total-working-day-detail">
+              <div style="margin-top: 3px">
+                <%= @item.display_personal_income_tax %>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+<% else %>
+  <p style="margin-top: 20px;"><%= t("base.no_data") %></p>
+<% end %>

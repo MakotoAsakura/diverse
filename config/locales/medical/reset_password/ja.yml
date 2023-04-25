@@ -1,0 +1,22 @@
+ja:
+  reset_password:
+    new:
+      title: "パスワード再設定"
+      text: "登録済のメールアドレスを入力してください。"
+      text2: "メールにてパスワード再設定用のURLをお送りいたします。"
+      button: "送信する"
+      back_to_login: "ログイン画面に戻る"
+    edit:
+      title: "パスワード再設定"
+      text: "新しいパスワードを入力してください。"
+      button: "パスワードを再設定する"
+      new_password: "新しいパスワード"
+      new_password_confirm: "新しいパスワード（確認用）"
+    send_mail_success:
+      title: "パスワード再設定"
+      text: "ご登録のメールアドレスにパスワード再発行メールをお送りしました。"
+      button: "ログイン画面へ"
+    finish:
+      title: "パスワード再設定完了"
+      text: "パスワードの再設定が完了しました。"
+      button: "ログイン画面へ"

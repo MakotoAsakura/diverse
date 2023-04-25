@@ -1,0 +1,15 @@
+<% content_for :title, t("medical.registration.views.complete.title") %>
+
+<div class="text-center complete-container">
+  <div class="mb-4">
+    <strong><%= t("medical.registration.views.complete.label.register_complete") %></strong>
+  </div>
+  <div class="mb-4">
+    <strong><%= t("medical.registration.views.complete.label.send_mail") %></strong>
+  </div>
+</div>
+<div class="text-center">
+  <%= link_to new_medical_user_session_path do %>
+    <%= button_tag t("candidate.registration.complete.labels.redirect_to_login"), class: "px-5 btn btn-submit" %>
+  <% end %>
+</div>

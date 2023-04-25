@@ -1,0 +1,5 @@
+<% content_for :title, t("candidate.profile.edit.title") %>
+<% content_for :title_class, "text-center text-lg-center" %>
+<div class="job-applied-profile">
+  <%= render "employee/profiles/form", user: current_candidate, ref: params[:ref].presence || new_jobs_applied_path(params: { job_id: @candidate_job.job_id }) %>
+</div>

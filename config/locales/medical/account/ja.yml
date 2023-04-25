@@ -1,0 +1,39 @@
+ja:
+  medical:
+    account:
+      show:
+        title: "アカウント管理"
+        labels:
+          medical_name: "求人機関名"
+          medical_name_kana: "フリガナ"
+          registered_content: "登録内容"
+          phone_number: "電話番号"
+          url: "ホームページアドレス（URL）"
+          zipcode: "郵便番号"
+          location: "所在地"
+          manager: "担当者"
+          name_manager_kana: "フリガナ"
+          email: "メールアドレス"
+          introduction_pharmaceutical: "本システム紹介　医薬品卸会社"
+          name_pharma: "医薬品卸会社名"
+          ms_staff: "担当MS名"
+          confirm_update: "上記内容で更新します。よろしいですか？"
+          update_account: "アカウントを更新する"
+          delete_account: "アカウントを削除する"
+          password: "ログインパスワード"
+          password_confirmation: "ログインパスワード（確認用）"
+          update_detail: "更新内容"
+          update_account_btn: "アカウントを更新する"
+      complete:
+        title: "更新完了"
+        send_email: "更新が完了しました。"
+        account_updated: "ご登録のメールアドレスへご確認のメールをお送りしました。"
+        back: "アカウント管理へ"
+      delete:
+        note: "アカウントを削除します。よろしいですか？"
+        warning: "※アカウントを削除すると復元することができません。ご注意ください。"
+      delete_complete:
+        title: "更新完了"
+        completed: "削除が完了しました。"
+        send_mail: "ご登録のメールアドレスへご確認のメールをお送りしました。"
+        back_button: "ログイン画面へ"

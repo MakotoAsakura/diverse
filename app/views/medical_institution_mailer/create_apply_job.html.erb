@@ -1,0 +1,15 @@
+<div><%= @candidate_job.job.medical_institution.full_name_manager %>　様</div>
+<br>
+<div>ダイバースをご利用いただき、誠にありがとうございます。</div>
+<br>
+<div>求人応募を受け付けましたので、ご連絡いたします。</div>
+<br>
+<div>お名前：<%= @candidate_job.candidate.full_name %></div>
+<div>メールアドレス：<%= @candidate_job.candidate.user_email %></div>
+<div>求人情報：<%= link_to "募集詳細画面", medical_jobs_applied_url(@candidate_job.id) %></div>
+<br>
+<div>トーク画面にて求職者様とコンタクトをお取りください。</div>
+<div>※応募者一覧からトーク画面を表示できます。</div>
+<div>応募者一覧はこちら：<%= link_to "応募者一覧", medical_jobs_applied_index_url %></div>
+<br>
+<%= render "shared/mailer/footer", url_contact: new_medical_contact_url %>

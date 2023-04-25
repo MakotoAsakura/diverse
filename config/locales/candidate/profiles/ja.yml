@@ -1,0 +1,22 @@
+ja:
+  candidate:
+    profile:
+      show:
+        title: プロフィール表示
+        labels:
+          profile: プロフィール
+          certificates: 免許・資格
+          final_education: 最終学歴
+          job_career: 職務経歴
+          information_cv: 勤務先・職務内容・実績・その他
+          skill: 特記すべきスキル
+          file_uploaded: ファイルアップロード
+          list_file: アップロード済ファイル
+          file_description: ファイル説明
+          file_name: ファイル名
+        buttons:
+          edit_profile: プロフィールを編集する
+          return_my_page: マイページに戻る
+      edit:
+        title: プロフィール編集
+

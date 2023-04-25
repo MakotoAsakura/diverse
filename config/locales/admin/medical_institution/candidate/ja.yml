@@ -1,0 +1,66 @@
+ja:
+  admin:
+    medical_institution:
+      candidate:
+        title:
+          index: "就業者一覧"
+          show:
+          new:
+          create:
+          edit: "就業者詳細"
+          update: "就業者詳細"
+          confirm:
+          confirm_update:
+          confirm_delete:
+          complete:
+            confirm:
+            confirm_update:
+            confirm_delete:
+        views:
+          medical_institution: "求人機関名称"
+          search: "検索条件"
+          list: "就業者一覧"
+          address: "住所"
+        links:
+          detail: "就業者詳細"
+          attendance: "出退勤表示"
+          invoice: "支払い明細"
+        buttons:
+        note:
+        warning:
+      attendances:
+        title: "勤怠管理"
+        jobs:
+          title: "勤怠管理"
+          medical_institution_name: "求人機関名"
+          contract_list: "勤怠管理（契約一覧）"
+          contract_description: "※契約IDは応募求人詳細に記載しています。"
+          contract_id: "契約ID"
+        attendances:
+          title: "出退勤表示"
+          medical_institution_name: "求人機関名"
+          employee_name: "就業者名"
+          contract_id: "契約ID"
+          job_name: "求人タイトル"
+          working_term: "契約期間"
+          attendance_list: "出退勤一覧"
+          date: "日付"
+          checkin: "出勤日時"
+          checkout: "退勤日時"
+          status: "申請状況"
+          note: "備考"
+          pagination:
+            current: "今月"
+          actions:
+            submit: "勤怠申請"
+            cancel: "勤怠申請キャンセル"
+            edit: "入力/編集"
+            show: "詳細"
+      payslips:
+        title: "支払明細"
+        timeline:
+          details: "支払明細（期間）"
+          period: "期間"
+        index:
+          download: "ダウンロード"
+

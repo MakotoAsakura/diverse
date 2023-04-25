@@ -1,0 +1,34 @@
+ja:
+  admin:
+    notifications:
+      title:
+        new: "お知らせ作成"
+        create: "お知らせ作成"
+        edit: "お知らせ詳細"
+        update: "お知らせ詳細"
+        confirm: "作成確認"
+        confirm_delete: "更新確認"
+        complete:
+          confirm: "作成完了"
+        index: "お知らせ一覧"
+      index:
+        time_invalid: "終了日には開始日以降の日付を指定して下さい。"
+      new:
+        submit: "お知らせを作成する"
+      edit:
+        submit: "お知らせを更新する"
+        delete: "お知らせを削除する"
+      confirm_delete:
+        note1: "お知らせを削除します。よろしいですか？"
+        note2: "※お知らせを削除すると復元することができません。ご注意ください。"
+        delete_button: "お知らせを削除する"
+      complete:
+        new:
+          title: "作成完了"
+          notice: "お知らせを作成しました。"
+        edit:
+          title: "更新完了"
+          notice: "お知らせを更新しました。"
+        destroy:
+          title: "削除完了"
+          notice: "削除が完了しました。"

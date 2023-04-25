@@ -1,0 +1,9 @@
+<% content_for :title, t("medical_institution.views.complete.titles.#{params[:_action]}"), flush: true %>
+
+<% @complete_notice = proc do %>
+  <%= t("medical_institution.views.complete.#{params[:_action] == "edit" ? "confirm_update" : "confirm"}.notice") %>
+<% end %>
+
+<% @complete_send_mail = proc do %>
+  <%= t("medical_institution.views.complete.#{params[:_action] == "edit" ? "confirm_update" : "confirm"}.message") %>
+<% end %>

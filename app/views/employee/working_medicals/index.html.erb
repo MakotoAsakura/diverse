@@ -1,0 +1,26 @@
+<% content_for :title, t(".title") %>
+<% content_for :title_class, "text-start text-lg-start" %>
+
+<div class="boxed">
+  <form class="form-highlight">
+    <div class="form-group">
+      <label class="form-label"><%= t(".medical_list") %></label>
+      <div class="form-group-control">
+        <ul class="list-group list-group-unstyled text-center">
+          <li class="list-group-item active" aria-current="true">
+            <a href="javascript:void(0)"><%= t(".medical_institution_name") %></a>
+          </li>
+          <% @medical_institutions.each do |medical_institution| %>
+            <li class="list-group-item" aria-current="true">
+              <%= link_to medical_institution.name, working_medicals_path(params: { medical_institution_id: medical_institution.id }) %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </form>
+  <%= paginate @medical_institutions,
+               theme: "bootstrap-5", nav_class: "pagination-wrapper mt-5 pt-md-3",
+               pagination_class: "pagination justify-content-center",
+               window: 1, left: 1, right: 1  %>
+</div>

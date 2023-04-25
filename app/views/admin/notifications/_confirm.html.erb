@@ -1,0 +1,56 @@
+<% @crud_buttons = proc do |f| %>
+  <%= link_to action: @item.new_record? ? :new : :edit, type: :back, id: @item.id do %>
+    <button type="button" class="btn btn-back save"><%= t("base.buttons.cancel") %></button>
+  <% end %>
+  <%= f.submit t("admin.notifications.#{@item.new_record? ? :new : :edit}.submit"), class: "btn button btn-submit save" %>
+<% end %>
+
+<div class="wrap">
+  <div class="title-header">
+    <%= f.label :title, "お知らせ情報", class: "box fw-bolder" %>
+  </div>
+</div>
+
+<div class="container">
+  <div class="form-group row align-items-center">
+    <div class="col-2 fw-bolder"><%= f.label :title, @model.t(:title) %></div>
+    <div class="col-7"><%= @item.title %></div>
+  </div>
+
+  <div class="form-group row align-items-center mt-3">
+    <div class="col-2 fw-bolder"><%= f.label :content, @model.t(:content) %></div>
+    <div class="col-7">
+      <%= @item.content %>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center mt-3">
+    <div class="col-2 fw-bolder"><%= f.label :attachments, @model.t(:attachments) %></div>
+    <div class="col-7">
+      <ul class="list-unstyled ps-0">
+        <% @file_ids.each do |file_id| %>
+          <% attachment = Attachment.find_by(id: file_id) %>
+          <% next unless attachment %>
+          <%= attachment_lightbox_tag(attachment, parent_tag_name: :li) %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <% if @item.start_time || @item.end_time %>
+    <div class="form-group row align-items-center mt-3">
+      <div class="col-2 fw-bolder"><%= f.label :publish_time, @model.t(:publish_time) %></div>
+      <div class="col-7">
+        <%= "#{@item.start_time ? l(@item.start_time, format: :long_day) : "-"}　〜　#{@item.end_time ? l(@item.end_time, format: :long_day) : "-"}"  %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<%= f.hidden_field :title %>
+<%= f.hidden_field :start_time %>
+<%= f.hidden_field :end_time %>
+<%= f.hidden_field :content %>
+<% @file_ids.each do |file_id| %>
+  <input type="text" name="file_ids[]" value="<%= file_id %>" style="visibility: hidden; position: absolute;"/>
+<% end %>

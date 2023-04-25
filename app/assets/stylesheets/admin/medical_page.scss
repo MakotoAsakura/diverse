@@ -1,0 +1,113 @@
+#admin-page .button-search, #admin-page .button-bulk {
+  background: #28c76f;
+  border-radius: 12px;
+  min-width: 150px;
+  width: auto;
+  height: 36px;
+  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  color: rgba(255, 255, 255, 0.76);
+}
+
+#admin-page .info .title {
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 23px;
+  background: #28c76f;
+  border: 1px solid #B3B3B3;
+  color: #FFFFFF;
+}
+
+#admin-page label {
+  font-weight: bold;
+}
+
+#admin-page .show-state {
+  width: 75%;
+  height: 59px;
+  background: #28c76f;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#admin-page .show-state .text-state {
+  margin-left: 10px;
+  height: 100%;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 29px;
+  display: flex;
+  align-items: center;
+}
+
+#admin-page .title-table {
+  background: #28c76f;
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 23px;
+}
+
+#admin-page .time-wrap {
+  // padding: 0 1rem;
+  max-width: 740px;
+}
+
+#admin-page .time-wrap .time-info {
+  font-size: 20px;
+  line-height: 24px;
+  color: #000000;
+}
+
+#admin-page .time-wrap .time-picker {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+#admin-page .time-wrap .download {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  color: rgba(255, 255, 255, 0.76);
+  margin-left: auto;
+}
+
+#admin-page .time-wrap .download button {
+  padding: 10px 0;
+  min-width: 200px;
+}
+
+#admin-page .time-wrap .send-mail {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  color: rgba(255, 255, 255, 0.76);
+  margin-left: auto;
+  padding: 10px 0;
+  min-width: 200px;
+}
+
+#admin-page .time-wrap .time-picker .current {
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 18px;
+  color: #FFFFFF;
+}
+#admin-page .btn-submit {
+  background-color: #28c76f !important;
+  border-color: #28c76f !important;
+  border-radius: 12px !important;
+  color: #FFFFFF;
+}
+
+#admin-page .time-wrap a {
+  text-decoration: none;
+}
+
+#admin-page .filename {
+  color: #6DBEFF;
+}

@@ -1,0 +1,18 @@
+<% content_for :title, "審査確認" %>
+
+<div class="container w-50">
+  <div class="title-header">
+    <label class="box fw-bolder"><%= "否認理由" %></label>
+    <div class="color-light-gray text-pre-line">
+      <%= params[:item][:reason] %>
+    </div>
+  </div>
+  <div class="row justify-content-center aligns-items-center mt-5">
+    <div class="mb-2 fw-bolder"><%= "契約求人機関として承認しません。。よろしいですか？ " %></div>
+    <div class="text-center send">
+      <%= link_to complete_approval_admin_medical_institution_applying_path(@item, approve: false, reason: params[:item][:reason]) do %>
+        <button type="button" class="btn save btn-submit"><%= "審査を完了する" %></button>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+ja:
+  helpers:
+    label:
+      medical_institution:
+        full_name_manager: "担当者"
+        full_name_kana_manager: "フリガナ"
+        registered_content: "登録内容"
+        update_content: "更新内容"
+        change_content: "応募内容"
+        delete_content: "登録内容"
+        pharmaceutical_company: "本システム紹介　医薬品卸会社"
+      candidate:
+      job:
+        basic_information: "基本情報"
+        details_information: "詳細情報"
+        post_period: "掲載期間"
+      candidate_job:
+        contract_detail: "契約内容"
+        admin_contract_detail: "採用内容"
+      people: "人"

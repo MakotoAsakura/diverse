@@ -1,0 +1,127 @@
+<% return unless admin_user_signed_in? %>
+
+<nav class="nav-item">
+  <div class="wrap">
+    <i class="icon"><%= image_tag("svg/cadidate_apply_icon.svg") %></i>
+    <span class="text"><%= t("base.buttons.navi.medical_title") %></span>
+  </div>
+  <%= link_to admin_medical_institution_applying_index_path do %>
+    <div class="button">
+      <button class="btn btn-outline-primary"><%= t("base.buttons.navi.list") %></button>
+    </div>
+  <% end %>
+</nav>
+<nav class="nav-item">
+  <div class="wrap">
+    <i class="icon"><%= image_tag("svg/job_offer_icon.svg") %></i>
+    <span class="text"><%= t("base.buttons.navi.contract_medical_title") %></span>
+  </div>
+  <%= link_to admin_medical_institutions_path do %>
+    <div class="button">
+      <button class="btn btn-outline-primary"><%= t("base.buttons.navi.list") %></button>
+    </div>
+  <% end %>
+  <%= link_to new_admin_medical_institution_path do %>
+    <div class="button">
+      <button class="btn btn-outline-primary"><%= t("base.buttons.navi.register") %></button>
+    </div>
+  <% end %>
+</nav>
+<nav class="nav-item">
+  <div class="wrap">
+    <i class="icon"><%= image_tag("svg/cadidate_seeking_icon.svg") %></i>
+    <span class="text"><%= t("base.buttons.navi.job_seeker") %></span>
+  </div>
+  <%= link_to admin_candidate_jobs_path do %>
+    <div class="button">
+      <button class="btn btn-outline-primary"><%= t("base.buttons.navi.list") %></button>
+    </div>
+  <% end %>
+</nav>
+<nav class="nav-item">
+  <div class="wrap">
+    <i class="icon"><%= image_tag("svg/request_icon.svg") %></i>
+    <span class="text"><%= t("base.buttons.navi.pharmaceutical_wholesale_company") %></span>
+  </div>
+  <%= link_to admin_pharmaceutical_companies_path do %>
+    <div class="button">
+      <button class="btn btn-outline-primary"><%= t("base.buttons.navi.list") %></button>
+    </div>
+  <% end %>
+</nav>
+<nav class="nav-item">
+  <div class="wrap">
+    <i class="icon"><%= image_tag("svg/notice_icon.svg") %></i>
+    <span class="text"><%= t("base.buttons.navi.news") %></span>
+  </div>
+
+  <%= link_to admin_notifications_path do %>
+    <div class="button">
+      <button class="btn btn-outline-primary"><%= t("base.buttons.navi.list") %></button>
+    </div>
+  <% end %>
+
+  <%= link_to new_admin_notification_path do %>
+    <div class="button">
+      <button class="btn btn-outline-primary"><%= t("base.buttons.navi.register") %></button>
+    </div>
+  <% end %>
+</nav>
+<nav class="nav-item">
+  <div class="wrap">
+    <i class="icon"><%= image_tag("svg/setting_icon.svg") %></i>
+    <span class="text"><%= t("base.buttons.navi.system_setting") %></span>
+  </div>
+  <%= link_to admin_system_setting_path do %>
+    <div class="button">
+      <button class="btn btn-outline-primary"><%= t("base.buttons.navi.detail_setting") %></button>
+    </div>
+  <% end %>
+  <%= link_to admin_tax_withholdings_path(type: "normal") do %>
+    <div class="button">
+      <button class="btn btn-outline-primary"><%= t("base.buttons.navi.tax_withholding") %></button>
+    </div>
+  <% end %>
+  <%= link_to admin_tax_withholdings_path(type: "formula") do %>
+    <div class="button">
+      <button class="btn btn-outline-primary"><%= t("base.buttons.navi.tax_withholding_amount") %></button>
+    </div>
+  <% end %>
+</nav>
+<nav class="nav-item">
+  <div class="wrap">
+    <i class="icon"><%= image_tag("svg/account_icon.svg") %></i>
+    <span class="text"><%= t("base.buttons.navi.account_management") %></span>
+  </div>
+  <%= link_to edit_admin_account_path do %>
+    <div class="button">
+      <button class="btn btn-outline-primary"><%= t("base.buttons.navi.edit_account") %></button>
+    </div>
+  <% end %>
+  <%= link_to new_admin_manage_path do %>
+    <div class="button">
+      <button class="btn btn-outline-primary" style="font-size: 14px;"><%= t("base.buttons.navi.create_admin") %></button>
+    </div>
+  <% end %>
+  <%= link_to admin_manages_path do %>
+    <div class="button">
+      <button class="btn btn-outline-primary">
+        <%= t("base.buttons.navi.list_admin") %>
+      </button>
+    </div>
+  <% end %>
+</nav>
+<nav class="nav-item mb-3">
+  <% if admin_user_signed_in? %>
+
+  <div class="wrap">
+      <i class="icon"><%= image_tag("svg/logout_icon.svg") %></i>
+      <span class="text"><%= t("base.buttons.navi.logout") %></span>
+    </div>
+    <div class="button">
+      <%= button_to destroy_admin_user_session_path, method: :delete, class: "btn btn-danger" do %>
+        <%= t("base.buttons.navi.logout") %>
+      <% end %>
+    </div>
+  <% end %>
+</nav>

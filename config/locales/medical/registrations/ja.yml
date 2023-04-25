@@ -1,0 +1,52 @@
+ja:
+  medical:
+    registration:
+      views:
+        new:
+          title: 新規登録
+          title_user: 登録内容
+          title_pharmacy: 本システム紹介　医薬品卸会社
+          label:
+            name: 求人機関名
+            name_kana: フリガナ
+            gender: 性別
+            national: 国籍
+            male: 男性
+            female: 女性
+            japan: 日本国籍
+            non_japan: 外国籍
+            bod: 生年月日
+            year: 年
+            month: 月
+            day: 日
+            zip_code: 郵便番号
+            prefecture: 都道府県
+            city: 市区町村・番地
+            address: ビル・マンション名
+            phone_number: 電話番号
+            password: ログインパスワード
+            submit: ログイン
+            url: ホームページアドレス（URL）
+            location: 所在地
+            full_name_manager: 担当者
+            full_name_kana_manager: フリガナ
+            staff_ms: 担当MS名
+          buttons:
+            submit: アカウントを作成する
+          placeholder:
+            name: 名称
+            name_kana: メイショウ
+            name_pharmacy: 名称
+        confirm:
+          title: 登録確認
+          label:
+            confirm_create: 上記内容で更新します。よろしいですか？
+          buttons:
+            submit: アカウントを作成する
+        complete:
+          title: 登録完了
+          label:
+            register_complete: 登録が完了しました。
+            send_mail: ご登録のメールアドレスへご確認のメールをお送りしました。
+          buttons:
+            back: アカウント管理へ

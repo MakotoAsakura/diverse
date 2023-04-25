@@ -1,0 +1,201 @@
+<% content_for :title, t("candidate.registration.new.title") %>
+<%= form_for(resource, as: resource_name, url: sign_up_confirm_path, data: { turbo: false }) do |f| %>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-10 col-xxl-7">
+        <div class="form-highlight">
+          <%= f.fields_for :candidate, resource.candidate || Candidate.new do |ff| %>
+            <div class="form-group">
+              <label class="form-label"><%= t("candidate.candidates.new.label.name") %></label>
+              <div class="form-group-control">
+                <div class="row">
+                  <div class="col-6">
+                    <%= ff.text_field :first_name, class: "form-control", placeholder: "姓" %>
+                  </div>
+                  <div class="col-6">
+                    <%= ff.text_field :last_name, class: "form-control", placeholder: "名" %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label"><%= t("candidate.candidates.new.label.name_kana") %></label>
+              <div class="form-group-control">
+                <div class="row">
+                  <div class="col-6">
+                    <%= ff.text_field :first_name_kana, class: "form-control", placeholder: "セイ" %>
+                  </div>
+                  <div class="col-6">
+                    <%= ff.text_field :last_name_kana, class: "form-control", placeholder: "メイ" %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label"><%= t("candidate.candidates.new.label.gender") %></label>
+              <div class="form-group-control">
+                <div class="row g-3 align-items-center">
+                  <div class="col-auto">
+                    <label class="form-check">
+                      <%= ff.radio_button :gender, "male", class: "form-check-input", checked: true %>
+                      <span class="form-check-label"><%= t("candidate.candidates.new.label.male") %></span>
+                    </label>
+                  </div>
+                  <div class="col-auto">
+                    <label class="form-check">
+                      <%= ff.radio_button :gender, "female", class: "form-check-input" %>
+                      <span class="form-check-label"><%= t("candidate.candidates.new.label.female") %></span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label"><%= t("candidate.candidates.new.label.national") %></label>
+              <div class="form-group-control">
+                <div class="row g-3 align-items-center">
+                  <div class="col-auto">
+                    <label class="form-check">
+                      <%= ff.radio_button :national, "japan", class: "form-check-input", checked: true %>
+                      <span class="form-check-label"><%= t("candidate.candidates.new.label.japan") %></span>
+                    </label>
+                  </div>
+                  <div class="col-auto">
+                    <label class="form-check">
+                      <%= ff.radio_button :national, "non_japan", class: "form-check-input" %>
+                      <span class="form-check-label"><%= t("candidate.candidates.new.label.non_japan") %></span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label"><%= t("candidate.candidates.new.label.bod") %></label>
+              <div class="form-group-control form-group-full-year">
+                <div class="row g-3 align-items-center">
+                  <div class="col-auto">
+                    <%= ff.text_field :year_of_birth, class: "form-control", placeholder: "----" %>
+                  </div>
+                  <div class="col-auto px-0 px-md-2">
+                    <label class="col-form-label"><%= t("candidate.candidates.new.label.year") %></label>
+                  </div>
+                  <div class="col-auto">
+                    <%= ff.text_field :month_of_birth, class: "form-control", placeholder: "--" %>
+                  </div>
+                  <div class="col-auto px-0 px-md-2">
+                    <label class="col-form-label"><%= t("candidate.candidates.new.label.month") %></label>
+                  </div>
+                  <div class="col-auto">
+                    <%= ff.text_field :day_of_birth, class: "form-control", placeholder: "--" %>
+                  </div>
+                  <div class="col-auto px-0 px-md-2">
+                    <label class="col-form-label"><%= t("candidate.candidates.new.label.day") %></label>
+                  </div>
+                </div>
+              </div>
+
+              <%= ff.text_field :dob, class: "form-control d-none", placeholder: "--" %>
+            </div>
+            <div class="form-group">
+              <label class="form-label"><%= t("candidate.candidates.new.label.zip_code") %></label>
+              <div class="form-group-control form-group-post-code">
+                <div class="row g-3 align-items-center">
+                  <div class="col-auto col-md-4">
+                    <%= ff.text_field :zipcode, class: "form-control", placeholder: "", id: "item_zipcode" %>
+                  </div>
+                  <div class="col-auto">
+                    <button class="btn btn-primary" type="button" id="post_code_search"><%= t("candidate.candidates.new.button.zip_code_search") %></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label"><%= t("candidate.candidates.new.label.prefecture") %></label>
+              <div class="form-group-control">
+                <div class="row">
+                  <div class="col-6">
+                    <%= ff.text_field :prefecture, class: "form-control", placeholder: "", id: "item_prefecture" %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label"><%= t("candidate.candidates.new.label.city") %></label>
+              <div class="form-group-control">
+                <%= ff.text_field :city, class: "form-control", placeholder: "", id: "item_city" %>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label"><%= t("candidate.candidates.new.label.address") %></label>
+              <div class="form-group-control">
+                <%= ff.text_field :address, class: "form-control", placeholder: "" %>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label"><%= t("candidate.candidates.new.label.phone_number") %></label>
+              <div class="form-group-control">
+                <div class="row">
+                  <div class="col-8">
+                    <%= ff.text_field :phone_number, class: "form-control", placeholder: "" %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          <div class="form-group">
+            <label class="form-label"><%= t("candidate.candidates.new.label.password") %></label>
+            <div class="form-group-control">
+              <%= f.text_field :email, type: "email", class: "form-control", placeholder: "" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label"><%= t("candidate.candidates.new.label.password_confirmation") %></label>
+            <div class="form-group-control">
+              <%= f.text_field :email_confirmation, type: "email", class: "form-control", placeholder: "" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label"><%= t("candidate.candidates.new.label.email") %></label>
+            <div class="form-group-control">
+              <div class="row">
+                <div class="col-8">
+                  <%= f.password_field :password, class: "form-control", placeholder: "" %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label"><%= t("candidate.candidates.new.label.email_confirmation") %></label>
+            <div class="form-group-control">
+              <div class="row">
+                <div class="col-8">
+                  <%= f.password_field :password_confirmation, class: "form-control", placeholder: "" %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="form-group" />
+    <div class="row justify-content-center">
+      <div class="col-md-4">
+        <div class="text-center">
+          <div class="form-group">
+            <label class="form-check d-inline-flex">
+              <input class="form-check-input" type="checkbox" name="" id="policy_cbx">
+              <span class="form-check-label ms-2"><%= t("candidate.candidates.new.policy_text_html") %></span>
+            </label>
+          </div>
+          <div class="d-grid gap-3">
+            <%= f.submit t("candidate.candidates.new.submit"), class: "px-5 btn btn-primary btn-custom btn-submit" %>
+            <%= link_to t("candidate.candidates.new.button.back_to_login"), new_user_session_path, class: "px-5 btn btn-primary btn-custom" %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%= hidden_field_tag "screen", "new_candidate" %>
+  </div>
+<% end %>
+
+

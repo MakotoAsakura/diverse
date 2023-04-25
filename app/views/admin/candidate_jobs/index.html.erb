@@ -1,0 +1,117 @@
+<% content_for :title, t("medical.candidate_jobs.title.index") %>
+<% @filter_header = proc do %>
+  <%= label_tag :filter, t("medical.candidate_jobs.views.search.title"), class: "box fw-bolder" %>
+<% end %>
+
+<% @filter_menu = proc do %>
+  <%= search_form_for @q, url: { action: :index } do |f| %>
+    <div class="row d-flex justify-content-center">
+      <div class="col-8 col-md-8">
+        <div class="row d-flex flex-wrap align-item-center mb-1 justify-content-center">
+          <div class="col-2 title-label">
+            <label><%= Candidate.t(:full_name) %></label>
+          </div>
+          <div class="col-sm-10 col-md-10">
+            <%= f.text_field :candidate_full_name_cont, class: "form-control h-auto border px-1 py-2 w-50",
+                            placeholder: Candidate.t(:full_name) %>
+          </div>
+        </div>
+      </div>
+      <div class="col-8 col-md-8 mt-3">
+        <div class="row d-flex flex-wrap align-item-center mb-1 justify-content-center">
+          <div class="col-2 title-label">
+            <label><%= t("medical.candidate_jobs.views.search.label.address") %></label>
+          </div>
+          <div class="col-sm-10 col-md-10">
+            <%= f.text_field :candidate_full_address_cont, class: "form-control h-auto border px-1 py-2 w-50",
+                            placeholder: t("medical.candidate_jobs.views.search.label.address") %>
+          </div>
+        </div>
+      </div>
+      <div class="col-8 col-md-8 mt-3">
+        <div class="row d-flex flex-wrap align-item-center mb-1 justify-content-center">
+          <div class="col-2 title-label">
+            <label><%= User.t(:email) %></label>
+          </div>
+          <div class="col-sm-10 col-md-10">
+            <%= f.text_field :candidate_user_email_cont, class: "form-control h-auto border px-1 py-2 w-50",
+                            placeholder: User.t(:email) %>
+          </div>
+        </div>
+      </div>
+      <div class="send text-start pt-2 col-8 col-md-8">
+        <input type="submit" value="<%= t("base.buttons.search") %>" class="btn button-search"/>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+<% @content_header = proc do %>
+  <%= label_tag :filter, t("medical.candidate_jobs.views.list.title"), class: "box mt-4 mb-4 fw-bolder" %>
+<% end %>
+
+<% @content_menu = proc do %>
+  <%= form_for :item, url: { action: :download_batch, format: :pdf }, html: { method: :get } do |f| %>
+    <div class="row marT-1em">
+      <div class="col-2">
+        <div class="d-flex align-items-center input-group">
+          <%= f.text_field :start_at, value: (params[:start_at].to_datetime.strftime("%Y-%m") rescue nil), class: "form-control border px-1 py-2 datepicker-default", pickLevel: 1 %>
+          <span class="ms-3"><%= image_tag("svg/calendar_icon.svg") %></span>
+        </div>
+      </div>
+      <div class="col-auto">
+        <%= f.submit t("medical.candidate_jobs.buttons.bulk_payment_details_download"), class: "btn button-bulk", data: { disable_with: false } %>
+      </div>
+    </div>
+  <% end %>
+
+  <%= form_for :item, url: { action: :download_withholding_slips, format: :pdf }, html: { method: :get } do |f| %>
+    <div class="row mt-2">
+      <div class="col-2">
+        <div class="d-flex align-items-center input-group">
+          <%= f.text_field :start_at, class: "form-control border px-1 py-2 datepicker-default", pickLevel: 2 %>
+          <span class="ms-3"><%= image_tag("svg/calendar_icon.svg") %></span>
+        </div>
+      </div>
+      <div class="col-auto">
+        <%= f.submit "源泉徴収票一括ダウンロード", class: "btn button-bulk", data: { disable_with: false } %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+<% @index_title = proc do %>
+  <th scope="col" class="title"></th>
+  <th scope="col" class="title name"><%= @model.t(:contract_id) %></th>
+  <th scope="col" class="title full-name" style="max-width: 50%"><%= Candidate.t(:full_name) %></th>
+  <th scope="col" class="title name-kana"><%= Candidate.t(:name_kana) %></th>
+  <th scope="col" class="title address"><%= t("admin.medical_institution.candidate.views.address") %></th>
+  <th scope="col" class="title user-email"><%= User.t(:email) %></th>
+<% end %>
+
+<% @index_meta = proc do |item| %>
+  <tr>
+    <td>
+      <div class="d-flex justify-content-between align-items-center">
+        <button class="bg-white" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="icon bars-menu"><%= image_tag("svg/bars-solid.svg", size: "38x38") %></i>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><%= link_to t("medical.candidate_jobs.buttons.item.detail"), admin_candidate_job_path(item), class: "dropdown-item" %></li>
+          <li class="my-2"><%= link_to t("medical.candidate_jobs.buttons.item.profile"), admin_candidate_job_profile_path(item), class: "dropdown-item" %></li>
+          <li class="my-2"><%= link_to t("medical.candidate_jobs.buttons.item.contract"), admin_candidate_job_contract_path(item), class: "dropdown-item" %></li>
+          <li class="my-2"><%= link_to t("medical.candidate_jobs.buttons.item.attendance"), admin_candidate_job_attendances_path(candidate_job_id: item.id, job_id: item.job.id), class: "dropdown-item" %></li>
+          <li><%= link_to t("medical.candidate_jobs.buttons.item.payslip"), admin_candidate_job_payslip_path(item), class: "dropdown-item" %></li>
+          <li><%= link_to t("medical.candidate_jobs.buttons.item.withholding_slip"), withholding_slip_admin_candidate_job_path(item), class: "dropdown-item" %></li>
+        </ul>
+      </div>
+    </td>
+    <td class="align-middle"><%= item.contract_id %></td>
+    <td class="align-middle"><%= item.candidate.full_name %></td>
+    <td class="align-middle"><%= item.candidate.full_name_kana %></td>
+    <td class="align-middle"><%= item.candidate.full_address %></td>
+    <td class="align-middle"><%= item.candidate.user.email %></td>
+  </tr>
+<% end %>
+
+<%= render template: "base/crud/index" %>

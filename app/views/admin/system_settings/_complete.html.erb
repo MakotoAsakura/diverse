@@ -1,0 +1,17 @@
+<% request_referrer = Rails.application.routes.recognize_path(request.referrer) %>
+<% action = params[:target] || request_referrer[:action] %>
+<% content_for :title, t("system_settings.title.complete.#{request_referrer[:action]}") %>
+
+<% @complete_notice = proc do %>
+  <%= t("system_settings.views.complete.#{action}.notice") %>
+<% end %>
+
+<% @complete_send_mail = proc do %>
+  <strong><%= t("system_settings.views.complete.#{action}.message") %></strong>
+<% end %>
+
+<% @complete_button = proc do %>
+  <%= link_to admin_system_setting_path do %>
+    <%= button_tag t("system_settings.buttons.back"), class: "btn btn-custom btn-primary" %>
+  <% end %>
+<% end %>

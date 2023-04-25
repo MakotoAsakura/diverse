@@ -1,0 +1,132 @@
+<% content_for :title, t("medical.registration.views.confirm.title") %>
+
+<%= form_for(resource, as: :user, url: medical_user_registration_path, data: { turbo: false }) do |f| %>
+  <div class="wrap">
+    <div class="title-header">
+      <%= f.label t("medical.registration.views.new.title_user"), class: "box fw-bolder" %>
+    </div>
+  </div>
+
+  <div class="form-group align-items-center mt-3">
+    <label class="col-2 fw-bolder"><%= t("medical.registration.views.new.label.name") %></label>
+    <div class="col-6 color-light-gray ps-2">
+      <%= resource.medical_institution.name %>
+    </div>
+  </div>
+
+  <div class="form-group align-items-center mt-3">
+    <label class="col-2 fw-bolder"><%= t("medical.registration.views.new.label.name_kana") %></label>
+    <div class="col-6 color-light-gray ps-2">
+      <%= resource.medical_institution.name_kana %>
+    </div>
+  </div>
+
+  <div class="form-group align-items-center mt-3">
+    <label class="col-2 fw-bolder"><%= t("medical.registration.views.new.label.phone_number") %></label>
+    <div class="col-6 color-light-gray ps-2">
+      <%= display_phone_number(resource.medical_institution.phone_number) %>
+    </div>
+  </div>
+
+  <div class="form-group align-items-center mt-3">
+    <label class="col-2 fw-bolder"><%= t("medical.registration.views.new.label.url") %></label>
+    <div class="col-6 color-light-gray ps-2">
+      <%= resource.medical_institution.url %>
+    </div>
+  </div>
+
+  <div class="form-group align-items-center mt-3">
+    <label class="col-2 fw-bolder"><%= t("medical.registration.views.new.label.zip_code") %></label>
+    <div class="col-6 color-light-gray ps-2">
+      <%= display_zipcode(resource.medical_institution.zipcode) %><br>
+    </div>
+  </div>
+
+  <div class="form-group align-items-center mt-3">
+    <label class="col-2 fw-bolder"><%= t("medical.registration.views.new.label.location") %></label>
+    <div class="col-6 color-light-gray ps-2">
+      <%= resource.medical_institution.location %>
+    </div>
+  </div>
+
+  <div class="form-group align-items-center mt-3">
+    <label class="col-2 fw-bolder"><%= t("medical.registration.views.new.label.full_name_manager") %></label>
+    <div class="col-6 color-light-gray ps-2">
+      <%= resource.medical_institution.full_name_manager %>
+    </div>
+  </div>
+
+  <div class="form-group align-items-center mt-3">
+    <label class="col-2 fw-bolder"><%= t("medical.registration.views.new.label.full_name_kana_manager") %></label>
+    <div class="col-6 color-light-gray ps-2">
+      <%= resource.medical_institution.full_name_kana_manager %>
+    </div>
+  </div>
+
+  <div class="form-group align-items-center mt-3">
+    <label class="col-2 fw-bolder"><%= User.t(:email) %></label>
+    <div class="col-6 color-light-gray ps-2">
+      <%= resource.email %>
+    </div>
+  </div>
+
+  <div class="form-group align-items-center mt-3">
+    <label class="col-2 fw-bolder"><%= t("medical.registration.views.new.label.password") %></label>
+    <div class="col-6 color-light-gray ps-2">
+      <%= convert_password_to_asterisk(resource) %>
+    </div>
+  </div>
+
+  <div class="wrap mt-3">
+    <div class="title-header">
+      <%= f.label t("medical.registration.views.new.title_pharmacy"), class: "box fw-bolder" %>
+    </div>
+  </div>
+
+  <div class="form-group align-items-center mt-3">
+    <label class="col-2 fw-bolder"><%= PharmaceuticalCompany.t(:name) %></label>
+    <div class="col-6 color-light-gray ps-2">
+      <%= resource.medical_institution.pharmaceutical_company.name %>
+    </div>
+  </div>
+
+
+  <div class="form-group align-items-center mt-3">
+    <label class="col-2 fw-bolder"><%= PharmaceuticalCompany.t(:staff_ms) %></label>
+    <div class="col-6 color-light-gray ps-2">
+      <%= resource.medical_institution.pharmaceutical_company.staff_ms %>
+    </div>
+  </div>
+
+  <div class="d-none">
+    <%= f.fields_for :medical_institution, resource.medical_institution || resource.build_medical_institution do |ff| %>
+      <%= ff.hidden_field :name %>
+      <%= ff.hidden_field :name_kana %>
+      <%= ff.hidden_field :phone_number %>
+      <%= ff.hidden_field :url %>
+      <%= ff.hidden_field :zipcode_first %>
+      <%= ff.hidden_field :zipcode_last %>
+      <%= ff.hidden_field :location %>
+      <%= ff.hidden_field :first_name_manager %>
+      <%= ff.hidden_field :first_name_kana_manager %>
+      <%= ff.hidden_field :last_name_manager %>
+      <%= ff.hidden_field :last_name_kana_manager %>
+      <%= ff.fields_for :pharmaceutical_company, ff.object.pharmaceutical_company || ff.object.build_pharmaceutical_company do |fff| %>
+        <%= fff.hidden_field :name %>
+        <%= fff.hidden_field :staff_ms %>
+      <% end %>
+    <% end %>
+
+    <%= f.hidden_field :email %>
+    <%= f.hidden_field :password %>
+    <%= f.hidden_field :password_confirmation %>
+  </div>
+  <hr />
+  <div class="form-group align-items-center mt-3">
+    <label class="col-12"><%= t("medical.registration.views.confirm.label.confirm_create") %></label>
+  </div>
+
+  <div class="mt-3">
+    <%= f.submit t("medical.registration.views.confirm.buttons.submit"), class: "btn button btn-submit save" %>
+  </div>
+<% end %>

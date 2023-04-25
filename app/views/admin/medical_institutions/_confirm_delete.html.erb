@@ -1,0 +1,103 @@
+<% @crud_buttons = proc do %>
+  <%= link_to edit_admin_medical_institution_path do %>
+    <button type="button" class="btn save btn-back"><%= t("base.buttons.cancel") %></button>
+  <% end %>
+  <%= button_to admin_medical_institution_path, method: :delete, class: "btn btn-destroy save mt-1" do %>
+    <%= t("medical_institution.buttons.confirm_delete") %>
+  <% end %>
+<% end %>
+
+<div class="wrap">
+  <div class="title-header">
+    <label class="box fw-bolder"><%= I18n.t("helpers.label.medical_institution.delete_content") %></label>
+  </div>
+</div>
+
+<div class="container">
+  <div class="form-group row align-items-center mt-3">
+    <label class="col-2 fw-bolder"><%= @model.t(:name) %></label>
+    <div class="col-6 color-light-gray">
+      <%= @item.name %>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center mt-3">
+    <label class="col-2 fw-bolder"><%= @model.t(:name_kana) %></label>
+    <div class="col-6 color-light-gray">
+      <%= @item.name_kana %>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center mt-3">
+    <label class="col-2 fw-bolder"><%= @model.t(:phone_number) %></label>
+    <div class="col-6 color-light-gray">
+      <%= display_phone_number(@item.phone_number) %>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center mt-3">
+    <label class="col-2 fw-bolder"><%= @model.t(:url) %></label>
+    <div class="col-6 color-light-gray">
+      <%= @item.url %>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center mt-3">
+    <label class="col-2 fw-bolder"><%= @model.t(:location) %></label>
+    <div class="col-6 color-light-gray">
+      <%= display_zipcode(@item.zipcode) %><br>
+      <%= @item.location %>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center mt-3">
+    <label class="col-2 fw-bolder"><%= @model.t(:full_name_manager) %></label>
+    <div class="col-6 color-light-gray">
+      <%= @item.full_name_manager %>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center mt-3">
+    <label class="col-2 fw-bolder"><%= @model.t(:full_name_kana_manager) %></label>
+    <div class="col-6 color-light-gray">
+      <%= @item.full_name_kana_manager %>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center mt-3">
+    <label class="col-2 fw-bolder"><%= User.t(:email) %></label>
+    <div class="col-6 color-light-gray">
+      <%= @item.user&.email %>
+    </div>
+  </div>
+</div>
+
+<div class="wrap mt-3">
+  <div class="title-header">
+    <label class="box fw-bolder"><%= I18n.t("helpers.label.medical_institution.pharmaceutical_company") %></label>
+  </div>
+</div>
+
+<div class="container">
+  <div class="form-group row align-items-center mt-3">
+    <label class="col-2 fw-bolder"><%= PharmaceuticalCompany.t(:name) %></label>
+    <div class="col-6 color-light-gray">
+      <%= @item.pharmaceutical_company&.name %>
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center mt-3">
+    <label class="col-2 fw-bolder"><%= PharmaceuticalCompany.t(:staff_ms) %></label>
+    <div class="col-6 color-light-gray">
+      <%= @item.pharmaceutical_company&.staff_ms %>
+    </div>
+  </div>
+
+  <div class="text-center mt-3">
+    <%= t("medical_institution.note.confirm_delete") %>
+  </div>
+
+  <div class="text-center mb-3 f-size-13 text-danger">
+    <%= t("medical_institution.warning.confirm_delete") %>
+  </div>
+</div>

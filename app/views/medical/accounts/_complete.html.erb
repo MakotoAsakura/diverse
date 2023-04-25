@@ -1,0 +1,18 @@
+<% content_for :title, t("medical.account.complete.title") %>
+<% content_for :title_class, "text-center text-lg-start" %>
+<% @complete_button = proc do %>
+  <%= link_to medical_account_path do %>
+    <%= button_tag t("medical.account.complete.back"), class: "btn btn-custom btn-primary" %>
+  <% end %>
+<% end %>
+
+<% @complete_notice = proc do %>
+  <div class="mb-4">
+    <strong><%= t("medical.account.complete.account_updated") %></strong>
+  </div>
+<% end %>
+<% @complete_send_mail = proc do %>
+  <div class="mb-4">
+    <strong><%= t("medical.account.complete.send_email") %></strong>
+  </div>
+<% end %>

@@ -1,0 +1,105 @@
+<% provide :title, t(".title") %>
+<% content_for :title_class, "text-start text-lg-start" %>
+
+<div class="boxed">
+  <form class="form-highlight">
+    <div class="form-group">
+      <label class="form-label"><%= t(".detail") %></label>
+      <div class="form-group-control">
+        <div class="form-table-primary form-table table-responsive">
+          <table class="table table-bordered">
+            <tbody>
+            <tr>
+              <th class="text-center" scope="row" width="30%"><%= t(".date") %></th>
+              <td width="70%">
+                <div class="text-center"><%= l(@date, format: :long) %></div>
+              </td>
+            </tr>
+            <tr>
+              <th class="text-center" scope="row"><%= Attendance.t("checkin") %></th>
+              <td>
+                <div class="text-center"><%= l(@attendance.checkin, format: :long) %></div>
+              </td>
+            </tr>
+            <tr>
+              <th class="text-center" scope="row"><%= Attendance.t("checkout") %></th>
+              <td>
+                <div class="text-center"><%= l(@attendance.checkout, format: :long) %></div>
+              </td>
+            </tr>
+            <tr>
+              <th class="text-center" scope="row"><%= Attendance.t("shift_1_checkin") %></th>
+              <td>
+                <div class="text-center"><%= @attendance.shift_1_checkin && l(@attendance.shift_1_checkin, format: :long) %></div>
+              </td>
+            </tr>
+            <tr>
+              <th class="text-center" scope="row"><%= Attendance.t("shift_1_checkout") %></th>
+              <td>
+                <div class="text-center"><%= @attendance.shift_1_checkout && l(@attendance.shift_1_checkout, format: :long) %></div>
+              </td>
+            </tr>
+            <tr>
+              <th class="text-center" scope="row"><%= Attendance.t("shift_2_checkin") %></th>
+              <td>
+                <div class="text-center"><%= @attendance.shift_2_checkin && l(@attendance.shift_2_checkin, format: :long) %></div>
+              </td>
+            </tr>
+            <tr>
+              <th class="text-center" scope="row"><%= Attendance.t("shift_2_checkout") %></th>
+              <td>
+                <div class="text-center"><%= @attendance.shift_2_checkout && l(@attendance.shift_2_checkout, format: :long) %></div>
+              </td>
+            </tr>
+            <tr>
+              <th class="text-center" scope="row"><%= Attendance.t("note") %></th>
+              <td>
+                <div class="text-center text-pre-line"><%= @attendance.note %></div>
+              </td>
+            </tr>
+            <tr>
+              <th class="text-center" scope="row"><%= Attendance.t("transportation_fee") %></th>
+              <td>
+                <div class="text-center"><%= @attendance.transportation_fee ? "#{number_with_delimiter @attendance.transportation_fee} 円" : nil %></div>
+              </td>
+            </tr>
+            <tr>
+              <th class="text-center" scope="row"><%= Attendance.t("work_hours") %></th>
+              <td>
+                <div class="text-center"><%= number_with_delimiter @attendance.work_hours %> <%= t(".hour") %></div>
+              </td>
+            </tr>
+            <tr>
+              <th class="text-center" scope="row"><%= Attendance.t("break_hours") %></th>
+              <td>
+                <div class="text-center"><%= number_with_delimiter @attendance.break_hours%> <%= t(".hour") %></div>
+              </td>
+            </tr>
+            <tr>
+              <th class="text-center" scope="row"><%= Attendance.t("status") %></th>
+              <td>
+                <div class="text-center"><%= @attendance.status_i18n %></div>
+              </td>
+            </tr>
+            <tr>
+              <th class="text-center" scope="row"><%= Attendance.t("reject_note") %></th>
+              <td>
+                <div class="text-center text-pre-line"><%= @attendance.reject_note %></div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="form-bottom">
+      <div class="form-button-group">
+        <div class="form-group">
+          <div class="d-grid gap-4 gap-md-5">
+            <%= link_to t(".back"), attendances_path(params: { job_id: @attendance.job_id || @job.id }), class: "btn btn-custom btn-primary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

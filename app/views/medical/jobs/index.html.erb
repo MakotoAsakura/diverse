@@ -1,0 +1,67 @@
+<% content_for :title, t("medical.jobs.title.index") %>
+<% @filter_header = proc do %>
+  <%= label_tag :filter, t("medical.jobs.search.title"), class: "box fw-bolder" %>
+<% end %>
+
+<% @filter_menu = proc do %>
+  <% @s ||= OpenStruct.new params[:s] %>
+  <%= form_for :s, url: "", html: { class: "index-search mt-3 mb-3", method: :get } do |f| %>
+    <div class="title-label"><%= t("medical.jobs.search.label.state") %></div>
+    <div class="form-group">
+      <div class="form-group-control mt-3">
+        <ul class="rowList p-0">
+          <% Job.statuses_options.each do |k, v| %>
+            <div class="col-auto me-4">
+              <label for="<%= f.object_name %>_status_<%= k %>">
+                <%= f.check_box :status, { multiple: true, class: "form-check-input" }, k, nil %>
+                <span class="form-check-label"><%= v %></span>
+              </label>
+            </div>
+          <% end %>
+        </ul>
+      </div>
+      <div class="title-label"><%= @model.t(:position) %></div>
+      <div class="form-group">
+        <div class="form-group-control mt-3">
+          <ul class="rowList p-0 w-50">
+            <% @model.positions.each do |k, _| %>
+              <div class="col-auto me-4">
+                <label for="<%= f.object_name %>_position_<%= k %>">
+                  <%= f.check_box :position, { multiple: true, class: "form-check-input" }, k, nil %>
+                  <span class="form-check-label"><%= @model.positions_i18n[k] %></span>
+                </label>
+              </div>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+      <div class="send text-start pt-2">
+        <input type="submit" value="<%= t("base.buttons.search") %>" class="btn button-search"/>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+<% @content_header = proc do %>
+  <%= label_tag :filter, t("medical.jobs.search.list"), class: "box mt-4 mb-4 fw-bolder" %>
+<% end %>
+
+<% @index_title = proc do %>
+  <th scope="col" class="title"><%= @model.t(:title) %></th>
+  <th scope="col" class="title position text-center" style="width: 150px"><%= @model.t(:position) %></th>
+  <th scope="col" class="title address"><%= @model.t(:address) %></th>
+  <th scope="col" class="title salary text-center" style="width: 200px"><%= @model.t(:salary) %></th>
+  <th scope="col" class="title state text-center" style="width: 200px"><%= @model.t(:state) %></th>
+<% end %>
+
+<% @index_meta = proc do |item| %>
+  <tr>
+    <td><%= link_to item.title.presence || "#{t('base.text.draft')}", medical_job_path(item) %></td>
+    <td class="text-center"><%= @model.positions_i18n[item.position.to_sym] if item.position %></td>
+    <td><%= item.address %></td>
+    <td class="text-center"><%= display_around_annual_salary_before(item) %></td>
+    <td class="text-center"><%= item.status_i18n %></td>
+  </tr>
+<% end %>
+
+<%= render template: "base/crud/index" %>

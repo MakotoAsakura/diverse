@@ -1,0 +1,25 @@
+<tbody class="nested-fields">
+  <tr>
+    <td>
+      <%= f.text_field :year_start_work, class: "form-control border-0 cv-field", placeholder: "" %>
+    </td>
+    <td>
+      <%= f.text_field :month_start_work, class: "form-control border-0 cv-field", placeholder: "" %>
+    </td>
+    <td rowspan="3" class="position-relative">
+      <%= f.text_area :note, class: "form-control border-0 cv-field auto-height", rows: 5, placeholder: "" %>
+      <%= link_to_remove_association image_tag("svg/close.svg"), f, class: "position-absolute top-0 end-0 delete-profile-btn" %>
+    </td>
+  </tr>
+  <tr>
+    <td class="text-center" colspan="2">〜</td>
+  </tr>
+  <tr>
+    <td>
+      <%= f.text_field :year_end_work, class: "form-control border-0 cv-field", placeholder:  ""  %>
+    </td>
+    <td>
+      <%= f.text_field :month_end_work, class: "form-control border-0 cv-field", placeholder:""  %>
+    </td>
+  </tr>
+</tbody>

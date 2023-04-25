@@ -1,0 +1,73 @@
+<% content_for :title, t("employee.account.views.show.title") %>
+<% content_for :title_class, "text-center text-lg-start" %>
+<% @crud_buttons = proc do %>
+<% end %>
+<div class="boxed px-3 px-lg-0">
+  <form class="form-highlight">
+    <div class="form-group">
+      <label class="form-label"><%= t("employee.account.views.show.label.name") %></label>
+      <div class="form-group-control"><%= @item.candidate.full_name %></div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= t("employee.account.views.show.label.name_kana") %></label>
+      <div class="form-group-control"><%= @item.candidate.full_name_kana %></div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= t("employee.account.views.show.label.gender") %></label>
+      <div class="form-group-control"><%= gender_text(@item.candidate) %></div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= t("employee.account.views.show.label.national") %></label>
+      <div class="form-group-control"><%= national_text(@item.candidate) %></div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= t("employee.account.views.show.label.bod") %></label>
+      <div class="form-group-control">
+        <div class="row g-3 align-items-center">
+          <div class="col-auto"><%= @item.candidate.year_of_birth %>年</div>
+          <div class="col-auto"><%= @item.candidate.month_of_birth %>月</div>
+          <div class="col-auto"><%= @item.candidate.day_of_birth %>日</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= t("employee.account.views.show.label.zip_code") %></label>
+      <div class="form-group-control"><%= "#{@item.candidate.zipcode_first}-#{@item.candidate.zipcode_last}" %></div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= t("employee.account.views.show.label.prefecture") %></label>
+      <div class="form-group-control"><%= @item.candidate.prefecture %></div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= t("employee.account.views.show.label.city") %></label>
+      <div class="form-group-control"><%= @item.candidate.city %></div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= t("employee.account.views.show.label.address") %></label>
+      <div class="form-group-control"><%= @item.candidate.address %></div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= t("employee.account.views.show.label.phone_number") %></label>
+      <div class="form-group-control"><%= number_to_phone(@item.candidate.phone_number) %></div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= t("employee.account.views.show.label.email") %></label>
+      <div class="form-group-control">
+        <a class="text-decoration-underline" href="#"><%= @item.email %></a>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= t("employee.account.views.show.label.password") %></label>
+      <div class="form-group-control"><%= convert_password_to_asterisk(@item) %></div>
+    </div>
+    <hr class="d-none d-md-block gaps-2x" />
+    <div class="form-group mt-5">
+      <%= link_to edit_account_path do %>
+        <button type="button" class="btn btn-custom btn-primary"><%= t("employee.account.views.show.buttons.edit_account") %></button>
+    <% end %>
+    </div>
+  </form>
+  <div class="card-ui-links mt-5 text-center text-lg-start">
+    <%= link_to t("employee.account.views.show.buttons.delete_account"), confirm_delete_account_path, class: "text-decoration-underline fw-bold text-primary-2" %>
+  </div>
+</div>

@@ -1,0 +1,87 @@
+<% content_for :title, t(".title") %>
+<% content_for :title_class, "text-start text-lg-start" %>
+<div class="boxed">
+  <div class="form-highlight">
+    <div class="form-group">
+      <label class="form-label"><%= t(".medical_name") %></label>
+      <div class="form-group-control"><%= @medical_institution.name %>病院</div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= t(".contract_id") %></label>
+      <div class="form-group-control"><%= @candidate_job.contract_id %></div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= t(".labor_contract_period") %></label>
+      <div class="form-group-control"><%= l @candidate_job.contract_start_at, format: :long_day %>
+        〜 <%= l @candidate_job.contract_end_at, format: :long_day %></div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= t(".salary_detail") %></label>
+      <div class="form-group-control"><%= display_salary(@candidate_job) %></div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= t(".download_labor_contract_notice") %></label>
+      <% @attachments.each do |attachment| %>
+        <div class="form-group-control">
+          <%= link_to attachment.filename, rails_blob_path(attachment.file, disposition: 'attachment'), class: "text-decoration-underline", target: "_blank" %>
+        </div>
+      <% end %>
+    </div>
+    <%= form_for @candidate_job, url: upload_attachment_candidate_job_path(@candidate_job.id), method: :post, data: { turbo: false } do |f| %>
+      <%= f.fields_for :attachments, f.object.attachments.build do |ff| %>
+        <div class="form-group">
+          <label class="form-label"><%= t(".labor_contract_notification_upload") %></label>
+          <div class="form-group-control">
+            <p><%= t(".upload_the_signed_working_conditions_notification") %></p>
+            <div class="form-group-inline">
+              <%= ff.file_field :file, class: "d-none cv-file", id: "select_file_1" %>
+              <%= ff.hidden_field :created_by_id, value: current_user.id %>
+              <div class="form-group-inline-input">
+                <%= text_field_tag "file_name_1", "", disabled: true, class: "form-control" %>
+              </div>
+              <button class="rounded-0 btn btn-grey px-4 btn-upload-file" type="button" id="btn_upload_file_1">
+                <%= t(".reference_btn") %>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-custom btn-primary"><%= t(".upload_btn") %></button>
+        </div>
+      <% end %>
+    <% end %>
+    <div class="form-group">
+      <label class="form-label"><%= t(".uploaded_file") %></label>
+      <div class="form-group-control">
+        <div class="form-table table-responsive">
+          <table class="table table-bordered">
+            <thead>
+            <tr>
+              <th class="text-center" width="50%"><%= t(".upload_status") %></th>
+              <th class="text-center" width="50%"><%= t(".file_name") %></th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @attachments_of_employee.each do |attachment| %>
+              <tr>
+                <td class="text-center"><%= t(".upload_file_success") %></td>
+                <td class="text-center"><%= attachment.filename %></td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <%= hidden_field_tag "screen", "contract_detail" %>
+    <div class="form-bottom">
+      <div class="form-button-group">
+        <div class="form-group">
+          <div class="d-grid gap-4">
+            <%= link_to t(".btn_list_contract"), working_medicals_path(params: { medical_institution_id: @medical_institution.id }), class: "btn btn-custom btn-primary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<% if @items.present? %>
+  <div class="boxed">
+    <div class="text-end mb-4">
+      <%= link_to download_pdf_admin_medical_institution_candidate_payslips_path(format: :pdf, year: @year, month: @month, page: params[:page]), target: :blank do %>
+        <button type="button" class="btn btn-custom btn-primary px-4 px-md-5 w-auto"><%= t("admin.medical_institution.payslips.index.download") %></button>
+      <% end %>
+    </div>
+    <div class="text-end mb-2"><%= t("employee.payslips.index.pagination_info", total_count: number_with_delimiter(@items.total_count), current_page: @items.current_page) %></div>
+    <div class="payment-detail-img">
+      <% @items.each do |item| %>
+        <%= render "shared/payslip/payslip", item: item %>
+      <% end %>
+    </div>
+    <%= paginate @items,
+                 theme: "bootstrap-5", nav_class: "pagination-wrapper mt-5 pt-md-3",
+                 pagination_class: "pagination justify-content-center",
+                 window: 1, left: 1, right: 1 %>
+  </div>
+<% end %>

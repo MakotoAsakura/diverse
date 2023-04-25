@@ -1,0 +1,88 @@
+<div class="justify-content-center aligns-items-center">
+  <div class="my-3">
+    <div class="mb-3 d-flex flex-row align-items-baseline">
+      <h5 class="fw-bolder"><%= t("admin.medical_institution_applying.show.content") %></h5>
+      <%= image_tag("svg/new_icon.svg", class: "ms-2") if @viewed %>
+    </div>
+    <div class="mb-3">
+      <label class="fw-bolder"><%= t("admin.medical_institution_applying.show.label.name") %></label>
+      <div class="color-light-gray">
+        <%= @item.name %>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="fw-bolder"><%= t("admin.medical_institution_applying.show.label.name_kana") %></label>
+      <div class="color-light-gray">
+        <%= @item.name_kana %>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="fw-bolder"><%= t("admin.medical_institution_applying.show.label.phone_number") %></label>
+      <div class="color-light-gray">
+        <%= @item.phone_number %>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="fw-bolder"><%= t("admin.medical_institution_applying.show.label.url") %></label>
+      <div class="color-light-gray">
+        <%= @item.url %>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="fw-bolder"><%= t("admin.medical_institution_applying.show.label.location") %></label>
+      <div class="color-light-gray">
+        <%= @item.zipcode %><br>
+        <%= @item.location %>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="fw-bolder"><%= t("admin.medical_institution_applying.show.label.manager_name") %></label>
+      <div class="color-light-gray">
+        <%= @item.full_name_manager %>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="fw-bolder"><%= t("admin.medical_institution_applying.show.label.name_kana") %></label>
+      <div class="color-light-gray">
+        <%= @item.full_name_kana_manager %>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="fw-bolder"><%= t("admin.medical_institution_applying.show.label.email") %></label>
+      <div class="color-light-gray">
+        <%= @item.user_email %>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <h5 class="fw-bolder"><%= t("admin.medical_institution_applying.show.pharmaceutical_company") %></h5>
+    </div>
+    <div class="mb-3">
+      <label class="fw-bolder"><%= t("admin.medical_institution_applying.show.label.name") %></label>
+      <div class="color-light-gray">
+        <%= @item.pharmaceutical_company_name %>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="fw-bolder"><%= t("admin.medical_institution_applying.show.label.representative") %></label>
+      <div class="color-light-gray">
+        <%= @item.pharmaceutical_company_staff_ms %>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="fw-bolder"><%= t("admin.medical_institution_applying.show.label.status") %></label>
+      <div class="color-light-gray">
+        <%= @item.status_i18n %>
+      </div>
+    </div>
+    <% if @item.status != "approved" %>
+      <div class="text-center send">
+        <%= link_to confirm_approve_admin_medical_institution_applying_path(@item) do %>
+          <button type="button" class="btn save btn-submit"><%= t("admin.medical_institution_applying.show.button_approve") %></button>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

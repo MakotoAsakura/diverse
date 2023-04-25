@@ -1,0 +1,46 @@
+ja:
+  admin:
+    medical_institution_applying:
+      title:
+        index: 応募求人機関一覧
+        show: 求人機関詳細
+        confirm_approve: 登録審査
+        complete_approval: 審査完了
+      index:
+        condition_search: 検索条件
+        result_list: 求人機関一覧
+        label:
+          name: 求人機関名
+          location: 所在地
+          status: 審査ステータス
+          all: 全て
+        table:
+          name: 名称
+          location: 所在地
+          register_time: 登録日時
+          status: 審査ステータス
+          approved_time: 審査日時
+      show:
+        content: 応募内容
+        pharmaceutical_company: 医薬品卸会社
+        label:
+          name: 求人機関名
+          name_kana: フリガナ
+          phone_number: 電話番号
+          location: 所在地
+          manager_name: 担当者
+          email: メールアドレス
+          representative: 担当MS
+          status: 審査ステータス
+          url: ホームページURL
+        button_approve: 登録審査を行う
+      confirm_approve:
+        question: 契約求人機関として登録しますか？
+        button_approve: 承認する
+        button_reject: 否認する
+      complete_approval:
+        notice_false: 否認しました。
+        notice_true: 承認しました。
+        notice_: ""
+        note: 応募求人機関の担当者宛に審査結果のメールを送りました。
+        redirect_to_index: 応募求人機関一覧へ

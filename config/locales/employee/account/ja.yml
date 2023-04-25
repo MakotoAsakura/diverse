@@ -1,0 +1,124 @@
+ja:
+  employee:
+    account:
+      views:
+        show:
+          title: アカウント管理
+          label:
+            name: お名前
+            name_kana: フリガナ
+            gender: 性別
+            national: 国籍
+            male: 男性
+            female: 女性
+            japan: 日本国籍
+            non_japan: 外国籍
+            bod: 生年月日
+            year: 年
+            month: 月
+            day: 日
+            zip_code: 郵便番号
+            prefecture: 都道府県
+            city: 市区町村・番地
+            address: ビル・マンション名
+            phone_number: 電話番号
+            email: メールアドレス
+            password: ログインパスワード
+            submit: ログイン
+          buttons:
+            edit_account: アカウントを編集する
+            delete_account: アカウントを削除する
+        edit:
+          title: アカウント更新
+          label:
+            name: お名前
+            name_kana: フリガナ
+            gender: 性別
+            national: 国籍
+            male: 男性
+            female: 女性
+            japan: 日本国籍
+            non_japan: 外国籍
+            bod: 生年月日
+            year: 年
+            month: 月
+            day: 日
+            zip_code: 郵便番号
+            prefecture: 都道府県
+            city: 市区町村・番地
+            address: ビル・マンション名
+            phone_number: 電話番号
+            password: ログインパスワード
+            password_confirmation: ログインパスワード（確認）
+            email: メールアドレス
+            email_confirmation: メールアドレス（確認）
+            submit: ログイン
+          buttons:
+            post_code_search: 郵便番号検索
+            edit_account: アカウントを編集する
+            delete_account: アカウントを削除する
+            submit: 次へ（更新確認画面）
+        confirm:
+          title: アカウント更新確認
+          label:
+            name: お名前
+            name_kana: フリガナ
+            gender: 性別
+            national: 国籍
+            male: 男性
+            female: 女性
+            japan: 日本国籍
+            non_japan: 外国籍
+            bod: 生年月日
+            year: 年
+            month: 月
+            day: 日
+            zip_code: 郵便番号
+            prefecture: 都道府県
+            city: 市区町村・番地
+            address: ビル・マンション名
+            phone_number: 電話番号
+            password: ログインパスワード
+            password_confirmation: ログインパスワード（確認）
+            email: メールアドレス
+            email_confirmation: メールアドレス（確認）
+            submit: ログイン
+            confirm_update: 上記内容でアカウント情報を更新します。よろしいですか？
+          buttons:
+            post_code_search: 郵便番号検索
+            edit_account: アカウントを編集する
+            delete_account: アカウントを削除する
+            submit: 更新を完了する
+            back: 入力画面に戻る
+        complete:
+          title: アカウント更新完了
+          profile_title: プロフィール更新完了
+          label:
+            account_updated: アカウント情報の更新が完了しました。
+            send_mail: ご登録のメールアドレスへご確認のメールをお送りいたしました。
+          buttons:
+            back: アカウント管理へ
+        confirm_delete:
+          title: アカウント更新入力
+          label:
+            warning: アカウントを削除すると復元することができません。<br />ご注意ください。
+            confirm_check_box: 上記内容について確認しました。
+            reason_delete_account: ダイバースをご利用頂きありがとうございます。
+                                  <br />今後より良いサービスをご提供していくために、アカウントを削除する理由について教えて頂けますと幸いです。
+                                  <br />何卒よろしくお願いいたします。
+          buttons:
+            detail_account: もう少し検討する（アカウント管理へ）
+            confirm_delete: アカウントを削除する
+        delete_complete:
+          title: アカウント削除完了
+          label:
+            account_updated: アカウントの削除が完了しました。
+            send_mail: ダイバースのご利用をありがとうございました。
+          buttons:
+            top_page: トップページへ
+        edit_complete:
+          title: プロフィール編集完了
+          label:
+            account_updated: プロフィールの編集が完了しました。
+          button:
+            show_profile: プロフィール表示へ

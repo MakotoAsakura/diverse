@@ -1,0 +1,95 @@
+<% @filter_header = proc do %>
+  <%= label_tag :filter, t("medical_institution.views.search"), class: "box fw-bolder" %>
+<% end %>
+
+<% @filter_menu = proc do %>
+  <%= search_form_for @q, url: admin_notifications_path do |f| %>
+    <div class="row d-flex justify-content-center">
+      <div class="col-8 col-md-8">
+        <div class="row d-flex flex-wrap align-items-center mb-3 justify-content-center">
+          <div class="col-2 title-label"><%= f.label :title, @model.t(:title) %></div>
+          <div class="col-sm-10 col-md-10"><%= f.text_field :title_cont, class: "form-control h-auto border px-1 py-2 w-50" %></div>
+        </div>
+      </div>
+
+      <div class="col-8 col-md-8">
+        <div class="row d-flex flex-wrap align-items-center mb-3 justify-content-center">
+          <div class="col-2 title-label"><%= f.label :end_time_gt, @model.t(:publish_time) %></div>
+          <div class="col-sm-10 col-md-10">
+            <div class="row">
+              <div class="col-auto row">
+                <div class="col-auto">
+                  <%= f.text_field :start_time_gteq, class: "form-control border px-1 py-2 datepicker-default #{@invalid_message.present? && 'danger'}", style: "width: 165px;", placeholder: l(Time.current, format: :long_day_dash) %>
+                </div>
+                <div class="col-auto mt-1">
+                  <div class="calendar-icon"><%= image_tag("svg/calendar_icon.svg") %></div>
+                </div>
+              </div>
+              <div class="col-auto mt-2">〜</div>
+              <div class="col-auto row">
+                <div class="col-auto">
+                  <%= f.text_field :end_time_lteq, class: "form-control border px-1 py-2 datepicker-default #{@invalid_message.present? && 'danger'}", style: "width: 165px;", placeholder: l(Time.current, format: :long_day_dash) %>
+                </div>
+                <div class="col-auto mt-1">
+                  <div class="calendar-icon"><%= image_tag("svg/calendar_icon.svg") %></div>
+                </div>
+              </div>
+            </div>
+            <% if @invalid_message.present? %>
+              <div class="row">
+                <div class="i-helper danger"><%= @invalid_message %></div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-8 col-md-8">
+        <div class="row d-flex flex-wrap align-items-center mb-3 justify-content-center">
+          <div class="col-2 title-label"><%= f.label :status_eq, @model.t(:status) %></div>
+          <div class="col-sm-10 col-md-10">
+            <div class="row">
+              <div class="col-sm-12 col-md-5">
+                <%= f.select :status_eq,
+                             Notification.statuses_i18n.map { |k, v| [v, Notification.statuses[k]] },
+                             { include_blank: "-"},
+                             { class: "form-select form-control-lg" } %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="send text-start pt-2 col-8 col-md-8">
+        <input type="submit" value="<%= t("base.buttons.search") %>" class="btn button save btn-submit button_search"/>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+<% @content_header = proc do %>
+  <%= label_tag :filter, t("medical_institution.views.list"), class: "box mt-4 mb-4 fw-bolder" %>
+<% end %>
+
+
+<% @index_title = proc do %>
+  <th scope="col" class="text-center title"><%= @model.t("title") %></th>
+  <th scope="col" class="text-center title"><%= @model.t("start_time") %></th>
+  <th scope="col" class="text-center title"><%= @model.t("end_time") %></th>
+  <th scope="col" class="text-center title"><%= @model.t("creator") %></th>
+  <th scope="col" class="text-center title"><%= @model.t("created_at") %></th>
+<% end %>
+
+<% @index_column = 6 %>
+
+<% @index_meta = proc do |item| %>
+  <tr>
+    <td><%= link_to item.title.truncate(100), edit_admin_notification_path(item) %></td>
+    <td class="text-center"><%= l(item.start_time, format: :short_day) %></td>
+    <td class="text-center"><%= l(item.end_time, format: :short_day) %></td>
+    <td class="text-center"><%= item.creator.manage.full_name %></td>
+    <td class="text-center"><%= l(item.created_at, format: :short_day) %></td>
+  </tr>
+<% end %>
+
+<%= render template: "base/crud/index" %>

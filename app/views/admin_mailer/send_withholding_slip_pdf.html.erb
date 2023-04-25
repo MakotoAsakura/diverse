@@ -1,0 +1,5 @@
+<div><%= @candidate.full_name %>様への源泉徴収票を送付しました。</div>
+<br>
+<div>源泉徴収票はこちら：<%= link_to withholding_slip_admin_candidate_job_url(id: @candidate_job.id),
+                               withholding_slip_admin_candidate_job_url(year: @year, id: @candidate_job.id),
+                               target: "_blank" %></div>

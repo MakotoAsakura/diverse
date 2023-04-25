@@ -1,0 +1,13 @@
+# frozen_string_literal: true
+
+require "test_helper"
+
+module Medical
+  module CandidateJob
+    class ProfilesControllerTest < ActionDispatch::IntegrationTest
+      # test "the truth" do
+      #   assert true
+      # end
+    end
+  end
+end

@@ -1,0 +1,21 @@
+<% content_for :title, t("admin.password.title.send_mail_success") %>
+<div class="d-flex justify-content-center flex-root">
+  <div class="login-form p-7 overflow-hidden align-middle rounded">
+    <div class="card-body p-4 p-sm-5">
+      <div class="text-center">
+        <div class="mb-5">
+          <div class="mb-4">
+            <strong><%= t('reset_password.send_mail_success.text') %></strong>
+          </div>
+        </div>
+      </div>
+      <div class="form-button-group text-center mx-auto">
+        <div class="form-group">
+          <div class="d-grid gap-4">
+            <%= link_to t('reset_password.send_mail_success.button'), admin_root_path, class: "btn button save btn-submit font-weight-bold opacity-90 pl-3 pb-1 px-4rem" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

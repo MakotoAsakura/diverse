@@ -1,0 +1,27 @@
+inherit_gem:
+  rubocop-github:
+    - config/default_edge.yml
+    - config/rails_edge.yml
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - "db/**/*"
+    - "script/**/*"
+    - "bin/**/*"
+    - "vendor/**/*"
+    - "spec/fixtures/**/*"
+    - "tmp/**/*"
+
+Style/Documentation:
+  Enabled: false
+
+GitHub/RailsControllerRenderLiteral:
+  Enabled: false
+
+Rails/UnknownEnv:
+  Environments:
+    - production
+    - development
+    - test
+    - staging

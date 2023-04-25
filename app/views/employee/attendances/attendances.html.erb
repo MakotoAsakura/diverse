@@ -1,0 +1,165 @@
+<% content_for :title, "出退勤一覧" %>
+<% content_for :title_class, "text-center text-lg-start" %>
+<div class="boxed boxed-wrapper-996">
+  <% flash.each do |message_type, message| %>
+    <%= content_tag :div, message, class: "alert alert-#{message_type}" if message.is_a?(String) %>
+  <% end %>
+</div>
+<% content_for :button_directional do %>
+  <div class="container">
+    <div class="form-bottom">
+      <div class="form-button-group">
+        <div class="form-group">
+          <div class="d-grid gap-4">
+            <%= link_to "勤怠管理（求人機関一覧）に戻る", attendances_path, class: "btn btn-custom btn-primary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<div class="boxed boxed-wrapper-996">
+  <form class="form-highlight">
+    <div class="form-group">
+      <label class="form-label"><%= t(".medical_institution_name") %></label>
+      <div class="form-group-control"><%= @job.medical_institution.name %></div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= t(".contract_id") %></label>
+      <div class="form-group-control"><%= @job.contract_id %></div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= t(".attendance_list") %></label>
+      <div class="form-group-control">
+        <div class="attendance-list-view">
+          <div class="attendance-list-header d-flex align-items-end justify-content-between mb-3">
+            <div class="attendance-list-title"><%= l @pagination[:current], format: :year_month %></div>
+            <div class="attendance-list-pagination">
+              <nav aria-label="Page navigation example">
+                <ul class="pagination pagination-text-primary mb-0">
+                  <% if @pagination[:previous] %>
+                    <li class="page-item">
+                      <%= link_to attendances_path(params: { job_id: @job.id, month: @pagination[:previous].strftime("%Y-%m") }), class: "page-link" do %>
+                        <span aria-hidden="true">&laquo;</span>
+                      <% end %>
+                    </li>
+                  <% end %>
+                  <li class="page-item">
+                    <%= link_to t(".pagination.current"), attendances_path(params: { job_id: @job.id, month: Date.current.strftime("%Y-%m") }), class: "page-link" %>
+                  </li>
+                  <% if @pagination[:next] %>
+                    <li class="page-item">
+                      <%= link_to attendances_path(params: { job_id: @job.id, month: @pagination[:next].strftime("%Y-%m") }), class: "page-link" do %>
+                        <span aria-hidden="true">&raquo;</span>
+                      <% end %>
+                    </li>
+                  <% end %>
+                </ul>
+              </nav>
+            </div>
+          </div>
+          <div class="attendance-list-table">
+            <div class="form-table-primary form-table table-responsive">
+              <table class="table table-bordered">
+                <thead>
+                <tr>
+                  <th class="text-center">&nbsp;</th>
+                  <th class="text-center"><%= t(".date") %></th>
+                  <th class="text-center"><%= Attendance.t("checkin") %></th>
+                  <th class="text-center"><%= Attendance.t("checkout") %></th>
+                  <th class="text-center"><%= Attendance.t("status") %></th>
+                  <th class="text-center"><%= Attendance.t("reject_note") %></th>
+                </tr>
+                </thead>
+                <tbody>
+                  <% start_date = @job.contract_start_at.in_time_zone.to_date %>
+                  <% end_date = @job.contract_end_at.in_time_zone.to_date %>
+                  <% @current_month.all_month.step(1) do |date| %>
+                    <% attendance = @attendances[date.to_s] %>
+                    <% disabled = date < start_date || date > end_date %>
+                    <tr class="<%= disabled ? "disable" : nil %>">
+                      <td class="text-center">
+                        <div class="dropdown-bars dropdown">
+                          <button class="btn dropdown-toggle dropdown-toggle-bars" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-bars"></i>
+                          </button>
+                          <% unless disabled %>
+                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li>
+                              <% if attendance&.review? || attendance&.rejected? %>
+                                <%= link_to t(".actions.submit"), submit_attendance_path(attendance), class: "dropdown-item", method: "post" %>
+                              <% else %>
+                                <%= link_to t(".actions.submit"), "javascript:void()", class: "dropdown-item active" %>
+                              <% end %>
+                            </li>
+                            <li>
+                              <% if attendance&.waiting? %>
+                                <%= link_to t(".actions.cancel"), cancel_attendance_path(attendance), class: "dropdown-item", method: "post" %>
+                              <% else %>
+                                <%= link_to t(".actions.cancel"), "javascript:void()", class: "dropdown-item active" %>
+                              <% end %>
+                            </li>
+                            <li>
+                              <% if attendance.nil? || (!attendance.waiting? && !attendance.approved?) %>
+                                <%= link_to t(".actions.edit"),
+                                            attendance.nil? ? new_attendance_path(params: { job_id: @job.id, date: date.to_s }) : edit_attendance_path(attendance),
+                                            class: "dropdown-item" %>
+                              <% else %>
+                                <%= link_to t(".actions.edit"), "javascript:void()", class: "dropdown-item active" %>
+                              <% end %>
+                            </li>
+                            <li>
+                              <% if attendance %>
+                                <%= link_to t(".actions.show"), attendance_path(attendance), class: "dropdown-item" %>
+                              <% else %>
+                                <%= link_to t(".actions.show"), "javascript:void()", class: "dropdown-item active" %>
+                              <% end %>
+                            </li>
+                          </ul>
+                          <% end %>
+                        </div>
+                      </td>
+                      <td class="text-center"><%= l date, format: :long_2 %></td>
+                      <td class="text-center"><%= attendance && l(attendance.checkin, format: :long_day3) %>
+                        <br /><%= attendance && l(attendance.checkin, format: :hour_minute) %>
+                      </td>
+                      <td class="text-center"><%= attendance && l(attendance.checkout, format: :long_day3) %>
+                        <br /><%= attendance && l(attendance.checkout, format: :hour_minute) %>
+                      </td>
+                      <td class="text-center">
+                        <div class="status not-applied">
+                          <div class="status-text">
+                            <%= attendance&.status_i18n %>
+                            <% if attendance&.review? %>
+                              <i class="fa-solid fa-circle-info text-danger" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="勤怠申請をしてください。"></i>
+                            <% end %>
+                            <% if attendance&.rejected? %>
+                              <i class="fa-solid fa-circle-info text-danger" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-html="true" data-bs-content="<p class='text-center mb-0'>勤怠を修正し、<br>勤怠申請をしてください。</p>"></i>
+                            <% end %>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="text-center" style="width: 250px">
+                        <div class="attendance-text text-start text-pre-line"><%= attendance&.reject_note&.truncate(50) %></div>
+                      </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-bottom">
+      <div class="form-button-group">
+        <div class="form-group">
+          <div class="d-grid gap-4">
+            <%= link_to "出退勤一覧に戻る", attendances_path(medical_institution_id: @job.medical_institution_id), class: "btn btn-custom btn-primary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

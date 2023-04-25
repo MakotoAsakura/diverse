@@ -1,0 +1,111 @@
+.boxed {
+  margin-top: 60px;
+  // padding: 0 1rem;
+
+  .form-group {
+    margin-bottom: 50px;
+  }
+
+  .form-highlight .form-label {
+    font-weight: 700;
+  }
+
+  .form-highlight .form-group-control {
+    padding-left: 10px;
+  }
+
+  .list-group.list-group-unstyled .list-group-item {
+    border-color: #8c8c8c;
+    color: #0057ff;
+    padding: 0;
+  }
+
+  .list-group.list-group-unstyled .list-group-item.active {
+    background-color: #28c76f;
+    color: #fff;
+  }
+
+  .list-group.list-group-unstyled .list-group-item.active a {
+    text-decoration: none;
+    color: #fff;
+  }
+
+  .list-group.list-group-unstyled .list-group-item.active a {
+    text-decoration: none;
+    color: #fff;
+  }
+
+  .list-group.list-group-unstyled .list-group-item a {
+      color: #1195ff;
+      display: block;
+      padding: 19px;
+      font-size: 1.25rem;
+  }
+
+  .attendance-list-title {
+    font-size: .9375rem;
+    font-weight: 700;
+    color: #000;
+  }
+
+  .pagination.pagination-text-primary .page-link {
+    color: #28c76f;
+    border-width: 1px;
+    border-color: #28c76f;
+  }
+
+  .form-table-primary tbody th[scope=row]:first-child, .form-table-primary thead th {
+    background-color: #28c76f;
+    color: #fff;
+  }
+
+  .form-table table>:not(:first-child) {
+    border-top-width: 0;
+  }
+
+  .attendance-list-table table td, .attendance-list-table table th {
+    vertical-align: middle;
+  }
+
+  .form-table td {
+    height: 47px;
+    vertical-align: middle;
+  }
+}
+
+.btn {
+  font-weight: 700;
+}
+
+.notice {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 1rem;
+}
+
+@media (min-width: 768px) {
+  .boxed {
+    .list-group.list-group-unstyled .list-group-item a {
+      font-size: 1.5rem;
+      padding: 37px;
+    }
+
+    .attendance-list-title {
+      font-size: 1.25rem;
+    }
+
+    .form-table td {
+      height: 55px;
+    }
+  }
+  .notice {
+    font-size: 1.5rem;
+    text-align: left;
+  }
+}
+
+@media (min-width: 992px) {
+  .boxed.boxed-wrapper-996 {
+    max-width: 100%;
+  }
+}

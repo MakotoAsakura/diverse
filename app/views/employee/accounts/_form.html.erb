@@ -1,0 +1,180 @@
+<% content_for :title, t("employee.account.views.edit.title") %>
+<% content_for :title_class, "text-center text-lg-start" %>
+<% @crud_buttons = proc do %>
+<% end %>
+<div class="boxed px-3 px-lg-0">
+  <form class="form-highlight">
+    <%= f.fields_for :candidate, @item.candidate || Candidate.new do |ff| %>
+      <div class="form-group">
+        <label class="form-label"><%= t("employee.account.views.edit.label.name") %></label>
+        <div class="form-group-control">
+          <div class="row">
+            <div class="col-6">
+              <%= ff.text_field :first_name, class: "form-control", placeholder: t("employee.account.views.edit.label.name") %>
+            </div>
+            <div class="col-6">
+              <%= ff.text_field :last_name, name: "item[candidate_attributes][last_name]",class: "form-control", placeholder: t("employee.account.views.edit.label.name") %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label"><%= t("employee.account.views.edit.label.name_kana") %></label>
+        <div class="form-group-control">
+          <div class="row">
+            <div class="col-6">
+              <%= ff.text_field :first_name_kana, name: "item[candidate_attributes][first_name_kana]", class: "form-control", placeholder: t("employee.account.views.edit.label.name_kana") %>
+            </div>
+            <div class="col-6">
+              <%= ff.text_field :last_name_kana, name: "item[candidate_attributes][last_name_kana]", class: "form-control", placeholder: t("employee.account.views.edit.label.name_kana") %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label"><%= t("employee.account.views.edit.label.gender") %></label>
+        <div class="form-group-control">
+          <div class="row g-3 align-items-center">
+            <div class="col-auto">
+              <label class="form-check">
+                <%= ff.radio_button :gender, "male", name: "item[candidate_attributes][gender]", class: "form-check-input" %>
+                <span class="form-check-label"><%= t("employee.account.views.edit.label.male") %></span>
+              </label>
+            </div>
+            <div class="col-auto">
+              <label class="form-check">
+                <%= ff.radio_button :gender, "female", name: "item[candidate_attributes][gender]", class: "form-check-input" %>
+                <span class="form-check-label"><%= t("employee.account.views.edit.label.female") %></span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label"><%= t("employee.account.views.edit.label.national") %></label>
+        <div class="form-group-control">
+          <div class="row g-3 align-items-center">
+            <div class="col-auto">
+              <label class="form-check">
+                <%= ff.radio_button :national, "japan", name: "item[candidate_attributes][national]", class: "form-check-input" %>
+                <span class="form-check-label"><%= t("employee.account.views.edit.label.japan") %></span>
+              </label>
+            </div>
+            <div class="col-auto">
+              <label class="form-check">
+                <%= ff.radio_button :national, "non_japan", name: "item[candidate_attributes][national]", class: "form-check-input" %>
+                <span class="form-check-label"><%= t("employee.account.views.edit.label.non_japan") %></span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label"><%= t("employee.account.views.edit.label.bod") %></label>
+        <div class="form-group-control form-group-full-year">
+          <div class="row g-1 g-md-3 align-items-center">
+            <div class="col-auto">
+              <%= ff.text_field :year_of_birth, name: "item[candidate_attributes][year_of_birth]", class: "form-control", placeholder: "xxxx" %>
+            </div>
+            <div class="col-auto">
+              <label class="col-form-label">年</label>
+            </div>
+            <div class="col-auto">
+              <%= ff.text_field :month_of_birth, name: "item[candidate_attributes][month_of_birth]", class: "form-control", placeholder: "xx" %>
+            </div>
+            <div class="col-auto">
+              <label class="col-form-label">月</label>
+            </div>
+            <div class="col-auto">
+              <%= ff.text_field :day_of_birth, name: "item[candidate_attributes][day_of_birth]", class: "form-control", placeholder: "xx" %>
+            </div>
+            <div class="col-auto">
+              <label class="col-form-label">日</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label"><%= t("employee.account.views.edit.label.zip_code") %></label>
+        <div class="form-group-control">
+          <div class="row g-2 g-md-3 align-items-center">
+            <div class="col-7 col-md-auto">
+              <%= ff.text_field :zipcode, name: "item[candidate_attributes][zipcode]", class: "form-control", placeholder: t("employee.account.views.edit.label.zip_code"), id: "item_zipcode" %>
+            </div>
+            <div class="col-5 col-md-auto">
+              <button class="btn btn-primary" id="post_code_search" type="button"><%= t("employee.account.views.edit.buttons.post_code_search") %></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label"><%= t("employee.account.views.edit.label.prefecture") %></label>
+        <div class="form-group-control">
+          <div class="row">
+            <div class="col-md-6">
+              <%= ff.text_field :prefecture, name: "item[candidate_attributes][prefecture]", class: "form-control", placeholder: t("employee.account.views.edit.label.prefecture"), id: "item_prefecture" %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label"><%= t("employee.account.views.edit.label.city") %></label>
+        <div class="form-group-control">
+          <%= ff.text_field :city, name: "item[candidate_attributes][city]", class: "form-control", placeholder: t("employee.account.views.edit.label.city"), id: "item_city" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label"><%= t("employee.account.views.edit.label.address") %></label>
+        <div class="form-group-control">
+          <%= ff.text_field :address, name: "item[candidate_attributes][address]", class: "form-control", placeholder:t("employee.account.views.edit.label.address") %>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label"><%= t("employee.account.views.edit.label.phone_number") %></label>
+        <div class="form-group-control">
+          <div class="row">
+            <div class="col-md-8">
+              <%= ff.text_field :phone_number, name: "item[candidate_attributes][phone_number]", class: "form-control", placeholder: t("employee.account.views.edit.label.phone_number") %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label"><%= t("employee.account.views.edit.label.email") %></label>
+        <div class="form-group-control">
+          <%= f.text_field :email, class: "form-control", placeholder: t("employee.account.views.edit.label.email") %>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label"><%= t("employee.account.views.edit.label.email_confirmation") %></label>
+        <div class="form-group-control">
+          <%= f.text_field :email_confirmation, type: "email", class: "form-control", placeholder: t("employee.account.views.edit.label.email_confirmation") %>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label"><%= t("employee.account.views.edit.label.password") %></label>
+        <div class="form-group-control">
+          <div class="row">
+            <div class="col-md-8">
+              <%= f.password_field :password, class: "form-control", placeholder: t("employee.account.views.edit.label.password") %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label"><%= t("employee.account.views.edit.label.password_confirmation") %></label>
+        <div class="form-group-control">
+          <div class="row">
+            <div class="col-md-8">
+              <%= f.password_field :password_confirmation, class: "form-control", placeholder: t("employee.account.views.edit.label.password_confirmation") %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr class="d-none d-md-block gaps-2x" />
+      <div class="form-group mt-5">
+        <%= f.submit t("employee.account.views.edit.buttons.submit"), class: "btn btn-custom btn-primary" %>
+      </div>
+    <% end %>
+  </form>
+</div>

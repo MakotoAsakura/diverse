@@ -1,0 +1,32 @@
+ja:
+  employee:
+    working_medicals:
+      index:
+        title: "労働条件通知書"
+        medical_list: "労働条件通知書（求人機関一覧）"
+        medical_institution_name: "求人機関名"
+      jobs:
+        title: "労働条件通知書"
+        medical_institution_name: "求人機関名"
+        job_name: "求人タイトル"
+        contract_list: "労働条件通知書（契約一覧）"
+        contract_description: "※契約IDは応募求人詳細に記載しています。"
+        contract_id: "契約ID"
+      job_detail:
+        title: "労働条件通知書"
+        medical_name: "ダイバーズ病院"
+        labor_contract_period: "労働契約期間"
+        download_labor_contract_notice: "労働契約通知書ダウンロード"
+        labor_contract_notification_upload: "労働契約通知書アップロード"
+        upload_the_signed_working_conditions_notification: "サイン済の労働条件通知書をアップロードしてください。"
+        reference_btn: "参照"
+        upload_btn: "ファイルをアップロードする"
+        uploaded_file: "アップロード済ファイル"
+        upload_status: "アップロード状況"
+        file_name: "ファイル名"
+        upload_file_success: "アップロードしました"
+        btn_list_contract: "労働条件通知書(契約期間)に戻る"
+        contract_id: "契約ID"
+        job_name: "求人タイトル"
+        salary_detail: "給与"
+        including_transportation_allowance: "交通費"

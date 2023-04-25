@@ -1,0 +1,13 @@
+<% content_for :title, t('admin.password.title.finish') %>
+<div class="d-flex justify-content-center flex-root">
+  <div class="login-form p-7 overflow-hidden align-middle rounded">
+    <div class="card-body p-4 p-sm-4">
+      <div class="text-center">
+        <div class="mb-4">
+          <strong><%= t('reset_password.finish.text') %></strong>
+        </div>
+        <%= link_to t('reset_password.finish.button'), admin_user_session_path, class: "px-5 btn btn-custom btn-primary btn-submit" %>
+      </div>
+    </div>
+  </div>
+</div>

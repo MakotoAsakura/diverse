@@ -1,0 +1,17 @@
+<%= form_for :item, url: { action: (@item.new_record? ? :create : :update), params: { _action: @item.new_record? ? "new" : "edit" } },
+             html: { id: "item-form", multipart: true, autocomplete: :off, method: (@item.new_record? ? :post : :put) }, data: { turbo: false } do |f| %>
+  <%= error_messages_for :item %>
+
+  <div class="wrap">
+    <%= render template: "_confirm", locals: { f: f } %>
+  </div>
+
+  <div class="send">
+    <% if @crud_buttons %>
+      <% @crud_buttons.call f %>
+    <% else %>
+      <%= f.submit t("base.buttons.save"), class: "btn btn-back save", data: { disable_with: t("base.buttons.deleting") } %>
+      <%= f.button t("base.buttons.cancel"), class: "btn-default button btn-submit", type: :reset, onclick: "location.href='#{url_for(action: :new)}'; return false;" %>
+    <% end %>
+  </div>
+<% end %>

@@ -1,0 +1,14 @@
+<% content_for :title, "源泉徴収票メール送信完了" %>
+
+<div class="container">
+  <div class="row justify-content-center aligns-items-center mt-5">
+    <div class="text-center mb-3 fw-bolder">
+      <%= "源泉徴収票を送付しました。" %>
+    </div>
+    <div class="text-center send">
+      <%= link_to withholding_slip_admin_candidate_job_path(year: @year) do %>
+        <button type="button" class="btn save btn-submit"><%= "源泉徴収票へ" %></button>
+      <% end %>
+    </div>
+  </div>
+</div>

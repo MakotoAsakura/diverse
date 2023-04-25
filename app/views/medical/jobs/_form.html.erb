@@ -1,0 +1,187 @@
+<% if @item.new_record? %>
+  <% content_for :title, "求人募集" %>
+<% else %>
+  <% content_for :title, "募集更新" %>
+<% end %>
+
+<% @crud_buttons = proc do |f| %>
+  <% if medical_user_signed_in?%>
+    <div><%= f.submit t("base.buttons.draft_save"), formaction: url_for({ action: :save_draft, id: @item.id }), class: "btn button btn-submit button-draft-save" %></div>
+    <div class="mt-3">
+      <%= f.submit t("base.buttons.next"), class: "btn button btn-submit button-next" %>
+    </div>
+  <% else %>
+    <p class="text-danger"><%= t("medical.jobs.title.text-danger") %></p>
+    <%= f.submit t("base.buttons.to_login"), class: "btn button btn-submit button-next" %>
+  <% end %>
+<% end %>
+
+<% unless @item.new_record? %>
+  <div class="wrap">
+    <div class="title-header">
+      <label class="fw-bolder box"><%= @model.t(:state) %></label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="show-state">
+      <span class="text-state"><%= @item.status_i18n %></span>
+    </div>
+  </div>
+<% end %>
+
+<div class="wrap">
+  <div class="title-header">
+    <%= f.label :basic_information, class: "box fw-bolder" %>
+  </div>
+</div>
+
+<div class="form-group mt-3">
+  <div class=""><%= f.label :title, @model.t(:title) %></div>
+  <div class=""><%= f.text_field :title, class: "form-control border px-1 py-2 w-50", placeholder: @model.t(:title) %></div>
+</div>
+
+<div class="form-group-control mt-3">
+  <div class=""><%= f.label :position, @model.t(:position) %></div>
+  <ul class="rowList p-0 w-50">
+    <% @model.positions_i18n.each do |k, v| %>
+      <div class="col-auto me-4 mt-1">
+        <label for="<%= f.object_name %>_position_<%= k %>">
+          <%= f.radio_button :position, k, class: "form-check-input" %>
+          <span class="form-check-label"><%= v %></span>
+        </label>
+      </div>
+    <% end %>
+  </ul>
+</div>
+
+<div class="form-group mt-3">
+  <div class=""><%= f.label :address, @model.t(:address) %></div>
+  <div class=""><%= f.text_field :address, value: @item.address || current_medical&.location, class: "form-control border px-1 py-2 w-50", placeholder: @model.t(:address) %></div>
+</div>
+
+<div class="form-group mt-3">
+  <div class=""><%= f.label :medical_institution_name, @model.t(:medical_institution_name) %></div>
+  <div class="ms-3"><%= current_medical&.name %></div>
+</div>
+
+<div class="wrap mt-4">
+  <div class="title-header">
+    <%= f.label :details_information, class: "box fw-bolder" %>
+  </div>
+</div>
+
+<div class="form-group mt-3">
+  <div class=""><%= f.label :salary, @model.t(:salary) %></div>
+  <div class="row">
+    <div class="col-5 col-sm-3 col-md-2 col-xxl-1">
+      <%= f.text_field :min_annual_salary, class: "form-control border px-1 py-2 numberonly", placeholder: "100", maxlength: 6 %>
+    </div>
+    <div class="col-auto mt-2">〜</div>
+    <div class="col-5 col-sm-3 col-md-2 col-xxl-1">
+      <%= f.text_field :max_annual_salary, class: "form-control border px-1 py-2 numberonly", placeholder: "100,000", maxlength: 6 %>
+    </div>
+    <div class="col-sm-3 col-md-2 col-xxl-1 mt-2 mt-sm-0">
+      <%= f.select :salary_according_to, @model.salary_according_tos_i18n.map { |k, v| [v, k] }, {}, { class: "form-select px-1 py-2 w-75" } %>
+    </div>
+  </div>
+</div>
+
+<div class="form-group mt-3">
+  <%= f.label :quantity, @model.t(:quantity) %>
+  <div class="row">
+    <div class="col-4 col-md-2 col-xxl-1">
+      <%= f.select :quantity, @model.quantity_options, {}, { class: "form-select" } %>
+    </div>
+  </div>
+</div>
+
+<div class="form-group mt-3">
+  <div class=""><%= f.label :start_at, @model.t(:start_at) %></div>
+  <div class="row">
+    <div class="col-auto row">
+      <div class="col-auto">
+        <%= f.text_field :start_at, class: "form-control border px-1 py-2 datepicker-default", style: "width: 165px;", placeholder: l(Time.current, format: :long_day_dash) %>
+      </div>
+      <div class="col-auto mt-1">
+        <div class="calendar-icon"><%= image_tag("svg/calendar_icon.svg") %></div>
+      </div>
+    </div>
+    <div class="col-auto mt-2">〜</div>
+    <div class="col-auto row">
+      <div class="col-auto mt-2 mt-sm-0">
+        <%= f.text_field :end_at, class: "form-control border px-1 py-2 datepicker-default", style: "width: 165px;", placeholder: l(Time.current, format: :long_day_dash) %>
+      </div>
+      <div class="col-auto mt-3 mt-sm-1">
+        <div class="calendar-icon"><%= image_tag("svg/calendar_icon.svg") %></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="form-group mt-3">
+  <div class=""><%= f.label :wday_start_at, @model.t(:wday_start_at) %></div>
+  <div class="row">
+    <div class="col-4 col-sm-4 col-md-2 col-xxl-1">
+      <%= f.text_field :wday_start_at, value: @item&.wday_start_at&.strftime("%H:%M"), class: "form-control border px-1 py-2 timepicker text-center", placeholder: "09:00" %>
+    </div>
+    <div class="col-auto d-flex align-items-center">〜</div>
+    <div class="col-4 col-sm-4 col-md-2 col-xxl-1">
+      <%= f.text_field :wday_end_at, value: @item&.wday_end_at&.strftime("%H:%M"), class: "form-control border px-1 py-2 timepicker text-center", placeholder: "18:00" %>
+    </div>
+  </div>
+</div>
+
+<div class="form-group mt-3">
+  <div class="form-group-control mt-3">
+    <ul class="rowList p-0">
+      <% @model.wdays_options.map do |k, i| %>
+        <div class="col-auto me-4">
+          <label for="<%= f.object_name %>_wdays_<%= i %>">
+            <%= f.check_box :wdays, { multiple: true, checked: @item.wdays.map(&:to_i).include?(i), class: "form-check-input" }, i, nil %>
+            <span class="form-check-label"><%= k %></span>
+          </label>
+        </div>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<div class="form-group mt-3">
+  <div class=""><%= f.label :work_detail, @model.t(:work_detail) %></div>
+  <div class=""><%= f.text_area :work_detail, class: "form-control border px-1 py-2 w-75", placeholder: @model.t(:work_detail), rows: 3 %></div>
+</div>
+
+<div class="form-group mt-3">
+  <div class=""><%= f.label :appealing, @model.t(:appealing) %></div>
+  <div class=""><%= f.text_area :appealing, class: "form-control border px-1 py-2 w-75", placeholder: @model.t(:appealing), rows: 3 %></div>
+</div>
+
+<div class="form-group mt-3">
+  <div class=""><%= f.label :require_skill, @model.t(:require_skill) %></div>
+  <div class=""><%= f.text_area :require_skill, class: "form-control border px-1 py-2 w-75", placeholder: @model.t(:require_skill), rows: 3 %></div>
+</div>
+
+<div class="form-group mt-3">
+  <div class=""><%= f.label :contact, @model.t(:contact) %></div>
+  <div class=""><%= f.text_area :contact, class: "form-control border px-1 py-2 w-75", placeholder: @model.t(:contact), rows: 3 %></div>
+</div>
+
+<div class="form-group-control mt-3">
+  <div class=""><%= f.label :including_transportation_allowance, @model.t(:including_transportation_allowance) %></div>
+  <ul class="rowList p-0 w-50">
+    <% @model.including_transportation_allowances_i18n.each do |k, v| %>
+      <div class="col-auto me-4 mt-1">
+        <label for="<%= f.object_name %>_including_transportation_allowance_<%= k %>">
+          <%= f.radio_button :including_transportation_allowance, k, class: "form-check-input" %>
+          <span class="form-check-label"><%= v %></span>
+        </label>
+      </div>
+    <% end %>
+  </ul>
+</div>
+
+<div class="form-group mt-3">
+  <div class=""><%= f.label :work_policy, @model.t(:work_policy) %></div>
+  <div class=""><%= f.text_area :work_policy, class: "form-control border px-1 py-2 w-75", placeholder: @model.t(:work_policy), rows: 3 %></div>
+</div>

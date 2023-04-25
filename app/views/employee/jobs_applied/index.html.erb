@@ -1,0 +1,98 @@
+<% content_for :title, "応募求人一覧" %>
+<% content_for :title_class, "text-start text-lg-start" %>
+
+<div class="main-content">
+  <div class="main-content">
+    <section class="section">
+      <div class="container d-lg-none">
+        <div class="text-center mb-4">
+          <p>応募済求人検索</p>
+        </div>
+        <%= search_form_for @q, url: { action: :index }, html: { class: "top-search" } do |f| %>
+          <div class="text-center">
+            <div class="form-group">
+              <div class="form-group-control">
+                <div class="row g-3 align-items-center justify-content-between">
+                  <div class="col-auto col-12 col-md-5 pe-md-0">
+                    <%= f.text_field :job_medical_institution_name_cont, class: "form-control form-control-lg", placeholder: "求人機関名" %>
+                  </div>
+                  <div class="col-auto col-12 col-md-5 ps-md-0">
+                    <%= f.select :status_in, @model.statuses_i18n.map.with_index { |(_, v), i| [v, i] }, {}, { class: "form-select form-select-lg" } %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="text-center">
+            <div class="mb-4">
+              <button class="px-5 btn btn-primary btn-lg" type="submit">検索</button>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </section>
+  </div>
+
+  <section class="section">
+    <div class="boxed px-3 px-lg-0">
+      <div class="d-none d-lg-block">
+        <%= search_form_for @q, url: { action: :index }, html: { class: "form-highlight" } do |f| %>
+          <div class="form-group">
+            <label class="form-label">求人機関名</label>
+            <div class="form-group-control">
+              <div class="row">
+                <div class="col-md-6">
+                  <%= f.text_field :job_medical_institution_name_cont, class: "form-control", placeholder: "求人機関名" %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">採用状況</label>
+            <div class="form-group-control">
+              <div class="row g-1 g-md-3 align-items-center">
+                <% @model.statuses_i18n.each_with_index do |(k, v), i| %>
+                  <div class="col-auto me-4">
+                    <label for="<%= f.object_name %>_status_in_<%= i %>">
+                      <%= f.check_box :status_in, { multiple: true, class: "form-check-input" }, i, nil %>
+                      <span class="form-check-label"><%= v %></span>
+                    </label>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-custom btn-primary">検索</button>
+          </div>
+        <% end %>
+        <hr class="d-none d-md-block my-5"/>
+      </div>
+      <% if @items %>
+        <% if @items.total_count.zero? %>
+          <div class="text-center"><%= t("base.no_data") %></div>
+        <% else %>
+          <div class="text-end"><%= "#{@items.total_count}件、#{@items.current_page}ページ目" %></div>
+
+          <% @items.each do |item| %>
+            <div class="list-view">
+              <div class="job-item">
+                <h3 class="job-title text-primary-2"><%= link_to item.job.title, jobs_applied_path(item.job.id) %></h3>
+                <div class="job-summary">
+                  <ul class='list-unstyled job-list'>
+                    <li><%= MedicalInstitution.t(:name) %>：<%= item.job.medical_institution.name %></li>
+                    <li>採用状況：<%= item.status_i18n %></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          <% end %>
+
+          <nav class="pagination-wrapper mt-5 pt-md-3" aria-label="Page navigation example">
+            <%= paginate @items if @items.try(:current_page) %>
+          </nav>
+        <% end %>
+      <% end %>
+    </div>
+  </section>
+</div>

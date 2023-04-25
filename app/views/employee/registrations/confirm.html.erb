@@ -1,0 +1,119 @@
+<% content_for :title, t("candidate.registration.confirm.title") %>
+<%= form_for(resource, as: resource_name, url: sign_up_profile_path, data: { turbo: false }) do |f| %>
+  <% candidate = resource.candidate %>
+  <div class="row justify-content-center">
+  <div class="col-md-10 col-xxl-7">
+    <div class="form-group">
+      <label class="form-label"><%= t("candidate.registration.confirm.label.name") %></label>
+      <div class="form-group-control">
+        <span class="me-3"><%= candidate.first_name %>　</span>
+        <span><%= candidate.last_name %></span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= t("candidate.registration.confirm.label.name_kana") %></label>
+      <div class="form-group-control">
+        <span class="me-3"><%= candidate.first_name_kana %>　</span>
+        <span><%= candidate.last_name_kana %></span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= t("candidate.registration.confirm.label.gender") %></label>
+      <div class="form-group-control">
+        <span><%= gender_text(candidate) %></span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= t("candidate.registration.confirm.label.national") %></label>
+      <div class="form-group-control">
+        <span><%= national_text(candidate) %></span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= t("candidate.registration.confirm.label.dob") %></label>
+      <div class="form-group-control form-group-full-year">
+        <span class="me-3"><%= candidate.year_of_birth %>年</span>
+        <span class="me-3"><%= candidate.month_of_birth %>月</span>
+        <span><%= candidate.day_of_birth %>日</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= t("candidate.registration.confirm.label.zip_code") %></label>
+      <div class="form-group-control form-group-post-code">
+        <span><%= candidate.zipcode_first %></span>
+        <span>-</span>
+        <span><%= candidate.zipcode_last %></span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= t("candidate.registration.confirm.label.prefecture") %></label>
+      <div class="form-group-control">
+        <span><%= candidate.prefecture %></span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= t("candidate.registration.confirm.label.city") %></label>
+      <div class="form-group-control">
+        <span><%= candidate.city %></span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= t("candidate.registration.confirm.label.address") %></label>
+      <div class="form-group-control">
+        <span><%= candidate.address %></span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= t("candidate.registration.confirm.label.phone_number") %></label>
+      <div class="form-group-control">
+        <span><%= number_to_phone(candidate.phone_number) %></span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= t("candidate.registration.confirm.label.email") %></label>
+      <div class="form-group-control">
+        <span><%= resource.email %></span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><%= t("candidate.registration.confirm.label.password") %></label>
+      <div class="form-group-control">
+        <span><%= convert_password_to_asterisk(resource) %></span>
+      </div>
+    </div>
+  </div>
+</div>
+<hr class="form-group" />
+<div class="form-button-group text-center mx-auto">
+  <div class="form-group">
+    <div class="d-grid gap-4 gap-md-5">
+      <%= f.submit t("candidate.candidates.confirm.button.submit"), class: "px-5 btn btn-primary btn-custom" %>
+      <%= link_to t("candidate.candidates.confirm.button.back"), new_user_registration_path(type: :back), class: "px-5 btn btn-primary btn-custom" %>
+    </div>
+  </div>
+</div>
+<div class="d-none">
+  <%= f.fields_for :candidate, resource.candidate || Candidate.new do |ff| %>
+    <%= ff.hidden_field :first_name %>
+    <%= ff.hidden_field :last_name %>
+    <%= ff.hidden_field :first_name_kana %>
+    <%= ff.hidden_field :last_name_kana %>
+    <%= ff.hidden_field :zipcode %>
+    <%= ff.hidden_field :gender %>
+    <%= ff.hidden_field :national %>
+    <%= ff.hidden_field :year_of_birth %>
+    <%= ff.hidden_field :month_of_birth %>
+    <%= ff.hidden_field :day_of_birth %>
+    <%= ff.hidden_field :prefecture %>
+    <%= ff.hidden_field :city %>
+    <%= ff.hidden_field :address %>
+    <%= ff.hidden_field :phone_number %>
+    <%= ff.hidden_field :dob %>
+  <% end %>
+
+  <%= f.hidden_field :email %>
+  <%= f.hidden_field :email_confirmation %>
+  <%= f.hidden_field :password %>
+  <%= f.hidden_field :password_confirmation %>
+</div>
+<% end %>

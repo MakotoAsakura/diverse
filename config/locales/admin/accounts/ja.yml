@@ -1,0 +1,32 @@
+ja:
+  admin:
+    accounts:
+      title:
+        edit: アカウント詳細
+        confirm: アカウント更新
+        confirm_delete: アカウント削除
+        complete:
+          confirm: 更新完了
+          confirm_delete: 削除完了
+          complete: 更新完了
+      form:
+        button_submit: "アカウントを更新する"
+        button_delete: "アカウントを削除する"
+      confirm:
+        button_submit: "アカウントを更新する"
+        note: "上記内容で更新します。よろしいですか？"
+        password_sample: "-"
+      complete:
+        titles:
+          edit: "更新完了 "
+          destroy: "削除完了"
+        notices:
+          edit: "更新が完了しました。"
+          destroy: "削除が完了しました。"
+        messages:
+          edit: "ご登録のメールアドレスへご確認のメールをお送りいたしました。"
+          destroy: "ご登録のメールアドレスへご確認のメールをお送りいたしました。"
+      confirm_delete:
+        button: "アカウントを削除する"
+        note: "アカウントを削除します。よろしいですか？"
+        warning: "※アカウントを削除すると復元することができません。ご注意ください。"

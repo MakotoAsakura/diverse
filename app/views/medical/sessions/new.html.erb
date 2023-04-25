@@ -1,0 +1,39 @@
+<% content_for :title, "ログイン" %>
+<div class="login-form">
+  <%= form_for(resource, as: resource_name, url: medical_user_session_path, data: { turbo: false }) do |f| %>
+    <div class="login-form">
+      <div class="form-group">
+        <div>
+          <% flash.each do |message_type, message| %>
+            <%= content_tag :div, message, class: "alert alert-#{message_type}" if message.is_a?(String) %>
+          <% end %>
+        </div>
+        <label class="form-label">メールアドレス</label>
+        <div class="form-group-control">
+          <%= f.email_field :email, autofocus: true, placeholder: "メールアドレス", class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group mt-4">
+        <label class="form-label">パスワード</label>
+        <div class="form-group-control">
+          <%= f.password_field :password, autocomplete: 'off', placeholder: "パスワード", class: "form-control" %>
+        </div>
+      </div>
+      <%= f.hidden_field :role, value: "medical" %>
+      <div class="text-center mt-4">
+        <div class="mb-4">
+          <%= link_to t("candidate.sessions.new.label.forgot_password"), new_medical_user_password_path %>
+        </div>
+        <div class="mb-4">
+          <%= f.submit t("candidate.sessions.new.label.submit"), class: "px-5 btn btn-primary btn-custom btn-submit" %>
+        </div>
+        <hr>
+        <div class="mb-4 d-grid gap -2">
+          <%= link_to new_medical_user_registration_path do %>
+            <%= button_tag t("candidate.sessions.new.buttons.register").html_safe, class: "px-5 btn btn-primary btn-custom btn-submit", type: "button" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

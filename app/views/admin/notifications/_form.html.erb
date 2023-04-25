@@ -1,0 +1,101 @@
+<% @crud_buttons = proc do |f| %>
+  <div class="row col-9 mt-5 justify-content-md-center ">
+    <div class="col">
+      <%= f.submit @item.new_record? ? t("admin.notifications.new.submit") : t("admin.notifications.edit.submit"),
+                   class: "btn button save btn-submit" %>
+
+      <% unless @item.new_record? %>
+        <%= link_to confirm_delete_admin_notification_path do %>
+          <button type="button" class="btn save btn-destroy"><%= t("admin.notifications.edit.delete") %></button>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<div class="wrap">
+  <div class="title-header">
+    <%= f.label :title, "お知らせ情報", class: "box fw-bolder" %>
+  </div>
+</div>
+
+<div class="container">
+  <div class="form-group row">
+    <div class="col-2 fw-bolder pt-2"><%= f.label :title, @model.t(:title) %></div>
+    <div class="col-7"><%= f.text_field :title, class: "form-control border px-1 py-2", placeholder: @model.t(:title), maxlength: 50 %></div>
+  </div>
+
+  <div class="form-group row mt-3">
+    <div class="col-2 fw-bolder pt-2"><%= f.label :content, @model.t(:content) %></div>
+    <div class="col-7">
+      <%= f.rich_text_area :content, class: "form-control border px-1 py-2 trix-content #{@item.errors.key?(:content) ? 'danger' : nil }", placeholder: @model.t(:content) %>
+      <% if @item.errors.key?(:content) %>
+        <div class="i-helper danger"><%= @item.errors.messages_for(:content).join("") %></div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="form-group row mt-3">
+    <div class="col-2 fw-bolder pt-2"><%= f.label :attachments, @model.t(:attachments) %></div>
+    <div id="files-area" class="col-7">
+      <div class="i-helper danger"><%= @item.errors.messages_for(:attachments).join("") %></div>
+      <div id="filesList">
+        <div id="files-names">
+          <% if @file_ids.present? %>
+            <% @file_ids.each do |file_id| %>
+              <div class="file-input-block ms-3">
+                <input class="d-none" type="text" name="file_ids[]" id="attachment-ids" value="<%= file_id %>"/>
+                <% attachment = Attachment.find_by(id: file_id) %>
+                <% next unless attachment %>
+                <div class="file-block row mb-2">
+                  <div class="filename col-8"><%= link_to attachment.filename, rails_blob_path(attachment.file, disposition: 'attachment'), class: "text-decoration-underline", target: "_blank" %></div>
+                  <span class="file-delete-ids col-auto"><button class="btn button save btn-submit w-100">削除</button></span>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+
+      <div>
+        <label for="attachment">
+          <a class="btn button save btn-submit text-light" style="width: 232px;" role="button" aria-disabled="false">ファイルを選択</a>
+        </label>
+        <input class="d-none" type="file" name="file[]" id="attachment" accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.xls,.xlsx,.pdf,image/*" multiple/>
+      </div>
+    </div>
+  </div>
+
+  <% if action_name == "edit" %>
+    <div class="form-group row mt-2">
+      <div class="col-2 fw-bolder"><%= f.label @model.t(:status) %></div>
+      <div id="item_status" class="col-7"><%= @item.status_i18n %></div>
+    </div>
+  <% end %>
+
+  <div class="form-group row mt-3">
+    <div class="col-2 fw-bolder pt-2"><%= f.label :start_time, @model.t(:publish_time) %></div>
+    <div class="col-7">
+      <div class="row">
+        <div class="col-auto row">
+          <div class="col-auto">
+            <%= f.text_field :start_time, class: "form-control border px-1 py-2 datepicker-default", style: "width: 220px;", placeholder: l(Time.current, format: :long_day3) %>
+          </div>
+          <div class="col-auto mt-1">
+            <div class="calendar-icon"><%= image_tag("svg/calendar_icon.svg") %></div>
+          </div>
+        </div>
+        <div class="col-auto mt-2">〜</div>
+        <div class="col-auto row">
+          <div class="col-auto">
+            <%= f.text_field :end_time, class: "form-control border px-1 py-2 datepicker-default", style: "width: 220px;", placeholder: l(Time.current, format: :long_day3) %>
+          </div>
+          <div class="col-auto mt-1">
+            <div class="calendar-icon"><%= image_tag("svg/calendar_icon.svg") %></div>
+          </div>
+        </div>
+      </div>
+      <div class="i-helper danger"><%= @item.errors.key?(:time) ? @item.errors.messages_for(:time).join("") : nil %></div>
+    </div>
+  </div>
+</div>

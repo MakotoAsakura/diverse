@@ -1,0 +1,26 @@
+ja:
+  system_settings:
+    title:
+      edit: "設定更新"
+      show: "設定詳細"
+      complete:
+        confirm: "更新完了"
+      confirm: "設定詳細"
+    views:
+      complete:
+        confirm:
+          notice: "更新が完了しました。"
+          message: "ご登録のメールアドレスへご確認のメールをお送りいたしました。"
+    options:
+      end_of_month: "月末"
+    buttons:
+      back: "トップページへ"
+      edit: "システム設定を更新する"
+      confirm: "システム設定を更新する"
+    label:
+      invoice: "請求管理"
+      invoice_info: "請求元情報"
+      bank_info: "振込先口座情報"
+      payment_management: "決済管理"
+      alert_management: "アラート管理"
+      contact_management: "お問合せ管理"

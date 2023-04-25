@@ -1,0 +1,25 @@
+<div id="complete">
+  <div class="mt-5">
+    <%= render template: "_complete" %>
+    <div class="notice">
+      <% if @complete_notice %>
+        <% @complete_notice.call %>
+      <% else %>
+        <%= "削除が完了しました。" %>
+      <% end %>
+    </div>
+    <div class="send-mail">
+      <% if @complete_send_mail %>
+        <% @complete_send_mail.call %>
+      <% else %>
+        <%= "ご登録のメールアドレスへご確認のメールをお送りしました。" %>
+      <% end %>
+    </div>
+
+    <% if @complete_button %>
+      <% @complete_button.call %>
+    <% else %>
+      <%= after_complete_button %>
+    <% end %>
+  </div>
+</div>

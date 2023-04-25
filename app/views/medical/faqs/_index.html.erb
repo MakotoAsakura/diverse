@@ -1,0 +1,19 @@
+<div class="faq-index d-flex flex-column flex-md-row justify-content-between text-center mx-auto mt-5">
+  <%= link_to medical_faqs_path(category: "medical"), class: "text-decoration-none text-reset" do %>
+    <div class="card mt-4">
+      <div class="card-body card-p">
+        <h5 class="card-title mb-4">求人担当者様はこちらへ</h5>
+        <p class="card-text">求人掲載・利用料金などについて、<br>ご不明点がある求人担当者様<br>はこちらをご覧ください。</p>
+      </div>
+    </div>
+  <% end %>
+
+  <%= link_to medical_faqs_path(category: "employee"), class: "text-decoration-none text-reset" do %>
+    <div class="card mt-4">
+      <div class="card-body card-p">
+        <h5 class="card-title mb-4">求職者様はこちらへ</h5>
+        <p class="card-text">アプリの利用方法・各種お手続きに<br>ついて、ご不明な点がある求職者様<br>はこちらをご覧ください。</p>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,16 @@
+.i {
+  &-helper {
+    margin-bottom: 5px;
+    &.danger {
+      color: #ff4b4b;
+    }
+  }
+}
+
+input, textarea, .input-group {
+  &.danger {
+    border-color: #ff4b4b !important;
+    border-style: solid;
+    border-width: 1px
+  }
+}

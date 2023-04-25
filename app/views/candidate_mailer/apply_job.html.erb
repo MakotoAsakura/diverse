@@ -1,0 +1,8 @@
+<div><%= @candidate_job.candidate.full_name %>　様</div>
+<br>
+<div>ダイバースをご利用いただき、誠にありがとうございます。</div>
+<br>
+<div>下記求人において、採用承諾を受け付けました。</div>
+<div><%= link_to "応募求人詳細(採用承認待ち)", jobs_applied_index_url %></div>
+<br>
+<%= render 'shared/mailer/footer' %>

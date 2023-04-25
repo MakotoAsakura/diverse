@@ -1,0 +1,33 @@
+.contact-form {
+  .text-contact {
+    color: #1195ff;
+    font-weight: bold;
+  }
+
+  .form-group {
+    margin-bottom: 50px;
+  }
+
+  .form-group-control .input-custom {
+    padding-top: 13px;
+    padding-bottom: 13px;
+    border-radius: 0;
+    width: 50%;
+  }
+
+  .btn-submit-contact {
+    width: 200px;
+    padding: 10px 10px 10px 10px;
+  }
+
+  .confirm-contact-form {
+    width: 584px;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .form-bottom {
+    border-top: 1px solid #8c8c8c;
+    padding-top: 50px;
+  }
+}
